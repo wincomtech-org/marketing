@@ -1,0 +1,60 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme}resources/bootstrap/css/goodsList.css"/>
+<script src="{$site.theme}resources/bootstrap/js/pagination.js"></script>
+<script src="{$site.theme}resources/bootstrap/js/jquery.SuperSlide.2.1.1.js"></script>
+
+<body onload="goodsList();" data-val="7826d00ab11b434f87fd3adae68cb80a">
+    {include file="inc/header.tpl"}
+
+    <div class="page-content">
+        <div class="usercenter_page">
+            <div class="usercenter_tag">
+                <ul>
+                    <li class="active"><a href="{$url.user}"><em></em>基本信息</a></li>	
+                    <li><a href="user.php?rec=order_list"><em></em>我的订单</a></li> 
+                    <li><a href="user.php?rec=logout"><em></em>退出登录</a></li>
+                </ul>
+            </div>
+            <div class="usercenter_content usercenter_demand">
+                <div class="goodsListTitle">我的订单</div>
+                <div class="goodsListPurchase">已购买</div>
+                <ul class="goodsList">
+                    <li class="goodsListItem">
+                       <span class="goodsListItem1">时间</span>
+                       <span class="goodsListItem2">商品</span>
+                       <span class="goodsListItem3">价格</span>
+                   </li>
+                   
+                   <li class="goodsListItem">
+                       <span class="goodsListItem1">2017-04-02</span>
+                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
+                       <span class="goodsListItem3">￥1,000</span>
+                   </li>
+                   <li class="goodsListItem">
+                       <span class="goodsListItem1">2017-04-02</span>
+                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
+                       <span class="goodsListItem3">￥1,000</span>
+                   </li>
+                   <li class="goodsListItem">
+                       <span class="goodsListItem1">2017-04-02</span>
+                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
+                       <span class="goodsListItem3">￥1,000</span>
+                   </li>
+               </ul>
+               <!-- 未购买 -->
+			<!--  <div class="goodsListStatus">
+				<img src="../../resources/bootstrap/img/statusBg.png">
+				<div class="text">您暂时没有订单</div>
+				<a href="../../package/page.shtml.html"><div class="goodsListBtn">去看看</div></a>
+            </div> -->
+            <ul class="user_demand">
+            	
+            </ul>
+            {include file="inc/pager.tpl"}
+        </div>
+    </div>
+</div>
+
+{include file="inc/footer.tpl"}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{include file="inc/head.tpl"}
+<script src="{$site.theme}resources/bootstrap/js/pagination.js"></script>
+
+<body onload="packageList(1)">
+    {include file="inc/header.tpl"}
+
+    <!-- 不知道干嘛的 S -->
+    <div class="filter-area m10">
+        <ul class="filter-tit" id="filter-tit">
+        </ul>
+    </div>
+    <div class="filter-block" id="filter-content">
+        <ul class="filter-content" id="filter-content1">
+        </ul>
+        <ul class="filter-content" id="filter-content2">
+            <li data="0"></li>
+            <li data="1"></li>
+            <li data="2"></li>
+        </ul>
+    </div>
+    <!-- 不知道干嘛的 E -->
+
+    <div class="page-content" style="margin-top: 0">
+        <div class="demandlist">
+            <ul style="padding-top:0;">
+                <!-- {foreach $product_list $v} -->
+                <li class="addPreferentialList">
+                    <a href="{$v.url}">
+                        <div class="img">
+                            <img class="img" src="{$v.image}" alt="">
+                        </div>
+                        <div class="content">
+                            <div class="title">【{$v.name}】</div>
+                            <div class="content1">{$v.description}</div> 
+                            <div class="seekType"><em style="color:#ff5454">{$v.click}</em>人咨询</div>
+                            <div class="priceText">参考价<em style="color:#ff5454;font-size:18px;">{$v.price}</em></div>
+                        </div>
+                    </a>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            {include file="inc/pager.tpl"}
+        </div>
+    </div>
+
+    {include file="inc/footer.tpl"}
+
+</body>
+</html>

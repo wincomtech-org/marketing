@@ -1,0 +1,406 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme}resources/bootstrap/resetCss/index.css"/>
+<script src="../static.geetest.com/static/tools/gt.js"></script>
+<style>
+    {literal}
+    .caseShareBox1,.contentBox,.workerList,.shiftBox,.demandBox{cursor:pointer;}
+    .caseShare .detailedText{height:26px;}
+    .login .reg_p{margin:0;}
+    .contentBox .title{line-height:36px;height:108px;white-space:normal;}
+    {/literal}
+</style>
+
+<body class="cover" style="background:none;">
+
+    <div class="page-container">
+        {include file="inc/header.tpl"}
+        <!-- <div id="popup-captcha"></div> -->
+        <div id="banner">
+            {if $show_list}
+            <ul>
+                {foreach $show_list as $k=>$v}
+                <li {if $k eq 0}class="banner_li_active"{/if} data-val="{$k+1}"></li>
+                {/foreach}
+            </ul>
+            <div id="banner_list">
+                {foreach $show_list as $v}
+                <a href="{$v.show_link}"><img src="{$v.show_img}" alt="{$v.show_name}"/></a>
+                {/foreach}
+            </div>
+            {/if}
+
+            <!-- 登录注册 S -->
+            <!--{if !$user}-->
+            <div class="banner_pos">
+                <div class="banner_pos_box">
+                    <div class="banner_pos_box_h1">
+                        <p class="active"><img src="{$site.theme}picture/ico48.png" style="left:29px;">快速注册</p>
+                        <p><img src="{$site.theme}picture/ico25.png" style="left:42px;">登录</p>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 注册 -->
+                    <div class="reg">
+                        <form id="register" action="{$url.register_post}" method="post">
+                        <span>
+                            <i>手机</i>
+                            <input type="text" name="telephone">
+                            <p id="telephone" class="cue"></p>
+                            <div class="clear"></div>
+                        </span>
+                        <!--{if $site.captcha}-->
+                        <span class="reg_v">
+                            <i>验证码</i>
+                            <input type="text" name="captcha" id="code" onkeyup="code_keyup()" placeholder="请在此输入图片验证码">
+                            <a class="getCode"><img id="vcode" src="{$site.root_url}captcha.php" alt="{$lang.captcha}" onClick="refreshimage()" title="{$lang.captcha_refresh}"></a>
+                            <div class="clear"></div>
+                        </span>
+                        <!--{/if}-->
+                        <span>
+                            <i>密码</i>
+                            <input type="password" name="password" id="password1">
+                            <p id="password" class="cue"></p>
+                            <div class="clear"></div>
+                        </span>
+                        <span>
+                            <i>确认密码</i>
+                            <input type="password" name="password_confirm" id="password2">
+                            <p id="password_confirm" class="cue"></p>
+                            <div class="clear"></div>
+                        </span>
+                        <p class="reg_p">
+                            <label>
+                                <input type="checkbox">
+                                <em>√</em>
+                            </label>
+                            我同意
+                            <a href="#">《服务条款》</a>
+                            <a href="#">《保密协议》</a>
+                            <a href="#">《法律公告及免责声明》</a>
+                            <a href="#">《隐私条款》</a>
+                            <div class="clear"></div>
+                        </p>
+                        <input type="hidden" name="token" value="{$token}" />
+                        <button id="reg" onclick="register()">{$lang.user_register}</button>
+                        </form>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- 用户登录 -->
+                    <div class="login" style="display:none">
+                        <form id="loginto" action="{$url.login_post}" method="post">
+                        <span>
+                            <i>用户名</i>
+                            <input type="text" name="telephone" id="mobile">
+                            <div class="clear"></div>
+                        </span>
+                        <span>
+                            <i>密码</i>
+                            <input type="password" name="password" id="password">
+                            <div class="clear"></div>
+                        </span>
+                        <a class="forget_password" href="{$url.password_reset}">{$lang.user_password_reset}</a>
+                        <div class="clear"></div>
+                        <p class="reg_p">
+                            <label>
+                                <input type="checkbox">
+                                <em>√</em>
+                            </label>
+                            我同意
+                            <a href="#">《服务条款》</a>
+                            <a href="#">《保密协议》</a>
+                            <a href="#">《法律公告及免责声明》</a>
+                            <a href="#">《隐私条款》</a>
+                            <div class="clear"></div>
+                        </p>
+                        <input type="hidden" name="token2" value="{$token2}" />
+                        <button id="login" onclick="douSubmit('loginto')">{$lang.user_login_btn}</button>
+                        <!-- <button id="login" onclick="login()">登录</button> -->
+                        </form>
+                    </div>
+                </div>
+                <script>
+                    {literal}
+                    if(localStorage.getItem('block_num')!=''){
+                        $('.reg').css('display','none');
+                        $('.login').css('display','block')
+                        $('.banner_pos_box_h1 p:eq(0)').removeClass('active')
+                        $('.banner_pos_box_h1 p:eq(0)').find('img').attr('src',theme+'resources/bootstrap/resetImg/ico47.png')
+                        $('.banner_pos_box_h1 p:eq(1)').find('img').attr('src',theme+'resources/bootstrap/resetImg/ico26.png')
+                        $('.banner_pos_box_h1 p:eq(1)').addClass('active')
+                    }
+                    $(".banner_pos_box_h1 p").click(function(){
+                        $(".banner_pos_box_h1 p").removeClass("active");
+                        $(this).addClass("active")
+                        if($(this).index()==0){
+                            $('.reg').css("display",'block');
+                            $('.login').css('display','none');
+                            $(this).find('img').attr('src',theme+'resources/bootstrap/resetImg/ico48.png');
+                            $(this).parent().find("p").not($(this)).find("img").attr('src',theme+'resources/bootstrap/resetImg/ico25.png');
+                        }else{
+                            $('.login').css('display','block');
+                            $('.reg').css("display",'none');
+                            $(this).find('img').attr('src',theme+'resources/bootstrap/resetImg/ico26.png');
+                            $(this).parent().find("p").not($(this)).find("img").attr('src',theme+'resources/bootstrap/resetImg/ico47.png');
+                        }
+                    })
+                    $('.reg span').click(function(){
+                        $(this).find("input").focus()
+                    })
+                    $('.login span').click(function(){
+                        $(this).find("input").focus()
+                    })
+                    $(".reg_p label").click(function(){
+                        if($(this).css("background")=='rgb(255, 84, 84) none repeat scroll 0% 0% / auto padding-box border-box'){
+                            $(this).css("background",'#ccc')
+                            $(this).attr('tid',0)
+                            return false;
+                        }else{
+                            $(this).css('background','#ff5454');
+                            $(this).attr('tid',1)
+                            return false;
+                        }
+                    })
+                    if($('.getInto span:eq(0)').html()){
+                        $('.banner_pos').css('display','none')
+                    }
+                    {/literal}
+                </script>
+            </div>
+            <!-- {/if} -->
+            <!-- 登录注册 E -->
+
+        </div>
+
+        <div class="requirementBox" style="background:#f5f5f5;">
+            <div class="requirementTitle">成功案例</div>
+            <div class="requirementText">
+                <span>更多案例</span>
+                <a href="{$url.case}"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                <div class="clear"></div>
+            </div>
+            <div class="changeTabBox">
+                <div class="changeTab">
+                    <div class="box">
+                        <!-- {foreach $recommend_case $v} -->
+                        <div class="shiftBox" style="left: 0px; z-index: 3;" tid="{$v.id}" >
+                            <div class="listContent" to="{$v.url}">
+                                <div class="describeText">  
+                                    <div class="changeTabTitle">{$v.title}</div>
+                                    <div class="briefText">{$v.description}</div>
+                                </div>
+                                <img class="listContentImg" src="{$v.image}">   
+                            </div>
+                        </div>
+                        <!-- {/foreach} -->
+                    </div>
+                </div>
+
+                <div class="leftB"></div>
+                <div class="rightB"></div>
+            </div>
+            <script>
+                {literal}
+                $('.changeTab .box').delegate('.shiftBox','click',function(){
+                    window.location.href=$(this).attr('to')
+                });
+                var changeTab_num=0;
+                var changeTab_z=1;
+                $('.leftB').click(function(){
+                    changeTab_num--;
+                    if(changeTab_num==0){
+                        changeTab_num=$('.shiftBox').length-1;
+                    }
+                    $('.shiftBox').eq(changeTab_num).css('zIndex',changeTab_z)
+                    changeTab_z++
+                })
+                $('.rightB').click(function(){
+                    changeTab_num++;
+                    if(changeTab_num>=$('.shiftBox').length){
+                        changeTab_num=0;
+                    }
+                    $('.shiftBox').eq(changeTab_num).css('zIndex',changeTab_z)
+                    changeTab_z++;
+
+                })
+                {/literal}
+            </script>
+            <div class="clear"></div>
+        </div>
+
+        <!-- 产品 S -->
+        <div class="workerBox">
+            <div class="requirementTitle" style="padding-top:60px;">热门营销包</div>
+            <div class="requirementText" style="width:100px;">
+                <span>更多</span>
+                <a href="package/page_info.html"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                <div class="clear"></div>
+            </div>
+            <div class="workerListBox" >
+                <!-- {foreach $recommend_product $v} -->
+                <div class="workerList" to="{$v.url}">
+                    <img src="{$v.image}">
+                    <div class="nameText">【{$v.name}】</div>
+                    <div class="summaryText"><i>{$v.click}</i>人咨询</div>
+                    <div class="content">{$v.description}</div>
+                    <div class="scheduleText">参考价格<i>{$v.price}</i></div>
+                </div>
+                <!-- {/foreach} -->
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <!-- 新闻 -->
+        <div class="bg">
+            <div class="requirementBox1">
+                <div class="requirementTitle">媒体报道</div>
+                <div class="requirementText">
+                    <span>查看更多</span>
+                    <a href="report/page.shtml.html"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                    <div class="clear"></div>
+                </div>
+                
+                <div id="news_append">
+                    <!-- {section name=new loop=$recommend_article start=0 max=1 show=true} -->
+                    <div class="caseShare caseShareBox1" to="{$recommend_article[new].url}">
+                        <img src="{$recommend_article[new].image}">
+                        <div class="detailedText">{$recommend_article[new].title}</div>
+                    </div>
+                    <!-- {/section} -->
+                    <div class="contentShow">
+                        <!-- {section name=new loop=$recommend_article start=1 max=1} -->
+                        <div class="contentBox" to="{$recommend_article[new].url}">
+                            <img src="{$recommend_article[new].image}">
+                            <div class="title">{$recommend_article[new].title}</div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- {/section} -->
+                        <div class="contentBox listBox">
+                            <!-- {section name=new loop=$recommend_article start=2 max=6} -->
+                            <span to="{$recommend_article[new].url}" tid="{$recommend_article[new].id}">{$recommend_article[new].title}</span>
+                            <!-- {/section} -->
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {include file="inc/footer.tpl"}
+
+    <script type="text/javascript">
+        {literal}
+        /*媒体*/
+        $('.workerListBox').delegate('.workerList','click',function(){
+            window.location.href=$(this).attr('to')
+        });
+        function code_keyup(){
+            var pic_yz=$("#code").val();
+            var mobile = $(".reg span:eq(0) input").val();
+            if($("#code").val().length==4){
+                if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){ 
+                    alert("输入错误");  
+                    return false; 
+                }
+                $.ajax({
+                    url:url+"/user/send_code.shtml",
+                    type:"post",
+                    data:{
+                        imgCode:pic_yz,
+                        mobile:mobile
+                    },
+                    success:function(e){
+                        if(e.code==0){
+                            $("#code").val('')
+                            $('.reg_v a').attr('onclick','');
+                            $("#code").attr("onkeyup",'').attr('placeholder',"验证码1");
+                            settime(60);
+                            alert("验证码2");
+                        }else{
+                            alert(e.message)
+                            ajax_picYZ();
+                            $("#code").attr("placeholder","验证码3").attr("onkeyup","code_keyup()").val('');
+                            $('.getCode').html('<img src="user/img.shtml">');
+                            $('.getCode').click(function(){
+                                ajax_picYZ();
+                            });
+                        }
+                    }
+                })
+            }
+        }
+        function ajax_picYZ(){
+            $.ajax({
+                url:url+"/user/img.shtml",
+                type:"post",
+                success:function(e){
+                    var data=new Date();
+                    $('.getCode:eq(0) img').attr('src',url+"/user/img.shtml?"+data.getTime())
+                }
+            })
+        }
+
+        function settime(countdown){
+            if (countdown == 0) {
+                ajax_picYZ();
+                $("#code").attr("placeholder","验证码4").attr("onkeyup","code_keyup()")
+                $('.getCode').html('<img src="http://www.315pr.com/user/img.shtml">');
+                $('.getCode').click(function(){
+                    ajax_picYZ();
+                });
+                return false;
+            }else{
+                $('.getCode').html(countdown+'s');
+                countdown--;
+            }
+            setTimeout(function() {
+                settime(countdown);
+            },1000)
+        }
+        $('.requirementBox1:eq(0)').delegate(".demandBox",'click',function(){
+            window.location.href=url+"/demand/info-2.0-"+$(this).attr("tid")+"-2.shtml";
+        })
+        $('#news_append').delegate('.caseShare','click',function(){
+            window.location.href=$(this).attr('to')
+        }).delegate('.contentBox:eq(0)','click',function(){
+            window.location.href=$(this).attr('to')
+        }).delegate('.listBox span','click',function(){
+            window.location.href=$(this).attr('to')
+        })
+        /* $('.forget_password').click(function(){
+            $('.banner_pos_box').css("display",'none')
+            $('.banner_pos_forget').css('display','block')
+        }) */
+        /* $('.icoBox').click(function(){
+            $('.icoBox').find(".icoBox_pos").css("display","none")
+            $(this).find(".icoBox_pos").css("display",'block');
+        }) */
+        var banner_num=0;
+        var tim=null;
+        $("#banner li").click(function(){
+            clearInterval(tim)
+            $("#banner li").removeClass("banner_li_active");
+            $(this).addClass("banner_li_active");
+            $('#banner_list').stop().animate({"left":(-100*$(this).index())+"%"},2000)
+            banner_num=$(this).index()+1;
+            banner();
+        })
+        banner()
+        function banner(){
+            tim=setInterval(banner_move,4000)
+            function banner_move(){
+                if(banner_num>($("#banner li").length-1)){
+                    banner_num=0;
+                }
+                $("#banner li").removeClass("banner_li_active");
+                $("#banner li").eq(banner_num).addClass("banner_li_active");
+                $('#banner_list').stop().animate({"left":(-100*banner_num)+"%"},1000)
+                banner_num++;
+            }
+        }
+        {/literal}
+    </script>
+
+</body>
+</html>

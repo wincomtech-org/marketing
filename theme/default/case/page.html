@@ -1,0 +1,35 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="../resources/bootstrap/css/reset.css"/>
+<link rel="stylesheet" href="../resources/bootstrap/css/preferentiallist.css"/>
+<script src="../resources/bootstrap/js/pagination.js"></script>
+<style>
+{literal}
+    .caselist .caselist-content h3{height:47px;}
+{/literal}
+</style>
+
+<body onload="caselist();">
+{include file="inc/header.tpl"}
+<div class="page-content">
+    <div class="caselist">
+        <ul>
+            <!-- {foreach $case_list $v} -->
+        	<li>
+        		<a href="{$v.url}">
+        			<div class="caselist-img" style="height:238.286px;">
+        				<img src="{$v.image}" alt="{$v.title}">
+        			</div>
+        			<div class="caselist-content">
+        				<h3>{$v.title}</h3>
+        				<div>{$v.description}</div>
+        			</div>
+        		</a>
+        	</li>
+            <!-- {/foreach} -->
+        </ul>
+        {include file="inc/pager.tpl"}
+    </div>
+</div>
+{include file="inc/footer.tpl"}
+</body>
+</html>

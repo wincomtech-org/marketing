@@ -1,0 +1,86 @@
+article, aside, canvas, details,figcaption, figure,footer, header, hgroup, menu, nav, section, summary,time, mark, audio, videoinput,button,ul,li,input{
+	margin:0;
+	padding:0;
+	border:0;
+	font:inherit;
+	vertical-align:baseline;
+ /*	-webkit-appearance: none;  
+	-webkit-appearance: none;  */
+	border-radius:0;	
+}
+ input,textarea,select,img{
+	-webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+
+a,button,input,textarea,img,div{-webkit-tap-highlight-color: rgba(255,255,255,0)} 
+/* WebKit browsers */
+::-webkit-input-placeholder {
+	color:#887978;
+}
+/* Mozilla Firefox 4 to 18 */
+:-moz-placeholder {
+	color:#887978;
+	opacity: 1;
+}
+/* Mozilla Firefox 19+ */
+::-moz-placeholder {
+	color:#887978;
+	opacity: 1;
+}
+/* Internet Explorer 10+ */
+:-ms-input-placeholder {
+	color:#887978;
+}
+select::-ms-expand { display: none; }	
+
+ul li{
+	list-style:none;
+}
+a,.a:hover{
+	text-decoration: none;
+}
+html{
+	/*font-size: 62.5%*/; /*10 ÷ 16 × 100% = 62.5%*/
+}
+body{
+	margin:0;
+	padding:0;
+	border:0;
+	/*font-size: 1.6rem;*/ /*1.4 × 10px = 14px */
+	font-size:12px;
+	font-family:"Hiragino Sans GB","Microsoft Yahei",SimSun,Arial,"Helvetica Neue",Helvetica;
+	-webkit-text-size-adjust: 100%!important;
+}
+dd{
+	color: #797979;
+}
+textarea{
+	resize: none;
+}
+.borderBox{ 
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px;
+	border:solid 1px #D7DAE1;
+	background-color:#fff;
+	-khtml-box-shadow: 0 0 20px #D7DAE1; 
+ 	-webkit-box-shadow: 0 0 20px #D7DAE1;   
+	-moz-box-shadow: 0 0 20px #D7DAE1;   
+	box-shadow: 0 0 20px #D7DAE1; 
+}
+.borderBox1{
+/*	background-color:#fff;
+	-khtml-box-shadow: 0 0 20px #D7DAE1; 
+ 	-webkit-box-shadow: 0 0 20px #D7DAE1;   
+	-moz-box-shadow: 0 0 20px #D7DAE1;   
+	box-shadow: 0 0 20px #D7DAE1; */
+
+	-khtml-box-shadow: 0 0 20px #D7DAE1;-webkit-box-shadow: 0 0 20px #D7DAE1;-moz-box-shadow: 0 0 20px #D7DAE1;box-shadow: 0 0 20px #D7DAE1; 
+}
+.b{
+	clear: both;
+}
+.fixedBox{position: fixed; right: 0px; font-size: 16px; top: 40%; z-index: 999; width: 118px;padding: 10px; background: #fff; border: 1px #E6E6E6  solid; border-top-left-radius: 9px; border-bottom-left-radius: 9px;}        
+
+

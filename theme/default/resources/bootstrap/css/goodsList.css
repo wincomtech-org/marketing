@@ -1,0 +1,68 @@
+.b{
+	clear: both;
+}
+.goodsList{
+	padding-bottom: 100px;
+	width:88.8%;
+	margin:0 auto;
+}
+.goodsList .moduleBox{
+	float: left;
+	margin:30px auto; 
+	padding-bottom: 40px;
+	width:100%;
+	-khtml-box-shadow: 0 0 20px #D7DAE1; 
+ 	-webkit-box-shadow: 0 0 20px #D7DAE1;   
+	-moz-box-shadow: 0 0 20px #D7DAE1;   
+	box-shadow: 0 0 20px #D7DAE1;  
+}
+.goodsListTitle{
+	padding-left: 31px;
+	height: 100px;
+	line-height: 100px;
+	color: #3d4757;
+	font-size: 18px;
+	border-bottom: solid 1px #e0e0e0;
+}
+.goodsListPurchase{
+	padding-left: 31px;
+	padding-top: 40px;
+	color: #414b5b;
+	font-size: 15px;
+}
+.goodsListStatus{
+	width: 364px;
+	margin:120px auto;
+}
+.goodsListStatus img{
+	display: block;
+	margin: 0 auto;
+}
+.goodsListStatus .text{
+	margin-top: 20px;
+	padding-bottom: 29px;
+	text-align:center;
+	font-size:18px;
+	color:rgba(0,0,0,0.30);
+}
+.goodsListBtn{
+	width: 265px;
+	height: 92px;
+	margin: 0 auto;
+	line-height: 80px;
+	text-align: center;
+	color:#fff;
+	cursor: pointer;
+	font-size:20px;
+	background:url(../img/goodsListBtn.png);
+}
+
+/**订单列表*/
+.goodsList{width:90%;margin:10px auto;}
+.goodsListItem{width:100%;}
+.goodsListItem{font-size:18px;overflow:hidden;display:flex;display:-webkit-flex;display:-moz-flex;}
+.goodsListItem span{ display:flex;display:-webkit-flex;display:-moz-flex;float:left;text-align:center;color:#454545;padding:10px 0;border-bottom:1px solid #ddd;border-left:1px solid #ddd;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;justify-content: center; align-items: center;}
+.goodsListItem span:last-child{border-right:1px solid #ddd;}
+.goodsListItem:first-child{border-top:1px solid #ddd;}
+.goodsListItem1,.goodsListItem3{width:30%;}
+.goodsListItem2{width:40%}

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="keywords" content="ä¼ä¸šå½¢è±¡ç­–åˆ’,å±æœºå…¬å…³å…¬å¸,æ–°åª’ä½“æ•´åˆè¥é”€,æ–°åª’ä½“æŽ¨å¹¿å…¬å¸,å“ç‰Œè§„åˆ’,æ•´åˆè¥é”€,æ´»åŠ¨è¥é”€,æ–°åª’ä½“è¥é”€,äº‹ä»¶è¥é”€,ç½‘ç»œè¥é”€æŽ¨å¹¿,æ–‡æ¡ˆæ’°å†™,å±æœºå…¬å…³">
+    <meta name="description" content="ä¸‰ç‚¹ä¸€åˆ»æ˜¯æ–°åª’ä½“æ•´åˆè¥é”€ä¼—åŒ…æœåŠ¡å¹³å°ï¼Œä¸ºä¼ä¸šå½¢è±¡ç­–åˆ’,å“ç‰Œè§„åˆ’,æ´»åŠ¨è¥é”€,æ–°åª’ä½“è¥é”€,äº‹ä»¶è¥é”€,ç½‘ç»œè¥é”€æŽ¨å¹¿ï¼Œå±æœºå…¬å…³å…¬å¸,æ–°åª’ä½“æŽ¨å¹¿å…¬å¸æä¾›ç»¼åˆæœåŠ¡ã€‚">
+    <title>ä¸‰ç‚¹ä¸€åˆ» - å“ç‰Œè§„åˆ’_ä¼ä¸šå½¢è±¡ç­–åˆ’_å±æœºå…¬å…³å…¬å¸_æ–°åª’ä½“æ•´åˆè¥é”€_æ–°åª’ä½“æŽ¨å¹¿å…¬å¸_æ´»åŠ¨è¥é”€_æ–°åª’ä½“è¥é”€_äº‹ä»¶è¥é”€_ç½‘ç»œè¥é”€æŽ¨å¹¿_æ–‡æ¡ˆæ’°å†™</title>
+    <link rel="stylesheet" href="resources/bootstrap/css/resert.css"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/style.css"/>
+    <link rel="stylesheet" href="resources/bootstrap/resetCss/header.css"/>
+
+    <script src="resources/bootstrap/js/jquery-2.1.3.min.js"></script>
+    <script src="resources/bootstrap/js/main.js"></script>
+
+</head>
+<body>
+<div class="fixedTop" style="position:relative">
+    </div>
+<div class="head">
+        <div class="logo">
+            <a href="www.315pr.html"><img src="resources/bootstrap/img/logo_top1.png"></a>
+        </div>
+        <ul class="nav">
+            <li><a href="www.315pr.html">首页</a></li>
+            <li><a href="case/page.shtml.html">案例</a></li>
+            <li><a href="smart/list.shtml.html">媒介</a></li>
+            <li><a href="package/page.shtml.html">营销套餐</a></li>
+            <li><a href="report/page.shtml.html">资讯</a></li>
+        </ul>
+        <div class="getInto"></div>
+        <div style="clear:both"></div>
+</div>
+<hr style="margin:0;padding:0;">
+<Script>
+$('.nav_a').mouseover(function(){
+	$('.nav_a_hover').removeClass("nav_a_hover");
+	$(this).addClass("nav_a_hover");
+})
+$('.nav_a').click(function(){
+	if($('.getInto img:eq(0)').attr("src")){
+		window.location.href=$(this).attr('tolink');
+	}else{
+		localStorage.setItem("block_num",$(this).attr('tolink'));
+		window.location.href=url
+	}
+})
+$('.user_list li:eq(2)').click(function(){
+	localStorage.setItem('block_num','')
+})
+	setTimeout(function(){
+	$('.fixedTop').css('display','none');
+},5000)
+</Script>
+
+
+<div class="top_banner banner_about banner">
+    <img src="resources/bootstrap/img/about_all.png" alt="三点一刻智能协同营销平台" />
+</div>
+<div class="page-content about-content about" style="margin-top: -20%">
+    <div class="about-block">
+        <h2><span>关于我们</span></h2>
+        
+        <dl><a href="about_us.shtml.html">
+            <dt></dt>
+            <dd>关于我们</dd>
+        </a></dl>
+        <dl class="noMg"><a href="development.shtml.html">
+            <dt></dt>
+            <dd>发展历程</dd>
+        </a></dl>
+    </div>
+</div>
+<div class="footer_bg">
+    <div class="footer_auto">
+        <div class="contactUs">
+            <img src="resources/bootstrap/resetImg/logo_fff.png">
+            <div class="clear"></div>
+            <span>商务热线：158-3063-7937</span>
+            <span>服务热线：4008-315-002</span>
+            <span>联系地址：北京市朝阳区建国路77号华贸中心写字楼3号楼1201A</span>
+            <span>2015-2016 三点一刻 版权所有 京ICP备：15064808号-1</span>
+            </div>
+        <div class="listText">
+            <a href="staff.shtml.html">员工天地</a>
+            <a href="recruitment.shtml.html">招贤纳士</a>
+        </div>
+        <div class="listText">
+            <a href="help.shtml.html">帮助中心</a>
+            <a href="team.shtml.html">团队介绍</a>
+            <a href="partner.shtml.html">合作伙伴</a>
+            <a href="about.shtml.html">联系我们</a>
+        </div>
+        <div class="codeBox">
+            <div class="codeText">
+                <img src="resources/bootstrap/resetImg/ico23.jpg">
+                <span>微信公众号 干活</span>
+            </div>
+            <div class="codeText">
+                <img src="resources/bootstrap/resetImg/ico24.jpg">
+                <span>APP 三点一刻</span>
+            </div>
+        <i class="clear"></i>
+        </div>
+        <i class="clear"></i>
+    </div>  
+</div>
+</body>
+<script>
+    $('.banner.banner_about').height($('.banner.banner_about').width()*1003/1920);
+    $('.about .about-block dt').height($('.about .about-block dt').width()*168/200);
+</script>
+</html>

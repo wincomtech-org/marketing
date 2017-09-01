@@ -1,0 +1,112 @@
+﻿.b{
+	clear: both;
+}
+.preferentialList{
+	padding-bottom: 100px;
+	width:75%;
+	margin:145px auto;
+}
+.preferentialList .moduleBox{
+	float: left;
+	margin:30px auto; 
+	padding-bottom: 40px;
+	width:100%;
+	-khtml-box-shadow: 0 0 20px #D7DAE1; 
+ 	-webkit-box-shadow: 0 0 20px #D7DAE1;   
+	-moz-box-shadow: 0 0 20px #D7DAE1;   
+	box-shadow: 0 0 20px #D7DAE1;  
+}
+.preferentialList .preferentialImg{
+	float: left;
+	margin-left: 49px;
+	margin-top: 45px;
+	margin-bottom: 45px;
+	width: 40%;
+	height: 300px;
+	border:solid 1px #979797;
+}
+.preferentialList .contentText{
+	float: left;
+	margin:45px 0 0 49px; 
+	width: 45%;
+}
+.preferentialList .contentText .title{
+	float: left;
+	margin-top: 15px;
+	width: 70%;
+	font-size: 30px;
+	font-weight: bold;
+	color: #3a4455;
+}
+.preferentialList .contentText .consult{
+	float:left;
+	margin-top: 23px;
+	width: 30%;
+	color: #9399a2;
+	font-size: 14px;
+	text-align: right;
+}
+.preferentialList .contentText .consult label{
+	color: #ff5454;
+}
+.preferentialList .preferentialText{
+	float:left;
+	margin: 16px 0;
+	width: 100%;
+	line-height: 20px;
+	font-size: 15px;
+	color: #3b4556;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.preferentialList .serveText{
+	float: left;
+	width: 100%;
+	margin-bottom: 11px;
+	color: #515a69;
+}
+.preferentialList .originalCost,.currentPrice{
+	float: left;
+	margin-bottom: 20px;
+	width: 100%;
+	color: #afb3ba;
+}
+.preferentialList .currentPrice{
+	font-size: 24px;
+	color: #ff5454;
+}
+.preferentialList .purchasebtn{
+	float: right;
+	width: 196px;
+	height: 70px;
+	line-height: 60px;
+	text-align: center;
+	background: url(../images/selectbtn3.png) no-repeat;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+}
+.describeText{
+	float: left;
+	margin-left: 49px;
+	margin-top: 25px;
+	width: 96%;
+	font-size: 15px;
+}
+.describeTitle{
+	float: left;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.describeContent{
+	width: 100%;
+	line-height: 23px;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
