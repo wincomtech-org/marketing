@@ -37,6 +37,7 @@ require (ROOT_PATH . 'include/memory.class.php');
 // DS 在 Smarty 里定义了
 // 主题位置
 define('THEME', '/theme/default/');
+define('THEME_S', THEME.'resources/bootstrap/');
 // M_PATH \data\config.php
 define('M_URL', ROOT_URL . M_PATH . '/');
 
@@ -103,6 +104,7 @@ if (!defined('EXIT_INIT')) {
     // 网站字符集
     $_CFG['dou_charset'] = DOU_CHARSET;
     $_CFG['theme'] = THEME;
+    $_CFG['theme_s'] = THEME_S;
     // 通用信息调用
     $smarty->assign("lang", $_LANG);
     $smarty->assign("site", $_CFG);

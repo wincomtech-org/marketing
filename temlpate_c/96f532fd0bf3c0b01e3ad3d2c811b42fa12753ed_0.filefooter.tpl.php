@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-01 17:57:52
+/* Smarty version 3.1.30, created on 2017-09-02 14:41:36
   from "D:\WWW\marketing\theme\default\inc\footer.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a92f20ef9137_16910670',
+  'unifunc' => 'content_59aa52a0a08036_30454013',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '96f532fd0bf3c0b01e3ad3d2c811b42fa12753ed' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\inc\\footer.tpl',
-      1 => 1504168180,
+      1 => 1504334461,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59a92f20ef9137_16910670 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59aa52a0a08036_30454013 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="footer_bg">
     <div class="footer_auto">
         <div class="contactUs">
-            <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/logo_fff.png">
+            <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+resetImg/logo_fff.png">
             <div class="clear"></div>
             <span>商务热线：158-3063-7937</span>
             <span>服务热线：4008-315-002</span>
@@ -45,13 +45,13 @@ resources/bootstrap/resetImg/logo_fff.png">
         </div>
         <div class="codeBox">
             <div class="codeText">
-                <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/ico23.jpg">
+                <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+resetImg/ico23.jpg">
                 <span>微信公众号 干活</span>
             </div>
             <div class="codeText">
-                <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/ico24.jpg">
+                <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+resetImg/ico24.jpg">
                 <span>APP 三点一刻</span>
             </div>
             <i class="clear"></i>

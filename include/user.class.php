@@ -64,12 +64,16 @@ class DouUser {
      */
     function get_user_info($user_id) {
         $query = $GLOBALS['dou']->select($GLOBALS['dou']->table('user'), '*', '`user_id` = \'' . $user_id . '\'');
-        $user_info = $GLOBALS['dou']->fetch_array($query,MYSQL_ASSOC);
-        $user_info['sex'] = $data['sex'] ? $GLOBALS['_LANG']['user_man'] : $GLOBALS['_LANG']['user_woman'];
-        $user_info['add_time'] = date("Y-m-d", $data['add_time']);
-        $user_info['last_login'] = date("Y-m-d", $data['last_login']);
-        
-        return $user_info;
+        $uinfo = $GLOBALS['dou']->fetch_array($query,MYSQL_ASSOC);
+        $uinfo['username'] = $uinfo['nickname']?$uinfo['nickname'] : ($uinfo['telephone']?$uinfo['telephone']:($uinfo['email']?$uinfo['email']:''));
+        $uinfo['avatar'] = $uinfo['avatar'] ? ROOT_URL . $uinfo['avatar'] : 'http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png';
+        $uinfo['sexnum'] = $uinfo['sex'];
+        $uinfo['sex'] = $uinfo['sex'] ? $GLOBALS['_LANG']['user_man'] : $GLOBALS['_LANG']['user_woman'];
+        $uinfo['add_time'] = date("Y-m-d", $uinfo['add_time']);
+        $uinfo['last_login'] = date("Y-m-d", $uinfo['last_login']);
+        // $uinfo['last_login'] = date("Y-m-d H:i:s", $GLOBALS['dou']->get_first_log($uinfo['last_login']));
+        // $uinfo['last_ip'] = $GLOBALS['dou']->get_first_log($uinfo['last_ip']);
+        return $uinfo;
     }
     
     /**

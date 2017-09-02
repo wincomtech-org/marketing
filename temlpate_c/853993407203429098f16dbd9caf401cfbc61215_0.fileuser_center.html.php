@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-01 18:19:01
+/* Smarty version 3.1.30, created on 2017-09-02 17:11:29
   from "D:\WWW\marketing\theme\default\user\user_center.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a9341509f5c5_95527267',
+  'unifunc' => 'content_59aa75c1704641_14868042',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '853993407203429098f16dbd9caf401cfbc61215' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\user\\user_center.html',
-      1 => 1504261138,
+      1 => 1504343476,
       2 => 'file',
     ),
   ),
@@ -23,17 +23,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:inc/footer.tpl' => 1,
   ),
 ),false)) {
-function content_59a9341509f5c5_95527267 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59aa75c1704641_14868042 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:inc/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/js/jquery-form.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+js/jquery-form.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/js/pagination.js"><?php echo '</script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+js/pagination.js"><?php echo '</script'; ?>
 >
 <style>
     
@@ -42,6 +42,13 @@ resources/bootstrap/js/pagination.js"><?php echo '</script'; ?>
     #name{float:left;margin-right:20px;}
     .basic-block .basic-img{width:130px;margin:0px auto 14%;}
     .clear{display:block;content:"";clear:both;}
+    .user_name{height:25px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+.imgbox{width:110px;height:150px;margin:0 auto;} 
+.imgbox1{width:110px;height:110px;border:1px solid #e7e8e8;background:#f5f5f5;border-radius: 50%;} 
+.imgbox1 img{width:110px;height:110px;} 
+.btnupload{float:left;width: 85px; height: 30px; line-height: 30px; text-align: center; background: #ebebeb; border:1px solid #7e7e7e; display: block; font-size: 16px; color:#4c4c4c; margin-left:10px; margin-top:5px; position:relative;}
+.upload_pic{display: block; width: 100%; height: 30px; position: absolute; left: 0; top: 0; opacity: 0; } 
     
 </style>
 
@@ -66,45 +73,75 @@ resources/bootstrap/js/pagination.js"><?php echo '</script'; ?>
             <div class="demand-block basic-block">
                 <!-- 页面默认显示的 -->
                 <div class="basic-show">
-                    <div class="basic-edit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_edit.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                    <div class="basic-edit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_edit.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/></div>
-                    <dl class="basic-img" style="width: 33%;">
-                        <dt><img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></dt>
-                        <dd style="height: 25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">123</dd>
+                    <dl class="basic-img" style="width:33%;">
+                        <dt><img src="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['avatar'];?>
+" alt="用户头像"/></dt>
+                        <dd class="user_name"><?php echo $_smarty_tpl->tpl_vars['user_info']->value['username'];?>
+</dd>
                         <span style="left:65%;bottom:25%;"></span>
                         <div></div>
                     </dl>
                     <div class="basic-block-tit">基本信息</div>
                     <ul>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>出生日期：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>从业年限：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>微信号：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>一句话简介：</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>出生日期：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['birthday'];?>
+</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>从业年限：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['workage'];?>
+ 年</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>微信号：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['weixin'];?>
+</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>一句话简介：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['introduce'];?>
+</li>
                     </ul>
                     <div class="basic-block-tit">账户信息</div>
                     <ul>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>邮箱：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/></em>手机号：13205513306</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>邮箱：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['email'];?>
+</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>手机号：<?php echo $_smarty_tpl->tpl_vars['user_info']->value['telephone'];?>
+</li>
                     </ul>
                 </div>
 
                 <!-- 页面默认不显示的 -->
-                <!-- <div class="demand-block-content edit_area" style="display: none;">
-                    <div class="basic-img up_img">
+                <div class="demand-block-content edit_area" style="display:none;">
+                <form id="userForm" method="post" action="<?php echo $_smarty_tpl->tpl_vars['url']->value['edit_post'];?>
+" enctype="multipart/form-data">
+
+                    <div class="imgbox">
+                        <div id="preview1" class="imgbox1"><?php if ($_smarty_tpl->tpl_vars['user_info']->value['avatar']) {?><img src="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['avatar'];?>
+" class="preimg"><?php }?></div>  
+                        <address class="btnupload">选择文件
+                            <input type="file" class="upload_pic" onchange="preview(this,1)" name="avatar" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['avatar'];?>
+">
+                        </address>
+                    </div>
+                    <!-- <div class="basic-img up_img">
+                        <div class="avatar_upload">
+                            <input type="file" accept="image/*" class="uploadFile" name="file" id="attachFile"/>
+                            <input type="hidden" value=""/>
+                        </div>
+                        <div class="basic-img-img" style="height:130px;width:130px;">
+                            <img src="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['avatar'];?>
+" alt="用户头像"/>
+                        </div>
+                        <p class="up_img_de">请上传正方形图片，建议尺寸：256*256（等比）</p>
+                    </div> -->
+
+                    <!-- <div class="basic-img up_img">
                         <form id="attachForm" method="post" action="" enctype="multipart/form-data">
                             <input type="file" accept="image/*" class="uploadFile" name="file" id="attachFile"/>
                             <input type="hidden" value=""/>
@@ -114,105 +151,116 @@ resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['sit
 "/>
                         </div>
                         <p class="up_img_de">请上传正方形图片，建议尺寸：256*256（等比）</p>
-                    </div>
+                    </div> -->
 
                     <div class="basic-block-tit">基本信息</div>
-
-                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_1.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
-"/>姓名</div>
+                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_1.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>昵称</div>
                     <div class="basic-content">
-                        <input type="text" name="name" id="name" value="123"/>
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/privacy1.png" class="privacy-img" title="隐藏您的个人信息" tit=0>
+                        <input onfocus="mod_u_info(this,1)" onblur="mod_u_info(this,2)" type="text" name="nickname" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['username'];?>
+"/>
+                        
                         <em class="clear"></em>
                     </div>
                     <i class="clear"></i>
-                    <?php echo '<script'; ?>
+                    <!-- <?php echo '<script'; ?>
 >
                     
                         $(".privacy-img").click(function(){
                             if($(this).attr("tit")==1){
-                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy1.png").attr("tit",0)
+                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy1.png").attr("tit",0);
                             }else{
-                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy0.png").attr("tit",1)
+                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy0.png").attr("tit",1);
                             }
                         })
                     
                     <?php echo '</script'; ?>
->
-                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_2.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+> -->
+
+                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_2.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>性别</div>
                     <div class="basic-content sex">
-                        <span ><input type="radio" name="sex" id="sex1"  value="1"/> 男</span>
-                        <span ><input type="radio" name="sex" id="sex2"  value="2"/> 女</span>
+                        <span ><input <?php if ($_smarty_tpl->tpl_vars['user_info']->value['sexnum'] == 1) {?>checked style="color: #FFFFFF;background: #a90916;" <?php }?> type="radio" name="sex" id="sex1" value="1"/> 男</span>
+                        <span ><input <?php if (!$_smarty_tpl->tpl_vars['user_info']->value['sexnum']) {?>checked style="color: #FFFFFF;background: #a90916;" <?php }?> type="radio" name="sex" id="sex2" value="0"/> 女</span>
                     </div>
-                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+
+                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>从业年限</div>
                     <div class="basic-content">
-                        <div class="ex">
-                            <select id="ex" name="ex">
-                                <option checked>请选择您的从业年限</option>
-                                <option >1-3年</option>
-                                <option >3-5年</option>
-                                <option >5-8年</option>
-                                <option >8-10年</option>
-                                <option >10年以上</option>
-                            </select>
+                        <div class="workage">
+                            <input type="text" name="workage" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['workage'];?>
+"> 年
                         </div>
                     </div>
+
                     <div class="basic-tit">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>出生日期
                     </div>
                     <div class="basic-content">
-                        <input type="text" name="birthday" id="birthday" value=""/>
+                        <input type="text" name="birthday" id="birthday" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['birthday'];?>
+"/>
                     </div>
+
                     <div class="basic-tit">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_5.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_5.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>所在地区
                     </div>
                     <div class="basic-content">
-                        <input type="text" id="cityArea" name="cityArea" value="" />
+                        <input onfocus="mod_u_info(this,1)" onblur="mod_u_info(this,2)" type="text" name="address" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['address'];?>
+" />
                     </div>
+
                     <div class="basic-tit">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>微信号
                     </div>
                     <div class="basic-content">
-                        <input type="text" id="wxNum" name="wxNum" value=""/>
+                        <input type="text" name="weixin" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['weixin'];?>
+"/>
                     </div>
+
                     <div class="basic-tit">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                        <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>一句话简介
                     </div>
                     <div class="basic-content intro">
-                        <textarea id="des" rows="3" name="des"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/></textarea>
+                        <textarea rows="3" name="introduce" placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/><?php echo $_smarty_tpl->tpl_vars['user_info']->value['introduce'];?>
+</textarea>
                     </div>
+
                     <div class="basic-block-tit">账户信息</div>
-                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>邮箱</div>
                     <div class="basic-content">
-                        <input type="text" id="email" name="email" value=""/>
+                        <input <?php if ($_smarty_tpl->tpl_vars['user_info']->value['email']) {?>readonly<?php }?> type="text" id="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['email'];?>
+"/>
                     </div>
-                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+
+                    <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
 "/>手机号</div>
                     <div class="basic-content">
-                        <input type="text" readonly value="13205513306"/>
+                        <input type="text" readonly value="<?php echo $_smarty_tpl->tpl_vars['user_info']->value['telephone'];?>
+"/>
                     </div>
+
                     <div class="basic-btn">
-                        <button onclick="edit_user();">保存</button>
-                        <button class="cancel">取消</button>
+                        <!-- <button onclick="edit_user();">保存</button> -->
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+                        <input type="submit" value="保存">
+                        <input type="reset" value="重置">
                     </div>
-                </div> -->
+                </form></div>
             </div>
         </div>
     </div>
@@ -225,6 +273,23 @@ resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['sit
 <?php echo '<script'; ?>
  type="text/javascript">
     
+    // 预览头像
+    function preview(f,o)  
+    {
+        var prevDiv = document.getElementById('preview'+o);
+        if (f.files && f.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+            }
+            reader.readAsDataURL(f.files[0]);
+        } else {
+            // prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + f.value + '\'"></div>';
+            prevDiv.innerHTML = '<img style="width:110px;height:110px" src="'+ f.value +'" />';
+        }
+    }
+
+
     $('.up_img').css("height",'130px')
     $('.basic-img .basic-img-img').css("height",'130px')
 
@@ -245,53 +310,17 @@ resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['sit
     });
     
     //限制修改不为空
-    $("#name").blur(function(){
-        if($(this).val()==""){
-            $(this).val("此选项必填").css("color","#f05");
+    function mod_u_info(node,type) {
+        if (type==1) {
+            if($(node).val()=="此选项必填"){
+                $(node).val('').css("color","#000");
+            }
+        } else {
+            if($(node).val()==''){
+                $(node).val("此选项必填").css("color","#f05");
+            }
         }
-    })
-    $("#name").focus(function(){
-        if($(this).val()=="此选项必填"){
-            $(this).val("").css("color","#000");
-        }
-    })
-    $("#cityArea").blur(function(){
-        if($(this).val()==""){
-            $(this).val("此选项必填").css("color","#f05");
-        }
-    })
-    $("#cityArea").focus(function(){
-        if($(this).val()=="此选项必填"){
-            $(this).val("").css("color","#000");
-        }
-    })
-    $("#wxNum").blur(function(){
-        if($(this).val()==""){
-            $(this).val("此选项必填").css("color","#f05");
-        }
-    })
-    $("#wxNum").focus(function(){
-        if($(this).val()=="此选项必填"){
-            $(this).val("").css("color","#000");
-        }
-    })
-    $("#des").blur(function(){
-        if($(this).val()==""){
-            $(this).css("color","#f05");
-            $(this).val("此选项必填")
-        } 
-    })
-    $("#des").focus(function(){
-        if($(this).val()=="此选项必填"){
-            $(this).val("").css("color","#000");
-        }
-    })
-    $("#ex").change(function(){
-        if($(this).val()=="请选择您的从业年限"){
-            //alert("请重新选择您的从业年限")
-            $(this).val("1-3年")
-        }
-    })
+    }
     
     //修改完成
     $("#server1").change(function(){

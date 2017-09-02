@@ -1,5 +1,5 @@
 {include file="inc/head.tpl"}
-<link rel="stylesheet" href="{$site.theme}resources/bootstrap/resetCss/index.css"/>
+<link rel="stylesheet" href="{$site.theme_s}resetCss/index.css"/>
 <script src="../static.geetest.com/static/tools/gt.js"></script>
 <style>
     {literal}
@@ -174,7 +174,7 @@
             <div class="requirementTitle">成功案例</div>
             <div class="requirementText">
                 <span>更多案例</span>
-                <a href="{$url.case}"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                <a href="{$url.case}"><img src="{$site.theme_s}resetImg/more.png"></a>
                 <div class="clear"></div>
             </div>
             <div class="changeTabBox">
@@ -231,7 +231,7 @@
             <div class="requirementTitle" style="padding-top:60px;">热门营销包</div>
             <div class="requirementText" style="width:100px;">
                 <span>更多</span>
-                <a href="package/page_info.html"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                <a href="package/page_info.html"><img src="{$site.theme_s}resetImg/more.png"></a>
                 <div class="clear"></div>
             </div>
             <div class="workerListBox" >
@@ -254,7 +254,7 @@
                 <div class="requirementTitle">媒体报道</div>
                 <div class="requirementText">
                     <span>查看更多</span>
-                    <a href="report/page.shtml.html"><img src="{$site.theme}resources/bootstrap/resetImg/more.png"></a>
+                    <a href="report/page.shtml.html"><img src="{$site.theme_s}resetImg/more.png"></a>
                     <div class="clear"></div>
                 </div>
                 

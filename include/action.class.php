@@ -169,6 +169,7 @@ class Action extends Common {
         
         exit();
     }
+
     /*JSON*/
     public function djson($code=1, $msg='OK')
     {

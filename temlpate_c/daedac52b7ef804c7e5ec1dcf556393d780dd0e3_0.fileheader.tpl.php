@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-01 17:57:52
+/* Smarty version 3.1.30, created on 2017-09-02 14:41:36
   from "D:\WWW\marketing\theme\default\inc\header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a92f20ee9727_88258985',
+  'unifunc' => 'content_59aa52a0a08030_61498632',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'daedac52b7ef804c7e5ec1dcf556393d780dd0e3' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\inc\\header.tpl',
-      1 => 1504245697,
+      1 => 1504334449,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59a92f20ee9727_88258985 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59aa52a0a08030_61498632 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <div class="fixedTop" style="position:relative"></div>
@@ -52,30 +52,40 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 ?>
 
     </ul>
-    <div class="getInto">
         <?php if ($_smarty_tpl->tpl_vars['open']->value['user']) {?>
         <!-- 登录后 -->
         <?php if ($_smarty_tpl->tpl_vars['user']->value) {?>
-        <div class="right-btn1">
-            <a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['user'];?>
-"><img alt="123" src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/ico21.png"></a>
-            <span><?php echo $_smarty_tpl->tpl_vars['user']->value['user_name'];?>
+        <div class="getInto">
+            <div class="right-btn1">
+                <a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['user'];?>
+"><img alt="123" src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+resetImg/ico21.png"></a>
+                <span><?php echo $_smarty_tpl->tpl_vars['user']->value['user_name'];?>
 </span>
-            <div class="user_list">
-                <span><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/resetImg/list_up.png"></span>
-                <ul>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['user'];?>
+                <div class="user_list">
+                    <span><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
+resetImg/list_up.png"></span>
+                    <ul>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['user'];?>
 "><em class="list1"></em>个人中心</a><div style="clear:both"></div></li>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['logout'];?>
-"><em class="list3"></em>退出登录</a><div style="clear:both"></div></li>
-                </ul>
+                        <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['logout'];?>
+"><em class="list3"></em><?php echo $_smarty_tpl->tpl_vars['lang']->value['user_logout'];?>
+</a><div style="clear:both"></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <?php } else { ?>
+        <div class="getInto2">
+            <div class="right-btn1">
+                <a href="<?php echo $_smarty_tpl->tpl_vars['site']->value['root_url'];?>
+"><span><?php echo $_smarty_tpl->tpl_vars['lang']->value['user_login_nav'];?>
+</span> / <span><?php echo $_smarty_tpl->tpl_vars['lang']->value['user_register_nav'];?>
+</span></a>
             </div>
         </div>
         <?php }?>
         <?php }?>
-    </div>
     <div style="clear:both"></div>
 </div>
 

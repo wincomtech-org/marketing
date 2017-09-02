@@ -54,6 +54,9 @@ if ($rec == 'default') {
     $user_info['last_login'] = date("Y-m-d H:i:s", $dou->get_first_log($user_info['last_login']));
     $user_info['last_ip'] = $dou->get_first_log($user_info['last_ip']);
 
+    // CSRF防御令牌生成
+    $smarty->assign('token', $firewall->set_token('user_edit'));
+
     $smarty->assign('page_title', $dou->page_title('user'));
     $smarty->assign('ur_here', $dou->ur_here('user'));
     $smarty->assign('user_info', $user_info);
@@ -343,6 +346,7 @@ elseif ($rec == 'password_reset_post_email') {
 elseif ($rec == 'edit') {
     $user_info = $dou_user->get_user_info($_USER['user_id']);
 
+
     // CSRF防御令牌生成
     $smarty->assign('token', $firewall->set_token('user_edit'));
     
@@ -376,15 +380,20 @@ elseif ($rec == 'edit_post') {
         $wrong['nickname'] = $_LANG['user_nickname'] . $_LANG['illegal_char'];
 
     // 验证手机
-    if (!$check->is_telephone($_POST['telephone']))
-        $wrong['telephone'] = $_LANG['user_telephone_cue'];
+    // if (!$check->is_telephone($_POST['telephone']))
+    //     $wrong['telephone'] = $_LANG['user_telephone_cue'];
+
+    // 验证邮箱
+    if (!$check->is_email($_POST['email'])) {
+        $wrong['email'] = $_LANG['user_email_cue'];
+    }
 
     // 验证联系人
-    if (!$_POST['contact']) {
-        $wrong['contact'] = $_LANG['user_contact_empty'];
-    } elseif ($check->is_illegal_char($_POST['contact'])) {
-        $wrong['contact'] = $_LANG['user_contact'] . $_LANG['illegal_char'];
-    }
+    // if (!$_POST['contact']) {
+    //     $wrong['contact'] = $_LANG['user_contact_empty'];
+    // } elseif ($check->is_illegal_char($_POST['contact'])) {
+    //     $wrong['contact'] = $_LANG['user_contact'] . $_LANG['illegal_char'];
+    // }
 
     // 验证地址
     if (!$_POST['address']) {
@@ -394,8 +403,8 @@ elseif ($rec == 'edit_post') {
     }
 
     // 验证邮政编码
-    if (isset($_POST['postcode']) && !$check->is_postcode($_POST['postcode']))
-        $wrong['postcode'] = $_LANG['user_postcode_cue'];
+    // if (isset($_POST['postcode']) && !$check->is_postcode($_POST['postcode']))
+    //     $wrong['postcode'] = $_LANG['user_postcode_cue'];
 
     // AJAX验证表单
     if ($_REQUEST['do'] == 'callback') {
@@ -415,7 +424,10 @@ elseif ($rec == 'edit_post') {
     }
     
     // 格式化自定义参数
-    $_POST['defined'] = str_replace("\r\n", ',', $_POST['defined']);
+    if (isset($_POST['defined'])) {
+        $_POST['defined'] = str_replace("\r\n", ',', $_POST['defined']);
+    }
+    
 
     // CSRF防御令牌验证
     $firewall->check_token($_POST['token'], 'user_edit');
@@ -425,16 +437,20 @@ elseif ($rec == 'edit_post') {
 
     $data = array(
             'nickname'  => $_POST['nickname'],
-            'telephone'  => $_POST['telephone'],
-            'contact'  => $_POST['contact'],
-            'address'  => $_POST['address'],
-            'postcode'  => $_POST['postcode'],
             'sex'  => $_POST['sex'],
+            'workage'  => $_POST['workage'],
+            'birthday'  => $_POST['birthday'],
+            'address'  => $_POST['address'],
+            'weixin'  => $_POST['weixin'],
+            'introduce'  => $_POST['introduce'],
+            'email'  => $_POST['email'],
+            // 'telephone'  => $_POST['telephone'],
             'defined'  => $_POST['defined'],
         );
     $dou->update('user',$data,'user_id='.$_USER['user_id']);
     
-    $dou->dou_msg($_LANG['user_edit_success'], $_URL['edit']);
+    $dou->dou_msg($_LANG['user_edit_success'], $_URL['user']);
+    // $dou->dou_msg($_LANG['user_edit_success'], $_URL['edit']);
 }
 
 /**
@@ -499,16 +515,15 @@ elseif ($rec == 'logout') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'order_list') {
-    // 公用SQL查询条件，分页中也使用
+    // 公用SQL查询条件，分页中也使用 order_type=1 AND 
     $where = " WHERE user_id = '$_USER[user_id]'";
+    $where = " WHERE user_id=2";
 
     // 验证并获取合法的分页ID
     $page = $check->is_number($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $limit = $dou->pager('order', 15, $page, $_URL['order_list'], $where);
-    
     $query = $dou->query("SELECT * FROM " . $dou->table('order') . $where . " ORDER BY order_id DESC" . $limit);
-    while ($row = $dou->fetch_array($query)) {
-        $email = $dou->get_one("SELECT email FROM " . $dou->table('user') . " WHERE user_id = '$row[user_id]'");
+    while ($row = $dou->fetch_assoc($query)) {
         $add_time = date("Y-m-d h:i:s", $row['add_time']);
         $status_format = $_LANG['order_status_' . $row['status']];
         $order_amount_format = $dou->price_format($row['order_amount']);
@@ -521,7 +536,6 @@ elseif ($rec == 'order_list') {
         $order_list[] = array(
                 "order_id" => $row['order_id'],
                 "order_sn" => $row['order_sn'],
-                "email" => $email,
                 "telephone" => $row['telephone'],
                 "contact" => $row['contact'],
                 "order_amount" => $row['order_amount'],
@@ -533,7 +547,7 @@ elseif ($rec == 'order_list') {
                 "product_list" => $product_list
         );
     }
-
+// $dou->debug($order_list,1);
     // 赋值给模板
     $smarty->assign('page_title', $dou->page_title('user', 'order_my'));
     $smarty->assign('ur_here', $dou->ur_here('user', 'order_my'));

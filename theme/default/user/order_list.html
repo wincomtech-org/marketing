@@ -1,7 +1,7 @@
 {include file="inc/head.tpl"}
-<link rel="stylesheet" href="{$site.theme}resources/bootstrap/css/goodsList.css"/>
-<script src="{$site.theme}resources/bootstrap/js/pagination.js"></script>
-<script src="{$site.theme}resources/bootstrap/js/jquery.SuperSlide.2.1.1.js"></script>
+<link rel="stylesheet" href="{$site.theme_s}css/goodsList.css"/>
+<script src="{$site.theme_s}js/pagination.js"></script>
+<script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
 
 <body onload="goodsList();" data-val="7826d00ab11b434f87fd3adae68cb80a">
     {include file="inc/header.tpl"}
@@ -20,28 +20,23 @@
                 <div class="goodsListPurchase">已购买</div>
                 <ul class="goodsList">
                     <li class="goodsListItem">
-                       <span class="goodsListItem1">时间</span>
-                       <span class="goodsListItem2">商品</span>
+                       <span class="goodsListItem2">订单号</span>
                        <span class="goodsListItem3">价格</span>
+                       <span class="goodsListItem1">下单时间</span>
+                       <span class="goodsListItem3">状态</span>
+                       <span class="goodsListItem3">操作</span>
                    </li>
-                   
+                   <!-- {foreach $order_list $order} -->
                    <li class="goodsListItem">
-                       <span class="goodsListItem1">2017-04-02</span>
-                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
-                       <span class="goodsListItem3">￥1,000</span>
+                       <span class="goodsListItem1">{$order.order_sn}</span>
+                       <span class="goodsListItem3">{$order.order_amount_format}</span>
+                       <span class="goodsListItem2">{$order.add_time}</span>
+                       <span class="goodsListItem3">{$order.status_format}</span>
+                       <span class="goodsListItem3">{if !$order.status}<a href="order">付款 /</a>{/if}<a href="del"> 删除</a></span>
                    </li>
-                   <li class="goodsListItem">
-                       <span class="goodsListItem1">2017-04-02</span>
-                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
-                       <span class="goodsListItem3">￥1,000</span>
-                   </li>
-                   <li class="goodsListItem">
-                       <span class="goodsListItem1">2017-04-02</span>
-                       <span class="goodsListItem2">商品商品商品商品商品商品</span>
-                       <span class="goodsListItem3">￥1,000</span>
-                   </li>
+                   <!-- {/foreach} -->
                </ul>
-               <!-- 未购买 -->
+            <!-- 未购买 -->
 			<!--  <div class="goodsListStatus">
 				<img src="../../resources/bootstrap/img/statusBg.png">
 				<div class="text">您暂时没有订单</div>

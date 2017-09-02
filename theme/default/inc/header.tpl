@@ -11,24 +11,30 @@
         <li{if $nav.cur} class="cur hover"{/if}><a href="{$nav.url}">{$nav.nav_name}</a></li>
         <!--{/foreach}-->
     </ul>
-    <div class="getInto">
         <!--{if $open.user}-->
         <!-- 登录后 -->
         <!--{if $user}-->
-        <div class="right-btn1">
-            <a href="{$url.user}"><img alt="123" src="{$site.theme}resources/bootstrap/resetImg/ico21.png"></a>
-            <span>{$user.user_name}</span>
-            <div class="user_list">
-                <span><img src="{$site.theme}resources/bootstrap/resetImg/list_up.png"></span>
-                <ul>
-                    <li><a href="{$url.user}"><em class="list1"></em>个人中心</a><div style="clear:both"></div></li>
-                    <li><a href="{$url.logout}"><em class="list3"></em>退出登录</a><div style="clear:both"></div></li>
-                </ul>
+        <div class="getInto">
+            <div class="right-btn1">
+                <a href="{$url.user}"><img alt="123" src="{$site.theme_s}resetImg/ico21.png"></a>
+                <span>{$user.user_name}</span>
+                <div class="user_list">
+                    <span><img src="{$site.theme_s}resetImg/list_up.png"></span>
+                    <ul>
+                        <li><a href="{$url.user}"><em class="list1"></em>个人中心</a><div style="clear:both"></div></li>
+                        <li><a href="{$url.logout}"><em class="list3"></em>{$lang.user_logout}</a><div style="clear:both"></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- {else} -->
+        <div class="getInto2">
+            <div class="right-btn1">
+                <a href="{$site.root_url}"><span>{$lang.user_login_nav}</span> / <span>{$lang.user_register_nav}</span></a>
             </div>
         </div>
         <!--{/if}-->
         <!--{/if}-->
-    </div>
     <div style="clear:both"></div>
 </div>
 

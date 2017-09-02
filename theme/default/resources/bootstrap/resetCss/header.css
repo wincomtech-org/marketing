@@ -42,18 +42,14 @@ body {
 	background: url(../resetImg/navBg.png);
 }
 
-.getInto {
-	margin-top: 18px;
-}
-
-.getInto a {
+.getInto a,.getInto2 a {
 	cursor: pointer;
 	margin-right: 5px;
 	line-height: 38px;
 	color: #3a4455;
 }
 
-.getInto {
+.getInto,.getInto2 {
 	float: right;
 	margin-top: 10px;
 }

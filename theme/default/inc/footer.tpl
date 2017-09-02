@@ -1,7 +1,7 @@
 <div class="footer_bg">
     <div class="footer_auto">
         <div class="contactUs">
-            <img src="{$site.theme}resources/bootstrap/resetImg/logo_fff.png">
+            <img src="{$site.theme_s}resetImg/logo_fff.png">
             <div class="clear"></div>
             <span>商务热线：158-3063-7937</span>
             <span>服务热线：4008-315-002</span>
@@ -20,11 +20,11 @@
         </div>
         <div class="codeBox">
             <div class="codeText">
-                <img src="{$site.theme}resources/bootstrap/resetImg/ico23.jpg">
+                <img src="{$site.theme_s}resetImg/ico23.jpg">
                 <span>微信公众号 干活</span>
             </div>
             <div class="codeText">
-                <img src="{$site.theme}resources/bootstrap/resetImg/ico24.jpg">
+                <img src="{$site.theme_s}resetImg/ico24.jpg">
                 <span>APP 三点一刻</span>
             </div>
             <i class="clear"></i>
