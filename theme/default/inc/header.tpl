@@ -7,9 +7,9 @@
     </div>
     <ul class="nav">
         <li{if $index.cur} class="cur"{/if}><a href="{$site.root_url}">{$lang.home}</a></li>
-        <!-- {foreach $nav_middle_list $nav} -->
+        <!--{foreach $nav_middle_list $nav}-->
         <li{if $nav.cur} class="cur hover"{/if}><a href="{$nav.url}">{$nav.nav_name}</a></li>
-        <!-- {/foreach} -->
+        <!--{/foreach}-->
     </ul>
     <div class="getInto">
         <!--{if $open.user}-->

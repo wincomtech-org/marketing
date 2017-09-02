@@ -6,7 +6,7 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 @set_magic_quotes_runtime(0);
 // 调整时区
 if (PHP_VERSION >= '5.1') date_default_timezone_set('PRC');
-if (empty(session_id())) session_start();
+if (!session_id()) session_start();
 
 // 前台标记
 define('SMARTY_CONF', 1);

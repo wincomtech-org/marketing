@@ -165,7 +165,7 @@
                     {/literal}
                 </script>
             </div>
-            <!-- {/if} -->
+            <!--{/if}-->
             <!-- 登录注册 E -->
 
         </div>
@@ -180,7 +180,7 @@
             <div class="changeTabBox">
                 <div class="changeTab">
                     <div class="box">
-                        <!-- {foreach $recommend_case $v} -->
+                        <!--{foreach $recommend_case $v}-->
                         <div class="shiftBox" style="left: 0px; z-index: 3;" tid="{$v.id}" >
                             <div class="listContent" to="{$v.url}">
                                 <div class="describeText">  
@@ -190,7 +190,7 @@
                                 <img class="listContentImg" src="{$v.image}">   
                             </div>
                         </div>
-                        <!-- {/foreach} -->
+                        <!--{/foreach}-->
                     </div>
                 </div>
 
@@ -235,7 +235,7 @@
                 <div class="clear"></div>
             </div>
             <div class="workerListBox" >
-                <!-- {foreach $recommend_product $v} -->
+                <!--{foreach $recommend_product $v}-->
                 <div class="workerList" to="{$v.url}">
                     <img src="{$v.image}">
                     <div class="nameText">【{$v.name}】</div>
@@ -243,7 +243,7 @@
                     <div class="content">{$v.description}</div>
                     <div class="scheduleText">参考价格<i>{$v.price}</i></div>
                 </div>
-                <!-- {/foreach} -->
+                <!--{/foreach}-->
                 <div class="clear"></div>
             </div>
         </div>
@@ -259,24 +259,24 @@
                 </div>
                 
                 <div id="news_append">
-                    <!-- {section name=new loop=$recommend_article start=0 max=1 show=true} -->
+                    <!--{section name=new loop=$recommend_article start=0 max=1 show=true}-->
                     <div class="caseShare caseShareBox1" to="{$recommend_article[new].url}">
                         <img src="{$recommend_article[new].image}">
                         <div class="detailedText">{$recommend_article[new].title}</div>
                     </div>
-                    <!-- {/section} -->
+                    <!--{/section}-->
                     <div class="contentShow">
-                        <!-- {section name=new loop=$recommend_article start=1 max=1} -->
+                        <!--{section name=new loop=$recommend_article start=1 max=1}-->
                         <div class="contentBox" to="{$recommend_article[new].url}">
                             <img src="{$recommend_article[new].image}">
                             <div class="title">{$recommend_article[new].title}</div>
                             <div class="clear"></div>
                         </div>
-                        <!-- {/section} -->
+                        <!--{/section}-->
                         <div class="contentBox listBox">
-                            <!-- {section name=new loop=$recommend_article start=2 max=6} -->
+                            <!--{section name=new loop=$recommend_article start=2 max=6}-->
                             <span to="{$recommend_article[new].url}" tid="{$recommend_article[new].id}">{$recommend_article[new].title}</span>
-                            <!-- {/section} -->
+                            <!--{/section}-->
                             <div class="clear"></div>
                         </div>
                         <div class="clear"></div>

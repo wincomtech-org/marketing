@@ -22,6 +22,7 @@ if ($_SESSION[DOU_ID]) {
 // $dou->debug($countrys);
 
 // $dou->debug(ROOT_PATH,1);
+// echo ROOT_URL;die;
 // $dou->debug($_CFG);
 // $dou->debug($GLOBALS['_CFG']);
 // $dou->debug($_LANG);

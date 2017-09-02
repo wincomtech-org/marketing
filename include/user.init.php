@@ -5,7 +5,7 @@ if (!defined('IN_LOTHAR'))
 require (ROOT_PATH . 'include/user.class.php');
 
 // 初始化
-if (empty(session_id())) session_start();
+if (!session_id()) session_start();
 $dou_user = new DouUser();
 $smarty->assign('user', $_USER = $dou_user->global_user_info());
 ?>

@@ -17,11 +17,17 @@ if (file_exists($order_file = ROOT_PATH . 'include/order.class.php')) {
     $dou_order = new Order();
 }
 
-$no_login = 'login|login_post|register|register_post|password_reset|password_reset_post';// 设定不需要登录权限的页面
-if (!in_array($rec, explode('|', $no_login)) && !is_array($_USER)) // 需要登录且没有登录的情况
-    $dou->dou_header($_URL['login']);
-if (in_array($rec, explode('|', $no_login)) && is_array($_USER)) // 不需要登录却登录的情况
+// $no_login = 'login|login_post|register|register_post|password_reset|password_reset_post';// 设定不需要登录权限的页面
+$no_login = 'login_post|register_post|password_reset|password_reset_post';// 设定不需要登录权限的页面
+ // 需要登录且没有登录的情况
+if (!in_array($rec, explode('|', $no_login)) && !is_array($_USER)) { 
+    $dou->dou_header(ROOT_URL);
+    // $dou->dou_header($_URL['login']);
+}
+ // 不需要登录却登录的情况
+if (in_array($rec, explode('|', $no_login)) && is_array($_USER)) {
     $dou->dou_header($_URL['user']);
+}
 
 // 赋值给模板-meta和title信息
 $smarty->assign('keywords', $_CFG['site_keywords']);
@@ -209,6 +215,29 @@ elseif ($rec == 'login_post') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'password_reset') {
+    if ($_POST['imgCode']) {
+        extract($_POST);
+
+        // $word = strtoupper($GLOBALS['dou']->create_rand_string('nl', 4));
+        // $_SESSION['captcha'] = md5($word . DOU_SHELL);
+
+        // 判断验证码
+        $captcha = $check->is_captcha($imgCode) ? strtoupper($imgCode) : '';
+        if ($_CFG['captcha'] && md5($captcha . DOU_SHELL) != $_SESSION['captcha'])
+            $dou->djson(0,$_LANG['captcha_wrong']);
+
+        // 验证码正确后，检测数据库是否有该手机号
+        if (!$dou->value_exist('user','telephone',$mobile)) {
+            $dou->djson(0,'系统未检测到该手机号，该用户可能被管理员删除');
+        }
+
+        // 发送短信验证码
+        // require ROOT_PATH .'msg.class.php';
+        // $msg = new MSG();
+        // $msg->send();
+        $dou->djson(1,'正在向该手机号发送验证码，请耐心等待');
+    }
+    
     // uid和code 是区分是否是用户通过 邮箱打开 传过来的验证数据
     $user_id = $check->is_number($_REQUEST['uid']) ? $_REQUEST['uid'] : '';
     $code = preg_match("/^[a-zA-Z0-9]+$/", $_REQUEST['code']) ? $_REQUEST['code'] : '';
@@ -236,7 +265,10 @@ elseif ($rec == 'password_reset') {
 
 /*重置密码提交 手机短信验证码*/
 elseif ($rec == 'password_reset_post') {
-    # code...
+    extract($_POST);
+
+
+
 }
 
 /**
@@ -257,7 +289,7 @@ elseif ($rec == 'password_reset_post_email') {
         $captcha = $check->is_captcha($_POST['captcha']) ? strtoupper($_POST['captcha']) : '';
         if ($_CFG['captcha'] && md5($captcha . DOU_SHELL) != $_SESSION['captcha'])
             $dou->dou_msg($_LANG['captcha_wrong'], $_URL['password_reset']);
-        
+
         // CSRF防御令牌验证
         $firewall->check_token($_POST['token'], 'user_password_reset');
         

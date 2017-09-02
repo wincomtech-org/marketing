@@ -450,7 +450,7 @@ console.log(mobile+"..."+code+"..."+password1)
     }
     $.ajax({
         type:"post",
-        url: url + "/user/restpass.shtml",
+        url: 'user.php?rec=password_reset_post',
         data: {
             "v":"2.0",
             "source": 2,

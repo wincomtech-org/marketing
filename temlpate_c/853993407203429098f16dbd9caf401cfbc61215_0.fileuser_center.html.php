@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-31 18:12:24
+/* Smarty version 3.1.30, created on 2017-09-01 18:19:01
   from "D:\WWW\marketing\theme\default\user\user_center.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a7e108408546_08633193',
+  'unifunc' => 'content_59a9341509f5c5_95527267',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '853993407203429098f16dbd9caf401cfbc61215' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\user\\user_center.html',
-      1 => 1504174324,
+      1 => 1504261138,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:inc/footer.tpl' => 1,
   ),
 ),false)) {
-function content_59a7e108408546_08633193 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59a9341509f5c5_95527267 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:inc/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -36,7 +36,7 @@ resources/bootstrap/js/jquery-form.js"><?php echo '</script'; ?>
 resources/bootstrap/js/pagination.js"><?php echo '</script'; ?>
 >
 <style>
-
+    
     .up_img_de{position:absolute;text-align:center;bottom:-50px;width:225px;margin-left:-38px;}
     .privacy-img{float:left;margin-top:17px;}
     #name{float:left;margin-right:20px;}
@@ -64,22 +64,63 @@ resources/bootstrap/js/pagination.js"><?php echo '</script'; ?>
         </div>
         <div class="usercenter_content usercenter_demand">
             <div class="demand-block basic-block">
-                <div class="demand-block-content edit_area" style="display: none;">
+                <!-- 页面默认显示的 -->
+                <div class="basic-show">
+                    <div class="basic-edit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_edit.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></div>
+                    <dl class="basic-img" style="width: 33%;">
+                        <dt><img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></dt>
+                        <dd style="height: 25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">123</dd>
+                        <span style="left:65%;bottom:25%;"></span>
+                        <div></div>
+                    </dl>
+                    <div class="basic-block-tit">基本信息</div>
+                    <ul>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>出生日期：</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>从业年限：</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>微信号：</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>一句话简介：</li>
+                    </ul>
+                    <div class="basic-block-tit">账户信息</div>
+                    <ul>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>邮箱：</li>
+                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
+resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/></em>手机号：13205513306</li>
+                    </ul>
+                </div>
+
+                <!-- 页面默认不显示的 -->
+                <!-- <div class="demand-block-content edit_area" style="display: none;">
                     <div class="basic-img up_img">
                         <form id="attachForm" method="post" action="" enctype="multipart/form-data">
                             <input type="file" accept="image/*" class="uploadFile" name="file" id="attachFile"/>
                             <input type="hidden" value=""/>
                         </form>
                         <div class="basic-img-img" style="height:130px;width:130px;">
-                            <img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="三点一刻智能协同营销平台"/>
+                            <img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>
                         </div>
-                        <p class="up_img_de">请上传正方形图片，建议尺寸：130*130</p>
+                        <p class="up_img_de">请上传正方形图片，建议尺寸：256*256（等比）</p>
                     </div>
 
                     <div class="basic-block-tit">基本信息</div>
 
                     <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_1.jpg" alt="三点一刻智能协同营销平台"/>姓名</div>
+resources/bootstrap/img/basic_1.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>姓名</div>
                     <div class="basic-content">
                         <input type="text" name="name" id="name" value="123"/>
                         <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
@@ -92,22 +133,24 @@ resources/bootstrap/resetImg/privacy1.png" class="privacy-img" title="隐藏您�
                     
                         $(".privacy-img").click(function(){
                             if($(this).attr("tit")==1){
-                                $(this).attr("src","{$site.theme}resources/bootstrap/resetImg/privacy1.png").attr("tit",0)
+                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy1.png").attr("tit",0)
                             }else{
-                                $(this).attr("src","{$site.theme}resources/bootstrap/resetImg/privacy0.png").attr("tit",1)
+                                $(this).attr("src",theme+"resources/bootstrap/resetImg/privacy0.png").attr("tit",1)
                             }
                         })
                     
                     <?php echo '</script'; ?>
 >
                     <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_2.jpg" alt="三点一刻智能协同营销平台"/>性别</div>
+resources/bootstrap/img/basic_2.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>性别</div>
                     <div class="basic-content sex">
                         <span ><input type="radio" name="sex" id="sex1"  value="1"/> 男</span>
                         <span ><input type="radio" name="sex" id="sex2"  value="2"/> 女</span>
                     </div>
                     <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_3.jpg" alt="三点一刻智能协同营销平台"/>从业年限</div>
+resources/bootstrap/img/basic_3.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>从业年限</div>
                     <div class="basic-content">
                         <div class="ex">
                             <select id="ex" name="ex">
@@ -122,40 +165,46 @@ resources/bootstrap/img/basic_3.jpg" alt="三点一刻智能协同营销平台"/
                     </div>
                     <div class="basic-tit">
                         <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_4.jpg" alt="三点一刻智能协同营销平台"/>出生日期
+resources/bootstrap/img/basic_4.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>出生日期
                     </div>
                     <div class="basic-content">
                         <input type="text" name="birthday" id="birthday" value=""/>
                     </div>
                     <div class="basic-tit">
                         <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_5.jpg" alt="三点一刻智能协同营销平台"/>所在地区
+resources/bootstrap/img/basic_5.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>所在地区
                     </div>
                     <div class="basic-content">
                         <input type="text" id="cityArea" name="cityArea" value="" />
                     </div>
                     <div class="basic-tit">
                         <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_6.jpg" alt="三点一刻智能协同营销平台"/>微信号
+resources/bootstrap/img/basic_6.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>微信号
                     </div>
                     <div class="basic-content">
                         <input type="text" id="wxNum" name="wxNum" value=""/>
                     </div>
                     <div class="basic-tit">
                         <img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_7.jpg" alt="三点一刻智能协同营销平台"/>一句话简介
+resources/bootstrap/img/basic_7.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>一句话简介
                     </div>
                     <div class="basic-content intro">
                         <textarea id="des" rows="3" name="des"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/></textarea>
                     </div>
                     <div class="basic-block-tit">账户信息</div>
                     <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_8.jpg" alt="三点一刻智能协同营销平台"/>邮箱</div>
+resources/bootstrap/img/basic_8.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>邮箱</div>
                     <div class="basic-content">
                         <input type="text" id="email" name="email" value=""/>
                     </div>
                     <div class="basic-tit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_9.jpg" alt="三点一刻智能协同营销平台"/>手机号</div>
+resources/bootstrap/img/basic_9.jpg" alt="<?php echo $_smarty_tpl->tpl_vars['site']->value['site_name'];?>
+"/>手机号</div>
                     <div class="basic-content">
                         <input type="text" readonly value="13205513306"/>
                     </div>
@@ -163,35 +212,7 @@ resources/bootstrap/img/basic_9.jpg" alt="三点一刻智能协同营销平台"/
                         <button onclick="edit_user();">保存</button>
                         <button class="cancel">取消</button>
                     </div>
-                </div>
-                <div class="basic-show">
-                    <div class="basic-edit"><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_edit.jpg" alt="三点一刻智能协同营销平台"/></div>
-                    <dl class="basic-img" style="width: 33%;">
-                        <dt><img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="三点一刻智能协同营销平台"/></dt>
-                        <dd style="height: 25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">123</dd>
-                        <span style="left:65%;bottom:25%;"></span>
-                        <div></div>
-                    </dl>
-                    <div class="basic-block-tit">基本信息</div>
-                    <ul>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_4.jpg" alt="三点一刻智能协同营销平台"/></em>出生日期：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_3.jpg" alt="三点一刻智能协同营销平台"/></em>从业年限：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_6.jpg" alt="三点一刻智能协同营销平台"/></em>微信号：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_7.jpg" alt="三点一刻智能协同营销平台"/></em>一句话简介：</li>
-                    </ul>
-                    <div class="basic-block-tit">账户信息</div>
-                    <ul>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_8.jpg" alt="三点一刻智能协同营销平台"/></em>邮箱：</li>
-                        <li><em><img src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme'];?>
-resources/bootstrap/img/basic_9.jpg" alt="三点一刻智能协同营销平台"/></em>手机号：13205513306</li>
-                    </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

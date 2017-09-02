@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-08-31 10:33:55
+/* Smarty version 3.1.30, created on 2017-09-01 18:07:19
   from "D:\WWW\marketing\theme\default\inc\pager.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a7759395a074_19459852',
+  'unifunc' => 'content_59a93157657b12_48880541',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0b5e59c740f19a7404367d97d7e6ae0630a02889' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\inc\\pager.tpl',
-      1 => 1504146782,
+      1 => 1504245697,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59a7759395a074_19459852 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59a93157657b12_48880541 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <div id="page-box">
