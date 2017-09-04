@@ -9,13 +9,7 @@
 
     <div class="page-content">
         <div class="usercenter_page">
-            <div class="usercenter_tag">
-                <ul>
-                    <li><a href="{$url.user}"><em></em>基本信息</a></li>
-                    <li class="active"><a href="user.php?rec=order_list"><em></em>我的订单</a></li>
-                    <li><a href="user.php?rec=logout"><em></em>退出登录</a></li>
-                </ul>
-            </div>
+            <!-- {include file="inc/user_menu.tpl"} -->
             <div class="usercenter_content usercenter_demand">
                 <div class="goodsListTitle">我的订单</div>
                 <!-- {if $order_list} -->
@@ -24,6 +18,7 @@
                     <thead align="left">
                         <tr>
                             <th>订单号</th>
+                            <th>类别</th>
                             <th>价格</th>
                             <th>下单时间</th>
                             <th>状态</th>
@@ -34,6 +29,7 @@
                         <!-- {foreach $order_list $order} -->
                         <tr>
                             <td>{$order.order_sn}</td>
+                            <td>{if $order.order_type eq 1}营销套餐{else}媒介{/if}</td>
                             <td>{$order.order_amount_format}</td>
                             <td>{$order.add_time}</td>
                             <td>{$order.status_format}</td>

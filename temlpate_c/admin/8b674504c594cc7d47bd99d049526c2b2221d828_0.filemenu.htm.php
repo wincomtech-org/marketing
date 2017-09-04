@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-04 11:55:33
+/* Smarty version 3.1.30, created on 2017-09-04 17:37:11
   from "D:\WWW\marketing\admin\templates\menu.htm" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59acceb5611376_14610203',
+  'unifunc' => 'content_59ad1ec7046634_51732722',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8b674504c594cc7d47bd99d049526c2b2221d828' => 
     array (
       0 => 'D:\\WWW\\marketing\\admin\\templates\\menu.htm',
-      1 => 1501916890,
+      1 => 1504517828,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59acceb5611376_14610203 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59ad1ec7046634_51732722 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div id="menu">
     <ul class="top">
@@ -125,18 +125,18 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 
     <!-- 系统管理：数据备份、手机版、设置模板、网站管理员、操作记录 -->
     <ul class="bot">
-        <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'backup') {?>class="cur"<?php }?>><a href="backup.php"><i class="backup"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['backup'];?>
-</em></a></li>
         <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'mobile') {?>class="cur"<?php }?>><!-- <li id="must_hide"></li> --><a href="mobile.php"><i class="mobile"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['mobile'];?>
 </em></a></li>
-        <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'theme') {?>class="cur"<?php }?>><a href="theme.php"><i class="theme"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['theme'];
+        <li id="must_hide" <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'theme') {?>class="cur"<?php }?>><a href="theme.php"><i class="theme"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['theme'];
 if ($_smarty_tpl->tpl_vars['unum']->value['theme']) {?><span class="unum"><span><?php echo $_smarty_tpl->tpl_vars['unum']->value['theme'];?>
 </span></span><?php }?></em></a></li>
         <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'manager') {?>class="cur"<?php }?>><a href="manager.php"><i class="manager"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['manager'];?>
 </em></a></li>
 
-        <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'rbac') {?>class="cur"<?php }?>><a href="rbac.php"><i class="manager"></i><em>权限管理</em></a></li>
+        
 
+        <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'backup') {?>class="cur"<?php }?>><a href="backup.php"><i class="backup"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['backup'];?>
+</em></a></li>
         <li <?php if ($_smarty_tpl->tpl_vars['cur']->value == 'manager_log') {?>class="cur"<?php }?>><a href="manager.php?rec=manager_log"><i class="managerLog"></i><em><?php echo $_smarty_tpl->tpl_vars['lang']->value['manager_log'];?>
 </em></a></li>
     </ul>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-04 12:06:20
+/* Smarty version 3.1.30, created on 2017-09-04 17:31:14
   from "D:\WWW\marketing\theme\default\user\order_list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59acd13cc107b9_54187106',
+  'unifunc' => 'content_59ad1d62cc4270_91170460',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab7216383af657f871091ebddf572b6cd4ec1017' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\user\\order_list.html',
-      1 => 1504497978,
+      1 => 1504517471,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:inc/head.tpl' => 1,
     'file:inc/header.tpl' => 1,
+    'file:inc/user_menu.tpl' => 1,
     'file:inc/pager.tpl' => 1,
     'file:inc/footer.tpl' => 1,
   ),
 ),false)) {
-function content_59acd13cc107b9_54187106 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59ad1d62cc4270_91170460 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:inc/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -48,14 +49,9 @@ js/jquery.SuperSlide.2.1.1.js"><?php echo '</script'; ?>
 
     <div class="page-content">
         <div class="usercenter_page">
-            <div class="usercenter_tag">
-                <ul>
-                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value['user'];?>
-"><em></em>基本信息</a></li>
-                    <li class="active"><a href="user.php?rec=order_list"><em></em>我的订单</a></li>
-                    <li><a href="user.php?rec=logout"><em></em>退出登录</a></li>
-                </ul>
-            </div>
+            <?php $_smarty_tpl->_subTemplateRender("file:inc/user_menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
             <div class="usercenter_content usercenter_demand">
                 <div class="goodsListTitle">我的订单</div>
                 <?php if ($_smarty_tpl->tpl_vars['order_list']->value) {?>
@@ -64,6 +60,7 @@ js/jquery.SuperSlide.2.1.1.js"><?php echo '</script'; ?>
                     <thead align="left">
                         <tr>
                             <th>订单号</th>
+                            <th>类别</th>
                             <th>价格</th>
                             <th>下单时间</th>
                             <th>状态</th>
@@ -79,6 +76,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['order']->value) {
                         <tr>
                             <td><?php echo $_smarty_tpl->tpl_vars['order']->value['order_sn'];?>
 </td>
+                            <td><?php if ($_smarty_tpl->tpl_vars['order']->value['order_type'] == 1) {?>营销套餐<?php } else { ?>媒介<?php }?></td>
                             <td><?php echo $_smarty_tpl->tpl_vars['order']->value['order_amount_format'];?>
 </td>
                             <td><?php echo $_smarty_tpl->tpl_vars['order']->value['add_time'];?>

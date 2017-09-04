@@ -37,7 +37,7 @@ if ($rec == 'cart') {
     $smarty->assign('cart', $dou_order->get_cart($_SESSION[DOU_ID]['cart']));
     $smarty->assign('page_title', $dou->page_title('order_cart'));
 
-    $smarty->display('order.dwt');
+    $smarty->display('user/shopcart.html');
 }
 
 /**

@@ -58,11 +58,13 @@
 }
 
 /**订单列表*/
-.goodsList{width:90%;margin:10px auto;}
-.goodsListItem{width:100%;}
-.goodsListItem{font-size:18px;overflow:hidden;display:flex;display:-webkit-flex;display:-moz-flex;}
-.goodsListItem span{ display:flex;display:-webkit-flex;display:-moz-flex;float:left;text-align:center;color:#454545;padding:10px 0;border-bottom:1px solid #ddd;border-left:1px solid #ddd;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;justify-content: center; align-items: center;}
-.goodsListItem span:last-child{border-right:1px solid #ddd;}
-.goodsListItem:first-child{border-top:1px solid #ddd;}
-.goodsListItem1,.goodsListItem3{width:30%;}
-.goodsListItem2{width:40%}
+.goods_order{width:90%;margin:0 auto;padding-top:30px;}
+.goods_lists{width:100%;}
+.goods_lists_item{width:100%;}
+.goods_lists_item .td{font-size:14px;text-align:center;}
+.goods_lists th,.goods_lists td{padding:10px;border-bottom:1px solid #ddd;border-left:1px solid #ddd;}
+.goods_lists th:last-child,.goods_lists td:last-child{border-right:1px solid #ddd;}
+.goods_lists th{border-top:1px solid #ddd;}
+.goods_lists .order_pay,.goods_lists .order_view,.goods_lists .order_del{padding:3px 6px;color:#fff;background-color:red;margin-right:6px;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;-o-border-radius:6px;}
+.goods_lists .order_view{background-color:orange;}
+.goods_lists .order_del{background-color:green;}
