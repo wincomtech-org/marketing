@@ -517,7 +517,7 @@ elseif ($rec == 'logout') {
 elseif ($rec == 'order_list') {
     // 公用SQL查询条件，分页中也使用 order_type=1 AND 
     $where = " WHERE user_id = '$_USER[user_id]'";
-    $where = " WHERE user_id=2";
+    // $where = " WHERE user_id=2";
 
     // 验证并获取合法的分页ID
     $page = $check->is_number($_REQUEST['page']) ? $_REQUEST['page'] : 1;
@@ -527,24 +527,38 @@ elseif ($rec == 'order_list') {
         $add_time = date("Y-m-d h:i:s", $row['add_time']);
         $status_format = $_LANG['order_status_' . $row['status']];
         $order_amount_format = $dou->price_format($row['order_amount']);
-        $product_list = $dou_order->get_order_product($row['order_id']);
+        // $product_list = $dou_order->get_order_product($row['order_id']);
 
         // 是否显示支付按钮
-        if ($dou->get_plugin($row['pay_id']))
+        if ($dou->get_plugin($row['pay_id'])) {
             $if_payment = true;
+            if ($row['order_type']==1) {
+                // $pay_name = $dou->get_one('SELECT name FROM '. $dou->table('plugin') ." WHERE unique_id='$row[pay_id]'");
+                // 生成付款按钮
+                include_once (ROOT_PATH . 'include/plugin/' . $row['pay_id'] . '/work.plugin.php');
+                $plugin = new Plugin($row['order_sn'], $row['order_amount']);
+                // 生成支付按钮
+                $payment = $plugin->work();
+            } else {
+                # code...
+            }
+        }
         
         $order_list[] = array(
-                "order_id" => $row['order_id'],
-                "order_sn" => $row['order_sn'],
-                "telephone" => $row['telephone'],
-                "contact" => $row['contact'],
-                "order_amount" => $row['order_amount'],
+                "order_id"      => $row['order_id'],
+                "order_type"    => $row['order_type'],
+                "order_sn"      => $row['order_sn'],
+                "telephone"     => $row['telephone'],
+                "contact"       => $row['contact'],
+                "order_amount"  => $row['order_amount'],
                 "order_amount_format" => $order_amount_format,
-                "status" => $row['status'],
+                "status"        => $row['status'],
                 "status_format" => $status_format,
-                "if_payment" => $if_payment,
-                "add_time" => $add_time,
-                "product_list" => $product_list
+                "if_payment"    => $if_payment,
+                "payment"       => $payment,
+                "pay_name"      => $pay_name,
+                "add_time"      => $add_time,
+                // "product_list" => $product_list
         );
     }
 // $dou->debug($order_list,1);
@@ -612,7 +626,7 @@ elseif ($rec == 'order_cancel') {
     $order_sn = $check->is_number($_REQUEST['order_sn']) ? $_REQUEST['order_sn'] : '';
 
     // 获取订单信息
-    $order = $dou->fetch_array($dou->select($dou->table('order'), 'order_sn, status', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'"));
+    $order = $dou->fetch_assoc($dou->select($dou->table('order'), 'order_sn,status', "order_sn='$order_sn' AND user_id='$_USER[user_id]'"));
 
     if (!$order || $order['status'] != 0)
         exit;

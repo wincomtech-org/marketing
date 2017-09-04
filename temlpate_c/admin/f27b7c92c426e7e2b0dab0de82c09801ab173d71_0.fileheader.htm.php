@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-01 17:49:57
+/* Smarty version 3.1.30, created on 2017-09-04 11:55:33
   from "D:\WWW\marketing\admin\templates\header.htm" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59a92d455f3b08_69718029',
+  'unifunc' => 'content_59acceb55bb457_14776031',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59a92d455f3b08_69718029 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59acceb55bb457_14776031 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div id="dcHead">
     <div id="head">

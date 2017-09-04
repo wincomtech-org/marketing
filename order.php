@@ -94,7 +94,7 @@ elseif ($rec == 'update') {
  */
 elseif ($rec == 'del') {
     $product_id = $check->is_number($_REQUEST['id']) ? $_REQUEST['id'] : '';
-    
+
     // 删除对应商品
     unset($_SESSION[DOU_ID]['cart'][$product_id]);
 
@@ -168,43 +168,39 @@ elseif ($rec == 'change_shipping') {
  * 完成虚拟订单操作，提交到数据库
  * +----------------------------------------------------------
 */
-elseif ($rec == 'success_virtual') {
+elseif ($rec == 'success_virtual') { 
     // 验证是否登录
-    if (!is_array($_USER)) {
+    if (!is_array($_USER)) 
         $dou->dou_header($_URL['login']);
-    }
+    // 安全处理用户输入信息
+    $_GET = $firewall->dou_foreground($_GET);
     $packageId = intval($_GET['packageId']);
     // CSRF防御令牌验证
-    $firewall->check_token($_GET['token'], 'product'.$packageId);
+    // $firewall->check_token($_GET['token'], 'product'.$packageId);
 
+    // 获取产品信息
+    $product = $dou->fetchRow(sprintf('SELECT id,name,price,defined from %s where id=%d',$dou->table('product'),$packageId));
+    // 生成订单号等
     $order_sn = $dou_order->create_order_sn();
-    $pay_id = 'alipay';
-
-    // 安全处理用户输入信息
-    $_POST = $firewall->dou_foreground($_POST);
+    $pay_id = 'alipay';// 必填
 
     // 订单信息插入
     $data = array(
             'order_sn'      => $order_sn,
             'user_id'       => $_USER['user_id'],
-            'telephone'     => $_POST['telephone'],
-            'contact'       => $_POST['contact'],
-            'address'       => $_POST['address'],
-            'postcode'      => $_POST['postcode'],
+            'telephone'     => $gUinfos['telephone'],
+            'contact'       => $gUinfos['contact'],
+            'address'       => $gUinfos['address'],
+            'postcode'      => $gUinfos['postcode'],
             'pay_id'        => $pay_id,
-            'shipping_id'   => $_POST['shipping_id'],
-            'product_amount'=> $cart['product_amount'],
-            'shipping_fee'  => $shipping_fee,
-            'order_amount'  => $order_amount,
+            'product_amount'=> $product['price'],
+            'order_amount'  => $product['price'],
             'add_time'      => time()
         );
     $order_id = $dou->insert('order',$data);
     if (empty($order_id)) {
         $dou->dou_msg('操作失败！',$_URL['cart']);
     }
-    // 获取产品信息
-    $sql = "SELECT id,name,price,defined from ".$dou->table('product')." where id=".$packageId;
-    $product = $dou->fetchRow($sql);
     // 订单商品插入
     $sql = "INSERT INTO ".$dou->table('order_product')." (order_id,product_id,name,price,product_number,defined) VALUES ($order_id, '$product[id]', '$product[name]', '$product[price]', 1, '$product[defined]')";
     $dou->query($sql);
