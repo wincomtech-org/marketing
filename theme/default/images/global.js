@@ -192,20 +192,20 @@ $(document).ready(function(e) {
 
     // 弹出窗口
     var button_toggle = true;
-    $(".onlineIcon").live("mouseover",
+    $(".onlineIcon").on("mouseover",
     function() {
         button_toggle = false;
         $("#pop").show();
-    }).live("mouseout",
+    }).on("mouseout",
     function() {
         button_toggle = true;
         hideRightTip()
     });
-    $("#pop").live("mouseover",
+    $("#pop").on("mouseover",
     function() {
         button_toggle = false;
         $(this).show()
-    }).live("mouseout",
+    }).on("mouseout",
     function() {
         button_toggle = true;
         hideRightTip()
@@ -218,7 +218,7 @@ $(document).ready(function(e) {
     }
 
     // 返回顶部
-    $(".goTop").live("click",
+    $(".goTop").on("click",
     function() {
         var _this = $(this);
         $('html,body').animate({

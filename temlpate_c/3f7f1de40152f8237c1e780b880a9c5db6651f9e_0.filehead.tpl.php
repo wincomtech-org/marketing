@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-04 11:55:36
+/* Smarty version 3.1.30, created on 2017-09-07 15:36:32
   from "D:\WWW\marketing\theme\default\inc\head.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59acceb8569e81_41489255',
+  'unifunc' => 'content_59b0f70000e096_65107494',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3f7f1de40152f8237c1e780b880a9c5db6651f9e' => 
     array (
       0 => 'D:\\WWW\\marketing\\theme\\default\\inc\\head.tpl',
-      1 => 1504334450,
+      1 => 1504691973,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59acceb8569e81_41489255 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59b0f70000e096_65107494 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +46,7 @@ resetCss/header.css"/>
  src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
 js/jquery-2.1.3.min.js"><?php echo '</script'; ?>
 >
+    
     <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['site']->value['theme_s'];?>
 js/main.js"><?php echo '</script'; ?>

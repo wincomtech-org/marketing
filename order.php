@@ -34,7 +34,55 @@ $smarty->assign('rec', $rec);
  */
 if ($rec == 'cart') {
     // 赋值给模板-数据
-    $smarty->assign('cart', $dou_order->get_cart($_SESSION[DOU_ID]['cart']));
+    $pagesize = isset($_REQUEST['p'])?intval($_REQUEST['p']):0;
+    // 是否做缓存？？
+    $products = $dou_order->get_cart($_SESSION[DOU_ID]['cart'],'','medium','id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort');
+
+    $pagend = $pagesize+2;
+    foreach ($products['list'] as $key => $value) {
+        if ($pagesize<=$key && $key<$pagend) {
+            $temp_c[] = $value;
+        }
+    }
+// $dou->debug($temp_c,1);
+
+    // AJAX 调用更多
+    if ($_REQUEST['ajax']) {
+        if (count($products['list'])<=$pagesize) {
+            echo json_encode(array('nore'=>true));exit();
+        }
+        $probox = '';
+        foreach ($temp_c as $k => $v) {
+            $district = $v['district']?$v['district']:'全国';
+            $probox .= <<<PPP
+            <tr class="order-item tabl-tr">
+                <td class="td td-chk tabl">
+                    <input class="slectBox" type="checkbox" name="idbox[]" value="{$v[id]}">
+                </td>
+                <td class="td td-logo tabl">   
+                    <span class="img"><img src="{$v[image]}"></span> 
+                </td>
+                <td class="td td-name tabl">{$v[title]}</td> 
+                <td class="td td-indust tabl">{$v[industry]}</td> 
+                <td class="td td-area tabl">{$district}</td> 
+                <td class="td td-fans tabl">{$v[fans]}</td> 
+                <td class="td td-price tabl">{$v[price_normal]}</td> 
+                <td class="td td-nums tabl">{$v[number]}</td> 
+                <td class="td td-total tabl">￥<span class="price-sum">{$v[subtotal_normal]}.00</span>元</td> 
+                <td class="td td-delete tabl">
+                    <a class="delete" href="{$_URL[del]}&id={$v[id]}">{$_LANG[del]}</a>
+                </td>
+            </tr>
+PPP;
+        }
+        echo json_encode(array('box'=>$probox,'end'=>$pagend));
+        exit;
+    }
+
+    $products['list'] = $temp_c;
+
+    $smarty->assign('carts', $products);
+    $smarty->assign('pagend', $pagend);
     $smarty->assign('page_title', $dou->page_title('order_cart'));
 
     $smarty->display('user/shopcart.html');
@@ -54,14 +102,17 @@ elseif ($rec == 'insert') {
         $_SESSION[DOU_ID]['cart'] = array();
     }
     
-    // 如果商品已存在则增加其数量
-    if (isset($_SESSION[DOU_ID]['cart'][$product_id])) {
-        $_SESSION[DOU_ID]['cart'][$product_id] = $number + $_SESSION[DOU_ID]['cart'][$product_id];
-    } else {
-        $_SESSION[DOU_ID]['cart'][$product_id] = $number;
+    if ($product_id) {
+        // 如果商品已存在则增加其数量
+        if (isset($_SESSION[DOU_ID]['cart'][$product_id])) {
+            $_SESSION[DOU_ID]['cart'][$product_id] = $number + $_SESSION[DOU_ID]['cart'][$product_id];
+        } else {
+            $_SESSION[DOU_ID]['cart'][$product_id] = $number;
+        }
+        $dou->popup('已成功加入购物车');
     }
-
-    $dou->dou_header($_URL['cart']);
+    $dou->popup('向购物车中添加失败！');
+    // $dou->dou_header($_URL['cart']);
 }
 
 /**
@@ -79,12 +130,12 @@ elseif ($rec == 'update') {
     $subtotal = $product_price > 0 ? $dou->price_format($product_price * $_POST['number']) : $_LANG['price_discuss'];
     
     $order = array(
-            "subtotal" => $subtotal,
-            "total" => $cart['total'],
-            "product_amount" => $dou->price_format($cart['product_amount'])
+        "subtotal" => $subtotal,
+        "total" => $cart['total'],
+        "product_amount" => $dou->price_format($cart['product_amount'])
     );
-    
-    echo json_encode($order);
+
+    echo json_encode($order);exit;
 }
 
 /**
@@ -107,6 +158,40 @@ elseif ($rec == 'del') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'checkout') {
+    // 验证是否登录
+    if (!is_array($_USER)) {
+        $dou->dou_header($_URL['login']);
+    }
+// $dou->debug($_POST);
+// $dou->debug($_SESSION[DOU_ID]['cart']);
+    // CSRF防御令牌生成
+    $smarty->assign('token', $firewall->set_token('order_checkout'));
+    
+    // 获取购物车信息
+    foreach ($_SESSION[DOU_ID]['cart'] as $key => $val) {
+        if (in_array($key,$_POST['idbox'])) {
+            $session_cart[$key] = $val;
+        }
+    }
+// $dou->debug($session_cart);
+    $cart = $dou_order->get_cart($session_cart,'','medium','id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort');
+    
+    // 获取订单信息
+    $order = $dou_user->get_user_info($_USER['user_id']);
+    $order['order_amount_format'] = $dou->price_format($cart['product_amount']);
+// $dou->debug($cart);
+// $dou->debug($order);
+// $dou->debug($dou_order->get_payment_list());
+    // 赋值给模板-数据
+    $smarty->assign('page_title', $dou->page_title('order_checkout'));
+    $smarty->assign('cart', $cart);
+    // $smarty->assign('shipping_list', $dou_order->get_shipping_list());
+    $smarty->assign('payment_list', $dou_order->get_payment_list());
+    $smarty->assign('order', $order);
+    $smarty->display('user/order_det.html');
+}
+
+elseif ($rec == 'checkout-2') {
     // 验证是否登录
     if (!is_array($_USER)) {
         $dou->dou_header($_URL['login']);
@@ -227,6 +312,108 @@ elseif ($rec == 'success_virtual') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'success') {
+    // 验证是否登录
+    if (!is_array($_USER)) {
+        $dou->dou_header($_URL['login']);
+    }
+    // 验证手机
+    if (!$check->is_telephone($_POST['telephone']))
+        $wrong['telephone'] = $_LANG['user_telephone_cue'];
+// $dou->debug($_POST,1);
+    // AJAX验证表单
+    if ($_REQUEST['do'] == 'callback') {
+        if ($wrong) {
+            foreach ($_POST as $key => $value) {
+                $wrong_json[$key] = $wrong[$key];
+            }
+            echo json_encode($wrong_json);
+        }
+        exit;
+    }
+    if ($wrong) {
+        foreach ($wrong as $key => $value) {
+            $wrong_format[$key] = '<p class="cue">' . $value . '</p>';
+        }
+        $dou->dou_msg($wrong_format, $_URL['edit']);
+    }
+
+    // CSRF防御令牌验证
+    $firewall->check_token($_POST['token'], 'order_checkout');
+    
+    // 检查购物车是否有商品
+    if (!is_array($_SESSION[DOU_ID]['cart'])) {
+        $dou->dou_msg($_LANG['order_cart_empty'], ROOT_URL);
+    }
+
+    // 获取购物车信息
+    foreach ($_SESSION[DOU_ID]['cart'] as $key => $val) {
+        if (in_array($key,$_POST['idbox'])) {
+            $session_cart[$key] = $val;
+        }
+    }
+    $cart = $dou_order->get_cart($session_cart,'','medium','id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort');
+    $order_sn = $dou_order->create_order_sn();
+
+    // 计算运费和订单总额
+    $order_amount = $cart['product_amount'];
+    
+    // 安全处理用户输入信息
+    $_POST = $firewall->dou_foreground($_POST);
+
+    // 订单信息插入
+    $data = array(
+            'order_type'    => 2,
+            'order_sn'      => $order_sn,
+            'user_id'       => $_USER['user_id'],
+            'telephone'     => $_POST['telephone'],
+            'pay_id'        => $_POST['pay_id'],
+            'product_amount'=> $cart['product_amount'],
+            'order_amount'  => $order_amount,
+            'add_time'      => time()
+        );
+    $order_id = $dou->insert('order',$data);
+    if (empty($order_id)) {
+        $dou->dou_msg('操作失败！',$_URL['cart']);
+    }
+
+    // 订单商品插入
+    $sql = sprintf('INSERT INTO %s (order_id,product_id,name,price,product_number,defined) VALUES ',$dou->table('order_product'));
+    foreach ($cart['list'] as $product) {
+        $sql .= "($order_id, '$product[id]', '$product[title]', '$product[price_normal]', '$product[number]', '$product[defined]'),";
+    }
+    $sql = substr($sql,0,-1);
+    $dou->query($sql);
+
+    // if ($_POST['telephone']) {
+    //     $dou->query("UPDATE " . $dou->table('user') . " SET telephone='$_POST[telephone]' WHERE user_id='$_USER[user_id]'");
+    // }
+    
+    // 显示订单信息
+    $order['order_sn'] = $order_sn;
+    $order['order_amount'] = $order_amount;
+    $order['order_amount_format'] = $dou->price_format($order_amount);
+
+    // 订单完成，清空购物车
+    unset($_SESSION[DOU_ID]['cart']);
+
+    // 订单成功且选择了付款方式则显示付款按钮
+    if ($GLOBALS['dou']->value_exist('order', 'order_sn', $order_sn) && $_POST['pay_id']) {
+        // $_POST['pay_id'] = 'alipay';
+        include_once (ROOT_PATH . 'include/plugin/' . $_POST['pay_id'] . '/work.plugin.php');
+        $plugin = new Plugin($order_sn, $order_amount);
+        
+        // 生成支付按钮
+        $smarty->assign('payment', $plugin->work());
+    }
+    
+    $smarty->assign('page_title', $dou->page_title('order_success'));
+    $smarty->assign('order', $order);
+    $smarty->assign('pay_id', $_POST['pay_id']);
+    
+    $smarty->display('user/pay.html');
+}
+
+elseif ($rec == 'success-2') {
     // 验证是否登录
     if (!is_array($_USER)) {
         $dou->dou_header($_URL['login']);

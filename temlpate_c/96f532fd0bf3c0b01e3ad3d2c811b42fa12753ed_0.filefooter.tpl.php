@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-04 11:55:36
+/* Smarty version 3.1.30, created on 2017-09-07 15:36:32
   from "D:\WWW\marketing\theme\default\inc\footer.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59acceb85cb912_45796792',
+  'unifunc' => 'content_59b0f700067e21_00118766',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59acceb85cb912_45796792 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59b0f700067e21_00118766 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="footer_bg">
     <div class="footer_auto">

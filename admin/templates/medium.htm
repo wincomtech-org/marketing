@@ -15,7 +15,7 @@
  <div id="dcMain">
    {include file="ur_here.htm"}
    <div class="mainBox" style="{$workspace.height}">
-    <!--{if $rec eq 'default'} 下载列表 -->
+    <!--{if $rec eq 'default'} 列表 -->
     <h3><a href="{$action_link.href}" class="actionBtn add">{$action_link.text}</a>{$ur_here}</h3>
     <div class="filter">
     <form action="medium.php" method="post">
@@ -62,10 +62,13 @@
       <th width="22" align="center"><input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
       <th width="40" align="center">{$lang.record_id}</th>
       <th align="left">{$lang.medium_name}</th>
-      <th width="150" align="center">{$lang.medium_category}</th>
-      <th width="80" align="center">{$lang.medium_size}</th>
-      <th width="80" align="center">{$lang.add_time}</th>
-      <th width="80" align="center">{$lang.handler}</th>
+      <th align="center">{$lang.medium_category}</th>
+      <th align="center">所属行业</th>
+      <th align="center">所属地区</th>
+      <th align="center">粉丝数</th>
+      <th align="center">报价</th>
+      <th align="center">{$lang.add_time}</th>
+      <th align="center">{$lang.handler}</th>
      </tr>
      <!--{foreach from=$medium_list item=medium}-->
      <tr>
@@ -73,7 +76,10 @@
       <td align="center">{$medium.id}</td>
       <td><a href="medium.php?rec=edit&id={$medium.id}">{$medium.title}</a><!--{if $medium.image}--> <a href="../{$medium.image}" target="_blank"><img src="images/icon_picture.png" width="16" height="16" align="absMiddle"></a><!--{/if}--></td>
       <td align="center"><!--{if $medium.cat_name}--><a href="medium.php?cat_id={$medium.cat_id}">{$medium.cat_name}</a><!--{else}-->{$lang.uncategorized}<!--{/if}--></td>
-      <td align="center">{$medium.size}</td>
+      <td align="center">{$medium.industry}</td>
+      <td align="center">{$medium.district}</td>
+      <td align="center">{$medium.fans}</td>
+      <td align="center">{$medium.moneys}</td>
       <td align="center">{$medium.add_time}</td>
       <td align="center">
        <!--{if $if_sort}-->
@@ -108,7 +114,7 @@
     <div class="clear"></div>
     {include file="pager.htm"}
     <!--{/if}-->
-    <!--{if $rec eq 'add' || $rec eq 'edit'} 下载添加或编辑 -->
+    <!--{if $rec eq 'add' || $rec eq 'edit'} 添加或编辑 -->
     <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
     <form action="medium.php?rec={$form_action}" method="post" enctype="multipart/form-data">
      <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
@@ -170,16 +176,64 @@
         <input type="file" name="image" size="38" class="inpFlie" />
         {if $medium.image}<a href="../{$medium.image}" target="_blank"><img src="images/icon_yes.png"></a>{else}<img src="images/icon_no.png">{/if}</td>
       </tr>
+
       <tr>
-       <td align="right">{$lang.medium_link}</td>
+       <td align="right">所属行业</td>
        <td>
-        <input type="text" name="medium_link" value="{$medium.medium_link}" size="120" class="inpMain" />
+        <select name="indusid">
+         <option value="0">{$lang.uncategorized}</option>
+         <!--{foreach from=$industrys item=v}-->
+          <option {if $v.id eq $medium.indusid} selected="selected"{/if} value="{$v.id}">{$v.title}</option>
+         <!--{/foreach}-->
+        </select>
+       </td>
+      </tr>
+
+      <tr>
+       <td align="right">所属省份</td>
+       <td>
+        <select name="proid">
+         <option value="0">{$lang.uncategorized}</option>
+         <!--{foreach from=$provinces item=v}-->
+         <!--{if $v.cat_id eq $medium.proid}-->
+         <option value="{$v.cat_id}" selected="selected">{$v.mark} {$v.cat_name}</option>
+         <!--{else}-->
+         <option value="{$v.cat_id}">{$v.mark} {$v.cat_name}</option>
+         <!--{/if}-->
+         <!--{/foreach}-->
+        </select>
+       </td>
+      </tr>
+
+      <tr>
+       <td align="right">账号类型</td>
+       <td>
+        <select name="account_type">
+         <option value="0">{$lang.uncategorized}</option>
+         <!--{foreach from=$account_types item=v}-->
+          <option {if $v.id eq $medium.account_type} selected="selected"{/if} value="{$v.id}">{$v.title}</option>
+         <!--{/foreach}-->
+        </select>
+       </td>
+      </tr>
+
+      <tr>
+       <td align="right">粉丝量</td>
+       <td>
+        <input type="number" name="fans" value="{$medium.fans}" size="50" class="inpMain" />
        </td>
       </tr>
       <tr>
-       <td align="right">{$lang.medium_size}</td>
+       <td align="right">报价</td>
        <td>
-        <input type="text" name="size" value="{$medium.size}" size="50" class="inpMain" />
+        <input type="text" name="moneys" value="{$medium.moneys}" size="50" class="inpMain" />
+       </td>
+      </tr>
+
+      <tr>
+       <td align="right">{$lang.medium_link}</td>
+       <td>
+        <input type="text" name="link" value="{$medium.link}" size="120" class="inpMain" />
        </td>
       </tr>
       <tr>
@@ -209,7 +263,7 @@
  </div>
  {include file="footer.htm"}
  </div>
-<!--{if $rec eq 'default'} 下载列表 -->
+<!--{if $rec eq 'default'} 列表 -->
 <script type="text/javascript">
 {literal}
 onload = function()

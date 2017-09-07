@@ -1,0 +1,193 @@
+{include file="inc/head.tpl"}
+<script src="{$site.theme_s}js/pagination.js"></script>
+<script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
+<body id="dialog">
+    {include file="inc/header.tpl"}
+
+    <div class="search_area m10">
+        <div class="search_block search_block_click">
+            <!--分类筛选区域-->
+            <dl id="classify" class="classify">
+                <!-- {foreach $medium_category $v} -->
+                <dd {if $id eq $v.cat_id}class="active"{/if}><a href="{$jumpurl}id={$v.cat_id}">{$v.cat_name}</a></dd>
+                <!-- {/foreach} -->
+            </dl>
+        </div>
+        <div class="search_block search_block_click">
+            <!--行业筛选区域-->
+            <dl id="channel" class="channel">
+                <dt><a href="{$jumpurl}a=">所有行业</a></dt>
+                <!-- {foreach $industrys $v} -->
+                <dd {if $a eq $v.id}class="active"{/if}><a href="{$jumpurl}a={$v.id}">{$v.title}</a></dd>
+                <!-- {/foreach} -->
+                <dd data="15"><a href="{$jumpurl}a=">其它</a></dd>
+                <div class="more">更多</div>
+            </dl>
+        </div>
+        <div class="search_block search_block_click">
+            <!--地区筛选区域-->
+            <dl id="range" class="range">
+                <dt><a href="{$jumpurl}b=">全国范围</a></dt>
+                <!-- {foreach $provinces $v} -->
+                <dd {if $b eq $v.cat_id}class="active"{/if}><a href="{$jumpurl}b={$v.cat_id}">{$v.cat_name}</a></dd>
+                <!-- {/foreach} -->
+                <dd {if !$b}class="active"{/if}><a href="{$jumpurl}b=">全国</a></dd>
+                <div class="more">更多</div>
+            </dl>
+        </div>
+        <div class="search_block search_block_click">
+            <!--账号筛选区域-->
+            <dl id="type" class="type">
+                <dt><a href="{$jumpurl}c=">账号类型</a></dt>
+                <!-- {foreach $account_types $v} -->
+                <dd {if $c eq $v.id}class="active"{/if}><a href="{$jumpurl}c={$v.id}">{$v.title}</a></dd>
+                <!-- {/foreach} -->
+            </dl>
+        </div>
+        <div class="search_block">
+            <form action="{$jumpurl}" method="get">
+                <dl id="fans" class="fans">
+                    <dt>粉丝量</dt>
+                    <dd><input id="fans_start" type="text" name="d" value="{$d}"></dd>
+                    <dd> — </dd>
+                    <dd><input id="fans_end" type="text" name="d2" value="{$d2}"></dd>
+                    <dd><input id="fans_submit" type="submit" value="查询"></dd>
+                </dl>
+                <dl id="price" class="price">
+                    <dt>报价金额</dt>
+                    <dd><input id="price_start" type="text" name="e" value="{$e}"></dd>
+                    <dd> — </dd>
+                    <dd><input id="price_end" type="text" name="e2" value="{$e2}"></dd>
+                    <dd><input id="price_submit" type="submit" value="查询"></dd>
+                </dl>
+            </form>
+        </div>
+        <div class="search_block">
+            <div class="sort_fans sort_sel">
+                <span>{if $f eq 1}粉丝从低到高{elseif $f eq 2}粉丝从高到低{else}粉丝默认排序{/if}</span>
+                <ul>
+                    <li title="desc"><a href="{$jumpurl}f=2">粉丝从高到低</a></li>
+                    <li title="asc"><a href="{$jumpurl}f=1">粉丝从低到高</a></li>
+                </ul>
+            </div>
+            <div class="sort_price sort_sel">
+                <span>{if $g eq 1}价格从低到高{elseif $g eq 2}价格从高到低{else}价格默认排序{/if}</span>
+                <ul>
+                    <li title="desc"><a href="{$jumpurl}g=2">价格从高到低</a></li>
+                    <li title="asc"><a href="{$jumpurl}g=1">价格从低到高</a></li>
+                </ul>
+            </div>
+            <!-- <div class="style_change"><em></em></div> -->
+            <div class="search-form1">
+            <form action="{$jumpurl}" method="get">
+                <div class="search-input-box"><input placeholder="输入关键字" name="srcval" value="{$srcval}" /></div>
+                <div class="search-btn"><button type="submit">搜索</button></div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" style="margin-top: 0;">
+        <div class="smart-block smart">
+           <ul class="wb">
+            <li class="smart_tit">
+                <span>LOGO</span>
+                <span>名称</span>
+                <span>行业</span>
+                <span>地区</span>
+                <span>粉丝数</span>
+                <span>转发量</span>
+                <span class="price">价格</span>
+                <span class="shop_cart"> 购物车</span>
+            </li>
+            <!-- {foreach $medium_list $v} -->
+            <li>
+                <span class="smart_img">
+                    <img src="{$v.image}" alt="">
+                </span>
+                <span>{$v.title}</span>
+                <span>{$v.industry}</span>
+                <span>{if $v.district}{$v.district}{else}全国{/if}</span>
+                <span>{$v.fans}</span>
+                <span>{$v.click}</span>
+                <span class="price pri">￥{$v.moneys}</span>
+                <span class="shop_cart">
+                    <a onclick="add_cart(this,'{$v.id}')" style="cursor:pointer;">加入到购物车</a>
+                </span>
+            </li>
+            <!-- {/foreach} -->
+        </ul>
+    </div>
+    <div class="smart-block">
+        {include file="inc/pager.tpl"}
+    </div>
+</div>
+
+<div class="footer">
+    <style>
+        {literal}
+        .contactUs span a{color:#fff;}
+        {/literal}
+    </style>
+    {include file="inc/footer.tpl"}
+</div>
+<script>
+    {literal}
+    /*添加购物车*/
+    function add_cart(o,id) {
+        $.post('order.php?rec=insert', {type:2,product_id:id}, function(data) {
+            $(o).before(data);
+            // $('#dialog').html(data);
+            // $('#dialog').prepend(data);
+            // $('#dialog').append(data);
+        });
+    }
+
+    // $(function() {
+    // 　　$(".add_cart").on("click",function(){
+    //         var id = $(this).attr('data-id');
+    // 　　　　console.log("The paragraph was clicked.");
+    //         alert(id)
+    // 　　});
+    // })
+
+    // $(document).ready(function(){
+    //   $("ins").on("click",function(){
+    //     alert("段落被点击了。");
+    //   });
+    // });
+
+    // 点击更多
+    $('.more').unbind('click').click(function(){
+        if($(this).hasClass('on')){
+            $(this).removeClass('on').parents('dl').css('height','28px');
+        }else{
+            $(this).addClass('on').parents('dl').css('height','auto'); 
+        }
+    });
+    $('.type dd').click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+    /**粉丝*/
+    $('.sort_sel').unbind('click').click(function(){
+        if($(this).find('ul').hasClass('curr')){
+            $(this).find('ul').removeClass('curr');
+        }else{
+            $(this).find('ul').addClass('curr');
+        }
+    });
+    /**价格*/
+    $('.sort_sel li').click(function(){
+        // $(this).parent('ul').prev('span').html($(this).html()).attr('title',$(this).attr('title'));
+        // var tit=$(this).attr('title');
+
+        // if(tit =="desc"){
+        // }
+        // if(tit =="asc"){
+        // }
+    });
+    {/literal}
+</script>
+</body>
+</html>

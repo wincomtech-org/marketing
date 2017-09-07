@@ -125,6 +125,27 @@ ul, ol {
 .table_cell {
     display: table-cell;
 }
+.btn{
+    padding:7px 15px;
+    color:#fff;
+    background-color:red;
+    font-size:1.4em;font-weight:bold;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -o-border-radius:5px;
+    border-radius:5px;
+}
+.btnPayment{
+    display: block;
+    padding: 12px 69px;
+    background-color: #ff3226;
+    color: #fff;
+    margin-top: 30px;
+}
+
+
+
+
 p.error {
     color: #ed7266;
     font-size: 12px;

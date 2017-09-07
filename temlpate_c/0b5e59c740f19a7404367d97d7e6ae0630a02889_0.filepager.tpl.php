@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-09-04 11:55:36
+/* Smarty version 3.1.30, created on 2017-09-07 16:09:42
   from "D:\WWW\marketing\theme\default\inc\pager.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59acceb85b8094_51811145',
+  'unifunc' => 'content_59b0fec6e944d8_02789085',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59acceb85b8094_51811145 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59b0fec6e944d8_02789085 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <div id="page-box">

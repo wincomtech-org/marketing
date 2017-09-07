@@ -1,3 +1,6 @@
-
-*.php
-*.php
+cache/
+temlpate_c/
+images/article/
+images/medium/
+images/page/
+images/product/

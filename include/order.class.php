@@ -57,29 +57,24 @@ class Order {
      * $shell 选择需要的
      * +----------------------------------------------------------
      */
-    function get_cart($session_cart,$shell='') {
+    function get_cart($session_cart,$shell='',$table='product',$fields='id,name,price,image,defined') {
         if (empty($session_cart)) 
             return array();
         // 获取产品ID组 和 产品信息
-        // if (is_array($shell)) {
-        //     foreach ($shell as $v) {
-        //         unset($session_cart[$v]);
-        //     }
-        // }
-        // $pro_ids = array_keys($session_cart);
-        // $pro_ids = array_diff($pro_ids,(array)$shell);// 差集
         $pro_ids = is_array($shell) ? $shell : array_keys($session_cart);
         // 开始查库
+        $fields = $GLOBALS['dou']->create_fields_quote($fields,'a');
+        $sql = sprintf('SELECT %s,c.title as industry,d.cat_name as district from %s a left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id where a.id ',$fields,$GLOBALS['dou']->table($table),$GLOBALS['dou']->table('diy'),$GLOBALS['dou']->table('district'));
         if (count($session_cart)>1) {
             sort($pro_ids);
             $pro_ids = join(',',$pro_ids);
-            // $pro_ids = implode(',',$pro_ids);
-            // $pro_ids = strrev($pro_ids);
-            $products = $GLOBALS['dou']->fetchAll("SELECT id,name,price,image,defined from ".$GLOBALS['dou']->table('product')." WHERE id IN ({$pro_ids})");
+            // $products = $GLOBALS['dou']->fetchAll("SELECT ". $fields ." from ".$GLOBALS['dou']->table($table)." WHERE id IN ({$pro_ids})");
+            $products = $GLOBALS['dou']->fetchAll($sql."in ({$pro_ids})");
         } else {
             // 硬凑一个二维数组
-            $pro_ids = $pro_ids[0];
-            $products[0] = $GLOBALS['dou']->fetchRow("SELECT id,name,price,image,defined from ".$GLOBALS['dou']->table('product')." WHERE id={$pro_ids}");
+            $pro_ids = intval($pro_ids[0]);
+            // $products[0] = $GLOBALS['dou']->fetchRow("SELECT ". $fields ." from ".$GLOBALS['dou']->table($table)." WHERE id={$pro_ids}");
+            $products[0] = $GLOBALS['dou']->fetchRow($sql.'='.$pro_ids);
         }
         // return $pro_ids;
         // return $products;
@@ -88,12 +83,16 @@ class Order {
         if (is_array($products)) {
             foreach ($products as $pro) {
                 $pro['number'] = $session_cart[$pro['id']];
+                if (isset($pro['moneys'])) {
+                    $pro['price'] = $pro['moneys'];
+                }
                 $pro['price_normal'] = $pro['price'];
                 $pro['price'] = $pro['price']>0 ? $GLOBALS['dou']->price_format($pro['price']) : $GLOBALS['_LANG']['price_discuss'];
-                $pro['url'] = $GLOBALS['dou']->rewrite_url('product', $pro['id']);
+                $pro['url'] = $GLOBALS['dou']->rewrite_url($table, $pro['id']);
                 $image = explode('.', $pro['image']);
                 $pro['image'] = ROOT_URL . $pro['image'];
                 $pro['thumb'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
+                $pro['subtotal_normal'] = $pro['price_normal'] * $pro['number'];
                 $pro['subtotal'] = $pro['price_normal'] > 0 ? $GLOBALS['dou']->price_format($pro['price_normal'] * $pro['number']) : $GLOBALS['_LANG']['price_discuss'];
                 // 产品列表
                 $cart['list'][] = $pro;

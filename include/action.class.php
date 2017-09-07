@@ -170,6 +170,28 @@ class Action extends Common {
         exit();
     }
 
+    /*弹窗*/
+    public function popup($msg='', $time=3, $ext='')
+    {
+        // global $_CFG['theme_s'];
+        // <link href="doubox.css" rel="stylesheet" type="text/css" />
+        $doubox = <<<EOT
+            <div id="douBox">
+                <link rel="stylesheet" href="/theme/default/doubox.css"/>
+                <div class="boxBg"></div>
+                <div class="boxFrame">
+                    <h2><a href="javascript:void(0)" class="close" onclick="douRemove('douBox')">X</a>提示</h2>
+                    <div class="boxCon">
+                        <dt>{$msg}</dt>
+                        <dd></dd>
+                        <dd></dd>
+                    </div>
+                </div>
+            </div>
+EOT;
+        echo $doubox;exit();
+    }
+
     /*JSON*/
     public function djson($code=1, $msg='OK')
     {

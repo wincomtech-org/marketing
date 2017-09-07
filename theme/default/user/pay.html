@@ -1,0 +1,149 @@
+{include file="inc/head.tpl"}
+<script src="{$site.theme_s}js/pagination.js"></script>
+<script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
+
+<body >
+	<!-- {include file="inc/header.tpl"} -->
+
+	<div class="page-content">
+		<div class="usercenter_page">
+			<!-- {include file="inc/user_menu.tpl"} -->
+			<div class="usercenter_content usercenter_demand">
+				<div class='order_form'>
+					<!-- 支付页面 -->
+					<div class="order_pay">
+						<div class="order_pay_con">
+							<div class="order_pay_content">
+								<div class="order_pay_con_icon lf">
+									<img src="{$site.theme_s}images/duihao.png" alt="">
+								</div>
+								<div class="order_pay_con_txt lf">
+									<p class="order_info">订单提交成功，请您尽快付款！订单号：{$order['order_sn']}</p>
+									<p class="order_time">订单将为你保留<span class="pay_overplus_time"><i id="t_m">30:</i><i id="t_s">00</i></span>，请抓紧时间支付</p>
+								</div>
+								<div class="pay_num rt">
+									<div>应付金额：<span class="money">{$order['order_amount_format']}</span></div>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</div>
+
+						<!-- 支付方式  -->
+						<div class="pay_mode">
+							<div class="pay_tab">
+								<ul class="pay_tab_list">
+									<li class="pay_tab_list_item active" {if $pay_id neq 'alipay'}style="display:none"{/if}><span>支付宝支付</span></li>
+									<li class="pay_tab_list_item active" {if $pay_id neq 'wxpaynative'}style="display:none"{/if}><span>微信支付</span></li>
+									<!-- <li class="pay_tab_list_item " style="display:none"><span>网上银行支付</span></li> -->
+								</ul>            
+								<div class="pay_tab_con">
+									<ul class="pay_tab_con_list">
+										<li class="pay_tab_con_list_item" style="display:block">
+											<div class="zhifubao">
+												<div class="left">
+													<div class="txt"><img src="{$site.theme_s}images/erweima_tit.png" alt=""></div> 
+													<div class="erweima">
+														<div class="lf">
+															<img src="{$site.theme_s}images/erweima.png" alt="">
+														</div>
+														<div class="rt">
+															<img src="{$site.theme_s}images/erweima_tip.png" alt="">
+														</div>
+													</div>
+												</div>
+												<div class="right">
+													<div class="img">
+														<img src="{$site.theme_s}images/erweima_wangye.png" alt="">
+													</div>
+													<div class="button">{$payment}</div>
+												</div>
+												<div class="clear"></div>
+											</div>
+										</li>
+										<li class="pay_tab_con_list_item" style="display:none;">
+											<div class="weixin">
+												<div class="weixin_con">
+													<img src="{$site.theme_s}images/weixin3.png" alt="">
+													<div class="weixin_bottom">
+														<div class="lf"><img src="{$site.theme_s}images/weixin.png" alt=""></div>
+														<div class="lf"><img src="{$site.theme_s}images/weixin2.png" alt=""></div>
+														<div class="clear"></div>
+													</div>
+												</div>
+											</div>
+										</li>
+										<!-- <li class="pay_tab_con_list_item" style="display:none;">
+											<div class="pay_bank">
+												<ul class="banks">
+													<li>
+														<label for="gsyh"><b></b></label>
+														<input  name="paybank" value="0" id="gsyh" type='radio'>
+													</li>
+													<li>
+														<label for="jsyh"><b></b></label>
+														<input  name="paybank" value="1" id="jsyh" type='radio'>
+													</li>
+													<li>
+														<label for="zsyh"><b></b></label>
+														<input  name="paybank" value="2" id="zsyh" type='radio'>
+													</li>
+													<li>
+														<label for="nyyh"><b></b></label>
+														<input  name="paybank" value="3" id="nyyh" type='radio'>
+													</li>
+													<li>
+														<label for="jtyh"><b></b></label>
+														<input  name="paybank" value="4" id="jtyh" type='radio'>
+													</li>
+													<li>
+														<label for="gfyh"><b></b></label>
+														<input  name="paybank" value="5" id="gfyh" type='radio'>
+													</li>
+													<li>
+														<label for="zgyh"><b></b></label>
+														<input  name="paybank" value="6" id="zgyh" type='radio'>
+													</li>
+													<li>
+														<label for="yzyh"><b></b></label>
+														<input t name="paybank" value="7" id="yzyh" type='radio'>
+													</li>
+													<div class="clear"></div>
+												</ul>
+												<p class="pay_button"><a>立即支付</a></p>
+											</div>
+										</li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- {include file="inc/footer.tpl"} -->
+
+	<script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
+	<script type="text/javascript">
+		/***倒计时***/
+		var t=1000*60*15;
+		{literal}
+		function getRTime(){
+			var m=Math.floor(t/1000/60%60);
+			var s=Math.floor(t/1000%60);
+			m.toString().length<2?m="0"+m:m=m;
+			s.toString().length<2?s="0"+s:s=s;
+			document.getElementById("t_m").innerHTML = m + ":";
+			document.getElementById("t_s").innerHTML = s + "";
+			if(t==0 && s==0){
+				/***倒计时结束***/
+				window.history.back('index.html');/***返回上一页或首页*/
+			} 
+			t-=1000;
+		}
+		{/literal}
+		setInterval(getRTime,1000);
+	</script>
+</body>
+</html>

@@ -11,6 +11,7 @@
             <div class="usercenter_content usercenter_demand">
                 <div class="shopCart"> 
                     <div class="shopCart-tab-main">
+                    <form action="{$url.checkout}" method="post">
                         <table class="cart-table" id="cart-table">  
                             <thead class="cart-head">   
                                 <tr class="cart-head-th tabl-tr">   
@@ -18,163 +19,93 @@
                                         <input class="" id="selectAll" type="checkbox">
                                         <label for="selectAll">全选</label>
                                     </th>
-                                    <th class="th th-logo tabl">   
-                                        LOGO
-                                    </th>
-                                    <th class="th th-name tabl">
-                                        名称
-                                    </th>
-                                    <th class="th th-indust tabl"> 
-                                        行业
-                                    </th>
-                                    <th class="th th-area tabl">   
-                                        地区
-                                    </th>
-                                    <th class="th th-fans tabl">   
-                                        粉丝数
-                                    </th>
-                                    <th class="th th-zhuanfa tabl">    
-                                        转发量
-                                    </th>
-                                    <th class="th th-num tabl">    
-                                        数量
-                                    </th>
-                                    <th class="th th-price tabl"> 
-                                        价格
-                                    </th>
-
-                                    <th class="th th-delete tabl"> 
-                                        <a  id="delAll">全部删除</a>
-                                    </th>
+                                    <th class="th th-logo tabl">LOGO</th> 
+                                    <th class="th th-name tabl">名称</th> 
+                                    <th class="th th-indust tabl">行业</th> 
+                                    <th class="th th-area tabl">地区</th> 
+                                    <th class="th th-fans tabl">粉丝数</th> 
+                                    <th class="th th-price tabl">单价</th>
+                                    <th class="th th-nums tabl">数量</th> 
+                                    <th class="th th-total tabl">小计</th> 
+                                    <th class="th th-delete tabl"><a id="delAll">操作</a></th> 
                                 </tr>
                             </thead>    
-                            <tbody class="cart-order">  
-                                <tr class="order-item tabl-tr"  id="c1">    
-                                    <td class="td td-chk tabl">    
-                                        <input class="slectBox" id="c1" type="checkbox"  name="subbox">
+                            <tbody class="cart-order">
+                                <!-- {foreach $carts.list $v} -->
+                                <tr class="order-item tabl-tr">
+                                    <td class="td td-chk tabl">
+                                        <input class="slectBox" type="checkbox" name="idbox[]" value="{$v.id}">
                                     </td>
-                                    <td class="td td-logo tabl">   
-                                        <span class="img"><img src="    http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg"></span> 
+                                    <td class="td td-logo tabl">
+                                        <span class="img"><img src="{$v.image}"></span>
                                     </td>
-                                    <td class="td td-name tabl">
-                                        It工程师
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        科技互联网
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        全国
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        11119000
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        0
-                                    </td>
-                                    <td class="td td-amount tabl">1</td>
-                                    <td class="td td-price tabl"> 
-                                        400
-                                    </td>
-                                    <td class="td td-delete tabl"> 
-                                        <a  class="delete">删除</a>
-                                    </td>
-                                </tr>       
-
-                                <tr class="order-item tabl-tr"  id="c1">    
-                                    <td class="td td-chk tabl">    
-                                        <input class="slectBox" id="c1" type="checkbox"  name="subbox">
-                                    </td>
-                                    <td class="td td-logo tabl">   
-                                        <span class="img"><img src="    http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg"></span> 
-                                    </td>
-                                    <td class="td td-name tabl">
-                                        It工程师
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        科技互联网
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        全国
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        11119000
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        0
-                                    </td>
-                                    <td class="td td-amount tabl">1</td>
-                                    <td class="td td-price tabl"> 
-                                        400
-                                    </td>
-                                    <td class="td td-delete tabl"> 
-                                        <a  class="delete">删除</a>
-                                    </td>
-                                </tr>   
-
-                                <tr class="order-item tabl-tr"  id="c1">    
-                                    <td class="td td-chk tabl">    
-                                        <input class="slectBox" id="c1" type="checkbox"  name="subbox">
-                                    </td>
-                                    <td class="td td-logo tabl">   
-                                        <span class="img"><img src="    http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg"></span> 
-                                    </td>
-                                    <td class="td td-name tabl">
-                                        It工程师
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        科技互联网
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        全国
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        11119000
-                                    </td>
-                                    <td class="td td-indust tabl"> 
-                                        0
-                                    </td>
-                                    <td class="td td-amount tabl">1</td>
-                                    <td class="td td-price tabl"> 
-                                        400
-                                    </td>
-                                    <td class="td td-delete tabl"> 
-                                        <a  class="delete">删除</a>
+                                    <td class="td td-name tabl">{$v.title}</td>
+                                    <td class="td td-indust tabl">{$v.industry}</td>
+                                    <td class="td td-area tabl">{if $v.district}{$v.district}{else}全国{/if}</td> 
+                                    <td class="td td-fans tabl">{$v.fans}</td>
+                                    <td class="td td-price tabl">{$v.price_normal}</td>
+                                    <td class="td td-nums tabl">{$v.number}</td>
+                                    <td class="td td-total tabl">￥<span class="price-sum">{$v.subtotal_normal}.00</span>元</td>
+                                    <td class="td td-delete tabl">
+                                        <a class="delete" href="{$url.del}&id={$v.id}">{$lang.del}</a>
                                     </td>
                                 </tr>
+                                <!-- {/foreach} -->
                             </tbody>    
                         </table>
 
                         <div class="shopcart_more">
-                            <button id="more">点击加载更多</button>
+                            <button type="button" id="more">点击加载更多</button>
                             <p class="jiazai"></p>
                         </div>
                         <div class="cart-foot">
                             <div class="cart-footer-money">
-                                <div class="cart-total-amount tf">已选商品 <span class="total-amount" id="totalAmount">5</span>件商品</div>
-                                <div class="cart-total-price  tf">总计：<span class="total-price" id="priceTotal">1000</span>元</div>
-                                <div class="cart-pay  tf"><a href="pay.html">结算</a></div>
+                                <div class="cart-total-amount tf">
+                                    已选商品 <span class="total-amount" id="totalAmount">0</span>件商品
+                                </div>
+                                <div class="cart-total-price tf">
+                                    总计：<span class="total-price" id="priceTotal">0.00</span>元
+                                </div>
+                                <div class="cart-pay tf">
+                                    <!-- <input type="hidden" name="nums" value="0">
+                                    <input type="hidden" name="amount" value="0"> -->
+                                    <input class="btn" type="submit" value="结算">
+                                </div>
                             </div>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="pagend" style="display:none">{$pagend}</div>
 
     <!-- {include file="inc/footer.tpl"} -->
     <script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
     <script type="text/javascript">
-    {literal}
+        var href = '{$url.cart}';
+        {literal}
         $(document).delegate('#more','click',function(){
+            var pagend = $('#pagend').html();
             $.ajax({
-                url: 'more.txt',
-                dataType: 'text',
-                success:function(res){
-                    $('.cart-order').append(res)
+                url: href,
+                type: 'POST',
+                data:{p:pagend,ajax:true},
+                dataType: 'json',
+                success:function(data) {
+                    if (data.nore) { $('#more').hide(); }
+                    $('#pagend').html(data.end);
+                    $('.cart-order').append(data.box);
+                    if( $('#selectAll').is(":checked")){
+                        $('.slectBox').attr('checked',true);
+                        $('.slectBox').parent().parent().addClass('slectedbox');
+                        total();
+                    }
                 }
             });
-        })
-    {/literal}
+        });
+        {/literal}
     </script>
 </body>
 </html>
