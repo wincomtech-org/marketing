@@ -2,7 +2,7 @@
 if (!defined('IN_LOTHAR')) die('Hacking attempt');
 
 class Plugin {
-    var $plugin_id = 'wxpaynative'; // 插件唯一ID
+    var $plugin_id = 'wxpayjs'; // 插件唯一ID
 
     /**
      * +----------------------------------------------------------
@@ -25,10 +25,10 @@ class Plugin {
      */
     function work() {
         // 建立请求
-        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
-        $alipaySubmit = new AlipaySubmit($this->alipay_config());
-        $html_text = $alipaySubmit->buildRequestForm($this->parameter(),"get", "立即付款");
-        return $html_text;
+        // require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
+        // $alipaySubmit = new AlipaySubmit($this->alipay_config());
+        // $html_text = $alipaySubmit->buildRequestForm($this->parameter(),"get", "立即付款");
+        // return $html_text;
     }
 
     /**
@@ -39,11 +39,7 @@ class Plugin {
      * +----------------------------------------------------------
      */
     function workcurl() {
-        // 建立请求
-        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
-        $alipaySubmit = new AlipaySubmit($this->alipay_config());
-        $sResult = $alipaySubmit->buildRequestHttp($this->parameter());
-        return $sResult;
+
     }
 
     /**

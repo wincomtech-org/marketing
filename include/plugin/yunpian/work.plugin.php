@@ -1,5 +1,9 @@
 <?php
 if (!defined('IN_LOTHAR')) die('Hacking attempt');
+/*
+* 回调类
+* old/msg.php
+*/
 
 class Plugin {
     var $plugin_id = 'wxpayjs'; // 插件唯一ID

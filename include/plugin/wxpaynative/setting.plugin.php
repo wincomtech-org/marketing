@@ -32,19 +32,33 @@ $plugin['config'][] = array(
         "value" => $plugin_mysql['config']['seller_email']
 );
 
+// 绑定支付的APPID（必须配置，开户邮件中可查看）
+$plugin['config'][] = array(
+        "field" => 'appid',
+        "name"  => '安全校验码(APPID)',
+        "desc"  => 'APPID：以数字和字母组成的18位字符',
+        "value" => $plugin_mysql['config']['appid']
+);
+// 公众帐号secert（仅JSAPI支付的时候需要配置， 登录公众平台，进入开发者中心可设置）
+$plugin['config'][] = array(
+        "field" => 'appsecret',
+        "name"  => '安全校验码(APPSECRET)',
+        "desc"  => 'APPSECRET：公众帐号secert,32位字符串（仅JSAPI支付的时候需要配置，登录公众平台，进入开发者中心可设置）。获取地址：https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=2005451881&lang=zh_CN',
+        "value" => $plugin_mysql['config']['appsecret']
+);
+
+// MCHID：商户号（必须配置，开户邮件中可查看）
+$plugin['config'][] = array(
+        "field" => 'mchid',
+        "name"  => '商户号(MCHID)',
+        "desc"  => 'MCHID：商户号（必须配置，开户邮件中可查看）',
+        "value" => $plugin_mysql['config']['mchid']
+);
 // 安全检验码，以数字和字母组成的32位字符
 $plugin['config'][] = array(
         "field" => 'key',
-        "name" => '安全校验码(Key)',
-        "desc" => '安全检验码，以数字和字母组成的32位字符',
+        "name"  => '商户支付密钥(KEY)',
+        "desc"  => 'KEY：商户支付密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）。设置地址：https://pay.weixin.qq.com/index.php/account/api_cert',
         "value" => $plugin_mysql['config']['key']
-);
-
-// 合作身份者id，以2088开头的16位纯数字
-$plugin['config'][] = array(
-        "field" => 'partner',
-        "name" => '合作者身份(Pid)',
-        "desc" => '合作身份者id，以2088开头的16位纯数字',
-        "value" => $plugin_mysql['config']['partner']
 );
 ?>
