@@ -247,7 +247,11 @@ elseif ($rec == 'password_reset') {
 
         // 发送短信验证码
         $result = $dou->send_msg($mobile);
-        $dou->djson(1,'正在向该手机号发送验证码，请耐心等待',$result);
+        if ($result) {
+            $dou->djson(1,'正在向该手机号发送验证码，请耐心等待');
+        } else {
+            $dou->djson(0,'发送失败');
+        }
     }
     
     // uid和code 是区分是否是用户通过 邮箱打开 传过来的验证数据

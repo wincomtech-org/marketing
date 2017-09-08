@@ -27,9 +27,9 @@ $plugin['plugin_group'] = 'payment';
 ----------------------------------------------------------------------------- */
 // 收款微信账号
 $plugin['config'][] = array(
-        "field" => 'seller_email',
+        "field" => 'account',
         "name" => '微信帐户',
-        "value" => $plugin_mysql['config']['seller_email']
+        "value" => $plugin_mysql['config']['account']
 );
 
 // 绑定支付的APPID（必须配置，开户邮件中可查看）

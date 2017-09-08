@@ -38,7 +38,8 @@
 								</ul>            
 								<div class="pay_tab_con">
 									<ul class="pay_tab_con_list">
-										<li class="pay_tab_con_list_item" style="display:block">
+									<!-- {if $pay_id eq 'alipay'} -->
+										<li class="pay_tab_con_list_item">
 											<div class="zhifubao">
 												<div class="left">
 													<div class="txt"><img src="{$site.theme_s}images/erweima_tit.png" alt=""></div> 
@@ -60,18 +61,40 @@
 												<div class="clear"></div>
 											</div>
 										</li>
-										<li class="pay_tab_con_list_item" style="display:none;">
+									<!-- {elseif $pay_id eq 'wxpaynative'} -->
+										<li class="pay_tab_con_list_item">
 											<div class="weixin">
 												<div class="weixin_con">
 													<img src="{$site.theme_s}images/weixin3.png" alt="">
 													<div class="weixin_bottom">
-														<div class="lf"><img src="{$site.theme_s}images/weixin.png" alt=""></div>
+														<div class="lf"><img src="{$payment}" alt="支付二维码"></div>
 														<div class="lf"><img src="{$site.theme_s}images/weixin2.png" alt=""></div>
 														<div class="clear"></div>
 													</div>
 												</div>
 											</div>
 										</li>
+										<script type="text/javascript">
+										var baseurl = '{$site.root_url}',
+											order_id = '{$order_id}',
+											pay_id = '{$pay_id}';
+										{literal}
+										$(function(){
+											function checkpay() {
+												$.post(baseurl+'order.php?rec=wxpay_check', {order_id:order_id,pay_id:pay_id}, function(data) {
+													if (data) {
+														clearInterval(pid);
+														$('.weixin_bottom').html('<p style="font-size:16px;">已支付，请查看<a style="color:blue;" href="user.php?rec=order">“我的订单”</a></p>');
+													}
+												});
+											}
+											var pid = setInterval(checkpay,5000);
+											// var pid = window.setInterval("checkpay()",2000);
+											// window.clearInterval(pid);
+										});
+										{/literal}
+										</script>
+									<!-- {else} -->
 										<!-- <li class="pay_tab_con_list_item" style="display:none;">
 											<div class="pay_bank">
 												<ul class="banks">
@@ -112,6 +135,7 @@
 												<p class="pay_button"><a>立即支付</a></p>
 											</div>
 										</li> -->
+									<!-- {/if} -->
 									</ul>
 								</div>
 							</div>
@@ -127,7 +151,7 @@
 	<script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
 	<script type="text/javascript">
 		/***倒计时***/
-		var t=1000*60*15;
+		var t = 1000*60*30;
 		{literal}
 		function getRTime(){
 			var m=Math.floor(t/1000/60%60);

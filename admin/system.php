@@ -22,10 +22,10 @@ if ($rec == 'default') {
     $smarty->assign('ur_here', $_LANG['system']);
     $smarty->assign('cfg_list_main', get_cfg_list());
     // 预设允许模块 article,product,case,download,gallery,video
-    $allow = array('article','home_article','product','home_product','case','home_case');
+    $allow = array('article','home_article','product','home_product','case','home_case','medium','home_medium');
     $smarty->assign('cfg_list_display', get_cfg_list('display' ,$allow));
     // 预设
-    $allow = array('article','product');
+    $allow = array('article','product','medium');
     $smarty->assign('cfg_list_defined', get_cfg_list('defined' ,$allow));
     if (file_exists(ROOT_PATH . "include/mail.class.php")) // 判断是否存在邮件模块
         $smarty->assign('cfg_list_mail', get_cfg_list('mail'));

@@ -2,7 +2,7 @@
 if (!defined('IN_LOTHAR')) die('Hacking attempt');
 
 class Plugin {
-    var $plugin_id = 'wxpayjs'; // 插件唯一ID
+    var $plugin_id = 'wxpaynative'; // 插件唯一ID
 
     /**
      * +----------------------------------------------------------
@@ -13,7 +13,7 @@ class Plugin {
      */
     function Plugin($order_sn = '', $order_amount = '') {
         $this->order_sn = $order_sn;
-        $this->order_amount = $order_amount;
+        $this->order_amount = intval(ceil($order_amount*100));
     }
 
     /**
@@ -25,10 +25,28 @@ class Plugin {
      */
     function work() {
         // 建立请求
-        // require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
-        // $alipaySubmit = new AlipaySubmit($this->p_config());
-        // $html_text = $alipaySubmit->buildRequestForm($this->parameter(),"get", "立即付款");
-        // return $html_text;
+        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/WxPay.Api.php');
+        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/WxPay.NativePay.php');
+        // require_once ROOT_PATH .'include/plugin/' . $this->plugin_id . '/example/log.php';
+
+        $notify = new NativePay();
+
+        $input = new WxPayUnifiedOrder();
+        $input->SetBody("Product Details");
+        $input->SetAttach("add");
+        $input->SetOut_trade_no($this->order_sn);// WxPayConfig::MCHID.date("YmdHis")
+        $input->SetTotal_fee($this->order_amount);
+        $input->SetTime_start(date("YmdHis"));
+        $input->SetTime_expire(date("YmdHis", time() + 600));
+        $input->SetGoods_tag("mark");
+        $input->SetNotify_url("http://marketing.wincomtech.cn/notify_url.php");
+        $input->SetTrade_type("NATIVE");
+        $input->SetProduct_id($this->order_sn);
+        // var_dump($input);die();
+        $result = $notify->GetPayUrl($input);
+        $url2 = $result["code_url"];
+
+        return 'http://paysdk.weixin.qq.com/example/qrcode.php?data='.urlencode($url2);//二维码图片链接 183x227
     }
 
     /**
@@ -44,6 +62,39 @@ class Plugin {
 
     /**
      * +----------------------------------------------------------
+     * 查询订单
+     * +----------------------------------------------------------
+     * 
+     * +----------------------------------------------------------
+     */
+    function OrderStatus() {
+        // require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/notify_url.php');
+
+        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/WxPay.Api.php');
+        // require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/WxPay.Notify.php');
+
+        //查询订单
+        $inputObj = new WxPayOrderQuery();
+        $inputObj->SetOut_trade_no($this->order_sn);
+        $res = WxPayApi::orderQuery($inputObj);
+        // Log::DEBUG("query:" . json_encode($res));
+        if ( array_key_exists('return_code',$res) && 
+            $res['return_code']=='SUCCESS' && 
+            array_key_exists('result_code',$res) && 
+            $res['result_code']=='SUCCESS' && 
+            $res['trade_state']=='SUCCESS' )
+        {
+            return true;
+            // $res['wxpay_status'] = true;
+        } else {
+            return false;
+            // $res['wxpay_status'] = false;
+        }
+        return $res;
+    }
+
+    /**
+     * +----------------------------------------------------------
      * 配置信息
      * +----------------------------------------------------------
      */
@@ -51,28 +102,29 @@ class Plugin {
         // 获取插件配置信息
         $plugin = $GLOBALS['dou']->get_plugin($this->plugin_id);
         
-        // 合作身份者id，以2088开头的16位纯数字
-        $p_config['partner']  = $plugin['config']['partner'];
+        // 微信账户
+        $p_config['account'] = $plugin['config']['account'];
         
-        // 收款支付宝账号
-        $p_config['seller_email'] = $plugin['config']['seller_email'];
+        // 绑定支付的APPID
+        $p_config['appid'] = $plugin['config']['appid'];
+        // 公众帐号secert
+        $p_config['appsecret'] = $plugin['config']['appsecret'];
         
-        // 安全检验码，以数字和字母组成的32位字符
-        $p_config['key']   = $plugin['config']['key'];
-        
-        // 签名方式 不需修改
-        $p_config['sign_type']    = strtoupper('MD5');
+        // 商户号
+        $p_config['mchid'] = $plugin['config']['mchid'];
+        // 商户支付密钥
+        $p_config['key'] = $plugin['config']['key'];
         
         // 字符编码格式 目前支持 gbk 或 utf-8
-        $p_config['input_charset']= strtolower('utf-8');
+        // $p_config['input_charset']= strtolower('utf-8');
         // $p_config['input_charset']= strtolower('gbk');
         
         // ca证书路径地址，用于curl中ssl校验
         // 请保证cacert.pem文件在当前文件夹目录中
-        $p_config['cacert']    = ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/cacert.pem';
+        // $p_config['cacert']    = ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/cacert.pem';
         
         // 访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http
-        $p_config['transport']    = 'http';
+        // $p_config['transport']    = 'http';
         
         return $p_config;
     }

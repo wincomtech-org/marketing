@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2017-09-07 16:29:50
+Date: 2017-09-08 19:23:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `dou_admin` (
 -- ----------------------------
 -- Records of dou_admin
 -- ----------------------------
-INSERT INTO `dou_admin` VALUES ('1', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', 'ALL', '99', '1478503787', '1504767918', '127.0.0.1');
+INSERT INTO `dou_admin` VALUES ('1', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', 'ALL', '99', '1478503787', '1504869230', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for dou_admin_log
@@ -50,32 +50,11 @@ CREATE TABLE `dou_admin_log` (
   PRIMARY KEY (`id`),
   KEY `create_time` (`create_time`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_admin_log
 -- ----------------------------
-INSERT INTO `dou_admin_log` VALUES ('1', '1504607978', '1', '编辑媒介: IT工程师', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('2', '1504608250', '1', '编辑媒介: IT工程师', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('3', '1504608385', '1', '添加媒介: 娱乐八卦厅长', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('4', '1504747645', '1', '管理员登录: 登录成功！', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('5', '1504747724', '1', '添加媒介: 互联网的一些事', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('6', '1504747744', '1', '编辑媒介: 互联网的一些事', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('7', '1504747786', '1', '编辑媒介: 娱乐八卦厅长', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('8', '1504747800', '1', '编辑媒介: 娱乐八卦厅长', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('9', '1504747886', '1', '添加分类: CP广告', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('10', '1504748027', '1', '添加媒介: 凯恩斯', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('11', '1504748049', '1', '编辑媒介: 凯恩斯', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('12', '1504748214', '1', '添加媒介: 果壳网', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('13', '1504748444', '1', '添加媒介: 国际4A广告网', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('14', '1504748646', '1', '添加媒介: 实用生活智慧小百科', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('15', '1504748721', '1', '添加媒介: 美食工场', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('16', '1504748828', '1', '添加媒介: 一块去旅行', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('17', '1504748952', '1', '添加媒介: 每日长沙', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('18', '1504749005', '1', '添加媒介: 校园热点话题', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('19', '1504749093', '1', '添加媒介: 上海生活时尚圈', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('20', '1504767918', '1', '管理员登录: 登录成功！', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('21', '1504767940', '1', '编辑插件: 快递配送', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for dou_article
@@ -226,14 +205,14 @@ INSERT INTO `dou_config` VALUES ('email', 'your@domain.com', 'text', '', 'main',
 INSERT INTO `dou_config` VALUES ('language', 'zh_cn', 'select', '', 'main', '13', '1');
 INSERT INTO `dou_config` VALUES ('rewrite', '0', 'radio', '', 'main', '14', '1');
 INSERT INTO `dou_config` VALUES ('sitemap', '1', 'radio', '', 'main', '15', '1');
-INSERT INTO `dou_config` VALUES ('captcha', '0', 'radio', '', 'main', '16', '1');
+INSERT INTO `dou_config` VALUES ('captcha', '1', 'radio', '', 'main', '16', '1');
 INSERT INTO `dou_config` VALUES ('guestbook_check_chinese', '1', 'radio', '', 'main', '17', '1');
 INSERT INTO `dou_config` VALUES ('code', '', 'textarea', '', 'main', '18', '1');
 INSERT INTO `dou_config` VALUES ('thumb_width', '250', 'text', '', 'display', '1', '1');
 INSERT INTO `dou_config` VALUES ('thumb_height', '250', 'text', '', 'display', '2', '1');
 INSERT INTO `dou_config` VALUES ('price_decimal', '2', 'text', '', 'display', '3', '1');
-INSERT INTO `dou_config` VALUES ('display', 'a:6:{s:7:\"article\";s:2:\"10\";s:12:\"home_article\";s:1:\"8\";s:7:\"product\";s:2:\"10\";s:12:\"home_product\";s:1:\"3\";s:4:\"case\";s:2:\"10\";s:9:\"home_case\";s:1:\"4\";}', 'array', '', 'display', '4', '1');
-INSERT INTO `dou_config` VALUES ('defined', 'a:2:{s:7:\"article\";s:0:\"\";s:7:\"product\";s:0:\"\";}', 'array', '', 'defined', '1', '1');
+INSERT INTO `dou_config` VALUES ('display', 'a:8:{s:7:\"article\";s:2:\"10\";s:12:\"home_article\";s:1:\"8\";s:7:\"product\";s:2:\"10\";s:12:\"home_product\";s:1:\"3\";s:4:\"case\";s:2:\"10\";s:9:\"home_case\";s:1:\"4\";s:6:\"medium\";s:2:\"10\";s:11:\"home_medium\";s:1:\"4\";}', 'array', '', 'display', '4', '1');
+INSERT INTO `dou_config` VALUES ('defined', 'a:4:{s:7:\"article\";s:0:\"\";s:7:\"product\";s:0:\"\";s:4:\"case\";s:0:\"\";s:6:\"medium\";s:0:\"\";}', 'array', '', 'defined', '1', '1');
 INSERT INTO `dou_config` VALUES ('mail_service', '0', 'radio', '', 'mail', '1', '1');
 INSERT INTO `dou_config` VALUES ('mail_host', 'smtp.domain.com', 'text', '', 'mail', '2', '1');
 INSERT INTO `dou_config` VALUES ('mail_port', '25', 'text', '', 'mail', '3', '1');
@@ -720,10 +699,8 @@ CREATE TABLE `dou_plugin` (
 -- ----------------------------
 -- Records of dou_plugin
 -- ----------------------------
-INSERT INTO `dou_plugin` VALUES ('express', '快递配送', 'a:2:{s:3:\"fee\";s:1:\"0\";s:4:\"free\";s:1:\"0\";}', 'shipping', '速度快，价格实惠，超重不加价。');
-INSERT INTO `dou_plugin` VALUES ('wxpayjs', '微信在线支付', '', 'payment', '网上交易时，买家的交易资金直接打入卖家微信账户，快速回笼交易资金。申请前必须拥有服务号的微信账号。');
-INSERT INTO `dou_plugin` VALUES ('bankpay', '支付宝网银支付', 'a:3:{s:12:\"seller_email\";s:16:\"531597796@qq.com\";s:3:\"key\";s:32:\"ymw8uzq21eu8ns7j3eurzgzn4kugi15o\";s:7:\"partner\";s:16:\"2088221764857453\";}', 'payment', '买家可直接通过网上银行进行支付，无需通过支付宝就能完成交易。申请前必须拥有企业支付宝账号。');
-INSERT INTO `dou_plugin` VALUES ('wxpaynative', '微信扫码支付', '', 'payment', '网上交易时，买家的交易资金直接打入卖家微信账户，快速回笼交易资金。申请前必须拥有服务号的微信账号。');
+INSERT INTO `dou_plugin` VALUES ('yunpian', '云片短信', 'a:4:{s:7:\"account\";s:11:\"18611151544\";s:4:\"sign\";s:27:\"【微步大数据营销】\";s:6:\"apikey\";s:32:\"96984feab7ee7412c616fbe854245dbd\";s:11:\"retry_times\";s:2:\"30\";}', 'msg', '及时有效的短信验证码');
+INSERT INTO `dou_plugin` VALUES ('wxpaynative', '微信扫码支付', 'a:5:{s:7:\"account\";s:21:\"1443692802@1443692802\";s:5:\"appid\";s:18:\"wx30636ff7cf5301e0\";s:9:\"appsecret\";s:32:\"f59828cf423fe033408e03290bdcccfd\";s:5:\"mchid\";s:10:\"1443692802\";s:3:\"key\";s:32:\"e10adc3949ba59abbe56e057f20f883e\";}', 'payment', '网上交易时，买家的交易资金直接打入卖家微信账户，快速回笼交易资金。申请前必须拥有服务号的微信账号。');
 INSERT INTO `dou_plugin` VALUES ('alipay', '支付宝', 'a:3:{s:12:\"seller_email\";s:16:\"531597796@qq.com\";s:3:\"key\";s:32:\"ymw8uzq21eu8ns7j3eurzgzn4kugi15o\";s:7:\"partner\";s:16:\"2088221764857453\";}', 'payment', '网上交易时，买家的交易资金直接打入卖家支付宝账户，快速回笼交易资金。申请前必须拥有企业支付宝账号。');
 
 -- ----------------------------

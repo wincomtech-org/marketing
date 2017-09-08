@@ -1,53 +1,56 @@
 <?php
-define('IN_LOTHAR', true);
-require ('../../init.php');
+    $data = file_get_contents("php://input"); 
+    var_dump($data);
+    var_dump($_REQUEST);exit();
+ini_set('date.timezone','Asia/Shanghai');
+error_reporting(E_ERROR);
 
-// 引入和实例化订单功能
-include_once (ROOT_PATH . 'include/order.class.php');
-$dou_order = new Order();
+require_once "./lib/WxPay.Api.php";
+require_once './lib/WxPay.Notify.php';
+require_once './example/log.php';
 
-// 实例化插件
-require_once("work.plugin.php");
-$plugin = new Plugin();
+//初始化日志
+$logHandler= new CLogFileHandler("logs/".date('Y-m-d').'.log');
+$log = Log::Init($logHandler, 15);
 
-require_once("lib/alipay_notify.class.php");
-
-//计算得出通知验证结果
-$alipayNotify = new AlipayNotify($plugin->p_config());
-$verify_result = $alipayNotify->verifyNotify();
-
-if($verify_result) {//验证成功
-    //请在这里加上商户的业务逻辑程序代
-    //——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-    //获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
-    
-    //商户订单号
-    $out_trade_no = $_POST['out_trade_no'];
-   
-    //支付宝交易号
-    $trade_no = $_POST['trade_no'];
-   
-    //交易状态
-    $trade_status = $_POST['trade_status'];
-
-
-    if($_POST['trade_status'] == 'TRADE_FINISHED') {
-        $dou_order->change_status($out_trade_no, 1);
-    } else if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
-        $dou_order->change_status($out_trade_no, 1);
+class PayNotifyCallBack extends WxPayNotify
+{
+    //查询订单
+    public function Queryorder($transaction_id)
+    {
+        $input = new WxPayOrderQuery();
+        $input->SetTransaction_id($transaction_id);
+        $result = WxPayApi::orderQuery($input);
+        Log::DEBUG("query:" . json_encode($result));
+        if(array_key_exists("return_code", $result)
+            && array_key_exists("result_code", $result)
+            && $result["return_code"] == "SUCCESS"
+            && $result["result_code"] == "SUCCESS")
+        {
+            return true;
+        }
+        return false;
     }
-
-    //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+    
+    //重写回调处理函数
+    public function NotifyProcess($data, &$msg)
+    {
+        Log::DEBUG("call back:" . json_encode($data));
+        $notfiyOutput = array();
         
-    echo "success";  //请不要修改或删除
- 
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(!array_key_exists("transaction_id", $data)){
+            $msg = "输入参数不正确";
+            return false;
+        }
+        //查询订单，判断订单真实性
+        if(!$this->Queryorder($data["transaction_id"])){
+            $msg = "订单查询失败";
+            return false;
+        }
+        return true;
+    }
 }
-else {
-    //验证失败
-    echo "fail";
 
-    //调试用，写文本函数记录程序运行情况是否正常
-    //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
-}
-?>
+Log::DEBUG("begin notify");
+$notify = new PayNotifyCallBack();
+$notify->Handle(false);

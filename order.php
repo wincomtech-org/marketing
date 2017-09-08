@@ -289,7 +289,7 @@ elseif ($rec == 'success') {
     // 验证手机
     if (!$check->is_telephone($_POST['telephone']))
         $wrong['telephone'] = $_LANG['user_telephone_cue'];
-// $dou->debug($_POST,1);
+
     // AJAX验证表单
     if ($_REQUEST['do'] == 'callback') {
         if ($wrong) {
@@ -345,6 +345,7 @@ elseif ($rec == 'success') {
     if (empty($order_id)) {
         $dou->dou_msg('操作失败！',$_URL['cart']);
     }
+    $_SESSION['order_sn'] = $order_sn;
 
     // 订单商品插入
     $sql = sprintf('INSERT INTO %s (order_id,product_id,name,price,product_number,defined) VALUES ',$dou->table('order_product'));
@@ -378,8 +379,33 @@ elseif ($rec == 'success') {
     
     $smarty->assign('page_title', $dou->page_title('order_success'));
     $smarty->assign('order', $order);
+    $smarty->assign('order_id', $order_id);
     $smarty->assign('pay_id', $_POST['pay_id']);
     
     $smarty->display('user/pay.html');
+}
+
+/**
+ * +----------------------------------------------------------
+ * 微信扫码 验单
+ * +----------------------------------------------------------
+ */
+elseif ($rec == 'wxpay_check') {
+    // 验单
+    $order_id = intval($_REQUEST['order_id']);
+    $out_trade_no = $_SESSION['order_sn']?$_SESSION['order_sn']:$dou->get_one("SELECT order_sn from ".$dou->table('order')." where order_id='{$order_id}'");// 订单号
+    if ($out_trade_no) {
+        require_once ROOT_PATH .'include/plugin/' . $_POST['pay_id'] . '/work.plugin.php';
+        $plugin = new Plugin($order_sn);
+        if ($plugin->OrderStatus()) {
+            $affected_rows = $dou->update('order',array('status'=>10),"order_id={$order_id} AND order_sn='{$out_trade_no}'");
+            echo $affected_rows;exit;
+        } else {
+            echo false;exit;
+        }
+    } else {
+        echo false;exit;
+    }
+    echo false;exit;
 }
 ?>

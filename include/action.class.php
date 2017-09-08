@@ -173,7 +173,7 @@ class Action extends Common {
     /*弹窗*/
     public function popup($msg='', $style, $time=3, $ext='')
     {
-        // global $_CFG['theme_s'];
+        // global $_CFG['theme_s'],$_URL;
         // <link href="doubox.css" rel="stylesheet" type="text/css" />
         $time = $time*1000;
         $scri = '';
@@ -192,7 +192,7 @@ class Action extends Common {
                             <dd class="boxdd1">当前媒体名：{$ext[name]}</dd>
                             <dd class="boxdd1">当前媒体总数：{$ext[total]}</dd>
                             <dd class="boxdd1">当前总价：{$ext[amount]}</dd>
-                            <dd class="boxdd2"><a href="{$_URL[cart]}">结算</a></dd>
+                            <dd class="boxdd2"><a href="order.php?rec=cart">结算</a></dd>
                         </dl>
                     </div>
                 </div>
