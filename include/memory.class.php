@@ -25,6 +25,7 @@ if (extension_loaded('Memcached')) {
 class Memory
 {
     const host = 'localhost';
+    // const host = '106.14.74.155';
     const port = 11211;
     // public $mhost;// 可以不预先定义
     public $mport;
