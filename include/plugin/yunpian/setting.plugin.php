@@ -32,6 +32,14 @@ $plugin['config'][] = array(
         "value" => $plugin_mysql['config']['account']
 );
 
+// 签名
+$plugin['config'][] = array(
+        "field" => 'sign',
+        "name" => '签名(sign)',
+        "desc" => '【签名】',
+        "value" => $plugin_mysql['config']['sign']
+);
+
 // 安全检验码，以数字和字母组成的32位字符
 $plugin['config'][] = array(
         "field" => 'apikey',

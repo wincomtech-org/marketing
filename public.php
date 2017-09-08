@@ -23,6 +23,7 @@ if ($_SESSION[DOU_ID]) {
 // $dou->debug($countrys);
 // $dou->debug($gUinfos);
 
+// $dou->debug($dou->send_msg('18715511536'));
 // $dou->dou_msg('test this msg');
 // $dou->popup('kill');
 

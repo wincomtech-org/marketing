@@ -109,9 +109,12 @@ elseif ($rec == 'insert') {
         } else {
             $_SESSION[DOU_ID]['cart'][$product_id] = $number;
         }
-        $dou->popup('已成功加入购物车');
+        $pros = $dou->fetchRow("SELECT title,moneys from ".$dou->table('medium')." where id=".$product_id);
+        $total = $_SESSION[DOU_ID]['cart'][$product_id];
+        $amount = $pros['moneys']*$_SESSION[DOU_ID]['cart'][$product_id];
+        $dou->popup('已成功加入购物车',2,3,array('name'=>$pros['title'],'total'=>$total,'amount'=>$amount));
     }
-    $dou->popup('向购物车中添加失败！');
+    $dou->popup('向购物车中添加失败！',2);
     // $dou->dou_header($_URL['cart']);
 }
 

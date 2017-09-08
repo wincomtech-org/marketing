@@ -43,17 +43,19 @@
                         <form id="register" action="{$url.register_post}" method="post">
                         <span>
                             <i>手机</i>
-                            <input type="text" name="telephone">
+                            <input id="mobile" type="text" name="telephone">
                             <p id="telephone" class="cue"></p>
                             <div class="clear"></div>
                         </span>
                         <!--{if $site.captcha}-->
                         <span class="reg_v">
                             <i>验证码</i>
-                            <input type="text" name="captcha" id="code" onkeyup="code_keyup()" placeholder="请在此输入图片验证码">
+                            <input id="code" type="text" name="msgcode" placeholder="请在此输入图片验证码" onkeyup="code_keyup()">
                             <a class="getCode"><img id="vcode" src="{$site.root_url}captcha.php" alt="{$lang.captcha}" onClick="refreshimage()" title="{$lang.captcha_refresh}"></a>
                             <div class="clear"></div>
                         </span>
+                        <input id="status" type="hidden" value="2">
+                        <p id="msg_tag"></p>
                         <!--{/if}-->
                         <span>
                             <i>密码</i>
@@ -166,8 +168,8 @@
                 </script>
             </div>
             <!--{/if}-->
+            <script type="text/javascript" src="{$site.theme_s}js/news.js"></script>
             <!-- 登录注册 E -->
-
         </div>
 
         <div class="requirementBox" style="background:#f5f5f5;">
@@ -295,69 +297,6 @@
         $('.workerListBox').delegate('.workerList','click',function(){
             window.location.href=$(this).attr('to')
         });
-        function code_keyup(){
-            var pic_yz=$("#code").val();
-            var mobile = $(".reg span:eq(0) input").val();
-            if($("#code").val().length==4){
-                if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){ 
-                    alert("输入错误");  
-                    return false; 
-                }
-                $.ajax({
-                    url:url+"/user/send_code.shtml",
-                    type:"post",
-                    data:{
-                        imgCode:pic_yz,
-                        mobile:mobile
-                    },
-                    success:function(e){
-                        if(e.code==0){
-                            $("#code").val('')
-                            $('.reg_v a').attr('onclick','');
-                            $("#code").attr("onkeyup",'').attr('placeholder',"验证码1");
-                            settime(60);
-                            alert("验证码2");
-                        }else{
-                            alert(e.message)
-                            ajax_picYZ();
-                            $("#code").attr("placeholder","验证码3").attr("onkeyup","code_keyup()").val('');
-                            $('.getCode').html('<img src="user/img.shtml">');
-                            $('.getCode').click(function(){
-                                ajax_picYZ();
-                            });
-                        }
-                    }
-                })
-            }
-        }
-        function ajax_picYZ(){
-            $.ajax({
-                url:url+"/user/img.shtml",
-                type:"post",
-                success:function(e){
-                    var data=new Date();
-                    $('.getCode:eq(0) img').attr('src',url+"/user/img.shtml?"+data.getTime())
-                }
-            })
-        }
-
-        function settime(countdown){
-            if (countdown == 0) {
-                ajax_picYZ();
-                $("#code").attr("placeholder","验证码4").attr("onkeyup","code_keyup()")
-                $('.getCode').html('<img src="http://www.315pr.com/user/img.shtml">');
-                $('.getCode').click(function(){
-                    ajax_picYZ();
-                });
-                return false;
-            }else{
-                $('.getCode').html(countdown+'s');
-                countdown--;
-            }
-            setTimeout(function() {
-                settime(countdown);
-            },1000)
-        }
         $('.requirementBox1:eq(0)').delegate(".demandBox",'click',function(){
             window.location.href=url+"/demand/info-2.0-"+$(this).attr("tid")+"-2.shtml";
         })
@@ -386,7 +325,7 @@
             banner_num=$(this).index()+1;
             banner();
         })
-        banner()
+        banner();
         function banner(){
             tim=setInterval(banner_move,4000)
             function banner_move(){

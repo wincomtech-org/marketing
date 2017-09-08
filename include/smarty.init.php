@@ -70,10 +70,8 @@ if (SMARTY_CONF==1) { // 前台
     function remove_html_comments($source) {
         global $_CFG;
         $theme_path = ROOT_URL . 'theme';
-        // $source = preg_replace('/theme\//Ums', "$theme_path/", $source);
         $source = preg_replace('/\"\.*\/images\//Ums', '"images/', $source);
         $source = preg_replace('/\"images\//Ums', "\"theme/$_CFG[site_theme]/images/", $source);
-        // $source = preg_replace('/\"\.*\/images\//Ums', "\"theme/$_CFG[site_theme]/images/", $source);// 上两个合并？不成功
 
         // $source = preg_replace('/\"\.*\/img\//Ums', '"img/', $source);
         // $source = preg_replace('/\"img\//Ums', "\"theme/$_CFG[site_theme]/img/", $source);
@@ -82,11 +80,8 @@ if (SMARTY_CONF==1) { // 前台
         // $source = preg_replace('/\"\.*\/js\//Ums', '"js/', $source);
         // $source = preg_replace('/\"js\//Ums', "\"theme/$_CFG[site_theme]/js/", $source);
 
-        // $source = preg_replace('/link href\=\"([A-Za-z0-9_-]+)\.css/Ums', "link href=\"theme/$_CFG[site_theme]/$1.css", $source);
+        $source = preg_replace('/link href\=\"([A-Za-z0-9_-]+)\.css/Ums', "link href=\"theme/$_CFG[site_theme]/$1.css", $source);//样式
         $source = preg_replace('/img src\=\"sys\//Ums', "img src=\"theme/$_CFG[site_theme]/sys/", $source);// 系统文件
-        // $source = preg_replace('/img src=\"sys\//Ums', "img src=\"theme/$_CFG[site_theme]/sys/", $source);
-        // $source = preg_replace('/\"style\//Ums', "\"theme/$_CFG[site_theme]/style/", $source);// 自定义1
-        // $source = preg_replace('/link href\=\"style\.css/Ums', "link href=\"theme/$_CFG[site_theme]/style.css", $source);// 自定义2
         $source = preg_replace('/^<meta\shttp-equiv=["|\']Content-Type["|\']\scontent=["|\']text\/html;\scharset=(?:.*?)["|\'][^>]*?>\r?\n?/i', '', $source);
         return $source = preg_replace('/<!--.*{(.*)}.*-->/U', '{$1}', $source);
     }

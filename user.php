@@ -101,6 +101,12 @@ elseif ($rec == 'register_post') {
     } elseif ($dou->value_exist('user', 'telephone', $_POST['telephone'])) {
         $wrong['telephone'] = $_LANG['user_telephone_exists'];
     }
+
+    // 判断短信验证码
+    if ($_CFG['captcha'] && $_SESSION['msg_code']!=trim($_POST['msgcode'])) {
+        unset($_SESSION['msg_code']);
+        $dou->dou_msg('短信验证码不对');
+    }
     
     // 验证密码
     if (!$check->is_password($_POST['password']))
@@ -220,7 +226,6 @@ elseif ($rec == 'login_post') {
 elseif ($rec == 'password_reset') {
     if ($_POST['imgCode']) {
         extract($_POST);
-
         // $word = strtoupper($GLOBALS['dou']->create_rand_string('nl', 4));
         // $_SESSION['captcha'] = md5($word . DOU_SHELL);
 
@@ -230,15 +235,19 @@ elseif ($rec == 'password_reset') {
             $dou->djson(0,$_LANG['captcha_wrong']);
 
         // 验证码正确后，检测数据库是否有该手机号
-        if (!$dou->value_exist('user','telephone',$mobile)) {
-            $dou->djson(0,'系统未检测到该手机号，该用户可能被管理员删除');
+        if ($status==3) {
+            if (!$dou->value_exist('user','telephone',$mobile)) {
+                $dou->djson(0,'系统未检测到该手机号，该用户可能被管理员删除');
+            }
+        } elseif ($status==3) {
+            if ($dou->value_exist('user','telephone',$mobile)) {
+                $dou->djson(0,'系统检测到已有此手机号，请登录或找回密码');
+            }
         }
 
         // 发送短信验证码
-        // require ROOT_PATH .'msg.class.php';
-        // $msg = new MSG();
-        // $msg->send();
-        $dou->djson(1,'正在向该手机号发送验证码，请耐心等待');
+        $result = $dou->send_msg($mobile);
+        $dou->djson(1,'正在向该手机号发送验证码，请耐心等待',$result);
     }
     
     // uid和code 是区分是否是用户通过 邮箱打开 传过来的验证数据
@@ -250,7 +259,7 @@ elseif ($rec == 'password_reset') {
     
     if ($user_id && $code) {
         if (!$dou_user->check_password_reset($user_id, $code)) {
-            $dou->dou_msg($_LANG['user_password_reset_fail'], ROOT_URL, 30);
+            $dou->dou_msg($_LANG['user_password_reset_fail'], ROOT_URL, 3);
         }
         $smarty->assign('user_id', $user_id);
         $smarty->assign('code', $code);
@@ -268,10 +277,27 @@ elseif ($rec == 'password_reset') {
 
 /*重置密码提交 手机短信验证码*/
 elseif ($rec == 'password_reset_post') {
+    $_POST = $firewall->dou_foreground($_POST);
     extract($_POST);
+    // 验证用户手机号
+    if (!$dou->value_exist('user', 'telephone', $telephone))
+        $dou->dou_msg($_LANG['user_telephone_no_exist'], $_URL['password_reset']);
 
+    // 判断短信验证码
+    if ($_SESSION['msg_code']!=trim($msgcode)) {
+        unset($_SESSION['msg_code']);
+        $dou->dou_msg('短信验证码不对');
+    }
 
+    if (!$check->is_password($password)) 
+        $dou->dou_msg('密码至少6位！');
+    if ($password!=$password2) 
+        $dou->dou_msg('两次密码不一样！');
 
+    // CSRF防御令牌验证
+    $firewall->check_token($_POST['token'], 'user_password_reset');
+
+    $dou->update('user',array('password'=>md5($password)),"telephone='$telephone'");
 }
 
 /**

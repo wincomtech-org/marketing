@@ -5,6 +5,7 @@
  * Date: 16/1/20
  * Time: 上午10:20
  */
+// require_once dirname(__FILE__) .'config.php';
 require_once 'config.php';
 function YAutoload($classname)
 {

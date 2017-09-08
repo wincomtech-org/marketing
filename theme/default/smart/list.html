@@ -1,7 +1,9 @@
 {include file="inc/head.tpl"}
+<link href="doubox.css" rel="stylesheet" type="text/css" />
 <script src="{$site.theme_s}js/pagination.js"></script>
 <script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
 <!-- <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script> -->
+
 <body id="dialog">
     {include file="inc/header.tpl"}
 
@@ -136,11 +138,14 @@
     {literal}
     /*添加购物车*/
     function add_cart(o,id) {
+        if(document.getElementById("douBox")){$('#douBox').remove();}
+        // if ($('#douBox').length>0) {$('#douBox').remove();}
         $.post('order.php?rec=insert', {type:2,product_id:id}, function(data) {
-            $(o).before(data);
+            // $(o).before(data);
             // $('#dialog').html(data);
-            // $('#dialog').prepend(data);
+            $('#dialog').prepend(data);
             // $('#dialog').append(data);
+            setTimeout(function(){$("#douBox").fadeOut();}, 5000);
         });
     }
 

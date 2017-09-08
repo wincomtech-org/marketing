@@ -171,10 +171,35 @@ class Action extends Common {
     }
 
     /*弹窗*/
-    public function popup($msg='', $time=3, $ext='')
+    public function popup($msg='', $style, $time=3, $ext='')
     {
         // global $_CFG['theme_s'];
         // <link href="doubox.css" rel="stylesheet" type="text/css" />
+        $time = $time*1000;
+        $scri = '';
+        // $scri = '<script>{literal}setTimeout(function(){$("#douBox").fadeOut();}, 1000);{/literal}</script>';
+
+        if ($style==2) {
+        $doubox = <<<EOT
+            <div id="douBox">
+                <link rel="stylesheet" href="/theme/default/doubox.css"/>
+                <style type="text/css">#douBox .boxFrame {overflow:auto;width:100%;left:0%;top:90%;margin-left:0px;}#douBox .boxFrame .boxCon {height:50px;}#douBox .boxFrame .boxCon dd{font-size: 16px;}#douBox .boxFrame .boxCon dd a{margin:0;}.boxdt{float:left;margin-left:5%;margin-right:10%;}.boxdd1{float:left;margin-right:15%;}.boxdd2{float:left;}</style>
+                <div class="boxFrame">
+                    <h2><a href="javascript:void(0)" class="close" onclick="douRemove('douBox')">X</a>提示</h2>
+                    <div class="boxCon">
+                        <dl>
+                            <dt class="boxdt">{$msg}</dt>
+                            <dd class="boxdd1">当前媒体名：{$ext[name]}</dd>
+                            <dd class="boxdd1">当前媒体总数：{$ext[total]}</dd>
+                            <dd class="boxdd1">当前总价：{$ext[amount]}</dd>
+                            <dd class="boxdd2"><a href="{$_URL[cart]}">结算</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                {$scri}
+            </div>
+EOT;
+        } else {
         $doubox = <<<EOT
             <div id="douBox">
                 <link rel="stylesheet" href="/theme/default/doubox.css"/>
@@ -187,15 +212,18 @@ class Action extends Common {
                         <dd></dd>
                     </div>
                 </div>
+                {$scri}
             </div>
 EOT;
+        }
+
         echo $doubox;exit();
     }
 
     /*JSON*/
-    public function djson($code=1, $msg='OK')
+    public function djson($code=1, $msg='OK', $ext='')
     {
-        echo json_encode(array('code'=>$code,'msg'=>$msg));exit;
+        echo json_encode(array('code'=>$code,'msg'=>$msg,'ext'=>$ext));exit;
     }
 }
 ?>
