@@ -183,7 +183,7 @@ class Action extends Common {
         $doubox = <<<EOT
             <div id="douBox">
                 <link rel="stylesheet" href="/theme/default/doubox.css"/>
-                <style type="text/css">#douBox .boxFrame {overflow:auto;width:100%;left:0%;top:90%;margin-left:0px;}#douBox .boxFrame .boxCon {height:50px;}#douBox .boxFrame .boxCon dd{font-size: 16px;}#douBox .boxFrame .boxCon dd a{margin:0;}.boxdt{float:left;margin-left:5%;margin-right:10%;}.boxdd1{float:left;margin-right:15%;}.boxdd2{float:left;}</style>
+                <style type="text/css">#douBox .boxFrame {overflow:auto;width:100%;left:0%;top:inherit;bottom:0;margin-left:0px;}#douBox .boxFrame .boxCon {height:50px;}#douBox .boxFrame .boxCon dd{font-size: 16px;}#douBox .boxFrame .boxCon dd a{margin:0;}.boxdt{float:left;margin-left:5%;margin-right:10%;}.boxdd1{float:left;margin-right:15%;}.boxdd2{float:left;}</style>
                 <div class="boxFrame">
                     <h2><a href="javascript:void(0)" class="close" onclick="douRemove('douBox')">X</a>提示：显示的是您当前点击的媒介的相关数据统计。</h2>
                     <div class="boxCon">
