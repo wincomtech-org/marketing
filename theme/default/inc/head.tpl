@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="{$site.dou_charset}">
     <title>{$page_title}</title>
     <meta name="keywords" content="{$keywords}">
     <meta name="description" content="{$description}">

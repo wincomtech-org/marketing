@@ -11,7 +11,7 @@ $prefix   = "dou_";
 // $dbpass   = "root";
 // $prefix   = "dou_";
 
-// charset
+// charset 不区分大小写
 define('DOU_CHARSET','utf-8');
 // administrator path
 define('ADMIN_PATH','admin');

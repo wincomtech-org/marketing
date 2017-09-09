@@ -70,15 +70,12 @@
                             <div class="clear"></div>
                         </span>
                         <p class="reg_p">
-                            <label>
-                                <input type="checkbox">
-                                <em>√</em>
-                            </label>
+                            <label><input type="checkbox"><em>√</em></label>
                             我同意
-                            <a href="#">《服务条款》</a>
-                            <a href="#">《保密协议》</a>
-                            <a href="#">《法律公告及免责声明》</a>
-                            <a href="#">《隐私条款》</a>
+                            <a href="lawyer.php?law=provisions">《服务条款》</a>
+                            <a href="lawyer.php?law=protocol">《保密协议》</a>
+                            <a href="lawyer.php?law=disclaimer">《法律公告及免责声明》</a>
+                            <a href="lawyer.php?law=privacy_clause">《隐私条款》</a>
                             <div class="clear"></div>
                         </p>
                         <input type="hidden" name="token" value="{$token}" />
@@ -102,15 +99,12 @@
                         <a class="forget_password" href="{$url.password_reset}">{$lang.user_password_reset}</a>
                         <div class="clear"></div>
                         <p class="reg_p">
-                            <label>
-                                <input type="checkbox">
-                                <em>√</em>
-                            </label>
+                            <label><input type="checkbox"><em>√</em></label>
                             我同意
-                            <a href="#">《服务条款》</a>
-                            <a href="#">《保密协议》</a>
-                            <a href="#">《法律公告及免责声明》</a>
-                            <a href="#">《隐私条款》</a>
+                            <a href="lawyer.php?law=provisions">《服务条款》</a>
+                            <a href="lawyer.php?law=protocol">《保密协议》</a>
+                            <a href="lawyer.php?law=disclaimer">《法律公告及免责声明》</a>
+                            <a href="lawyer.php?law=privacy_clause">《隐私条款》</a>
                             <div class="clear"></div>
                         </p>
                         <input type="hidden" name="token2" value="{$token2}" />
