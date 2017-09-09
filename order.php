@@ -266,7 +266,7 @@ elseif ($rec == 'success_virtual') {
         $plugin = new Plugin($order_sn, $order_amount);
         // 直接跳转表单
         echo $plugin->work();
-        echo '<script src="'.THEME.'resources/bootstrap/js/jquery-2.1.3.min.js"></script><script type="text/javascript">$(function(){$("#alipaysubmit").submit();})</script>';
+        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">$(function(){$(".btnPayment").hide();$("#alipaysubmit").submit();location.replace(document.referrer);})</script>';
         // 生成支付按钮
         // $smarty->assign('payment', $plugin->work());
         // CURL模拟
