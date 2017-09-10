@@ -30,7 +30,9 @@
         <td>{$cate.unique_id}</td>
         <td>{$cate.description}</td>
         <td align="center">{$cate.sort}</td>
-        <td align="center"><a href="medium_category.php?rec=edit&cat_id={$cate.cat_id}">{$lang.edit}</a> | <a href="medium_category.php?rec=del&cat_id={$cate.cat_id}">{$lang.del}</a></td>
+        <td align="center"><a href="medium_category.php?rec=edit&cat_id={$cate.cat_id}">{$lang.edit}</a>
+        <!--{if $cate.cate_id gt 10}--> | <a href="medium_category.php?rec=del&cat_id={$cate.cat_id}">{$lang.del}</a><!--{if}-->
+        </td>
       </tr>
       <!--{/foreach}-->
     </table>

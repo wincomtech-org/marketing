@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50540
+Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : marketing
 
 Target Server Type    : MYSQL
-Target Server Version : 50540
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-09-09 17:55:41
+Date: 2017-09-10 19:53:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -569,7 +569,7 @@ CREATE TABLE `dou_medium_category` (
   `parent_id` smallint(5) NOT NULL DEFAULT '0',
   `sort` tinyint(1) unsigned NOT NULL DEFAULT '50',
   PRIMARY KEY (`cat_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_medium_category
@@ -583,7 +583,7 @@ INSERT INTO `dou_medium_category` VALUES ('6', 'video', '视频媒体', '', '', 
 INSERT INTO `dou_medium_category` VALUES ('7', 'kol', 'KOL朋友圈', '', '', '0', '30');
 INSERT INTO `dou_medium_category` VALUES ('8', 'association', '社群', '', '', '0', '35');
 INSERT INTO `dou_medium_category` VALUES ('9', 'forum', '论坛', '', '', '0', '40');
-INSERT INTO `dou_medium_category` VALUES ('11', 'cp', 'CP广告', '', '', '0', '50');
+INSERT INTO `dou_medium_category` VALUES ('10', 'cp', 'CP广告', '', '', '0', '45');
 
 -- ----------------------------
 -- Table structure for dou_nav

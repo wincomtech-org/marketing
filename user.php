@@ -609,17 +609,16 @@ elseif ($rec == 'order') {
     // 验证并获取合法的ID
     $order_sn = $check->is_number($_REQUEST['order_sn']) ? $_REQUEST['order_sn'] : '';
     
-    $query = $dou->select($dou->table('order'), '*', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'");
+    $query = $dou->select($dou->table('order'), 'order_id,telephone,pay_id,product_amount,order_amount,status,add_time', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'");
     $order = $dou->fetch_assoc($query);
     
     // 判断订单是否存在
     if (!$order) $dou->dou_header($_URL['order_list']);
     
     // 格式化订单信息
-    $order['pay_name'] = $dou->get_one("SELECT name FROM " . $dou->table('plugin') . " WHERE unique_id = '$order[pay_id]'");
+    $order['pay_name'] = $dou->get_one("SELECT name FROM " . $dou->table('plugin') . " WHERE unique_id='$order[pay_id]'");
     $order['product_amount_format'] = $dou->price_format($order['product_amount']);
     $order['order_amount_format'] = $dou->price_format($order['order_amount']);
-    $order['email'] = $dou->get_one("SELECT email FROM " . $dou->table('user') . " WHERE user_id = '$order[user_id]'");
     $order['add_time'] = date("Y-m-d h:i:s", $order['add_time']);
     $order['status_format'] = $_LANG['order_status_' . $order['status']];
     $order['product_list'] = $dou_order->get_order_product($order['order_id']);
@@ -633,7 +632,6 @@ elseif ($rec == 'order') {
         $plugin = new Plugin($order_sn, $order['order_amount']);
         // 生成支付按钮
         $order['payment'] = $plugin->work();
-        echo $order['payment'];exit;
     }
 
     // 赋值给模板

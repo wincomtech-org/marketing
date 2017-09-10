@@ -16,7 +16,7 @@ if ($cat_id == -1) {
         if (strpos($cat_ids,',')) {
             $where = ' WHERE a.cat_id IN ('. $cat_ids .')';
         } else {
-            $where = ' WHERE a.cat_id='.$cat_ids;
+            $where = ' WHERE a.cat_id='.$cat_id;
         }
     } else {
         $where = '';
@@ -25,6 +25,27 @@ if ($cat_id == -1) {
 if ($_REQUEST['id']) {
     $jumpext .= '&id='.$_REQUEST['id'];
 }
+
+// $ulkey = 'image,title,indusid,proid,fans,click,moneys,description';
+// $ulval = 'LOGO,名称,行业,地区,粉丝数,转发量,价格,简介';
+// foreach ($ulkey as $value) {
+//     # code...
+// }
+// switch ($cat_id) {
+//     case '1':
+//         # code...
+//         break;
+//     case '2':
+//         # code...
+//         break;
+//     case '3':
+//         # code...
+//         break;
+//     default:
+//         # code...
+//         break;
+// }
+// $fields = ',title,image,indusid,proid,account_type,fans,moneys,click,description';
 
 /*筛选条件*/
 $a = isset($_GET['a'])?$_GET['a']:'';
@@ -135,23 +156,46 @@ $where2 = str_replace('a.','',$where);
 $limit = $dou->pager('medium', ($_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10), $page, $dou->rewrite_url('medium_category', $cat_id), $where2, $jumpext);
 
 /* 获取下载列表 */
-$fields = $dou->create_fields_quote('id,title,content,image,cat_id,indusid,proid,account_type,fans,moneys,add_time,click,description','a');
+$fields = $dou->create_fields_quote('id,defined,add_time,title,image,indusid,proid,account_type,fans,moneys,click,description','a');
 $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,$order.'a.add_time DESC',$limit);
 // $dou->debug($sql,1);
 $query = $dou->query($sql);
 while ($row = $dou->fetch_assoc($query)) {
-    $row['url'] = $dou->rewrite_url('medium', $row['id']);
-    $row['add_time'] = date("Y-m-d", $row['add_time']);
-    $row['add_time_short'] = date("m-d", $row['add_time']);
+    // $row['url'] = $dou->rewrite_url('medium', $row['id']);
+    // $row['add_time'] = date("Y-m-d", $row['add_time']);
+    // $row['add_time_short'] = date("m-d", $row['add_time']);
     $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
-    // 如果描述不存在则自动从详细介绍中截取
-    $row['description'] = $row['description'] ? $row['description'] : $dou->dou_substr($row['content'], 200);
+    $row['moneys'] = $row['moneys'] ? $dou->price_format($row['moneys']) : '';
+    $row['description'] = $row['description'] ? $row['description'] : '';
+    if (!$bkb) {
+        if ($row['image']) $bkb['image'] = 'LOGO';
+        if ($row['title']) $bkb['title'] = '名称';
+        if ($row['industry']) $bkb['industry'] = '行业';
+        if ($row['district']) $bkb['district'] = '地区';
+        if ($row['fans']) $bkb['fans'] = '粉丝数';
+        if ($row['click']) $bkb['click'] = '转发量';
+        if ($row['moneys']) $bkb['moneys'] = '价格';
+        if ($row['description']) $bkb['desc'] = '简介';
+    }
+    // 格式化自定义参数
+    $diy2 = array();
+    foreach (explode(',', $row['defined']) as $diy) {
+        $diy = explode('：', str_replace(":", "：", $diy));
+        if ($diy['1']) {
+            if (!$defined) {
+                $defined[] = $diy['0'];
+            }
+            $diy2[] = $diy['1'];
+        }
+    }
+    $row['defined'] = $diy2;
+    
     $medium_list[] = $row;
 }
 // $dou->debug($medium_list,1);
 
 // 获取分类信息
-$sql = "SELECT cat_id,parent_id,cat_name,keywords,description FROM " . $dou->table('medium_category') . " WHERE cat_id = '$cat_id'";
+$sql = "SELECT cat_id,parent_id,cat_name,keywords,description FROM " . $dou->table('medium_category') . " WHERE cat_id='$cat_id'";
 $query = $dou->query($sql);
 $cate_info = $dou->fetch_assoc($query);
 
@@ -164,7 +208,6 @@ $smarty->assign('provinces', $provinces);
 // 所有账号类型
 $account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));
 $smarty->assign('account_types', $account_types);
-
 
 
 
@@ -183,6 +226,8 @@ $smarty->assign('nav_bottom_list', $dou->get_nav('bottom'));
 $smarty->assign('cate_info', $cate_info);
 $smarty->assign('medium_category', $dou->get_category('medium_category', 0, $cat_id));
 $smarty->assign('medium_list', $medium_list);
+$smarty->assign('defined', $defined);
+$smarty->assign('bkb', $bkb);
 
 $smarty->display('smart/list.html');
 ?>

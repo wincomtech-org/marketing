@@ -3,8 +3,18 @@
 <link href="doubox.css" rel="stylesheet" type="text/css" />
 <script src="{$site.theme_s}js/pagination.js"></script>
 <script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
+<style type="text/css">
+    {literal}
+    .btnPayment{
+        display: block;
+        padding: 2px 4px;
+        background-color: #ff3226;
+        color: #fff;
+    }
+    {literal}
+</style>
 
-<body onload="goodsList();" data-val="7826d00ab11b434f87fd3adae68cb80a">
+<body>
     {include file="inc/header.tpl"}
 
     <div class="page-content">
@@ -34,17 +44,16 @@
                             <td>{$order.add_time}</td>
                             <td>{$order.status_format}</td>
                             <td>
-                                <!--{if $order.order_type neq 1}--><a href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a><!--{/if}-->
+                                <!--{if $order.order_type eq 2}--><a href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a><!--{/if}-->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <!--{if $order.status eq '0'}-->
                                     <a href="javascript:void(0)" onclick="douBox('{$url.order_cancel}&order_sn={$order.order_sn}')">{$lang.order_cancel}</a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <!--{if $order.if_payment}-->
-                                        <!--{if $order.order_type eq 1}-->
-                                            <!--{if $order.payment}--><span class="payment">{$order.payment}</span><!--{/if}-->{$order.pay_name}
-                                        <!--{else}-->
-                                            <a href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_payment_btn}</a>
+                                        <!--{if $order.payment}-->
+                                            <span class="payment">{$order.payment}</span>
                                         <!--{/if}-->
+                                        {$order.pay_name}
                                     <!--{/if}-->
                                 <!--{/if}-->
                             </td>

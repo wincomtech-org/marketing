@@ -38,7 +38,7 @@ if ($rec == 'cart') {
     // 是否做缓存？？
     $products = $dou_order->get_cart($_SESSION[DOU_ID]['cart'],'','medium','id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort');
 
-    $pagend = $pagesize+2;
+    $pagend = $pagesize+5;
     foreach ($products['list'] as $key => $value) {
         if ($pagesize<=$key && $key<$pagend) {
             $temp_c[] = $value;
