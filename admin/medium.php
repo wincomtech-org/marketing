@@ -20,9 +20,9 @@ $smarty->assign('cur', 'medium');
 
 if (in_array($rec,array('add','edit'))) {
     // 所有行业
-    $industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1',$dou->table('diy')));
+    $industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$dou->table('diy')));
     // 所有省份
-    $provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s',$dou->table('district')));
+    $provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s order by sort',$dou->table('district')));
     // 所有账号类型
     $account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));
 
