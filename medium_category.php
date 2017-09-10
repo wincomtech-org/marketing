@@ -156,17 +156,11 @@ $where2 = str_replace('a.','',$where);
 $limit = $dou->pager('medium', ($_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10), $page, $dou->rewrite_url('medium_category', $cat_id), $where2, $jumpext);
 
 /* 获取下载列表 */
-$fields = $dou->create_fields_quote('id,defined,add_time,title,image,indusid,proid,account_type,fans,moneys,click,description','a');
+$fields = $dou->create_fields_quote('id,defined,add_time,title,image,indusid,proid,account_type,fans,moneys,link,click,description','a');
 $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,$order.'a.add_time DESC',$limit);
 // $dou->debug($sql,1);
 $query = $dou->query($sql);
 while ($row = $dou->fetch_assoc($query)) {
-    // $row['url'] = $dou->rewrite_url('medium', $row['id']);
-    // $row['add_time'] = date("Y-m-d", $row['add_time']);
-    // $row['add_time_short'] = date("m-d", $row['add_time']);
-    $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
-    $row['moneys'] = $row['moneys'] ? $dou->price_format($row['moneys']) : '';
-    $row['description'] = $row['description'] ? $row['description'] : '';
     if (!$bkb) {
         if ($row['image']) $bkb['image'] = 'LOGO';
         if ($row['title']) $bkb['title'] = '名称';
@@ -174,9 +168,22 @@ while ($row = $dou->fetch_assoc($query)) {
         if ($row['district']) $bkb['district'] = '地区';
         if ($row['fans']) $bkb['fans'] = '粉丝数';
         if ($row['click']) $bkb['click'] = '转发量';
+        if ($row['link']) $bkb['link'] = '外链';
         if ($row['moneys']) $bkb['moneys'] = '价格';
         if ($row['description']) $bkb['desc'] = '简介';
     }
+    // $row['url'] = $dou->rewrite_url('medium', $row['id']);
+    // $row['add_time'] = date("Y-m-d", $row['add_time']);
+    // $row['add_time_short'] = date("m-d", $row['add_time']);
+    // $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
+    if ($row['image']) {
+        $image = explode('.', $row['image']);
+        $row['image'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
+    }
+    $row['moneys'] = $row['moneys'] ? $dou->price_format($row['moneys']) : '';
+    $row['description'] = $row['description'] ? $row['description'] : '';
+    $row['link'] = $row['link'] ? '<a href="'.$row['link'].'">外链</a>' : '';
+
     // 格式化自定义参数
     $diy2 = array();
     foreach (explode(',', $row['defined']) as $diy) {
@@ -200,10 +207,10 @@ $query = $dou->query($sql);
 $cate_info = $dou->fetch_assoc($query);
 
 // 所有行业
-$industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1',$dou->table('diy')));
+$industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$dou->table('diy')));
 $smarty->assign('industrys', $industrys);
 // 所有省份
-$provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s',$dou->table('district')));
+$provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s order by sort',$dou->table('district')));
 $smarty->assign('provinces', $provinces);
 // 所有账号类型
 $account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));

@@ -8,9 +8,11 @@ $rec = $check->is_rec($_REQUEST['rec']) ? $_REQUEST['rec'] : 'default';
 // 图片上传
 include_once (ROOT_PATH . 'include/upload.class.php');
 $images_dir = 'images/medium/'; // 文件上传路径，结尾加斜杠
-$img = new Upload(ROOT_PATH . $images_dir); // 实例化类文件
+$thumb_dir = ''; // 缩略图路径（相对于$images_dir） 结尾加斜杠，留空则跟$images_dir相同
+$img = new Upload(ROOT_PATH . $images_dir, $thumb_dir); // 实例化类文件
 if (!file_exists(ROOT_PATH . $images_dir))
     mkdir(ROOT_PATH . $images_dir, 0777);
+$_CFG['thumb_width']=80; $_CFG['thumb_height'] = 80;
 
 // 赋值给模板
 $smarty->assign('rec', $rec);
@@ -125,8 +127,11 @@ elseif ($rec == 'insert') {
     if (empty($_POST['title'])) $dou->dou_msg($_LANG['medium_name'] . $_LANG['is_empty']);
     
     // 图片上传
-    if ($_FILES['image']['name'] != '')
-        $image = $images_dir . $img->upload_image('image', $img->create_file_name('medium'));
+    if ($_FILES['image']['name'] != '') {
+        $image_name = $img->upload_image('image', $img->create_file_name('medium'));
+        $image = $images_dir . $image_name;
+        $img->make_thumb($image_name, $_CFG['thumb_width'], $_CFG['thumb_height']);
+    }
     
     // 数据格式化
     $add_time = time();
@@ -200,10 +205,15 @@ elseif ($rec == 'edit') {
 elseif ($rec == 'update') {
     // 验证标题
     if (empty($_POST['title'])) $dou->dou_msg($_LANG['medium_name'] . $_LANG['is_empty']);
-        
+
     // 图片上传
-    if ($_FILES['image']['name'] != ''){
-        $image = $images_dir . $img->upload_image('image', $img->create_file_name('medium', $_POST['id'], 'image'));
+    if ($_FILES['image']['name'] != '') {
+        $image_name = $img->upload_image('image', $img->create_file_name('medium', $_POST['id'], 'image'));
+        $image = $images_dir . $image_name;
+        $img->make_thumb($image_name, $_CFG['thumb_width'], $_CFG['thumb_height']);
+        // 因为这里文件名始终相同，会直接覆盖源文件，所以不可以做额外删除
+        // $old_pic = $dou->get_one("SELECT image from ".$dou->table('product')." where id='$_POST[id]' ");
+        // if ($old_pic) { $dou->del_image($old_pic); }
     }
 
     // 格式化自定义参数
