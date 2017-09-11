@@ -24,7 +24,7 @@ if (in_array($rec,array('add','edit'))) {
     $fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
     $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
     $dkey = explode(',', $dkey);
-    $dexplain = '所属行业,所属省份,账号类型,粉丝量,报价,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
+    $dexplain = '行业,省份,账号类型,粉丝量,价格,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
     $dexplain = explode(',', $dexplain);
     foreach ($dkey as $key => $value) {
         $designate[$value] = $dexplain[$key];
@@ -282,6 +282,7 @@ elseif ($rec == 'update') {
         );
     if ($image) 
         $data['image'] = $image;
+    $dou->debug($data,1);
     $dou->update('medium',$data,'id='.$_POST['id']);
     
     $dou->create_admin_log($_LANG['medium_edit'] . ': ' . $_POST['title']);

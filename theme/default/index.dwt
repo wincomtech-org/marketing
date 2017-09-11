@@ -227,7 +227,7 @@
             <div class="requirementTitle" style="padding-top:60px;">热门营销包</div>
             <div class="requirementText" style="width:100px;">
                 <span>更多</span>
-                <a href="package/page_info.html"><img src="{$site.theme_s}resetImg/more.png"></a>
+                <a href="{$url.product}"><img src="{$site.theme_s}resetImg/more.png"></a>
                 <div class="clear"></div>
             </div>
             <div class="workerListBox" >
@@ -250,7 +250,7 @@
                 <div class="requirementTitle">媒体报道</div>
                 <div class="requirementText">
                     <span>查看更多</span>
-                    <a href="report/page.shtml.html"><img src="{$site.theme_s}resetImg/more.png"></a>
+                    <a href="{$url.article}"><img src="{$site.theme_s}resetImg/more.png"></a>
                     <div class="clear"></div>
                 </div>
                 

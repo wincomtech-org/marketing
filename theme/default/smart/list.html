@@ -16,6 +16,8 @@
                 <!-- {/foreach} -->
             </dl>
         </div>
+
+        <!-- {if in_array('indusid',$fieldsarr)} -->
         <div class="search_block search_block_click">
             <!--行业筛选区域-->
             <dl id="channel" class="channel">
@@ -27,6 +29,9 @@
                 <div class="more">更多</div>
             </dl>
         </div>
+        <!-- {/if} -->
+
+        <!-- {if in_array('proid',$fieldsarr)} -->
         <div class="search_block search_block_click">
             <!--地区筛选区域-->
             <dl id="range" class="range">
@@ -38,6 +43,9 @@
                 <div class="more">更多</div>
             </dl>
         </div>
+        <!-- {/if} -->
+
+        <!-- {if in_array('account_type',$fieldsarr)} -->
         <div class="search_block search_block_click">
             <!--账号筛选区域-->
             <dl id="type" class="type">
@@ -47,8 +55,11 @@
                 <!-- {/foreach} -->
             </dl>
         </div>
+        <!-- {/if} -->
+
         <div class="search_block">
             <form action="{$jumpurl}" method="get">
+                <!-- {if in_array('fans',$fieldsarr)} -->
                 <dl id="fans" class="fans">
                     <dt>粉丝量</dt>
                     <dd><input id="fans_start" type="text" name="d" value="{$d}"></dd>
@@ -56,6 +67,8 @@
                     <dd><input id="fans_end" type="text" name="d2" value="{$d2}"></dd>
                     <dd><input id="fans_submit" type="submit" value="查询"></dd>
                 </dl>
+                <!-- {/if} -->
+                <!-- {if in_array('moneys',$fieldsarr)} -->
                 <dl id="price" class="price">
                     <dt>报价金额</dt>
                     <dd><input id="price_start" type="text" name="e" value="{$e}"></dd>
@@ -63,9 +76,12 @@
                     <dd><input id="price_end" type="text" name="e2" value="{$e2}"></dd>
                     <dd><input id="price_submit" type="submit" value="查询"></dd>
                 </dl>
+                <!-- {/if} -->
             </form>
         </div>
+
         <div class="search_block">
+            <!-- {if in_array('fans',$fieldsarr)} -->
             <div class="sort_fans sort_sel">
                 <span>{if $f eq 1}粉丝从低到高{elseif $f eq 2}粉丝从高到低{else}粉丝默认排序{/if}</span>
                 <ul>
@@ -73,6 +89,8 @@
                     <li title="asc"><a href="{$jumpurl}f=1">粉丝从低到高</a></li>
                 </ul>
             </div>
+            <!-- {/if} -->
+            <!-- {if in_array('moneys',$fieldsarr)} -->
             <div class="sort_price sort_sel">
                 <span>{if $g eq 1}价格从低到高{elseif $g eq 2}价格从高到低{else}价格默认排序{/if}</span>
                 <ul>
@@ -80,6 +98,7 @@
                     <li title="asc"><a href="{$jumpurl}g=1">价格从低到高</a></li>
                 </ul>
             </div>
+            <!-- {/if} -->
             <!-- <div class="style_change"><em></em></div> -->
             <div class="search-form1">
             <form action="{$jumpurl}" method="get">
