@@ -1,0 +1,45 @@
+﻿{include file="inc/head_index.tpl"}
+ 
+<body>
+<div class="wrap">
+	<header class="header">
+		<img src="sys/{$site.site_logo}" alt="{$site.site_name}" title="{$site.site_name}">
+        <!--{if $open.user}-->
+        <!-- 登录后 -->
+        <!--{if $user}-->
+        <div class="logined" >
+            <a href="{$url.user}"><img src="{$site.theme}img/ico3.jpg" alt=""></a>
+            <span>{$user.user_name}</span>
+        </div>
+        <!-- {else} -->
+        <div class="loginBox">
+            <a href="{$url.login}"><div class="login">登录</div></a>
+            <a href="{$url.register}"><div class="enroll">注册</div></a>
+        </div>
+        <!-- {/if} -->
+        <!-- {/if} -->
+		<div class="clear"></div>
+	</header>
+
+	<div class="banner"><img src="{$site.theme}img/banner.jpg"></div>
+
+	<div class="showImg c">
+		<div>
+			<a href="{$url.product}"><img src="{$site.theme}img/ico3.jpg"></a>
+			<a href="{$url.medium}"><img src="{$site.theme}img/ico5.jpg"></a>
+		</div>
+		<div>
+			<a href="{$url.case}"><img src="{$site.theme}img/ico2.jpg"></a>
+			<a href="{$url.article}"><img src="{$site.theme}img/ico4.jpg"></a>
+		</div>
+	</div>
+	
+	<div class="copyright c">
+		<span>2015-2016 北京三点一刻科技有限公司 版权所有</span>
+		<span>服务热线：<a href="">4008-315-002</a></span>
+		<span>联系地址：北京市朝阳区惠河南街1008号四惠大厦2号楼B1层</span>
+		<span>京ICP备 15064808号</span>
+	</div>
+</div>
+</body>
+</html>

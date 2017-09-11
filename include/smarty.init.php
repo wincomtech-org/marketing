@@ -123,6 +123,7 @@ if (SMARTY_CONF==1) { // 前台
         $source = preg_replace('/\"images\//Ums', "\"theme/$_CFG[mobile_theme]/images/", $source);
         $source = preg_replace('/link href\=\"([A-Za-z0-9_-]+)\.css/Ums', "link href=\"theme/$_CFG[mobile_theme]/$1.css", $source);
         $source = preg_replace('/theme\//Ums', "$theme_path/", $source);
+        // $source = preg_replace('/img src\=\"sys\//Ums', "img src=\"theme/$_CFG[site_theme]/sys/", $source);// 系统文件
         $source = preg_replace('/^<meta\shttp-equiv=["|\']Content-Type["|\']\scontent=["|\']text\/html;\scharset=(?:.*?)["|\'][^>]*?>\r?\n?/i', '', $source);
         return $source = preg_replace('/<!--.*{(.*)}.*-->/U', '{$1}', $source);
     }

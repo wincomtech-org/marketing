@@ -43,7 +43,7 @@
 
     <!-- 系统管理：数据备份、手机版、设置模板、网站管理员、操作记录 -->
     <ul class="bot">
-        <li {if $cur eq 'mobile'}class="cur"{/if}><!-- <li id="must_hide"></li> --><a href="mobile.php"><i class="mobile"></i><em>{$lang.mobile}</em></a></li>
+        <li id="must_hide" {if $cur eq 'mobile'}class="cur"{/if}><!-- <li id="must_hide"></li> --><a href="mobile.php"><i class="mobile"></i><em>{$lang.mobile}</em></a></li>
         <li id="must_hide" {if $cur eq 'theme'}class="cur"{/if}><a href="theme.php"><i class="theme"></i><em>{$lang.theme}<!--{if $unum.theme}--><span class="unum"><span>{$unum.theme}</span></span><!--{/if}--></em></a></li>
         <li {if $cur eq 'manager'}class="cur"{/if}><a href="manager.php"><i class="manager"></i><em>{$lang.manager}</em></a></li>
 

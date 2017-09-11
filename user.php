@@ -17,9 +17,14 @@ if (file_exists($order_file = ROOT_PATH . 'include/order.class.php')) {
     $dou_order = new Order();
 }
 
-// $no_login = 'login|login_post|register|register_post|password_reset|password_reset_post';// 设定不需要登录权限的页面
-$no_login = 'login_post|register_post|password_reset|password_reset_post';// 设定不需要登录权限的页面
- // 需要登录且没有登录的情况
+// 设定不需要登录权限的页面
+if (IS_M) {
+    $no_login = 'login|login_post|register|register_post|password_reset|password_reset_post';
+} else {
+    $no_login = 'login_post|register_post|password_reset|password_reset_post';
+}
+
+// 需要登录且没有登录的情况
 if (!in_array($rec, explode('|', $no_login)) && !is_array($_USER)) { 
     $dou->dou_header(ROOT_URL);
     // $dou->dou_header($_URL['login']);
@@ -77,7 +82,7 @@ elseif ($rec == 'register') {
     $smarty->assign('page_title', $dou->page_title('user', 'user_register'));
     $smarty->assign('ur_here', $dou->ur_here('user', 'user_register'));
     
-    $smarty->display('user.dwt');
+    $smarty->display('user/reg.html');
 }
 
 /**
@@ -175,7 +180,7 @@ elseif ($rec == 'login') {
     $smarty->assign('ur_here', $dou->ur_here('user', 'user_login'));
     $smarty->assign('return_url', $return_url);
     
-    $smarty->display('user.dwt');
+    $smarty->display('user/login.html');
 }
 
 /**
@@ -640,6 +645,7 @@ elseif ($rec == 'order') {
     $smarty->assign('order', $order);
 
     $smarty->display('user/order_detail.html');
+    // $smarty->display('user/order_mes.html');
 }
 
 /**

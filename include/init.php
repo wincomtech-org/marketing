@@ -35,9 +35,6 @@ require (ROOT_PATH . 'include/memory.class.php');
 
 // 定义DouPHP其它常量
 // DS 在 Smarty 里定义了
-// 主题位置
-define('THEME', '/theme/default/');
-define('THEME_S', THEME.'resources/bootstrap/');
 // M_PATH \data\config.php
 define('M_URL', ROOT_URL . M_PATH . '/');
 
@@ -63,10 +60,20 @@ if (!defined('EXIT_INIT')) {
     header('Cache-control: private');
     header('Content-type: text/html; charset='. DOU_CHARSET);
 
-    // 判断是否跳转到手机版（条件：是移动端、没有强制显示PC版、手机版没有关闭）
-    if ($dou->is_mobile() && $_COOKIE['client']!='pc' && !$_CFG['mobile_closed']) {
-        $mobile_url = str_replace(ROOT_URL, '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        $dou->dou_header(ROOT_URL . M_PATH . '/' . $mobile_url);
+    // 判断是否跳转到手机版（条件：是移动端、没有强制显示PC版、手机版没有关闭），不做关闭判断  && !$_CFG['mobile_closed']
+    if ($dou->is_mobile() && $_COOKIE['client']!='pc') {
+        // $mobile_url = str_replace(ROOT_URL, '', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+        // $dou->dou_header(ROOT_URL . M_PATH . '/' . $mobile_url);
+        define('IS_M', true);
+        $_CFG['site_theme'] = M_PATH;
+        // 主题位置
+        define('THEME', '/theme/'.M_PATH.'/');
+        define('THEME_S', THEME.'resources/bootstrap/');
+    } else {
+        define('IS_M', false);
+        // 主题位置
+        define('THEME', '/theme/default/');
+        define('THEME_S', THEME.'resources/bootstrap/');
     }
 
     // 豆壳防火墙 ，过滤机制 dou_magic_quotes()
