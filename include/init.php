@@ -1,7 +1,8 @@
 <?php
 if (!defined('IN_LOTHAR')) die('Hacking attempt');
 // 显示除了E_NOTICE(提示)和E_WARNING(警告)外的所有错误
-error_reporting(E_ALL ^(E_NOTICE | E_WARNING));
+// error_reporting(E_ALL ^(E_NOTICE | E_WARNING));
+error_reporting(E_ERROR);
 // 关闭 set_magic_quotes_runtime
 @set_magic_quotes_runtime(0);
 // 调整时区
