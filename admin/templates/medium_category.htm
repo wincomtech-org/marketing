@@ -14,21 +14,26 @@
  <div id="dcMain">
    {include file="ur_here.htm"}
    <div class="mainBox" style="{$workspace.height}">
+   <div class="mainBox">
+     <p>共用字段：image,title 。 共用字段解释：LOGO,名称</p>
+     <p>选定字段：indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief</p>
+     <p>选定字段解释：所属行业,所属省份,账号类型,粉丝量,报价,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介</p>
+   </div>
     <!--{if $rec eq 'default'} 分类列表 -->
     <h3><a href="{$action_link.href}" class="actionBtn add">{$action_link.text}</a>{$ur_here}</h3>
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
      <tr>
         <th width="120" align="left">{$lang.medium_category_name}</th>
-      <th align="left">{$lang.unique}</th>
-        <th align="left">{$lang.description}</th>
-       <th width="60" align="center">{$lang.sort}</th>
+        <th align="left">{$lang.unique}</th>
+        <th align="left">选定的字段</th>
+        <th width="60" align="center">{$lang.sort}</th>
         <th width="80" align="center">{$lang.handler}</th>
       </tr>
       <!--{foreach from=$medium_category item=cate}-->
       <tr>
         <td align="left">{$cate.mark} <a href="medium.php?cat_id={$cate.cat_id}">{$cate.cat_name}</a></td>
         <td>{$cate.unique_id}</td>
-        <td>{$cate.description}</td>
+        <td>{$cate.fields}</td>
         <td align="center">{$cate.sort}</td>
         <td align="center"><a href="medium_category.php?rec=edit&cat_id={$cate.cat_id}">{$lang.edit}</a>
         <!--{if $cate.cat_id gt 10}--> | <a href="medium_category.php?rec=del&cat_id={$cate.cat_id}">{$lang.del}</a><!--{/if}-->

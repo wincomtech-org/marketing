@@ -19,6 +19,18 @@ $smarty->assign('rec', $rec);
 $smarty->assign('cur', 'medium');
 
 if (in_array($rec,array('add','edit'))) {
+    // 获取参数
+    $cat_id = $check->is_number($_REQUEST['cat_id']) ? intval($_REQUEST['cat_id']) : 1;
+    $fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
+    $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
+    $dkey = explode(',', $dkey);
+    $dexplain = '所属行业,所属省份,账号类型,粉丝量,报价,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
+    $dexplain = explode(',', $dexplain);
+    foreach ($dkey as $key => $value) {
+        $designate[$value] = $dexplain[$key];
+    }
+    $fieldsarr = explode(',', $fields);
+
     // 所有行业
     $industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$dou->table('diy')));
     // 所有省份
@@ -26,6 +38,9 @@ if (in_array($rec,array('add','edit'))) {
     // 所有账号类型
     $account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));
 
+    $smarty->assign('cat_id', $cat_id);
+    $smarty->assign('designate', $designate);
+    $smarty->assign('fieldsarr', $fieldsarr);
     $smarty->assign('industrys', $industrys);
     $smarty->assign('provinces', $provinces);
     $smarty->assign('account_types', $account_types);
@@ -33,7 +48,7 @@ if (in_array($rec,array('add','edit'))) {
 
 /**
  * +----------------------------------------------------------
- * 下载列表
+ * 列表
  * +----------------------------------------------------------
  */
 if ($rec == 'default') {
@@ -44,7 +59,6 @@ if ($rec == 'default') {
     ));
     
     // 获取参数
-    $cat_id = $check->is_number($_REQUEST['cat_id']) ? $_REQUEST['cat_id'] : 0;
     $keyword = isset($_REQUEST['keyword']) ? trim($_REQUEST['keyword']) : '';
     
     // 筛选条件
@@ -63,8 +77,9 @@ if ($rec == 'default') {
     $where2 = str_replace('a.', '', $where);
     $limit = $dou->pager('medium', 15, $page, $page_url, $where2, $get);
     // 查询数据
-    $fields = $dou->create_fields_quote('id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort','a');
-    $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
+    // $fields = $dou->create_fields_quote('id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort','a');
+    // $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
+    $sql = sprintf("SELECT a.id,a.title,a.cat_id,a.image,a.click,a.add_time,a.sort,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s",$dou->table('medium'),$dou->table('medium_category'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
     // $dou->debug($sql,1);
     $query = $dou->query($sql);
     while ($row = $dou->fetch_assoc($query)) {
@@ -81,7 +96,6 @@ if ($rec == 'default') {
     $smarty->assign('if_sort', $_SESSION['if_sort']);
     $smarty->assign('sort', get_sort_medium());
     $smarty->assign('sort_bg', $sort_bg);
-    $smarty->assign('cat_id', $cat_id);
     $smarty->assign('keyword', $keyword);
     $smarty->assign('medium_category', $dou->get_category_nolevel('medium_category'));
     $smarty->assign('medium_list', $medium_list);
@@ -155,6 +169,21 @@ elseif ($rec == 'insert') {
             'keywords'      => $_POST['keywords'],
             'description'   => $_POST['description'],
             'add_time'      => $add_time,
+            'trans'   => $_POST['trans'],
+            'id_number'   => $_POST['id_number'],
+            'reads'   => $_POST['reads'],
+            'issue_plat'   => $_POST['issue_plat'],
+            'groups'   => $_POST['groups'],
+            'channel'   => $_POST['channel'],
+            'genre'   => $_POST['genre'],
+            'belong_plat'   => $_POST['belong_plat'],
+            'average_plays'   => $_POST['average_plays'],
+            'nnt'   => $_POST['nnt'],
+            'type'   => $_POST['type'],
+            'put_site'   => $_POST['put_site'],
+            'ad_type'   => $_POST['ad_type'],
+            'pub_type'   => $_POST['pub_type'],
+            'brief'   => $_POST['brief'],
         );
     $dou->insert('medium',$data);
     
@@ -235,6 +264,21 @@ elseif ($rec == 'update') {
             'moneys'        => $_POST['moneys'],
             'keywords'      => $_POST['keywords'],
             'description'   => $_POST['description'],
+            'trans'   => $_POST['trans'],
+            'id_number'   => $_POST['id_number'],
+            'reads'   => $_POST['reads'],
+            'issue_plat'   => $_POST['issue_plat'],
+            'groups'   => $_POST['groups'],
+            'channel'   => $_POST['channel'],
+            'genre'   => $_POST['genre'],
+            'belong_plat'   => $_POST['belong_plat'],
+            'average_plays'   => $_POST['average_plays'],
+            'nnt'   => $_POST['nnt'],
+            'type'   => $_POST['type'],
+            'put_site'   => $_POST['put_site'],
+            'ad_type'   => $_POST['ad_type'],
+            'pub_type'   => $_POST['pub_type'],
+            'brief'   => $_POST['brief'],
         );
     if ($image) 
         $data['image'] = $image;

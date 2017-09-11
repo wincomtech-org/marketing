@@ -94,11 +94,12 @@
         <div class="smart-block smart">
            <ul class="wb">
             <li class="smart_tit">
-                <!-- {foreach $bkb $dd} -->
-                <span>{$dd}</span>
-                <!-- {/foreach} -->
-                <!-- {foreach $defined $ds} -->
-                <span>{$ds}</span>
+                <span>LOGO</span>
+                <span>名称</span>
+                <!-- {foreach $designate as $dk=>$dv} -->
+                <!-- {if in_array($dk,$fieldsarr)} -->
+                <span>{$dv}</span>
+                <!-- {/if} -->
                 <!-- {/foreach} -->
                 <span>购物车</span>
             </li>
@@ -106,13 +107,10 @@
             <li>
                 {if $v.image}<span class="smart_img"><img src="{$v.image}" alt=""></span>{/if}
                 {if $v.title}<span>{$v.title}</span>{/if}
-                {if $v.industry}<span>{$v.industry}</span>{/if}
-                {if $v.district}<span>{$v.district}</span>{/if}
-                {if $v.fans}<span>{$v.fans}</span>{/if}
-                {if $v.click}<span>{$v.click}</span>{/if}
-                {if $v.moneys}<span>{$v.moneys}</span>{/if}
-                <!-- {foreach $row.defined $dd} -->
-                <span>{$dd}</span>
+                <!-- {foreach $designate as $dk=>$dv} -->
+                <!-- {if in_array($dk,$fieldsarr)} -->
+                <span>{$v[$dk]}</span>
+                <!-- {/if} -->
                 <!-- {/foreach} -->
                 <span class="shop_cart">
                     <a onclick="add_cart(this,'{$v.id}')" style="cursor:pointer;">加入到购物车</a>

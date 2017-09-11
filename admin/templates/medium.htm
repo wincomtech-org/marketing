@@ -63,10 +63,10 @@
       <th width="40" align="center">{$lang.record_id}</th>
       <th align="left">{$lang.medium_name}</th>
       <th align="center">{$lang.medium_category}</th>
-      <th align="center">所属行业</th>
+      <!-- <th align="center">所属行业</th>
       <th align="center">所属地区</th>
       <th align="center">粉丝数</th>
-      <th align="center">报价</th>
+      <th align="center">报价</th> -->
       <th align="center">{$lang.add_time}</th>
       <th align="center">{$lang.handler}</th>
      </tr>
@@ -76,10 +76,6 @@
       <td align="center">{$medium.id}</td>
       <td><a href="medium.php?rec=edit&id={$medium.id}">{$medium.title}</a><!--{if $medium.image}--> <a href="../{$medium.image}" target="_blank"><img src="images/icon_picture.png" width="16" height="16" align="absMiddle"></a><!--{/if}--></td>
       <td align="center"><!--{if $medium.cat_name}--><a href="medium.php?cat_id={$medium.cat_id}">{$medium.cat_name}</a><!--{else}-->{$lang.uncategorized}<!--{/if}--></td>
-      <td align="center">{$medium.industry}</td>
-      <td align="center">{$medium.district}</td>
-      <td align="center">{$medium.fans}</td>
-      <td align="center">{$medium.moneys}</td>
       <td align="center">{$medium.add_time}</td>
       <td align="center">
        <!--{if $if_sort}-->
@@ -127,13 +123,13 @@
       <tr>
        <td align="right">{$lang.medium_category}</td>
        <td>
-        <select name="cat_id">
+        <select name="cat_id" onchange="dgLink(this)">
          <option value="0">{$lang.uncategorized}</option>
          <!--{foreach from=$medium_category item=cate}-->
          <!--{if $cate.cat_id eq $medium.cat_id}-->
-         <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+         <option {if $cate.cat_id eq $cat_id}selected{/if} value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
          <!--{else}-->
-         <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+         <option {if $cate.cat_id eq $cat_id}selected{/if} value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
          <!--{/if}-->
          <!--{/foreach}-->
         </select>
@@ -177,6 +173,11 @@
         {if $medium.image}<a href="../{$medium.image}" target="_blank"><img src="images/icon_yes.png"></a>{else}<img src="images/icon_no.png">{/if}</td>
       </tr>
 
+
+
+      <!-- {foreach $designate as $dk=>$dv} -->
+      <!-- {if in_array($dk,$fieldsarr)} -->
+      <!-- {if $dk eq 'indusid'} -->
       <tr>
        <td align="right">所属行业</td>
        <td>
@@ -188,12 +189,11 @@
         </select>
        </td>
       </tr>
-
+      <!-- {elseif $dk eq 'proid'} -->
       <tr>
        <td align="right">所属省份</td>
        <td>
         <select name="proid">
-         <option value="0">{$lang.uncategorized}</option>
          <!--{foreach from=$provinces item=v}-->
          <!--{if $v.cat_id eq $medium.proid}-->
          <option value="{$v.cat_id}" selected="selected">{$v.mark} {$v.cat_name}</option>
@@ -204,7 +204,7 @@
         </select>
        </td>
       </tr>
-
+      <!-- {elseif $dk eq 'account_type'} -->
       <tr>
        <td align="right">账号类型</td>
        <td>
@@ -216,26 +216,26 @@
         </select>
        </td>
       </tr>
-
+      <!-- {else} -->
       <tr>
-       <td align="right">粉丝量</td>
+       <td align="right">{$dv}</td>
        <td>
-        <input type="number" name="fans" value="{$medium.fans}" size="50" class="inpMain" />
+        <input type="text" name="{$dk}" value="{$medium[$dk]}" size="120" class="inpMain" />
        </td>
       </tr>
-      <tr>
+      <!-- {/if} -->
+      <!-- {/if} -->
+      <!-- {/foreach} -->
+
+
+
+      <!-- <tr>
        <td align="right">报价</td>
        <td>
-        <input type="text" name="moneys" value="{$medium.moneys}" size="50" class="inpMain" />
+        <input type="text" name="moneys" value="{*$medium.moneys*}" size="50" class="inpMain" />
        </td>
-      </tr>
+      </tr> -->
 
-      <tr>
-       <td align="right">{$lang.medium_link}</td>
-       <td>
-        <input type="text" name="link" value="{$medium.link}" size="120" class="inpMain" />
-       </td>
-      </tr>
       <tr>
        <td align="right">{$lang.keywords}</td>
        <td>
@@ -266,19 +266,25 @@
 <!--{if $rec eq 'default'} 列表 -->
 <script type="text/javascript">
 {literal}
-onload = function()
-{
+onload = function(){
   document.forms['action'].reset();
 }
-
-function douAction()
-{
+function douAction(){
     var frm = document.forms['action'];
-
     frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
 }
 {/literal}
 </script>
 <!--{/if}-->
+
+<script type="text/javascript">
+var frm = 'medium.php?rec={$rec}';
+
+{literal}
+function dgLink(o) {
+  window.location=frm+'&cat_id='+o.value;
+}
+{/literal}
+</script>
 </body>
 </html>

@@ -11,41 +11,33 @@ $jumpext = $jumpurl = $order = '';
 if ($cat_id == -1) {
     $dou->dou_msg($GLOBALS['_LANG']['page_wrong'], ROOT_URL);
 } else {
-    if ($cat_id) {
-        $cat_ids = $cat_id . $dou->dou_child_id('medium_category', $cat_id);
-        if (strpos($cat_ids,',')) {
-            $where = ' WHERE a.cat_id IN ('. $cat_ids .')';
-        } else {
-            $where = ' WHERE a.cat_id='.$cat_id;
-        }
+    $cat_id = $cat_id ? $cat_id : 1;
+    $cat_ids = $cat_id . $dou->dou_child_id('medium_category', $cat_id);
+    if (strpos($cat_ids,',')) {
+        $where = ' WHERE a.cat_id IN ('. $cat_ids .')';
     } else {
-        $where = '';
+        $where = ' WHERE a.cat_id='.$cat_id;
     }
 }
 if ($_REQUEST['id']) {
     $jumpext .= '&id='.$_REQUEST['id'];
 }
 
-// $ulkey = 'image,title,indusid,proid,fans,click,moneys,description';
-// $ulval = 'LOGO,名称,行业,地区,粉丝数,转发量,价格,简介';
-// foreach ($ulkey as $value) {
-//     # code...
-// }
-// switch ($cat_id) {
-//     case '1':
-//         # code...
-//         break;
-//     case '2':
-//         # code...
-//         break;
-//     case '3':
-//         # code...
-//         break;
-//     default:
-//         # code...
-//         break;
-// }
-// $fields = ',title,image,indusid,proid,account_type,fans,moneys,click,description';
+// 选定字段
+$fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
+$dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
+$dkey = explode(',', $dkey);
+$dexplain = '所属行业,所属省份,账号类型,粉丝量,报价,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
+$dexplain = explode(',', $dexplain);
+foreach ($dkey as $key => $value) {
+    $designate[$value] = $dexplain[$key];
+}
+$fieldsarr = explode(',', $fields);
+$smarty->assign('cat_id', $cat_id);
+$smarty->assign('designate', $designate);
+$smarty->assign('fieldsarr', $fieldsarr);
+
+
 
 /*筛选条件*/
 $a = isset($_GET['a'])?$_GET['a']:'';
@@ -156,49 +148,35 @@ $where2 = str_replace('a.','',$where);
 $limit = $dou->pager('medium', ($_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10), $page, $dou->rewrite_url('medium_category', $cat_id), $where2, $jumpext);
 
 /* 获取下载列表 */
-$fields = $dou->create_fields_quote('id,defined,add_time,title,image,indusid,proid,account_type,fans,moneys,link,click,description','a');
-$sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,$order.'a.add_time DESC',$limit);
+$fields = $dou->create_fields_quote('id,defined,add_time,title,image,click,description'.($fields?','.$fields:''),'a');
+$sql = sprintf("SELECT %s,b.cat_name,c.title as indusid,d.cat_name as proid from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,$order.'a.add_time DESC',$limit);
 // $dou->debug($sql,1);
 $query = $dou->query($sql);
 while ($row = $dou->fetch_assoc($query)) {
-    if (!$bkb) {
-        if ($row['image']) $bkb['image'] = 'LOGO';
-        if ($row['title']) $bkb['title'] = '名称';
-        if ($row['industry']) $bkb['industry'] = '行业';
-        if ($row['district']) $bkb['district'] = '地区';
-        if ($row['fans']) $bkb['fans'] = '粉丝数';
-        if ($row['click']) $bkb['click'] = '转发量';
-        if ($row['link']) $bkb['link'] = '外链';
-        if ($row['moneys']) $bkb['moneys'] = '价格';
-        if ($row['description']) $bkb['desc'] = '简介';
-    }
-    // $row['url'] = $dou->rewrite_url('medium', $row['id']);
-    // $row['add_time'] = date("Y-m-d", $row['add_time']);
-    // $row['add_time_short'] = date("m-d", $row['add_time']);
-    // $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
     if ($row['image']) {
         $image = explode('.', $row['image']);
         $row['image'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
     }
     $row['moneys'] = $row['moneys'] ? $dou->price_format($row['moneys']) : '';
-    $row['description'] = $row['description'] ? $row['description'] : '';
-    $row['link'] = $row['link'] ? '<a href="'.$row['link'].'">外链</a>' : '';
-
-    // 格式化自定义参数
-    $diy2 = array();
-    foreach (explode(',', $row['defined']) as $diy) {
-        $diy = explode('：', str_replace(":", "：", $diy));
-        if ($diy['1']) {
-            if (!$defined) {
-                $defined[] = $diy['0'];
-            }
-            $diy2[] = $diy['1'];
-        }
-    }
-    $row['defined'] = $diy2;
     
     $medium_list[] = $row;
 }
+    // $row['url'] = $dou->rewrite_url('medium', $row['id']);
+    // $row['add_time'] = date("Y-m-d", $row['add_time']);
+    // $row['add_time_short'] = date("m-d", $row['add_time']);
+    // $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
+    // 格式化自定义参数
+    // $diy2 = array();
+    // foreach (explode(',', $row['defined']) as $diy) {
+    //     $diy = explode('：', str_replace(":", "：", $diy));
+    //     if ($diy['1']) {
+    //         if (!$defined) {
+    //             $defined[] = $diy['0'];
+    //         }
+    //         $diy2[] = $diy['1'];
+    //     }
+    // }
+    // $row['defined'] = $diy2;
 // $dou->debug($medium_list,1);
 
 // 获取分类信息
@@ -233,8 +211,6 @@ $smarty->assign('nav_bottom_list', $dou->get_nav('bottom'));
 $smarty->assign('cate_info', $cate_info);
 $smarty->assign('medium_category', $dou->get_category('medium_category', 0, $cat_id));
 $smarty->assign('medium_list', $medium_list);
-$smarty->assign('defined', $defined);
-$smarty->assign('bkb', $bkb);
 
 $smarty->display('smart/list.html');
 ?>

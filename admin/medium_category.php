@@ -58,9 +58,17 @@ elseif ($rec == 'insert') {
     // CSRF防御令牌验证
     $firewall->check_token($_POST['token']);
     
-    $sql = "INSERT INTO " . $dou->table('medium_category') . " (cat_id, unique_id, parent_id, cat_name, keywords, description, sort)" . " VALUES (NULL, '$_POST[unique_id]', '$_POST[parent_id]', '$_POST[cat_name]', '$_POST[keywords]', '$_POST[description]', '$_POST[sort]')";
-    $dou->query($sql);
-    
+    $data = array(
+            'unique_id' => $_POST['unique_id'],
+            'parent_id' => $_POST['parent_id'],
+            'cat_name' => $_POST['cat_name'],
+            'keywords' => $_POST['keywords'],
+            'description' => $_POST['description'],
+            'sort' => $_POST['sort'],
+            'fields' => $_POST['fields'],
+        );
+    $dou->insert('medium_category',$data);
+
     $dou->create_admin_log($_LANG['medium_category_add'] . ': ' . $_POST['cat_name']);
     $dou->dou_msg($_LANG['medium_category_add_succes'], 'medium_category.php');
 } 
@@ -101,9 +109,17 @@ elseif ($rec == 'update') {
         
     // CSRF防御令牌验证
     $firewall->check_token($_POST['token']);
-    
-    $sql = "update " . $dou->table('medium_category') . " SET cat_name = '$_POST[cat_name]', unique_id = '$_POST[unique_id]', parent_id = '$_POST[parent_id]', keywords = '$_POST[keywords]' ,description = '$_POST[description]', sort = '$_POST[sort]' WHERE cat_id = '$_POST[cat_id]'";
-    $dou->query($sql);
+
+    $data = array(
+            'unique_id' => $_POST['unique_id'],
+            'parent_id' => $_POST['parent_id'],
+            'cat_name' => $_POST['cat_name'],
+            'keywords' => $_POST['keywords'],
+            'description' => $_POST['description'],
+            'sort' => $_POST['sort'],
+            'fields' => $_POST['fields'],
+        );
+    $dou->update('medium_category',$data,'cat_id='.intval($_POST['cat_id']));
     
     $dou->create_admin_log($_LANG['medium_category_edit'] . ': ' . $_POST['cat_name']);
     $dou->dou_msg($_LANG['medium_category_edit_succes'], 'medium_category.php');
