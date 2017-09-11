@@ -1,4 +1,5 @@
 ﻿{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}resetCss/header.css"/>
 <script src="{$site.theme_s}js/pagination.js"></script>
 
 <body class="cover">
@@ -7,14 +8,18 @@
 <div class="login m10">
     <div class="login-from">
         <dl>
-            <dt><img src="../picture/login_logo.png" alt="三点一刻智能协同营销平台""/></dt>
-            </dl>
+            <dt><img src="{$site.theme}picture/login_logo.png" alt="""/></dt>
+        </dl>
         <div class="login-input">
-            <input type="text" id="mobile" placeholder="输入手机号"/>
-            <input type="password" id="password" placeholder="输入密码"/>
-            <div class="login-a"><a href="rest.shtml.html">忘记密码？</a></div>
+        <form id="loginto" action="{$url.login_post}" method="post">
+            <input type="text" name="telephone" id="mobile" placeholder="输入手机号"/>
+            <input type="password" name="password" id="password" placeholder="输入密码"/>
+            <div class="login-a"><a href="{$url.password_reset}">忘记密码？</a></div>
+
+            <input type="hidden" name="token" value="{$token}" />
             <input type="submit" onclick="login();" value="登录"/>
-            <div class="login-b"><span>还没有注册？</span><a href="reg.shtml.html">注册</a></div>
+            <div class="login-b"><span>还没有注册？</span><a href="{$url.register}">注册</a></div>
+        </form>
         </div>
     </div>
 </div>

@@ -82,7 +82,7 @@ elseif ($rec == 'register') {
     $smarty->assign('page_title', $dou->page_title('user', 'user_register'));
     $smarty->assign('ur_here', $dou->ur_here('user', 'user_register'));
     
-    $smarty->display('user/reg.html');
+    $smarty->display('user/register.html');
 }
 
 /**

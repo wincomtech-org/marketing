@@ -26,7 +26,7 @@
             </div>
             <div class="codeText">
                 <img src="{$site.theme_s}resetImg/ico24.jpg">
-                <span>APP 三点一刻</span>
+                <span>APP {$site.site_name}</span>
             </div>
             <i class="clear"></i>
         </div>

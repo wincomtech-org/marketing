@@ -87,7 +87,7 @@
                     <div class="login" style="display:none">
                         <form id="loginto" action="{$url.login_post}" method="post">
                         <span>
-                            <i>用户名</i>
+                            <i>手机号</i>
                             <input type="text" name="telephone" id="mobile">
                             <div class="clear"></div>
                         </span>

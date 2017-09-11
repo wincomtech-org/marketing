@@ -3,32 +3,36 @@
         <div class="contactUs">
             <img src="{$site.theme_s}resetImg/logo_fff.png">
             <div class="clear"></div>
-            <span>商务热线：158-3063-7937</span>
-            <span>服务热线：4008-315-002</span>
-            <span>联系地址：北京市朝阳区建国路77号华贸中心写字楼3号楼1201A</span>
-            <span>2015-2016 三点一刻 版权所有 京ICP备：15064808号-1</span>
+            <span>商务热线：{$site.fax}</span>
+            <span>服务热线：{$site.tel}</span>
+            <span>联系地址：{$site.site_address}</span>
+            <span>{$lang.copyright} {$lang.powered_by} {$site.icp}</span>
         </div>
         <div class="listText">
-            <a href="staff.shtml.html">员工天地</a>
-            <a href="recruitment.shtml.html">招贤纳士</a>
+            {section name=bottom loop=$nav_bottom_list start=0 max=2}
+            <a href="{$nav_bottom_list[bottom].url}">{$nav_bottom_list[bottom].nav_name}</a>
+            {/section}
         </div>
         <div class="listText">
-            <a href="help.shtml.html">帮助中心</a>
-            <a href="team.shtml.html">团队介绍</a>
-            <a href="partner.shtml.html">合作伙伴</a>
-            <a href="about.shtml.html">联系我们</a>
+            {section name=bottom loop=$nav_bottom_list start=2 max=10}
+            <a href="{$nav_bottom_list[bottom].url}">{$nav_bottom_list[bottom].nav_name}</a>
+            {/section}
         </div>
         <div class="codeBox">
             <div class="codeText">
                 <img src="{$site.theme_s}resetImg/ico23.jpg">
-                <span>微信公众号 干活</span>
+                <span>微信公众号</span>
             </div>
             <div class="codeText">
                 <img src="{$site.theme_s}resetImg/ico24.jpg">
-                <span>APP 三点一刻</span>
+                <span>APP {$site.site_name}</span>
             </div>
             <i class="clear"></i>
         </div>
         <i class="clear"></i>
-    </div>
+    </div>  
 </div>
+
+<!--{if $site.code}-->
+<div style="display:none">{$site.code}</div>
+<!--{/if}-->

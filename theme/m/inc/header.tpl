@@ -19,7 +19,17 @@
         <!-- 登录后 -->
         <!--{if $user}-->
         <div class="right-btn1">
-            {$site.theme_s}
+            <a href="{$url.user}"><img alt="" src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png"></a>
+            <span>{$user.user_name}</span>
+            <div class="user_list">
+                <span><img src="{$site.theme_s}resetImg/list_up.png" alt=""></span>
+                <ul>
+                    <li><a href="{$url.user}"><em class="list1"></em>个人中心</a><div style="clear:both"></div></li>
+                    <li><a href="{$url.order_list}"><em></em>我的订单</a><div style="clear:both"></div></li> 
+                    <li><a href="{$url.cart}"><em></em>购物车</a><div style="clear:both"></div></li> 
+                    <li><a href="{$url.logout}"><em></em>退出登录</a><div style="clear:both"></div></li>
+                </ul>
+            </div>
         </div>
         <!-- {else} -->
         <div class="right-btn">
