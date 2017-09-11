@@ -282,7 +282,7 @@ elseif ($rec == 'update') {
         );
     if ($image) 
         $data['image'] = $image;
-    $dou->debug($data,1);
+    // $dou->debug($data,1);
     $dou->update('medium',$data,'id='.$_POST['id']);
     
     $dou->create_admin_log($_LANG['medium_edit'] . ': ' . $_POST['title']);

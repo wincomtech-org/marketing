@@ -1150,7 +1150,7 @@ class Common extends DbMysql {
         } else {
             if (is_string($var)) {
                 echo $var.'<br>';
-            } elseif (is_object()) {
+            } elseif (is_object($var)) {
                 echo '<pre>';var_dump($var);
             } elseif (is_array($var)) {
                 echo '<pre>';print_r($var);
