@@ -189,9 +189,9 @@ class Action extends Common {
                     <div class="boxCon">
                         <dl>
                             <dt class="boxdt">{$msg}</dt>
-                            <dd class="boxdd1">媒介名：{$ext[name]}</dd>
+                            <dd class="boxdd1">当前媒介名：{$ext[name]}</dd>
                             <dd class="boxdd1">总数：{$ext[total]}</dd>
-                            <dd class="boxdd1">小计：{$ext[amount]}</dd>
+                            <dd class="boxdd1">价格总计：{$ext[amount]}</dd>
                             <dd class="boxdd2"><a href="order.php?rec=cart">结算</a></dd>
                         </dl>
                     </div>
