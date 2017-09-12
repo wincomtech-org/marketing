@@ -39,15 +39,10 @@
 								<div class="order_item">
 									<dl class="payment" style="width:100%;height:100%">
 										<!--{foreach from=$payment_list name=payment item=payment}-->
-<<<<<<< HEAD
-										<dd style="float:left" style="margin-right:10px;">
-											<input type="radio" name="pay_id" id="{$payment.id}" value="{$payment.id}"{if $smarty.foreach.payment.first} checked="true"{/if}>
-											<label for="{$payment.id}"> <img src="{$payment.image}" width="133" height="39" style="margin-right:30px;margin-left:4px;"> </label>
 										<dd style="float:left">
 											&nbsp;&nbsp;&nbsp;&nbsp;
 											<input type="radio" name="pay_id" id="{$payment.id}" value="{$payment.id}"{if $payment.id eq 'alipay'} checked="true"{elseif $smarty.foreach.payment.first} checked="true"{/if}>
-											<label for="{$payment.id}"> <img src="{$payment.image}" width="133" height="39" style="margin-right:30px;margin-left:4px;> </label>
->>>>>>> aad2a95207f4cbb594a766844d7fb311d79fbc8a
+											<label for="{$payment.id}"> <img src="{$payment.image}" width="133" height="39" style="margin-right:30px;margin-left:4px;"> </label>
 										</dd>
 										<!--{/foreach}-->
 									</dl>
