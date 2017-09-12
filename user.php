@@ -627,6 +627,7 @@ elseif ($rec == 'order') {
     $order['add_time'] = date("Y-m-d h:i:s", $order['add_time']);
     $order['status_format'] = $_LANG['order_status_' . $order['status']];
     $order['product_list'] = $dou_order->get_order_product($order['order_id']);
+    $order['total'] = count($order['product_list']);
 
     // 是否显示支付按钮
     if ($dou->get_plugin($order['pay_id'])) {
@@ -638,7 +639,7 @@ elseif ($rec == 'order') {
         // 生成支付按钮
         $order['payment'] = $plugin->work();
     }
-
+$dou->debug($order,1);
     // 赋值给模板
     $smarty->assign('page_title', $dou->page_title('user', 'order_view'));
     // $smarty->assign('ur_here', $dou->ur_here('user', 'order_view'));

@@ -20,15 +20,20 @@ if ($cat_id == -1) {
 $page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : 1;
 $limit = $dou->pager('article', ($_DISPLAY['article'] ? $_DISPLAY['article'] : 10), $page, $dou->rewrite_url('article_category', $cat_id), $where);
 /* 获取文章列表 */
-$sql = "SELECT id,title,content,image,cat_id,add_time,click,description FROM " . $dou->table('article') . $where . " ORDER BY sort,id DESC" . $limit;
+$sql = "SELECT id,title,image,cat_id,add_time,click,description FROM " . $dou->table('article') . $where . " ORDER BY sort,id DESC" . $limit;
 $query = $dou->query($sql);
 while ($row = $dou->fetch_array($query,MYSQL_ASSOC)) {
     $row['url'] = $dou->rewrite_url('article', $row['id']);
     $row['add_time'] = date("Y-m-d", $row['add_time']);
     $row['add_time_short'] = date("m-d", $row['add_time']);
-    $row['image'] = $row['image'] ? ROOT_URL . $row['image'] : '';
+    if ($row['image']) {
+        // 生成缩略图的文件名
+        $image = explode('.', $row['image']);
+        $row['thumb'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
+        // $row['image'] = ROOT_URL . $row['image'];
+    }
     // 如果描述不存在则自动从详细介绍中截取
-    $row['description'] = $row['description'] ? $row['description'] : $dou->dou_substr($row['content'], 200, false);
+    $row['description'] = $row['description'] ? $row['description'] : '';
     $article_list[] = $row;
 }
 

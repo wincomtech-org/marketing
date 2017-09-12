@@ -1,0 +1,75 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}css/goodsList.css"/>
+<style type="text/css">
+  {literal}
+/*.btnPayment{
+float: right;
+background-color: #ff4a3f;
+color: #fff;
+border: none;
+padding: 20px;
+font-size: 24px;
+margin-right:10px;
+}*/
+{/literal}
+</style>
+
+<body onload="goodsList();">
+  {include file="inc/header.tpl"}
+
+  <div class="page-content">
+    <div class="usercenter_page">
+      {include file="inc/user_menu.tpl"}
+
+      <div class="usercenter_content usercenter_demand">
+        <div class="goodsListTitle">我的订单</div>
+        <div class="order_mes">
+          <!-- 商品清单 -->
+          <div class="merchBill">
+            <h3 class="merchBill_tit">商品清单</h3>
+            <div class="merchBill_con">
+              <div class="merchBill_con_right">
+                <h3>订单编号：{$order.order_sn}</h3>
+                <ul class="merchBill_con_right">
+                  <!-- {foreach $order.product_list $v} -->
+                  <li>
+                    <span class="left"><img src="{$v.thumb}" alt=""></span>
+                    <span class="middle">{$v.name}</span>
+                    <span class="right">{$v.price}</span>
+                  </li>
+                  <!-- {/foreach} -->
+                </ul>
+
+              </div>
+              <div class="clear"></div>
+            </div>          
+
+          </div>
+
+          <!-- 商品合计 -->
+          <div class="total_commodity">
+            <h3 class="total_commodity_tit">商品合计</h3>
+            <div class="total_commodity_con">
+              <p>总计：<span class="courses_amount">{$order.total}</span>件</p>
+              <p>合计：<span class="total">{$order.order_amount_format}</span></p>
+              <div class="courses">
+                <p>下单时间：<span class="total">{$order.add_time}</span></p>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <div class="order_amount">
+              <a href="{$url.order_cancel}&order_sn={$order.order_sn}">取消订单</a>
+              <!-- <input class="btn" type="submit" value="付款"> -->
+              <div style="margin-right:20px;">{$order.payment}</div>
+            </div>
+            <div class="clear"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {include file="inc/footer.tpl"}
+  <script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
+</body>
+</html>

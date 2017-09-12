@@ -51,8 +51,8 @@
             <div class="total_commodity">
               <h3 class="total_commodity_tit">商品合计</h3>
               <div class="total_commodity_con">
-               <p>总数：<span class="courses_amount">5</span>件</p>
-               <p>应付总金额：<span class="total">￥888</span></p>
+               <p>总数：<span class="courses_amount">{$order.total}</span>件</p>
+               <p>应付总金额：<span class="total">{$order.order_amount_format}</span></p>
                <div class="courses">
                   <p>下单时间：<span class="total">{$order.add_time}</span></p>
               </div>

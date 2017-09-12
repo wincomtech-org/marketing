@@ -13,6 +13,7 @@ $img = new Upload(ROOT_PATH . $images_dir, $thumb_dir); // 实例化类文件
 if (!file_exists(ROOT_PATH . $images_dir)) {
     mkdir(ROOT_PATH . $images_dir, 0777);
 }
+$_CFG['thumb_width'] = 245; $_CFG['thumb_height'] = 166;
 
 // 赋值给模板
 $smarty->assign('rec', $rec);
