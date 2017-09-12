@@ -133,6 +133,22 @@
 </body>
 <script>
 {literal}
+    // 预览头像
+    function preview(f,o)  
+    {
+        var prevDiv = document.getElementById('preview'+o);
+        if (f.files && f.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+            }
+            reader.readAsDataURL(f.files[0]);
+        } else {
+            // prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + f.value + '\'"></div>';
+            prevDiv.innerHTML = '<img style="width:110px;height:110px" src="'+ f.value +'" />';
+        }
+    }
+
     $('.up_img').css("height",'130px')
     $('.basic-img .basic-img-img').css("height",'130px')
 
