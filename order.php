@@ -279,7 +279,9 @@ elseif ($rec == 'success_virtual') {
 
         // URL跳转
         $payurl = $plugin->workurl();
-        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$payurl.'"</script>';
+        // echo $payurl;die;
+        $payurl = str_replace('&amp','&',$payurl);// 替换实体字符
+        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$payurl.'"</script>';exit;
 
         // 直接跳转表单
         // echo $plugin->work();
@@ -291,7 +293,6 @@ elseif ($rec == 'success_virtual') {
         // 跳转到支付链接
         // $dou->dou_header($plugin->workurl());
     }
-    exit;
 }
 
 /**

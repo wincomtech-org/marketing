@@ -1,90 +1,77 @@
 {include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}css/goodsList.css"/>
+<!-- <link rel="stylesheet" href="{*$site.theme_s*}css/pay.css"/> -->
 <script src="{$site.theme_s}js/pagination.js"></script>
 <script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
-<link rel="stylesheet" href="{$site.theme_s}css/pay.css"/>
+<style type="text/css">
+{literal}
+.btnPayment{
+  float: right;
+    background-color: #ff4a3f;
+    color: #fff;
+    border: none;
+    padding: 20px;
+    font-size: 24px;
+    margin-right:10px;
+}
+{/literal}
+</style>
 
-<body >
+<body onload="goodsList();">
     {include file="inc/header.tpl"}
 
     <div class="page-content">
         <div class="usercenter_page">
-            <!-- {include file="inc/user_menu.tpl"} -->
+            {include file="inc/user_menu.tpl"}
             <div class="usercenter_content usercenter_demand">
-                <!-- 订单 -->
-                <div class='order_form'>
-                    <!-- 订单内容 -->
-                    <div class="order_content orderForm_main">
-                        <div class="order_information">
-                            <h3 class="order_information_tit">订单信息</h3>
-                            <!-- 地址 -->
-                            <div class="order_address">
-                                <h3 class="order_address_tit">联系人手机号<span>（如日后出现一些问题，能及时联系您）</span></h3>
-                                <div class="order_addr_content">
-                                    <div class="order_item">
-                                        <span class="order_item_tit">手机号码</span>
-                                        <div class="order_item_con">
-                                            <div class="order_item_con_input">
-                                                <input disabled value="{$order.telephone}">
-                                            </div>
-                                            <span class="order_item_tip">用于接收发货通知和送货提前通知</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 支付方式 -->
-                            <div class="order_address">
-                                <h3 class="order_address_tit">支付方式<span></span></h3>
-                                <div class="order_addr_content">
-                                <div class="order_item">
-                                    <dl class="payment" style="width:100%;height:100%">
-                                        <dd style="float:left">
-                                            {$order.pay_name}
-                                        </dd>
-                                    </dl>
-                                </div>
-                                </div>
-                            </div>
-                            <!-- 商品清单 -->
-                            <div class="merchBill">
-                                <h3 class="merchBill_tit">商品清单</h3>
-                                <div class="merchBill_con">
-                                    <div class="merchBill_con_right">
-                                        <ul class="merchBill_con_right">
-                                            <!-- {foreach $order.product_list $v} -->
-                                            <li>
-                                                <span class="left"><img src="{$v.thumb}" alt=""></span>
-                                                <span class="middle">{$v.name}</span>
-                                                <span class="right">{$v.price}</span>
-                                            </li>
-                                            <!-- {/foreach} -->
-                                        </ul>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!-- 商品合计 -->
-                            <div class="total_commodity">
-                                <h3 class="total_commodity_tit">订单信息</h3>
-                                <div class="total_commodity_con">
-                                    <p>下单时间：<span>{$order.add_time}</span></p>
-                                    <p>订单状态：<span>{$order.status_format}</span></p>
-                                    <p>应付总金额：<span>{$order.order_amount_format}</span></p>
-                                    
-                                    <!-- <input class="btn" type="submit" value="付款"> -->
-                                    {$order.payment}
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="order_amount">
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
+                <div class="goodsListTitle">我的订单</div>
+                <div class="order_mes">
+                 <!-- 商品清单 -->
+                 <div class="merchBill">
+                     <h3 class="merchBill_tit">商品清单</h3>
+                     <div class="merchBill_con">
+                      <div class="merchBill_con_right">
+                          <h3>订单编号：{$order.order_sn}</h3>
+                          <ul class="merchBill_con_right">
+                              <!-- {foreach $order.product_list $v} -->
+                              <li>
+                                <span class="left"><img src="{$v.thumb}" alt=""></span>
+                                <span class="middle">{$v.name}</span>
+                                <span class="right">{$v.price}</span>
+                            </li>
+                            <!-- {/foreach} -->
+                        </ul>
+
                     </div>
+                    <div class="clear"></div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- {include file="inc/footer.tpl"} -->
+            <!-- 商品合计 -->
+            <div class="total_commodity">
+              <h3 class="total_commodity_tit">商品合计</h3>
+              <div class="total_commodity_con">
+               <p>总数：<span class="courses_amount">5</span>件</p>
+               <p>应付总金额：<span class="total">￥888</span></p>
+               <div class="courses">
+                  <p>下单时间：<span class="total">{$order.add_time}</span></p>
+              </div>
+              <div class="clear"></div>
+          </div>
+          <div class="order_amount">
+              <a href="{$url.order_cancel}&order_sn={$order.order_sn}">取消订单</a>
+              <!-- <input class="btn" type="submit" value="付款"> -->
+              <div style="margin-right:20px;">{$order.payment}</div>
+          </div>
+          <div class="clear"></div>
+      </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+{include file="inc/footer.tpl"}
+<script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
 </body>
 </html>
