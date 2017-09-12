@@ -16,7 +16,7 @@
         <!--{if $user}-->
         <div class="getInto">
             <div class="right-btn1">
-                <a href="{$url.user}"><img alt="123" src="{$site.theme_s}resetImg/ico21.png"></a>
+                <a href="{$url.user}"><img alt="{$user.user_name}" src="{$user.thumb}"></a>
                 <a href="{$url.user}"><span>{$user.user_name}</span></a>
                 <div class="user_list">
                     <span><img src="{$site.theme_s}resetImg/list_up.png"></span>
