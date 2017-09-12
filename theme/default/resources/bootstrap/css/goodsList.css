@@ -68,3 +68,9 @@
 .goods_lists .order_pay,.goods_lists .order_view,.goods_lists .order_del{padding:3px 6px;color:#fff;background-color:red;margin-right:6px;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;-o-border-radius:6px;}
 .goods_lists .order_view{background-color:orange;}
 .goods_lists .order_del{background-color:green;}
+
+table.goodsList{width:97%;margin-top:10px;}
+.goodsList td,.goodsList th{text-align:center;padding:5px;border-left:1px solid #ddd;border-bottom:1px solid #ddd;}
+.goodsList td:last-child,.goodsList th:last-child{;border-right:1px solid #ddd;}
+.goodsList th{border-top:1px solid #ddd;padding:10px 5px;}
+.goodsList .btnPayment{margin:5px auto;border-radius:6px;font-size:13.333px;}
