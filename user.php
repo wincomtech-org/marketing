@@ -639,7 +639,7 @@ elseif ($rec == 'order') {
         // 生成支付按钮
         $order['payment'] = $plugin->work();
     }
-$dou->debug($order,1);
+// $dou->debug($order,1);
     // 赋值给模板
     $smarty->assign('page_title', $dou->page_title('user', 'order_view'));
     // $smarty->assign('ur_here', $dou->ur_here('user', 'order_view'));
