@@ -66,7 +66,14 @@ class DouUser {
         $query = $GLOBALS['dou']->select($GLOBALS['dou']->table('user'), '*', '`user_id` = \'' . $user_id . '\'');
         $uinfo = $GLOBALS['dou']->fetch_array($query,MYSQL_ASSOC);
         $uinfo['username'] = $uinfo['nickname']?$uinfo['nickname'] : ($uinfo['telephone']?$uinfo['telephone']:($uinfo['email']?$uinfo['email']:''));
-        $uinfo['avatar'] = $uinfo['avatar'] ? ROOT_URL . $uinfo['avatar'] : 'http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png';
+        // 生成缩略图的文件名
+        if ($uinfo['avatar']) {
+            $image = explode(".", $uinfo['avatar']);
+            $uinfo['thumb'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
+            $uinfo['avatar'] = ROOT_URL . $uinfo['avatar'];
+        } else {
+            $uinfo['thumb'] = 'http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png';
+        }
         $uinfo['sexnum'] = $uinfo['sex'];
         $uinfo['sex'] = $uinfo['sex'] ? $GLOBALS['_LANG']['user_man'] : $GLOBALS['_LANG']['user_woman'];
         $uinfo['add_time'] = date("Y-m-d", $uinfo['add_time']);

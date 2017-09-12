@@ -10,7 +10,7 @@ require ROOT_PATH .'public.php';
 
 // rec操作项的初始化
 $rec = $check->is_rec($_REQUEST['rec']) ? $_REQUEST['rec'] : 'default';
-echo $_URL['user'];
+
 // 引入和实例化订单功能
 if (file_exists($order_file = ROOT_PATH . 'include/order.class.php')) {
     include_once ($order_file);
@@ -431,11 +431,11 @@ elseif ($rec == 'edit_post') {
     // }
 
     // 验证地址
-    if (!$_POST['address']) {
-        $wrong['address'] = $_LANG['user_address_empty'];
-    } elseif ($check->is_illegal_char($_POST['address'])) {
-        $wrong['address'] = $_LANG['user_address'] . $_LANG['illegal_char'];
-    }
+    // if (!$_POST['address']) {
+    //     $wrong['address'] = $_LANG['user_address_empty'];
+    // } elseif ($check->is_illegal_char($_POST['address'])) {
+    //     $wrong['address'] = $_LANG['user_address'] . $_LANG['illegal_char'];
+    // }
 
     // 验证邮政编码
     // if (isset($_POST['postcode']) && !$check->is_postcode($_POST['postcode']))
@@ -457,12 +457,29 @@ elseif ($rec == 'edit_post') {
         }
         $dou->dou_msg($wrong_format, $_URL['user']);
     }
-    
-    // 格式化自定义参数
-    if (isset($_POST['defined'])) {
-        $_POST['defined'] = str_replace("\r\n", ',', $_POST['defined']);
+
+    // 图片上传
+    include_once (ROOT_PATH . 'include/upload.class.php');
+    $images_dir = 'images/avatar/'; // 文件上传路径，结尾加斜杠
+    $thumb_dir = ''; // 缩略图路径（相对于$images_dir） 结尾加斜杠，留空则跟$images_dir相同
+    $img = new Upload(ROOT_PATH . $images_dir, $thumb_dir); // 实例化类文件
+    if (!file_exists(ROOT_PATH . $images_dir)) {
+        mkdir(ROOT_PATH . $images_dir, 0777);
     }
-    
+    $_CFG['thumb_width'] = 110; $_CFG['thumb_height'] = 110;
+    // 图片上传
+    if ($_FILES['avatar']['name'] != '') {
+        $image_name = $img->upload_image('avatar', $img->create_file_name('user', $_USER['user_id'], 'avatar','user_id'));
+        $image = $images_dir . $image_name;
+        $img->make_thumb($image_name, $_CFG['thumb_width'], $_CFG['thumb_height']);
+        // 因为这里文件名始终相同，会直接覆盖源文件，所以不可以做额外删除
+        // 但是如果文件的后缀不一样，就不能删除旧文件了哦！
+    }
+
+    // 格式化自定义参数
+    // if (isset($_POST['defined'])) {
+    //     $_POST['defined'] = str_replace("\r\n", ',', $_POST['defined']);
+    // }
 
     // CSRF防御令牌验证
     $firewall->check_token($_POST['token'], 'user_edit');
@@ -480,8 +497,10 @@ elseif ($rec == 'edit_post') {
             'introduce'  => $_POST['introduce'],
             'email'  => $_POST['email'],
             // 'telephone'  => $_POST['telephone'],
-            'defined'  => $_POST['defined'],
+            // 'defined'  => $_POST['defined'],
         );
+    if ($image) 
+        $data['avatar'] = $image;
     $dou->update('user',$data,'user_id='.$_USER['user_id']);
     
     $dou->dou_msg($_LANG['user_edit_success'], $_URL['user']);

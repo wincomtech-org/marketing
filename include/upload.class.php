@@ -194,10 +194,10 @@ class Upload {
      * $field 上传的图片域
      * +----------------------------------------------------------
      */
-    function create_file_name($module, $id='', $field='image')
+    function create_file_name($module, $id='', $field='image', $key='id')
     {
         if ($field && $id)
-            $file_name = $GLOBALS['dou']->get_file_name($GLOBALS['dou']->get_one("SELECT $field FROM " . $GLOBALS['dou']->table($module) . " WHERE id = '$id'"));
+            $file_name = $GLOBALS['dou']->get_file_name($GLOBALS['dou']->get_one("SELECT $field FROM " . $GLOBALS['dou']->table($module) . " WHERE ". $key ." = '$id'"));
             
         $item_id = $id ? $id : $GLOBALS['dou']->auto_id($module);
         return $file_name ? $file_name : $item_id . '_' . $GLOBALS['dou']->create_rand_string('n', 6, time());
