@@ -19,8 +19,8 @@
         <!--{if $open.user}-->
         <!--{if $user}-->
         <div class="right-btn1">
-            <a href="{$url.user}"><img alt="" src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png"></a>
-            <span>{$user.user_name}</span>
+            <a href="{$url.user}"><img alt="" src="{$site.theme_s}images/ico21.png"></a>
+            <a href="{$url.user}"><span>{$user.user_name}</span></a>
             <div class="user_list">
                 <span><img src="{$site.theme_s}resetImg/list_up.png" alt=""></span>
                 <ul>

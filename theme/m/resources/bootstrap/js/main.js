@@ -17,21 +17,14 @@ $(function(){
         $('.smart-block .smart_smaller').css('display','none');
     }
 })
+ 
 // var _hmt = _hmt || [];
 // (function() {
-    // var hm = document.createElement("script");
-    // hm.src = "https://hm.baidXIsByTagName("script")[0];
-    // s.parentNode.insertBefore(hm, s);
+//   var hm = document.createElement("script");
+//   hm.src = "https://hm.baidu.com/hm.js?c16e71335ce5575c1aab0ce71c7415ae";
+//   var s = document.getElementsByTagName("script")[0]; 
+//   s.parentNode.insertBefore(hm, s);
 // })();
-
- 
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?c16e71335ce5575c1aab0ce71c7415ae";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
  
 
 //全局变量
