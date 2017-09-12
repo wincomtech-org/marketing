@@ -31,7 +31,7 @@
                 <div class="basic-show">
                     <div class="basic-edit"><img src="{$site.theme_s}img/basic_edit.jpg" alt="{$site.site_name}"/></div>
                     <dl class="basic-img" style="width:33%;">
-                        <dt><img src="{$user_info.avatar}" alt="用户头像"/></dt>
+                        <dt><img src="{$user_info.thumb}" alt="用户头像"/></dt>
                         <dd class="user_name">{$user_info.username}</dd>
                         <span style="left:65%;bottom:25%;"></span>
                         <div></div>
@@ -55,7 +55,7 @@
                 <form id="userForm" method="post" action="{$url.edit_post}" enctype="multipart/form-data">
 
                     <div class="imgbox">
-                        <div id="preview1" class="imgbox1">{if $user_info.avatar}<img src="{$user_info.avatar}" class="preimg">{/if}</div>  
+                        <div id="preview1" class="imgbox1">{if $user_info.thumb}<img src="{$user_info.thumb}" class="preimg">{/if}</div>  
                         <address class="btnupload">选择文件
                             <input type="file" class="upload_pic" onchange="preview(this,1)" name="avatar" value="{$user_info.avatar}">
                         </address>
@@ -83,6 +83,7 @@
                     </div> -->
 
                     <div class="basic-block-tit">基本信息(<s class="red">*</s>号为必填)</div>
+
                     <div class="basic-tit"><img src="{$site.theme_s}img/basic_1.jpg" alt="{$site.site_name}"/>昵称</div>
                     <div class="basic-content">
                         <input onfocus="mod_u_info(this,1)" onblur="mod_u_info(this,2)" type="text" name="nickname" value="{$user_info.username}"/>
@@ -105,13 +106,13 @@
                     <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg" alt="{$site.site_name}"/><s class="red">*</s>性别</div>
                     <div class="basic-content sex">
                         <span class="onstyle"><input {if $user_info.sexnum eq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex1" value="1"/> 男</span>
-                        <span ><input {if !$user_info.sexnum}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex2" value="0"/> 女</span>
+                        <span ><input {if $user_info.sexnum neq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex2" value="0"/> 女</span>
                     </div>
 
                     <div class="basic-tit"><img src="{$site.theme_s}img/basic_3.jpg" alt="{$site.site_name}"/>从业年限</div>
                     <div class="basic-content">
                         <div class="workage">
-                            <input type="text" name="workage" value="{$user_info.workage}"> 年
+                            <input type="number" name="workage" value="{$user_info.workage}"> 年
                         </div>
                     </div>
 
@@ -158,9 +159,10 @@
                         <!-- <button onclick="edit_user();">保存</button> -->
                         <input type="hidden" name="token" value="{$token}">
                         <input type="submit" value="保存">
-                        <input type="reset" value="重置">
+                        <a class="cancel" href="{$url.user}">取消</a>
                     </div>
-                </form></div>
+                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -170,10 +172,8 @@
 </body>
 <script type="text/javascript">
     {literal}
-    /****/
     laydate.render({
         elem: '#birthday'
-       
     });
     // 预览头像
     function preview(f,o)  

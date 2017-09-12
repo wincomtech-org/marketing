@@ -24,119 +24,105 @@
     {include file="inc/user_menu.tpl"}
         <div class="usercenter_content usercenter_demand">
             <div class="demand-block basic-block">
-                <div class="demand-block-content edit_area" style="display: none;">
-                    <form id="" method="post" enctype="multipart/form-data" action="">
-                        <!-- <div class="basic-img up_img">
-                            <div class="basic-img-img" style="height:130px;width:130px;" style="position:relative;">
-                                <img src=../resources/bootstrap/images/user.png" alt="三点一刻智能协同营销平台"/ id="preview">
-                                <input type="file" class="upload_pic" onchange="preview(this)" name="oldschool_pic" value="" id="" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1">
-                            </div>
-
-                            <p class="up_img_de">请上传正方形图片，建议尺寸：130*130</p>
-                        </div> -->
-                           <style type="text/css" media="screen">
-                               
-                            </style> 
-                         <div class="basic-img-img">
-                    
-                                <label class="lf" style="display:inline-block;">头像：</label>
-                                <div class="lf imgbox">
-                                   <div id="preview" class="imgbox1"></div>  
-                                    <span class="btn upload">选择文件
-                                    <input type="file" class="upload_pic" onchange="preview(this)" name="IDpic1" value="{$IDpic1}" id=""></span>
-                                </div>
-                           
-                                <div class="clear"></div>
-                        </div>
-
-                        <div class="basic-block-tit">基本信息</div>
-
-                        <div class="basic-tit"><img src="../resources/bootstrap/img/basic_1.jpg" alt="三点一刻智能协同营销平台"/>姓名</div>
-                        <div class="basic-content">
-                            <input type="text" name="name" id="name" value="123"/>
-                            <img src="../resources/bootstrap/resetImg/privacy1.png" class="privacy-img" title="隐藏您的个人信息" tit=0>
-                            <em class="clear"></em>
-                        </div>
-
-                        <i class="clear"></i>
-
-                        <div class="basic-tit"><img src="../resources/bootstrap/img/basic_2.jpg" alt="三点一刻智能协同营销平台"/>性别</div>
-                        <div class="basic-content sex">
-                            <span ><input type="radio" name="sex" id="sex1"  value="1"/> 男</span>
-                            <span ><input type="radio" name="sex" id="sex2"  value="2"/> 女</span>
-                        </div>
-                        <div class="basic-tit"><img src="../resources/bootstrap/img/basic_3.jpg" alt="三点一刻智能协同营销平台"/>从业年限</div>
-                        <div class="basic-content">
-                            <div class="ex">
-                                <select id="ex" name="ex">
-                                    <option checked>请选择您的从业年限</option>
-                                    <option >1-3年</option>
-                                    <option >3-5年</option>
-                                    <option >5-8年</option>
-                                    <option >8-10年</option>
-                                    <option >10年以上</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="basic-tit">
-                            <img src="../resources/bootstrap/img/basic_4.jpg" alt="三点一刻智能协同营销平台"/>出生日期
-                        </div>
-                        <div class="basic-content">
-                            <input type="text" name="birthday" id="birthday" value=""  required/>
-                        </div>
-                        <div class="basic-tit">
-                            <img src="../resources/bootstrap/img/basic_5.jpg" alt="三点一刻智能协同营销平台"/>所在地区
-                        </div>
-                        <div class="basic-content">
-                            <input type="text" id="cityArea" name="cityArea" value=""  required/>
-                        </div>
-                        <div class="basic-tit">
-                            <img src="../resources/bootstrap/img/basic_6.jpg" alt="三点一刻智能协同营销平台"/>微信号
-                        </div>
-                        <div class="basic-content">
-                            <input type="text" id="wxNum" name="wxNum" value="" required/>
-                        </div>
-                        <div class="basic-tit">
-                            <img src="../resources/bootstrap/img/basic_7.jpg" alt="三点一刻智能协同营销平台"/>一句话简介
-                        </div>
-                        <div class="basic-content intro">
-                            <textarea id="des" rows="3" name="des"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/></textarea>
-                        </div>
-                        <div class="basic-block-tit">账户信息</div>
-                        <div class="basic-tit"><img src="../resources/bootstrap/img/basic_8.jpg" alt="三点一刻智能协同营销平台"/>邮箱</div>
-                        <div class="basic-content">
-                            <input type="text" id="email" name="email" value=""  required/>
-                        </div>
-                        <div class="basic-tit"><img src="../resources/bootstrap/img/basic_9.jpg" alt="三点一刻智能协同营销平台"/>手机号</div>
-                        <div class="basic-content">
-                            <input type="text" readonly value="13205513306"/>
-                        </div>
-                        <div class="basic-btn">
-                            <button onclick="edit_user();">保存</button>
-                            <button class="cancel">取消</button>
-                        </div>
-                    </form>
-                </div>
+                <!-- 页面默认显示的 -->
                 <div class="basic-show">
-                    <div class="basic-edit"><img src="../resources/bootstrap/img/basic_edit.jpg" alt="三点一刻智能协同营销平台"/></div>
-                    <dl class="basic-img" style="width: 33%;">
-                        <dt><img src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png" alt="三点一刻智能协同营销平台"/></dt>
-                        <dd style="height: 25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">123</dd>
+                    <div class="basic-edit"><img src="{$site.theme_s}img/basic_edit.jpg"/></div>
+                    <dl class="basic-img" style="width:33%;">
+                        <dt><img src="{$user_info.thumb}"/></dt>
+                        <dd style="height:25px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{$user_info.username}</dd>
                         <span style="left:65%;bottom:25%;"></span>
                         <div></div>
                     </dl>
                     <div class="basic-block-tit">基本信息</div>
                     <ul>
-                        <li><em><img src="../resources/bootstrap/img/basic_4.jpg" alt="三点一刻智能协同营销平台"/></em>出生日期：</li>
-                        <li><em><img src="../resources/bootstrap/img/basic_3.jpg" alt="三点一刻智能协同营销平台"/></em>从业年限：</li>
-                        <li><em><img src="../resources/bootstrap/img/basic_6.jpg" alt="三点一刻智能协同营销平台"/></em>微信号：</li>
-                        <li><em><img src="../resources/bootstrap/img/basic_7.jpg" alt="三点一刻智能协同营销平台"/></em>一句话简介：</li>
+                        <li><em><img src="{$site.theme_s}img/basic_4.jpg" alt="{$site.site_name}"/></em>出生日期：{$user_info.birthday}</li>
+                        <li><em><img src="{$site.theme_s}img/basic_3.jpg" alt="{$site.site_name}"/></em>从业年限：{$user_info.workage} 年</li>
+                        <li><em><img src="{$site.theme_s}img/basic_6.jpg" alt="{$site.site_name}"/></em>微信号：{$user_info.weixin}</li>
+                        <li><em><img src="{$site.theme_s}img/basic_7.jpg" alt="{$site.site_name}"/></em>一句话简介：{$user_info.introduce}</li>
                     </ul>
                     <div class="basic-block-tit">账户信息</div>
                     <ul>
-                        <li><em><img src="../resources/bootstrap/img/basic_8.jpg" alt="三点一刻智能协同营销平台"/></em>邮箱：</li>
-                        <li><em><img src="../resources/bootstrap/img/basic_9.jpg" alt="三点一刻智能协同营销平台"/></em>手机号：13205513306</li>
+                        <li><em><img src="{$site.theme_s}img/basic_8.jpg" alt="{$site.site_name}"/></em>邮箱：{$user_info.email}</li>
+                        <li><em><img src="{$site.theme_s}img/basic_9.jpg" alt="{$site.site_name}"/></em>手机号：{$user_info.telephone}</li>
                     </ul>
+                </div>
+
+                <!-- 页面默认不显示的 -->
+                <div class="demand-block-content edit_area" style="display: none;">
+                <form id="userForm" method="post" action="{$url.edit_post}" enctype="multipart/form-data">
+                    <div class="imgbox">
+                        <div id="preview1" class="imgbox1">{if $user_info.thumb}<img src="{$user_info.thumb}" class="preimg">{/if}</div>  
+                        <address class="btnupload">选择文件
+                            <input type="file" class="upload_pic" onchange="preview(this,1)" name="avatar" value="{$user_info.avatar}">
+                        </address>
+                    </div>
+
+                    <div class="basic-block-tit">基本信息(<s class="red">*</s>号为必填)</div>
+
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_1.jpg"/>昵称</div>
+                    <div class="basic-content">
+                        <input type="text" name="nickname" id="name" value="{$user_info.username}"/>
+                        <em class="clear"></em>
+                    </div>
+                    <i class="clear"></i>
+
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg"/>性别</div>
+                    <div class="basic-content sex">
+                        <span><input {if $user_info.sexnum eq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex1"  value="1"/> 男</span>
+                        <span><input {if $user_info.sexnum neq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex2"  value="2"/> 女</span>
+                    </div>
+
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_3.jpg"/>从业年限</div>
+                    <div class="basic-content">
+                        <div class="workage">
+                            <input type="number" name="workage" value="{$user_info.workage}"> 年
+                        </div>
+                    </div>
+
+                    <div class="basic-tit">
+                        <img src="{$site.theme_s}img/basic_4.jpg"/>出生日期
+                    </div>
+                    <div class="basic-content">
+                        <input type="text" name="birthday" id="birthday" value="{$user_info.birthday}" />
+                    </div>
+
+                    <div class="basic-tit">
+                        <img src="{$site.theme_s}img/basic_5.jpg"/>所在地区
+                    </div>
+                    <div class="basic-content">
+                        <input type="text" name="address" value="{$user_info.address}" />
+                    </div>
+
+                    <div class="basic-tit">
+                        <img src="{$site.theme_s}img/basic_6.jpg"/>微信号
+                    </div>
+                    <div class="basic-content">
+                        <input type="text" name="weixin" value="{$user_info.weixin}" />
+                    </div>
+
+                    <div class="basic-tit">
+                        <img src="{$site.theme_s}img/basic_7.jpg"/>一句话简介
+                    </div>
+                    <div class="basic-content intro">
+                        <textarea id="des" rows="3" name="introduce"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/>{$user_info.introduce}</textarea>
+                    </div>
+
+                    <div class="basic-block-tit">账户信息</div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_8.jpg"/>邮箱</div>
+                    <div class="basic-content">
+                        <input type="text" id="email" name="email" value="{$user_info.email}" required/>
+                    </div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_9.jpg"/>手机号</div>
+                    <div class="basic-content">
+                        <input type="text" readonly value="{$user_info.telephone}"/>
+                    </div>
+                    <div class="basic-btn">
+                        <!-- <button onclick="edit_user();">保存</button> -->
+                        <input type="hidden" name="token" value="{$token}">
+                        <input type="submit" value="保存">
+                        <a class="cancel" href="{$url.user}">取消</a>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>
