@@ -16,7 +16,7 @@
     overflow: hidden;
     padding: 0;
     border: 2px solid #C4C4C4;
-    background-color:#E0E3B1;
+    background-color:#222222;
     width:360px;
     left:50%;
     top:40%;
@@ -37,11 +37,12 @@
     height:12px;
     display:block;
     float:right;
-    text-indent:-9999px;
+    text-indent:-999px;
     margin-top:8px;
 }
 #douBox .boxFrame .boxCon {
     height:100px;
+    padding:15px;
 }
 #douBox .boxFrame .boxCon dt {
     font-family:Microsoft YaHei;
@@ -50,7 +51,7 @@
     font-weight:bold;
 }
 #douBox .boxFrame .boxCon dd {
-    color:#999;
+    color:#EEE;
     zoom:1;
     overflow:hidden;
 }
@@ -65,3 +66,5 @@
     margin:10px 12px 0 0;
     text-decoration:none;
 }
+#douBox .boxFrame{padding-top:20px;}
+.boxFrame .close_dou{position:absolute;top:0px;right:15px;font-size:20px;cursor:pointer;}
