@@ -21,7 +21,11 @@
                 <div class="serveText">我的价格</div>
                 <div class="currentPrice prePrice" data-val="25000.00">{$product.price}</div>
                 <div class="currentPrice" id="packageId" style="display:none;">{$product.id}</div>
-                <div class="purchasebtn" id="buynow">立即购买</div>
+                <div class="buy_btn">
+                    <div class="purchasebtn" id="buynow">立即购买</div>
+                    <div class="purchasebtn_tip" style="display:none;">请<a href="{$site.root_url}">登录</a>之后再进行购买等操作！</div>
+                </div>
+                
             </div>
         </div>
         <div class="describeText">
@@ -37,9 +41,11 @@
                 token = '{$token}';
             {literal}
             $('#buynow').click(function() {
-                if (!guid) {alert('请登录之后再进行购买等操作！');return false;}
+                if (!guid) {$('.purchasebtn_tip').show(200);return false;}
                 var packageId = $('#packageId').html();
+
                 window.location.href = 'order.php?rec=success_virtual&packageId='+packageId+'&token='+token;
+
             });
             {/literal}
         </script>
