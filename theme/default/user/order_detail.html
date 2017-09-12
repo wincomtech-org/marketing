@@ -64,7 +64,7 @@
               <!-- {if $order.pay_id eq 'alipay'} -->
               <div style="margin-right:20px;">{$order.payment}</div>
               <!-- {elseif $order.pay_id eq 'wxpaynative'} -->
-              <form action="order.php?rec=second_success">
+              <form action="order.php?rec=second_success" method="post">
                 <input type="hidden" name="order_id" value="{$order.order_id}">
                 <input type="hidden" name="order_sn" value="{$order.order_sn}">
                 <input type="hidden" name="price" value="{$order.order_amount}">

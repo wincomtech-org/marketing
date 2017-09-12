@@ -1,6 +1,6 @@
 <?php
 define('IN_LOTHAR', true);
-$sub = 'cart|checkout|update|del|success';
+$sub = 'cart|checkout|update|del|success|second_success';
 $subbox = array(
         "module" => 'order',
         "sub" => $sub
