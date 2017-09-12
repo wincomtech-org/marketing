@@ -1,140 +1,64 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}css/goodsList.css"/>
+<link rel="stylesheet" href="{$site.theme_s}css/pay.css"/>
+<script src="{$site.theme_s}js/pagination.js"></script>
+<script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="keywords" content="企业形象策划,危机公关公司,新媒体整合营销,新媒体推广公司,品牌规划,整合营销,活动营销,新媒体营销,事件营销,网络营销推广,文案撰写,危机公关">
-    <meta name="description" content="三点一刻是新媒体整合营销众包服务平台，为企业形象策划,品牌规划,活动营销,新媒体营销,事件营销,网络营销推广，危机公关公司,新媒体推广公司提供综合服务。">
-    <title>三点一刻 - 品牌规划_企业形象策划_危机公关公司_新媒体整合营销_新媒体推广公司_活动营销_新媒体营销_事件营销_网络营销推广_文案撰写</title>
-    <link rel="stylesheet" href="../../resources/bootstrap/css/resert.css"/>
-    <link rel="stylesheet" href="../../resources/bootstrap/css/style.css"/>
-    <link rel="stylesheet" href="../../resources/bootstrap/css/goodsList.css"/>
-    <link rel="stylesheet" href="../../resources/bootstrap/resetCss/header.css"/>
-    <script src="../../resources/bootstrap/js/jquery-2.1.3.min.js"></script>
-    <script src="../../resources/bootstrap/js/pagination.js"></script>
-    <script src="../../resources/bootstrap/js/main.js"></script>
-    <script type="text/javascript" src="../../resources/bootstrap/js/jquery.SuperSlide.2.1.1.js"></script>
+<body onload="goodsList();">
+    {include file="inc/header.tpl"}
 
-</head>
-<body onload="goodsList();" data-val="7826d00ab11b434f87fd3adae68cb80a">
-<div class="head">
-	<div class="logo">
-        <a href="../../www.315pr.html"><img src="../../resources/bootstrap/img/logo_top1.png"></a>
-    </div>
-    <ul class="nav">
-        <li><a href="../../www.315pr.html">首页</a></li>
-        <li><a href="../../case/page.shtml.html">案例</a></li>
-        <li><a href="../../smart/list.shtml.html">媒介</a></li>
-        <li><a href="../../package/page.shtml.html">营销套餐</a></li>
-        <li><a href="../../report/page.shtml.html">资讯</a></li>
-    </ul>
-    <div class="getInto"></div>
-    <div style="clear:both"></div>
-</div>
-<hr style="margin:0;padding:0;">
-
-<div class="page-content">
-    <div class="usercenter_page">
-        <div class="usercenter_tag">
-            <ul>
-				<li class="active"><a href="../user_center.html"><em></em>基本信息</a></li>	
-				<li><a href="../order/lists.html"><em></em>我的订单</a></li> 
-				<li><a href="javascript:void(0);"><em></em>退出登录</a></li>
-            </ul>
-        </div>
-        <div class="usercenter_content usercenter_demand">
-            <div class="goodsListTitle">我的订单</div>
-            <div class="order_mes">
+    <div class="page-content">
+        <div class="usercenter_page">
+            {include file="inc/user_menu.tpl"}
+            <div class="usercenter_content usercenter_demand">
+                <div class="goodsListTitle">我的订单</div>
+                <div class="order_mes">
                  <!-- 商品清单 -->
-                  <div class="merchBill">
+                 <div class="merchBill">
                      <h3 class="merchBill_tit">商品清单</h3>
-                      <div class="merchBill_con">
-                          <div class="merchBill_con_right">
-                              <h3>订单编号：606060606</h3>
-                              <ul class="merchBill_con_right">
-                                  <li>
-                                        <span class="left"><img src="   http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-                                        <span class="middle">IT工程师</span>
-                                         <span class="right">400</span>
-                                  </li>
-                                   <li>
-                                        <span class="left"><img src="   http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-                                        <span class="middle">IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师</span>
-                                         <span class="right">400</span>
-                                  </li>
-                                   <li>
-                                        <span class="left"><img src="   http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-                                        <span class="middle">IT工程师</span>
-                                         <span class="right">400</span>
-                                  </li>
-                                   <li>
-                                        <span class="left"><img src="   http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-                                        <span class="middle">IT工程师</span>
-                                         <span class="right">400</span>
-                                  </li>
-                              </ul>
+                     <div class="merchBill_con">
+                      <div class="merchBill_con_right">
+                          <h3>订单编号：{$order.order_sn}</h3>
+                          <ul class="merchBill_con_right">
+                              <!-- {foreach $order.product_list $v} -->
+                              <li>
+                                <span class="left"><img src="{$v.thumb}" alt=""></span>
+                                <span class="middle">{$v.name}</span>
+                                <span class="right">{$v.price}</span>
+                            </li>
+                            <!-- {/foreach} -->
+                        </ul>
 
-                          </div>
-                          <div class="clear"></div>
-                      </div>          
-
-                  </div>
-
-                  <!-- 商品合计 -->
-                  <div class="total_commodity">
-                      <h3 class="total_commodity_tit">商品合计</h3>
-                      <div class="total_commodity_con">
-                           <p>总计：<span class="courses_amount">5</span>件</p>
-                           <p>合计：<span class="total">￥888</span></p>
-                          <!--  <div class="courses">
-                              课程名称：【2017-秋】高考语文一轮总复习直播尖子班赠送纸质讲义
-                           </div> -->
-                           <div class="clear"></div>
-                      </div>
-                      <div class="order_amount">
-                          <a href="" >取消订单</a>
-                          <a href="../pay.html" style="margin-right:20px;">付款</a>
-                      </div>
-                      <div class="clear"></div>
-                  </div>
-
+                    </div>
+                    <div class="clear"></div>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <!-- 商品合计 -->
+            <div class="total_commodity">
+              <h3 class="total_commodity_tit">商品合计</h3>
+              <div class="total_commodity_con">
+               <p>总数：<span class="courses_amount">5</span>件</p>
+               <p>应付总金额：<span class="total">￥888</span></p>
+               <div class="courses">
+                  <p>下单时间：<span class="total">{$order.status_format}</span></p>
+              </div>
+              <div class="clear"></div>
+          </div>
+          <div class="order_amount">
+              <a href="{$url.order_cancel}&order_sn={$order.order_sn}">取消订单</a>
+              <!-- <input class="btn" type="submit" value="付款"> -->
+              <div style="margin-right:20px;">{$order.payment}</div>
+          </div>
+          <div class="clear"></div>
+      </div>
+
+  </div>
 </div>
-<div class="footer_bg">
-    <div class="footer_auto">
-        <div class="contactUs">
-            <img src="resources/bootstrap/resetImg/logo_fff.png">
-            <div class="clear"></div>
-            <span>商务热线：158-3063-7937</span>
-            <span>服务热线：4008-315-002</span>
-            <span>联系地址：北京市朝阳区建国路77号华贸中心写字楼3号楼1201A</span>
-            <span>2015-2016 三点一刻 版权所有 京ICP备：15064808号-1</span>
-            </div>
-        <div class="listText">
-            <a href="staff.shtml.html">员工天地</a>
-            <a href="recruitment.shtml.html">招贤纳士</a>
-        </div>
-        <div class="listText">
-            <a href="help.shtml.html">帮助中心</a>
-            <a href="team.shtml.html">团队介绍</a>
-            <a href="partner.shtml.html">合作伙伴</a>
-            <a href="about.shtml.html">联系我们</a>
-        </div>
-        <div class="codeBox">
-            <div class="codeText">
-                <img src="resources/bootstrap/resetImg/ico23.jpg">
-                <span>微信公众号 干活</span>
-            </div>
-            <div class="codeText">
-                <img src="resources/bootstrap/resetImg/ico24.jpg">
-                <span>APP 三点一刻</span>
-            </div>
-        <i class="clear"></i>
-        </div>
-        <i class="clear"></i>
-    </div>  
 </div>
-<script type="text/javascript" src="../../resources/bootstrap/js/order.js"></script>
+</div>
+
+{include file="inc/footer.tpl"}
+<script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
 </body>
 </html>

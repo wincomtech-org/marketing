@@ -455,7 +455,7 @@ elseif ($rec == 'edit_post') {
         foreach ($wrong as $key => $value) {
             $wrong_format .= $wrong[$key] . '<br>';
         }
-        $dou->dou_msg($wrong_format, $_URL['edit']);
+        $dou->dou_msg($wrong_format, $_URL['user']);
     }
     
     // 格式化自定义参数
@@ -614,7 +614,7 @@ elseif ($rec == 'order') {
     // 验证并获取合法的ID
     $order_sn = $check->is_number($_REQUEST['order_sn']) ? $_REQUEST['order_sn'] : '';
     
-    $query = $dou->select($dou->table('order'), 'order_id,telephone,pay_id,product_amount,order_amount,status,add_time', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'");
+    $query = $dou->select($dou->table('order'), 'order_id,order_sn,telephone,pay_id,product_amount,order_amount,status,add_time', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'");
     $order = $dou->fetch_assoc($query);
     
     // 判断订单是否存在

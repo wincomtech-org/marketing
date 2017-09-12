@@ -280,7 +280,7 @@ elseif ($rec == 'success_virtual') {
         // URL跳转
         $payurl = $plugin->workurl();
         // echo $payurl;die;
-        $payurl = str_replace('&amp','&',$payurl);
+        $payurl = str_replace('&amp','&',$payurl);// 替换实体字符
         echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$payurl.'"</script>';exit;
 
         // 直接跳转表单
