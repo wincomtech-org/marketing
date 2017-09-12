@@ -3,11 +3,11 @@
 <script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
 
 <body >
-    <!-- {include file="inc/header.tpl"} -->
+    <!--{include file="inc/header.tpl"}-->
 
     <div class="page-content">
         <div class="usercenter_page">
-            <!-- {include file="inc/user_menu.tpl"} -->
+            <!--{include file="inc/user_menu.tpl"}-->
             <div class="usercenter_content usercenter_demand">
                 <div class="shopCart"> 
                     <div class="shopCart-tab-main">
@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>    
                             <tbody class="cart-order">
-                                <!-- {foreach $carts.list $v} -->
+                                <!--{foreach $carts.list $v}-->
                                 <tr class="order-item tabl-tr">
                                     <td class="td td-chk tabl">
                                         <input class="slectBox" type="checkbox" name="idbox[]" value="{$v.id}">
@@ -50,7 +50,7 @@
                                         <a class="delete" href="{$url.del}&id={$v.id}">{$lang.del}</a>
                                     </td>
                                 </tr>
-                                <!-- {/foreach} -->
+                                <!--{/foreach}-->
                             </tbody>    
                         </table>
 
@@ -81,7 +81,7 @@
     </div>
     <div id="pagend" style="display:none">{$pagend}</div>
 
-    <!-- {include file="inc/footer.tpl"} -->
+    <!--{include file="inc/footer.tpl"}-->
     <script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
     <script type="text/javascript">
         

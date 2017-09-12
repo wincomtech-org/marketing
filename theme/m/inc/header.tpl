@@ -31,7 +31,7 @@
                 </ul>
             </div>
         </div>
-        <!-- {else} -->
+        <!--{else}-->
         <div class="right-btn">
             <a href="{$url.login}">登录</a><span>|</span>
             <a href="{$url.register}">注册</a>

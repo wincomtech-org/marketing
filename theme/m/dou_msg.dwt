@@ -15,7 +15,7 @@
     {/literal}
 </style>
 <!--{if $url}-->
-<meta http-equiv="refresh" content="{$time}; URL={$url}" />
+<meta http-equiv="refresh" content="{$time};URL={$url}" />
 <!--{/if}-->
 <!--{if !$url}-->
 <script type="text/javascript">

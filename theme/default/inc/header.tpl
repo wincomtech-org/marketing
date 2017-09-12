@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <!-- {else} -->
+        <!--{else}-->
         <div class="getInto2">
             <div class="right-btn1">
                 <a href="{$site.root_url}"><span>{$lang.user_login_nav}</span> / <span>{$lang.user_register_nav}</span></a>

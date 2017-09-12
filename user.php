@@ -10,7 +10,7 @@ require ROOT_PATH .'public.php';
 
 // rec操作项的初始化
 $rec = $check->is_rec($_REQUEST['rec']) ? $_REQUEST['rec'] : 'default';
-
+echo $_URL['user'];
 // 引入和实例化订单功能
 if (file_exists($order_file = ROOT_PATH . 'include/order.class.php')) {
     include_once ($order_file);

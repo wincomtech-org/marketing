@@ -3,11 +3,11 @@
 <script src="{$site.theme_s}js/jquery.SuperSlide.2.1.1.js"></script>
 
 <body >
-	<!-- {include file="inc/header.tpl"} -->
+	<!--{include file="inc/header.tpl"}-->
 
 	<div class="page-content">
 		<div class="usercenter_page">
-			<!-- {include file="inc/user_menu.tpl"} -->
+			<!--{include file="inc/user_menu.tpl"}-->
 			<div class="usercenter_content usercenter_demand">
 				<!-- 订单 -->
 				<div class='order_form'>
@@ -56,13 +56,13 @@
 									<div class="merchBill_con_right">
 										<h3>商品清单</h3>
 										<ul class="merchBill_con_right">
-											<!-- {foreach $cart.list $v} -->
+											<!--{foreach $cart.list $v}-->
 											<li>
 												<span class="left"><input checked="true" type="checkbox" name="idbox[]" value="{$v.id}"> <img src="{$v.image}" alt=""></span>
 												<span class="middle">{$v.title}</span>
 												<span class="right">{$v.subtotal_normal}</span>
 											</li>
-											<!-- {/foreach} -->
+											<!--{/foreach}-->
 										</ul>
 									</div>
 									<div class="clear"></div>
@@ -91,7 +91,7 @@
 		</div>
 	</div>
 
-	<!-- {include file="inc/footer.tpl"} -->
+	<!--{include file="inc/footer.tpl"}-->
 	<!-- <script type="text/javascript" src="{$site.theme_s}js/order.js"></script> -->
 </body>
 </html>
