@@ -74,3 +74,5 @@ table.goodsList{width:97%;margin-top:10px;}
 .goodsList td:last-child,.goodsList th:last-child{;border-right:1px solid #ddd;}
 .goodsList th{border-top:1px solid #ddd;padding:15px 7px;}
 .goodsList .btnPayment{margin:5px auto;border-radius:6px;font-size:13.333px;padding:3px 7px;}
+.goodsList th{font-size:15px;}
+.goodsList td{font-size:13px;}
