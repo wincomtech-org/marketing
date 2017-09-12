@@ -171,7 +171,7 @@ elseif ($rec == 'register_post') {
  */
 elseif ($rec == 'login') {
     // CSRF防御令牌生成
-    $smarty->assign('token', $firewall->set_token('user_login'));
+    $smarty->assign('token2', $firewall->set_token('user_login'));
     
     $return_url = $_REQUEST['return_url'] ? $_REQUEST['return_url'] : urlencode($_SERVER['HTTP_REFERER']);
     
@@ -229,36 +229,6 @@ elseif ($rec == 'login_post') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'password_reset') {
-    if ($_POST['imgCode']) {
-        extract($_POST);
-        // $word = strtoupper($GLOBALS['dou']->create_rand_string('nl', 4));
-        // $_SESSION['captcha'] = md5($word . DOU_SHELL);
-
-        // 判断验证码
-        $captcha = $check->is_captcha($imgCode) ? strtoupper($imgCode) : '';
-        if ($_CFG['captcha'] && md5($captcha . DOU_SHELL) != $_SESSION['captcha'])
-            $dou->djson(0,$_LANG['captcha_wrong']);
-
-        // 验证码正确后，检测数据库是否有该手机号
-        if ($status==3) {
-            if (!$dou->value_exist('user','telephone',$mobile)) {
-                $dou->djson(0,'系统未检测到该手机号，该用户可能被管理员删除');
-            }
-        } elseif ($status==3) {
-            if ($dou->value_exist('user','telephone',$mobile)) {
-                $dou->djson(0,'系统检测到已有此手机号，请登录或找回密码');
-            }
-        }
-
-        // 发送短信验证码
-        $result = $dou->send_msg($mobile);
-        if ($result) {
-            $dou->djson(1,'正在向该手机号发送验证码，请耐心等待');
-        } else {
-            $dou->djson(0,'发送失败');
-        }
-    }
-    
     // uid和code 是区分是否是用户通过 邮箱打开 传过来的验证数据
     $user_id = $check->is_number($_REQUEST['uid']) ? $_REQUEST['uid'] : '';
     $code = preg_match("/^[a-zA-Z0-9]+$/", $_REQUEST['code']) ? $_REQUEST['code'] : '';

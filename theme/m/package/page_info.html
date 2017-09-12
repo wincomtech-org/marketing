@@ -16,10 +16,11 @@
             <div class="serveText">服务原价</div>
             <del class="originalCost">{$product.market_price}</del>
             <div class="serveText">我的价格</div>
-			<div class="currentPrice prePrice" data-val="{$product.price}">{$product.price}</div>
-            <div class="currentPrice packageId" id="packageId" style="display:none;">{$product.id}</div>
+			<div class="currentPrice prePrice">{$product.price}</div>
 
-            <div class="purchasebtn" id="buynow">立即购买</div>
+            <div class="buy_btn">
+                <div class="purchasebtn"><a href="order.php?rec=checkout_virtual&id={$product.id}">立即购买</a></div>
+            </div>
         </div>
     </div>
     <div class="describeText">
@@ -29,17 +30,6 @@
 
     <div class="b"></div>
     <!-- 出现一个弹层 -->
-    <script type="text/javascript">
-        var guid = '{$user.user_id}',
-            token = '{$token}';
-        {literal}
-        $('#buynow').click(function() {
-            if (!guid) {alert('请登录之后再进行购买等操作！');return false;}
-            var packageId = $('#packageId').html();
-            window.location.href = 'order.php?rec=success_virtual&packageId='+packageId+'&token='+token;
-        });
-        {/literal}
-    </script>
     <div class="sb"></div>
 </div>
 

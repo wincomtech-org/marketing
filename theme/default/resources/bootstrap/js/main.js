@@ -434,7 +434,7 @@ function register(){
     	return false;
     }
 
-    douSubmit('register')
+    douSubmit('register');
 }
 
 /* ============= 登录——————忘记密码 ============== */

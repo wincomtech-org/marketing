@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
       // 手机正则
       function isPoneAvailable(str) {
@@ -193,11 +192,5 @@ $(document).delegate('#delAll','click',function(){
     $(this).parent().parent().parent().siblings('.cart-order').find(".order-item").remove();
     total();
 })
-
-
-
-
-
-
 
 

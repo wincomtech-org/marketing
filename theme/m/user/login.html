@@ -8,30 +8,23 @@
 <div class="login m10">
     <div class="login-from">
         <dl>
-            <dt><img src="{$site.theme}picture/login_logo.png" alt="""/></dt>
+            <dt><img src="{$site.theme}picture/login_logo.png" alt=""/></dt>
         </dl>
         <div class="login-input">
         <form id="loginto" action="{$url.login_post}" method="post">
             <input type="text" name="telephone" id="mobile" placeholder="输入手机号"/>
+
             <input type="password" name="password" id="password" placeholder="输入密码"/>
             <div class="login-a"><a href="{$url.password_reset}">忘记密码？</a></div>
 
-            <input type="hidden" name="token" value="{$token}" />
-            <input type="submit" onclick="login();" value="登录"/>
+            <input type="hidden" name="token2" value="{$token2}" />
+            <button id="login" onclick="douSubmit('loginto')">{$lang.user_login_btn}</button>
             <div class="login-b"><span>还没有注册？</span><a href="{$url.register}">注册</a></div>
         </form>
         </div>
     </div>
 </div>
-<div class="wrap">
 
-    <div class="copyright c">
-        <span>2015-2016 北京三点一刻科技有限公司 版权所有</span>
-        <span>服务热线：<a href="">4008-315-002</a></span>
-        <span>联系地址：北京市朝阳区惠河南街1008号四惠大厦2号楼B1层</span>
-        <span>京ICP备 15064808号</span> 
-    </div>
- 
-</div>
+{include file="inc/footer.tpl"}
 </body>
 </html>

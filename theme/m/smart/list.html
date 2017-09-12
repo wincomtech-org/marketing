@@ -1,168 +1,167 @@
 {include file="inc/head.tpl"}
 
-<body>
-{include file="inc/header.tpl"}
+<body  id="dialog">
+    {include file="inc/header.tpl"}
 
-<div class="search_area m10">
-    <div class="search_block search_block_click">
-        <!--分类筛选区域-->
-        <dl id="classify" class="classify">
-        <!--{foreach $medium_category $v}-->
-            <dd {if $id eq $v.cat_id} class="active"{/if}><a href="{$jumpurl}id={$v.cat_id}">{$v.cat_name}</a></dd>
-            <!--{/foreach}-->
-        </dl>
-    </div>
-
-    <!--{if in_array('indusid',$fieldsarr)}-->
-    <div class="search_block search_block_click">
-        <!--行业筛选区域-->
-        <dl id="channel" class="channel">
-            <dt><a href="{$jumpurl}a=">所有行业</a></dt>
-            <!--{foreach $industrys $v}-->
-            <dd {if $a eq $v.id} class="active"{/if}><a href="{$jumpurl}a={$v.id}">{$v.title}</a></dd>
-            <!--{/foreach}-->
-            <dd><a href="{$jumpurl}a=">其它</a></dd>
-            <div class="more">更多</div>
-        </dl>
-    </div>
-    <!--{/if}-->
-
-    <!--{if in_array('proid',$fieldsarr)}-->
-    <div class="search_block search_block_click">
-        <!--地区筛选区域-->
-        <dl id="range" class="range">
-            <dt><a href="{$jumpurl}b=">全国范围</a></dt>
-            <!--{foreach $provinces $v}-->
-            <dd {if $b eq $v.cat_id}class="active"{/if}><a href="{$jumpurl}b={$v.cat_id}">{$v.cat_name}</a></dd>
-            <!--{/foreach}-->
-            <dd {if !$b}class="active"{/if}><a href="{$jumpurl}b=">全国</a></dd>
-            <div class="more">更多</div>
-        </dl>
-    </div>
-    <!--{/if}-->
-
-    <!--{if in_array('account_type',$fieldsarr)}-->
-    <div class="search_block search_block_click serch_type">
-        <!--账号筛选区域-->
-        <dl id="type" class="type">
-            <dt><a href="{$jumpurl}c=">账号类型</a></dt>
-            <!--{foreach $account_types $v}-->
-            <dd {if $c eq $v.id}class="active"{/if}><a href="{$jumpurl}c={$v.id}">{$v.title}</a></dd>
-            <!--{/foreach}-->
-        </dl>
-    </div>
-    <!--{/if}-->
-
-    <div class="search_block search_select">
-    <form action="{$jumpurl}" method="get">
-        <!--{if in_array('fans',$fieldsarr)}-->
-        <dl id="fans" class="fans">
-            <dt>粉丝量</dt>
-            <dd><input id="fans_start" type="text" name="fans_start" value=""></dd>
-            <dd> — </dd>
-            <dd><input id="fans_end" type="text" name="fans_end" value=""></dd>
-            <dd><input id="fans_submit" type="submit" name="fans_submit" value="查询"></dd>
-        </dl>
-        <!--{/if}-->
-        <!--{if in_array('moneys',$fieldsarr)}-->
-        <dl id="price" class="price">
-            <dt>报价金额</dt>
-            <dd><input id="price_start" type="text" name="price_start" value=""></dd>
-            <dd> — </dd>
-            <dd><input id="price_end" type="text" name="price_end" value=""></dd>
-            <dd><input id="price_submit" type="submit" name="price_submit" value="查询"></dd>
-        </dl>
-        <!--{/if}-->
-    </form>
-    </div>
-
-    <div class="search_block">
-        <!--{if in_array('fans',$fieldsarr)}-->
-        <div class="sort_fans sort_sel">
-            <span>{if $f eq 1}粉丝从低到高{elseif $f eq 2}粉丝从高到低{else}粉丝默认排序{/if}</span>
-            <ul>
-                <li title="desc"><a href="{$jumpurl}f=2">粉丝从高到低</li>
-                <li title="asc"><a href="{$jumpurl}f=1">粉丝从低到高</a></li>
-            </ul>
-        </div>
-        <!--{/if}-->
-        <!--{if in_array('moneys',$fieldsarr)}-->
-        <div class="sort_price sort_sel">
-            <span>{if $g eq 1}价格从低到高{elseif $g eq 2}价格从高到低{else}价格默认排序{/if}</span>
-            <ul>
-                <li title="desc"><a href="{$jumpurl}g=2">价格从高到低</a></li>
-                <li title="asc"><a href="{$jumpurl}g=1">价格从低到高</a></li>
-            </ul>
-        </div>
-        <!--{/if}-->
-
-        <!-- <div class="style_change"><em></em></div> -->
-        <div class="search-form1">
-        <form action="{$jumpurl}" method="get">
-            <div class="search-input-box"><input placeholder="输入关键字" name="srcval" value="{$srcval}"/></div>
-            <div class="search-btn"><button type="submit">搜索</button></div>
-        </form>
-        </div>
-    </div>
-</div>
-
-
-<div class="page-content" style="margin-top: 0;">
-    <div class="smart-block smart">
-        <!-- 大尺寸列表 -->
-	    <ul class="wb smart_bigger" >
-            <li class="smart_tit">
-                <span>LOGO</span>
-                <span>名称</span>
-                <!--{foreach $designate as $dk=>$dv}-->
-                <!--{if in_array($dk,$fieldsarr)}-->
-                <span>{$dv}</span>
-                <!--{/if}-->
+    <div class="search_area m10">
+        <div class="search_block search_block_click">
+            <!--分类筛选区域-->
+            <dl id="classify" class="classify">
+                <!--{foreach $medium_category $v}-->
+                <dd {if $id eq $v.cat_id} class="active"{/if}><a href="{$jumpurl}id={$v.cat_id}">{$v.cat_name}</a></dd>
                 <!--{/foreach}-->
-                <span>购物车</span>
-            </li>
-            <!--{foreach $medium_list $v}-->
-            <li>
-                <span class="smart_img">
-                    {if $v.image}<img src="{$v.image}" alt="">{/if}
-                </span>
-                <span class="smart_name">{if $v.title}{$v.title}{/if}</span>
-                <!--{foreach $designate as $dk=>$dv}-->
-                <!--{if in_array($dk,$fieldsarr)}-->
-                <span>{$v[$dk]}</span>
-                <!--{/if}-->
-                <!--{/foreach}-->
-                <span class="shop_cart">
-                    <a onclick="add_cart(this,'{$v.id}')" style="cursor:pointer;">加入到购物车</a>
-                </span>
-            </li>
-            <!--{/foreach}-->
-        </ul>
+            </dl>
+        </div>
 
-        <!-- 小尺寸列表 -->
-        <ul class="wb smart_smaller">
-            <li class="smart_tit">
-                <dl>
-                    <dt class="left">LOGO</dt>
-                    <dd class="middle">内容</dd>
-                    <dd class="right">购物车</dd>
+        <!--{if in_array('indusid',$fieldsarr)}-->
+        <div class="search_block search_block_click">
+            <!--行业筛选区域-->
+            <dl id="channel" class="channel">
+                <dt><a href="{$jumpurl}a=">所有行业</a></dt>
+                <!--{foreach $industrys $v}-->
+                <dd {if $a eq $v.id} class="active"{/if}><a href="{$jumpurl}a={$v.id}">{$v.title}</a></dd>
+                <!--{/foreach}-->
+                <dd><a href="{$jumpurl}a=">其它</a></dd>
+                <div class="more">更多</div>
+            </dl>
+        </div>
+        <!--{/if}-->
+
+        <!--{if in_array('proid',$fieldsarr)}-->
+        <div class="search_block search_block_click">
+            <!--地区筛选区域-->
+            <dl id="range" class="range">
+                <dt><a href="{$jumpurl}b=">全国范围</a></dt>
+                <!--{foreach $provinces $v}-->
+                <dd {if $b eq $v.cat_id}class="active"{/if}><a href="{$jumpurl}b={$v.cat_id}">{$v.cat_name}</a></dd>
+                <!--{/foreach}-->
+                <dd {if !$b}class="active"{/if}><a href="{$jumpurl}b=">全国</a></dd>
+                <div class="more">更多</div>
+            </dl>
+        </div>
+        <!--{/if}-->
+
+        <!--{if in_array('account_type',$fieldsarr)}-->
+        <div class="search_block search_block_click serch_type">
+            <!--账号筛选区域-->
+            <dl id="type" class="type">
+                <dt><a href="{$jumpurl}c=">账号类型</a></dt>
+                <!--{foreach $account_types $v}-->
+                <dd {if $c eq $v.id}class="active"{/if}><a href="{$jumpurl}c={$v.id}">{$v.title}</a></dd>
+                <!--{/foreach}-->
+            </dl>
+        </div>
+        <!--{/if}-->
+
+        <div class="search_block search_select">
+            <form action="{$jumpurl}" method="get">
+                <!--{if in_array('fans',$fieldsarr)}-->
+                <dl id="fans" class="fans">
+                    <dt>粉丝量</dt>
+                    <dd><input id="fans_start" type="text" name="fans_start" value=""></dd>
+                    <dd> — </dd>
+                    <dd><input id="fans_end" type="text" name="fans_end" value=""></dd>
+                    <dd><input id="fans_submit" type="submit" name="fans_submit" value="查询"></dd>
                 </dl>
-            </li>
-            <!--{foreach $medium_list $v}-->
-            <li>
-                <dl>
-                    <dt class="left">
-                        <span class="smart_img">
-                            {if $v.image}<img src="{$v.image}" alt="">{/if}
-                        </span>
-                    </dt>
-                    <dd class="middle">
-                        <!--{foreach $designate as $dk=>$dv}-->
-                        <!--{if in_array($dk,$fieldsarr)}-->
-                        <span class="smart_name">{$v[$dk]}</span>
-                        <!--{/if}-->
-                        <!--{/foreach}-->
-                    </dd>
+                <!--{/if}-->
+                <!--{if in_array('moneys',$fieldsarr)}-->
+                <dl id="price" class="price">
+                    <dt>报价金额</dt>
+                    <dd><input id="price_start" type="text" name="price_start" value=""></dd>
+                    <dd> — </dd>
+                    <dd><input id="price_end" type="text" name="price_end" value=""></dd>
+                    <dd><input id="price_submit" type="submit" name="price_submit" value="查询"></dd>
+                </dl>
+                <!--{/if}-->
+            </form>
+        </div>
+
+        <div class="search_block">
+            <!--{if in_array('fans',$fieldsarr)}-->
+            <div class="sort_fans sort_sel">
+                <span>{if $f eq 1}粉丝从低到高{elseif $f eq 2}粉丝从高到低{else}粉丝默认排序{/if}</span>
+                <ul>
+                    <li title="desc"><a href="{$jumpurl}f=2">粉丝从高到低</li>
+                    <li title="asc"><a href="{$jumpurl}f=1">粉丝从低到高</a></li>
+                </ul>
+            </div>
+            <!--{/if}-->
+            <!--{if in_array('moneys',$fieldsarr)}-->
+            <div class="sort_price sort_sel">
+                <span>{if $g eq 1}价格从低到高{elseif $g eq 2}价格从高到低{else}价格默认排序{/if}</span>
+                <ul>
+                    <li title="desc"><a href="{$jumpurl}g=2">价格从高到低</a></li>
+                    <li title="asc"><a href="{$jumpurl}g=1">价格从低到高</a></li>
+                </ul>
+            </div>
+            <!--{/if}-->
+
+            <!-- <div class="style_change"><em></em></div> -->
+            <div class="search-form1">
+                <form action="{$jumpurl}" method="get">
+                    <div class="search-input-box"><input placeholder="输入关键字" name="srcval" value="{$srcval}"/></div>
+                    <div class="search-btn"><button type="submit">搜索</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" style="margin-top: 0;">
+        <div class="smart-block smart">
+            <!-- 大尺寸列表 -->
+            <ul class="wb smart_bigger" >
+                <li class="smart_tit">
+                    <span>LOGO</span>
+                    <span>名称</span>
+                    <!--{foreach $designate as $dk=>$dv}-->
+                    <!--{if in_array($dk,$fieldsarr)}-->
+                    <span>{$dv}</span>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                    <span>购物车</span>
+                </li>
+                <!--{foreach $medium_list $v}-->
+                <li>
+                    <span class="smart_img">
+                        {if $v.image}<img src="{$v.image}" alt="">{/if}
+                    </span>
+                    <span class="smart_name">{if $v.title}{$v.title}{/if}</span>
+                    <!--{foreach $designate as $dk=>$dv}-->
+                    <!--{if in_array($dk,$fieldsarr)}-->
+                    <span>{$v[$dk]}</span>
+                    <!--{/if}-->
+                    <!--{/foreach}-->
+                    <span class="shop_cart">
+                        <a onclick="add_cart(this,'{$v.id}')" style="cursor:pointer;">加入到购物车</a>
+                    </span>
+                </li>
+                <!--{/foreach}-->
+            </ul>
+
+            <!-- 小尺寸列表 -->
+            <ul class="wb smart_smaller">
+                <li class="smart_tit">
+                    <dl>
+                        <dt class="left">LOGO</dt>
+                        <dd class="middle">内容</dd>
+                        <dd class="right">购物车</dd>
+                    </dl>
+                </li>
+                <!--{foreach $medium_list $v}-->
+                <li>
+                    <dl>
+                        <dt class="left">
+                            <span class="smart_img">
+                                {if $v.image}<img src="{$v.image}" alt="">{/if}
+                            </span>
+                        </dt>
+                        <dd class="middle">
+                            <!--{foreach $designate as $dk=>$dv}-->
+                            <!--{if in_array($dk,$fieldsarr)}-->
+                            <span class="smart_name">{$v[$dk]}</span>
+                            <!--{/if}-->
+                            <!--{/foreach}-->
+                        </dd>
                     <!-- <dd class="middle">
                         <p>
                             <span class="smart_name">IT工程师</span>
@@ -194,7 +193,7 @@
 
 {include file="inc/footer.tpl"}
 <script>
-{literal}
+    {literal}
     /*添加购物车*/
     function add_cart(o,id) {
         if(document.getElementById("douBox")){$('#douBox').remove();}
@@ -239,7 +238,7 @@
     //     if(tit =="asc"){
     //     }
     // });
-{/literal}
+    {/literal}
 </script>
 </body>
 </html>

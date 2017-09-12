@@ -454,15 +454,9 @@ function settime(countdown){
 }
 /* ============= 登录 ------ 注册 ============== */
 function register(){
-	var str=location.href; //取得整个地址栏
+    var str=location.href; //取得整个地址栏
     var num=str.indexOf("?"); 
     var str=str.substr(num+1);
-    /*
-//	var isFreeman = $(':radio[name="radio"]:checked').val(); 
-//	if(isFreeman==null){
-//		alert("请选择服务类型!");debugger;
-//		return false;
-//	}*/
     var mobile = $("#mobile1").val();
     var password1 = $("#password1").val();
     var password2 = $("#password2").val();
@@ -473,66 +467,11 @@ function register(){
         return false;
     }
     if($('.reg_p:eq(0) label').attr('tid')==0){
-    	alert("您未同意服务条款")
-    	return false;
+        alert("您未同意服务条款")
+        return false;
     }
 
-    $.ajax({
-        type:"post",
-        url: url + "/user/register.shtml",
-        data: {
-            "v":"2.0",
-            "source": 2,
-            "mobile": mobile,
-            "vCode": code,
-            "password": password1,
-			"fromSource": str
-			 
-        },
-        success: function(data){
-            if('0' == data.code){
-//				if(isFreeman =='1'){
-//        	 		window.location.href = url + "/user/reg_suc_a.shtml";
-//        	 		return false; 
-//        	 	};
-//        	 	if(isFreeman =='2'){
-//        	 		window.location.href = url + "/user/reg_suc_b.shtml";
-//        	 		return false; 
-//        	 	}
-            	
-            	    $.ajax({
-            	        type:"post",
-            	        url: url + "/user/login.shtml",
-            	        data: {
-            	            "v":"2.0",
-            	            "source": 2,
-            	            "mobile": mobile,
-            	            "password": password1
-            	        },
-            	        success: function(data){
-            	            //var dataset = $.parseJSON(data);
-            	            if('0' == data.code){
-            	            	/*var skip_url = location.href;
-            					if(skip_url.indexOf('#') != -1){
-            						skip_url = location.href.split('#')[1];
-            					}else{
-            						skip_url =url+"/index.shtml";
-            					}
-            					console.log(skip_url);
-            	                window.location.href =skip_url;*/
-            	            	window.location.href=url+"/user/loadpage.shtml";
-            				}else{
-            	                alert(data.message);
-            	           // 	window.location.href=url+"/loginComple.shtml";
-            	            }
-            	        }
-            	    });
-            	
-            }else{
-                alert(data.message);
-            }
-        }
-    });
+    douSubmit('register');
 }
 
 /* ============= 登录——————忘记密码 ============== */

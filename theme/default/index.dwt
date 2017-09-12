@@ -43,7 +43,7 @@
                         <form id="register" action="{$url.register_post}" method="post">
                         <span>
                             <i>手机</i>
-                            <input id="mobile" type="text" name="telephone">
+                            <input id="mobile1" type="text" name="telephone">
                             <p id="telephone" class="cue"></p>
                             <div class="clear"></div>
                         </span>
@@ -108,6 +108,7 @@
                             <div class="clear"></div>
                         </p>
                         <input type="hidden" name="token2" value="{$token2}" />
+                        <input type="hidden" name="return_url" value="{$return_url}" />
                         <button id="login" onclick="douSubmit('loginto')">{$lang.user_login_btn}</button>
                         <!-- <button id="login" onclick="login()">登录</button> -->
                         </form>

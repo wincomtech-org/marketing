@@ -1,155 +1,98 @@
 {include file="inc/head.tpl"}
 
 <body>
-{include file="inc/header.tpl"}
-
-
+	{include file="inc/header.tpl"}
 
 	<div class="page-content">
-	    <div class="usercenter_page">
-	        <div class="usercenter_tag">
-	            <ul>
-					<li class="active"><a href="user_center.shtml.html"><em></em>基本信息</a></li>	
-					<li><a href="order/lists.html"><em></em>我的订单</a></li> 
-					<li><a href="shopcart.html"><em></em>购物车</a></li> 
-					<li><a href="javascript:void(0);"><em></em>退出登录</a></li>
-	            </ul>
-	        </div>
-	        <div class="usercenter_content usercenter_demand">
-	  			<!-- 订单 -->
-			    <div class='order_form'>
-			    
-			      <!-- 订单内容 -->
-			      <div class="order_content orderForm_main">
-			          <div class="order_information">
-			              <h3 class="order_information_tit">填写并核对订单信息</h3>
+		<div class="usercenter_page">
+			<!--{include file="inc/user_menu.tpl"}-->
+			<div class="usercenter_content usercenter_demand">
+				<!-- 订单 -->
+				<div class='order_form'>
+					<!-- 订单内容 -->
+					<div class="order_content orderForm_main">
+						<div class="order_information">
+							<form action="{$url.success}" method="post" id="checkoutForm" class='addrForm'  autocomplete="on">
+								<h3 class="order_information_tit">填写并核对订单信息</h3>
+								<!-- 地址 -->
+								<div class="order_address">
+									<h3 class="order_address_tit">请填写手机号<span>（如日后出现一些问题，能及时联系您）</span><span class="rt add_address">新增收货人信息</span></h3>
+									<div class="order_addr_content">
+										<div class="order_item">
+											<span class="order_item_tit">手机号码</span>
+											<div class="order_item_con">
+												<div class="order_item_con_input">
+													<input type="text" name="telephone" maxlength="150" value="{$order.telephone}" id="phone">
+												</div>
+												<span class="order_item_tip">用于接收发货通知和送货提前通知</span>
+												<span class="order_item_tip error">请填写正确手机格式</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 支付方式 -->
+								<div class="order_address">
+									<h3 class="order_address_tit">请选择支付方式<span></span></h3>
+									<div class="order_addr_content">
+										<div class="order_item">
+											<dl class="payment" style="width:100%;height:100%">
+												<!--{foreach from=$payment_list name=payment item=payment}-->
+												<dd style="float:left">
+													&nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" name="pay_id" id="{$payment.id}" value="{$payment.id}"{if $payment.id eq 'alipay'} checked="true"{elseif $smarty.foreach.payment.first} checked="true"{/if}>
+													<label for="{$payment.id}"> <img src="{$payment.image}" width="133" height="39" style="margin-right:30px;margin-left:4px;"> </label>
+												</dd>
+												<!--{/foreach}-->
+											</dl>
+										</div>
+									</div>
+								</div>
 
-			              <!-- 地址 -->
-			              <div class="order_address">
-			                  <h3 class="order_address_tit">请填写手机号<span>（如日后出现一些问题，能及时联系您）</span><span class="rt add_address">新增收货人信息</span></h3>
-			                  <div class="order_addr_content">
-			                   
-			                    
-			                      <form action="" method="post"  id="addrForm" class='addrForm'  autocomplete="on" ">		                           
-			                             <div class="order_item">
-			                                <span class="order_item_tit">手机号码</span>
-			                                <div class="order_item_con">
-			                                    <div class="order_item_con_input">
-			                                        <input type="text" name="phone" maxlength="150" value id="phone">
-			                                    </div>
-			                                    <span class="order_item_tip">用于接收发货通知和送货提前通知</span>
-			                                    <span class="order_item_tip error">请填写正确手机格式</span>
-			                                </div>
-			                            </div>
-			                          
-			                      </form>
-			                  </div>
-			                  
-			              </div>
+								<!-- 商品清单 -->
+								<div class="merchBill">
+									<h3 class="merchBill_tit">商品清单</h3>
+									<div class="merchBill_con">
+										<div class="merchBill_con_right">
+											<h3>商品清单</h3>
+											<ul class="merchBill_con_right">
+												<!--{foreach $cart.list $v}-->
+												<li>
+													<span class="left"><input checked="true" type="checkbox" name="idbox[]" value="{$v.id}"> <img src="{$v.image}" alt=""></span>
+													<span class="middle">{$v.title}</span>
+													<span class="right">{$v.subtotal_normal}</span>
+												</li>
+												<!--{/foreach}-->
+											</ul>
+										</div>
+										<div class="clear"></div>
+									</div>          
+								</div>
 
-			               <!-- 商品清单 -->
-			              <div class="merchBill">
-			                 <h3 class="merchBill_tit">商品清单</h3>
-			                  <div class="merchBill_con">
-			                      <div class="merchBill_con_right">
-			                          <h3>商品清单</h3>
-			                          <ul class="merchBill_con_right">
-			                              <li>
-				                              	<span class="left"><img src="	http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-				                              	<span class="middle">IT工程师</span>
-				                              	 <span class="right">400</span>
-			                              </li>
-			                               <li>
-				                              	<span class="left"><img src="	http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-				                              	<span class="middle">IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师IT工程师</span>
-				                              	 <span class="right">400</span>
-			                              </li>
-			                               <li>
-				                              	<span class="left"><img src="	http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-				                              	<span class="middle">IT工程师</span>
-				                              	 <span class="right">400</span>
-			                              </li>
-			                               <li>
-				                              	<span class="left"><img src="	http://file.315pr.com/upload/20170309/c94a5c9b7cec4724ad507236ee410264.jpg" alt=""></span>
-				                              	<span class="middle">IT工程师</span>
-				                              	 <span class="right">400</span>
-			                              </li>
-			                          </ul>
+								<!-- 商品合计 -->
+								<div class="total_commodity">
+									<h3 class="total_commodity_tit">商品合计</h3>
+									<div class="total_commodity_con">
+										<p>总计：<span class="courses_amount">{$cart.total}</span>件</p>
+										<p>合计：<span class="total">{$cart.product_amount}</span></p>
+										<div class="clear"></div>
+									</div>
+									<div class="order_amount">
+										<p>应付总金额：<span>{$cart.product_amount_format}</span></p>
+										<input type="hidden" name="token" value="{$token}">
+										<input class="btn" type="submit" value="付款">
+									</div>
+									<div class="clear"></div>
+								</div> 
+							</form>
+						</div>
 
-			                      </div>
-			                      <div class="clear"></div>
-			                  </div>          
-
-			              </div>
-
-			              <!-- 商品合计 -->
-			              <div class="total_commodity">
-			                  <h3 class="total_commodity_tit">商品合计</h3>
-			                  <div class="total_commodity_con">
-			                       <p>总计：<span class="courses_amount">5</span>件</p>
-			                       <p>合计：<span class="total">￥888</span></p>
-			                      <!--  <div class="courses">
-			                          课程名称：【2017-秋】高考语文一轮总复习直播尖子班赠送纸质讲义
-			                       </div> -->
-			                       <div class="clear"></div>
-			                  </div>
-			                  <div class="order_amount">
-			                      <p>应付总金额：<span>￥888</span></p>
-			                   
-			            
-                         	 	<a href="pay.html" style="margin-right:20px;">付款</a>
-                  
-			                  </div>
-			                  <div class="clear"></div>
-			              </div> 
-			          
-			          </div>
-			      </div>
-			    </div>	
-	      
-	        </div>
-	    </div>
+					</div>
+				</div>	
+			</div>
+		</div>
 	</div>
-    
 
-
-
-<div class="footer_bg">
-	<div class="footer_auto">
-		<div class="contactUs">
-			<img src="../resources/bootstrap/resetImg/logo_fff.png">
-			<div class="clear"></div>
-			<span>å•†åŠ¡çƒ­çº¿ï¼š158-3063-7937</span>
-			<span>æœåŠ¡çƒ­çº¿ï¼š4008-315-002</span>
-			<span>è”ç³»åœ°å€ï¼šåŒ—äº¬å¸‚æœé˜³åŒºå»ºå›½è·¯77å·åŽè´¸ä¸­å¿ƒå†™å­—æ¥¼3å·æ¥¼1201A</span>
-			<span>2015-2016 ä¸‰ç‚¹ä¸€åˆ» ç‰ˆæƒæ‰€æœ‰ äº¬ICPå¤‡ï¼š15064808å·-1</span>
-			</div>
-		<div class="listText">
-			<a href="../freeman_hot.shtml.html">æ™ºåº“çƒ­ç‚¹</a>
-			<a href="../staff.shtml.html">å‘˜å·¥å¤©åœ°</a>
-			<a href="../recruitment.shtml.html">æ‹›è´¤çº³å£«</a>
-		</div>
-		<div class="listText">
-			<a href="../help.shtml.html">å¸®åŠ©ä¸­å¿ƒ</a>
-			<a href="../team.shtml.html">å›¢é˜Ÿä»‹ç»</a>
-			<a href="../partner.shtml.html">åˆä½œä¼™ä¼´</a>
-			<a href="../about.shtml.html">è”ç³»æˆ‘ä»¬</a>
-		</div>
-		<div class="codeBox">
-			<div class="codeText">
-				<img src="../resources/bootstrap/resetImg/ico23.jpg">
-				<span>å¾®ä¿¡å…¬ä¼—å·  å¹²æ´»</span>
-			</div>
-			<div class="codeText">
-				<img src="../resources/bootstrap/resetImg/ico24.jpg">
-				<span>APP  ä¸‰ç‚¹ä¸€åˆ»</span>
-			</div>
-		<i class="clear"></i>
-		</div>
-		<i class="clear"></i>
-	</div>	
-</div>
-
-    <script type="text/javascript" src="../resources/bootstrap/js/order.js"></script>
+	<!--{include file="inc/footer.tpl"}-->
+	<!-- <script type="text/javascript" src="{*$site.theme_s*}js/order.js"></script> -->
 </body>
 </html>

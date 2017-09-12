@@ -7,6 +7,7 @@
     #name{float:left;margin-right:20px;}
     .basic-block .basic-img{width:130px;margin:0px auto 10%;}
     .clear{display:block;content:"";clear:both;}
+    ._intput_number{line-height: 200%;width: 62%;text-align: center;padding: 1%;}
 
 .imgbox{width:110px;height:150px;margin:0 auto;} 
 .imgbox1{width:110px;height:110px;border:1px solid #e7e8e8;background:#f5f5f5;border-radius: 50%;} 
@@ -66,16 +67,16 @@
                     </div>
                     <i class="clear"></i>
 
-                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg"/>性别</div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg"/><s class="red">*</s>性别</div>
                     <div class="basic-content sex">
-                        <span><input {if $user_info.sexnum eq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex1"  value="1"/> 男</span>
-                        <span><input {if $user_info.sexnum neq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex2"  value="2"/> 女</span>
+                        <span {if $user_info.sexnum eq 1} class="onstyle"{/if}><input {if $user_info.sexnum eq 1}checked{/if} style="color: #FFFFFF;background: #a90916;"  type="radio" name="sex" id="sex1"  value="1"/> 男</span>
+                        <span {if $user_info.sexnum neq 1} class="onstyle"{/if}><input {if $user_info.sexnum neq 1}checked{/if} style="color: #FFFFFF;background: #a90916;" type="radio" name="sex" id="sex2"  value="2"/> 女</span>
                     </div>
 
                     <div class="basic-tit"><img src="{$site.theme_s}img/basic_3.jpg"/>从业年限</div>
                     <div class="basic-content">
                         <div class="workage">
-                            <input type="number" name="workage" value="{$user_info.workage}"> 年
+                            <input class="_intput_number" type="number" name="workage" value="{$user_info.workage}"> 年
                         </div>
                     </div>
 
@@ -104,11 +105,11 @@
                         <img src="{$site.theme_s}img/basic_7.jpg"/>一句话简介
                     </div>
                     <div class="basic-content intro">
-                        <textarea id="des" rows="3" name="introduce"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/>{$user_info.introduce}</textarea>
+                        <textarea rows="3" name="introduce"  placeholder="请描述您的经验和专长，会更容易受到关注和青睐"/>{$user_info.introduce}</textarea>
                     </div>
 
                     <div class="basic-block-tit">账户信息</div>
-                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_8.jpg"/>邮箱</div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_8.jpg"/><s class="red">*</s>邮箱</div>
                     <div class="basic-content">
                         <input type="text" id="email" name="email" value="{$user_info.email}" required/>
                     </div>
@@ -267,6 +268,4 @@
     }
 {/literal}
 </script>
-
-<script type="text/javascript" src="{$site.theme_s}js/enrol.js"></script>  
 </html>
