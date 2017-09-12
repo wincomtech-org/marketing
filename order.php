@@ -44,11 +44,11 @@ if ($rec == 'cart') {
             $temp_c[] = $value;
         }
     }
-// $dou->debug($temp_c,1);
+    $procount = count($products['list']);
 
     // AJAX 调用更多
     if ($_REQUEST['ajax']) {
-        if (count($products['list'])<=$pagesize) {
+        if ($procount<=$pagesize) {
             echo json_encode(array('nore'=>true));exit();
         }
         $probox = '';
@@ -189,9 +189,7 @@ elseif ($rec == 'checkout') {
     // 获取订单信息
     $order = $dou_user->get_user_info($_USER['user_id']);
     $order['order_amount_format'] = $dou->price_format($cart['product_amount']);
-// $dou->debug($cart);
-// $dou->debug($order);
-// $dou->debug($dou_order->get_payment_list());
+
     // 赋值给模板-数据
     $smarty->assign('page_title', $dou->page_title('order_checkout'));
     $smarty->assign('cart', $cart);
@@ -326,6 +324,34 @@ elseif ($rec == 'success_virtual') {
     
     $smarty->display('user/pay.html');
 
+}
+
+elseif ($rec == 'second_success') {
+    $order_id = $_POST['order_id'];
+    $order_sn = $_POST['order_sn'];
+    $price = $_POST['price'];
+    $pay_id = $_POST['pay_id'];// 支付方式，必填
+    
+    // 显示订单信息
+    $order['order_sn'] = $order_sn;
+    $order['order_amount'] = $price;
+    $order['order_amount_format'] = $dou->price_format($price);
+
+    // 订单成功且选择了付款方式则显示付款按钮
+    if ($GLOBALS['dou']->value_exist('order', 'order_sn', $order_sn) && $pay_id) {
+        include_once (ROOT_PATH . 'include/plugin/' . $pay_id . '/work.plugin.php');
+        $plugin = new Plugin($order_sn, $price);
+        
+        // 生成支付按钮
+        $smarty->assign('payment', $plugin->work());
+    }
+
+    $smarty->assign('page_title', $dou->page_title('order_success'));
+    $smarty->assign('order', $order);
+    $smarty->assign('order_id', $order_id);
+    $smarty->assign('pay_id', $pay_id);
+    
+    $smarty->display('user/pay.html');
 }
 
 /**

@@ -177,6 +177,7 @@ class Action extends Common {
         $time = $time*1000;
         $scri = '';
         // $scri = '<script>{literal}setTimeout(function(){$("#douBox").fadeOut();}, 1000);{/literal}</script>';
+        // <h2><a href="javascript:void(0)" class="close" onclick="douRemove('douBox')">X</a>提示：显示的是您当前点击的媒介的相关数据统计。</h2>
 
         if ($style==2) {
         $doubox = <<<EOT
@@ -185,7 +186,6 @@ class Action extends Common {
                 <style type="text/css">#douBox .boxFrame {overflow:auto;width:100%;left:0%;top:inherit;bottom:0;margin-left:0px;}#douBox .boxFrame .boxCon {height:50px;}#douBox .boxFrame .boxCon dd{font-size: 16px;}#douBox .boxFrame .boxCon dd a{margin:0;}.boxdt{float:left;margin-left:5%;margin-right:10%;}.boxdd1{float:left;margin-right:15%;}.boxdd2{float:left;}</style>
                 <div class="boxFrame">
                     <div class="close_dou">x</div>
-                    <h2><a href="javascript:void(0)" class="close" onclick="douRemove('douBox')">X</a>提示：显示的是您当前点击的媒介的相关数据统计。</h2>
                     <div class="boxCon">
                         <dl>
                             <dt class="boxdt">{$msg}</dt>

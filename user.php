@@ -571,17 +571,16 @@ elseif ($rec == 'logout') {
 elseif ($rec == 'order_list') {
     // 公用SQL查询条件，分页中也使用 order_type=1 AND 
     $where = " WHERE user_id = '$_USER[user_id]'";
-    // $where = " WHERE user_id=2";
 
     // 验证并获取合法的分页ID
     $page = $check->is_number($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $limit = $dou->pager('order', 15, $page, $_URL['order_list'], $where);
+
     $query = $dou->query("SELECT * FROM " . $dou->table('order') . $where . " ORDER BY order_id DESC" . $limit);
     while ($row = $dou->fetch_assoc($query)) {
         $add_time = date("Y-m-d h:i:s", $row['add_time']);
         $status_format = $_LANG['order_status_' . $row['status']];
         $order_amount_format = $dou->price_format($row['order_amount']);
-        // $product_list = $dou_order->get_order_product($row['order_id']);
 
         // 是否显示支付按钮
         if ($dou->get_plugin($row['pay_id'])) {
@@ -589,12 +588,14 @@ elseif ($rec == 'order_list') {
             if ($row['order_type']==1) {
                 // $pay_name = $dou->get_one('SELECT name FROM '. $dou->table('plugin') ." WHERE unique_id='$row[pay_id]'");
                 // 生成付款按钮
-                include_once (ROOT_PATH . 'include/plugin/' . $row['pay_id'] . '/work.plugin.php');
-                $plugin = new Plugin($row['order_sn'], $row['order_amount']);
-                // 生成支付按钮
-                $payment = $plugin->work();
-            } else {
-                # code...
+                if ($row['pay_id']=='alipay') {
+                    if (!is_object($plugin)) {
+                        include_once (ROOT_PATH . 'include/plugin/' . $row['pay_id'] . '/work.plugin.php');
+                        $plugin = new Plugin($row['order_sn'], $row['order_amount']);
+                    }
+                    // 生成支付按钮
+                    $payment = $plugin->work();
+                }
             }
         }
         
@@ -611,11 +612,10 @@ elseif ($rec == 'order_list') {
                 "if_payment"    => $if_payment,
                 "payment"       => $payment,
                 "pay_name"      => $pay_name,
-                "add_time"      => $add_time,
-                // "product_list" => $product_list
+                "add_time"      => $add_time
         );
     }
-// $dou->debug($order_list,1);
+
     // 赋值给模板
     $smarty->assign('page_title', $dou->page_title('user', 'order_my'));
     $smarty->assign('ur_here', $dou->ur_here('user', 'order_my'));
