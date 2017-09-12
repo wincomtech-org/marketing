@@ -56,7 +56,12 @@ class Plugin {
         require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
         $alipaySubmit = new AlipaySubmit($this->p_config());
         $sResult = $alipaySubmit->buildRequestURL($this->parameter());
-        return $sResult;
+
+        // URL跳转
+        $sResult = str_replace('&amp','&',$sResult);// 替换实体字符
+        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$sResult.'"</script>';exit;
+
+        // return $sResult;
     }
 
     /**

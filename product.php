@@ -55,8 +55,6 @@ $smarty->assign('ur_here', $dou->ur_here('product_category', $cat_id, $product['
 $smarty->assign('product_category', $dou->get_category('product_category', 0, $cat_id));
 $smarty->assign('product', $product);
 $smarty->assign('defined', $defined);
-// CSRF防御令牌生成
-$smarty->assign('token', $firewall->set_token('product'.$id));
 
 // $_CFG['deftpl']['product'] = 'product.dwt';
 // $thistpl = $product['template']?$product['template']:$_CFG['deftpl']['product'];

@@ -51,6 +51,24 @@ class Plugin {
 
     /**
      * +----------------------------------------------------------
+     * 支付URL
+     * +----------------------------------------------------------
+     * $session_cart session储存的商品信息
+     * +----------------------------------------------------------
+     */
+    function workurl() {
+        $sResult = $this->work();
+
+        // URL跳转
+        // $sResult = str_replace('&amp','&',$sResult);// 替换实体字符
+        $sResult = '<img src="'.$sResult.'">';
+        echo $sResult;die;
+        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$sResult.'"</script>';exit;
+        return $sResult;
+    }
+
+    /**
+     * +----------------------------------------------------------
      * 直达支付页面
      * +----------------------------------------------------------
      * $session_cart session储存的商品信息

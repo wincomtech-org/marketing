@@ -303,29 +303,25 @@ elseif ($rec == 'success_virtual') {
     // 订单商品插入
     $sql = "INSERT INTO ".$dou->table('order_product')." (order_id,product_id,name,price,product_number) VALUES ($order_id, '$product[id]', '$product[name]', '$product[price]', 1)";
     $dou->query($sql);
-    
-    // 显示订单信息
-    $order['order_sn'] = $order_sn;
-    $order['order_amount'] = $product['price'];
-    $order['order_amount_format'] = $dou->price_format($product['price']);
 
     // 订单成功且选择了付款方式则显示付款按钮
     if ($GLOBALS['dou']->value_exist('order', 'order_sn', $order_sn) && $pay_id) {
-        // $pay_id = 'alipay';
         include_once (ROOT_PATH . 'include/plugin/' . $pay_id . '/work.plugin.php');
         $plugin = new Plugin($order_sn, $product['price']);
-        
-        // 生成支付按钮
-        $smarty->assign('payment', $plugin->work());
-    }
-    
-    $smarty->assign('page_title', $dou->page_title('order_success'));
-    $smarty->assign('order', $order);
-    $smarty->assign('order_id', $order_id);
-    $smarty->assign('pay_id', $pay_id);
-    
-    $smarty->display('user/pay.html');
 
+        // URL跳转
+        $plugin->workurl();
+
+        // 直接跳转表单
+        // echo $plugin->work();
+        // echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">$(function(){$(".btnPayment").hide();$("#alipaysubmit").submit();location.replace(document.referrer);})</script>';
+        // 生成支付按钮
+        // $smarty->assign('payment', $plugin->work());
+        // CURL模拟
+        // echo $plugin->workcurl();// 始终是乱码？
+        // 跳转到支付链接
+        // $dou->dou_header($plugin->workurl());
+    }
 }
 
 /**

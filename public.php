@@ -10,7 +10,8 @@
 if ($_SESSION[DOU_ID]) {
     $gUid = $_SESSION[DOU_ID]['user_id'];
     if ($gUid) {
-        $gUinfos = $dou->fetchRow(sprintf('SELECT * from %s where user_id=%d',$dou->table('user'),$gUid));
+        // $gUinfos = $dou->fetchRow(sprintf('SELECT * from %s where user_id=%d',$dou->table('user'),$gUid));
+        $gUinfos = $dou_user->get_user_info($_USER['user_id']);
         // $smarty->assign('gUinfos',$gUinfos);
     }
 }
