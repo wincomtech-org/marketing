@@ -766,6 +766,15 @@ input,button,select,textarea{
     -webkit-background-size: 100%;
     background-size: 100%;
 }
+.demand-block .demand-block-content input[type="number"]{
+    width: 65%;
+    line-height: 200%;
+    padding: 1.5% 4%;
+    background: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+
+} 
 .demand-block .demand-block-content input {
     border: 1px solid #dcdcdc;
     -webkit-border-radius: 3px;
