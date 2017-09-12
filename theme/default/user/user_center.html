@@ -1,6 +1,7 @@
 ﻿{include file="inc/head.tpl"}
 <script src="{$site.theme_s}js/jquery-form.js"></script>
 <script src="{$site.theme_s}js/pagination.js"></script>
+<script src="{$site.theme_s}laydate/laydate.js"></script>
 <style>
     {literal}
     .up_img_de{position:absolute;text-align:center;bottom:-50px;width:225px;margin-left:-38px;}
@@ -81,7 +82,7 @@
                         <p class="up_img_de">请上传正方形图片，建议尺寸：256*256（等比）</p>
                     </div> -->
 
-                    <div class="basic-block-tit">基本信息</div>
+                    <div class="basic-block-tit">基本信息(<s class="red">*</s>号为必填)</div>
                     <div class="basic-tit"><img src="{$site.theme_s}img/basic_1.jpg" alt="{$site.site_name}"/>昵称</div>
                     <div class="basic-content">
                         <input onfocus="mod_u_info(this,1)" onblur="mod_u_info(this,2)" type="text" name="nickname" value="{$user_info.username}"/>
@@ -101,9 +102,9 @@
                     {/literal}
                     </script> -->
 
-                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg" alt="{$site.site_name}"/>性别</div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_2.jpg" alt="{$site.site_name}"/><s class="red">*</s>性别</div>
                     <div class="basic-content sex">
-                        <span ><input {if $user_info.sexnum eq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex1" value="1"/> 男</span>
+                        <span class="onstyle"><input {if $user_info.sexnum eq 1}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex1" value="1"/> 男</span>
                         <span ><input {if !$user_info.sexnum}checked style="color: #FFFFFF;background: #a90916;" {/if} type="radio" name="sex" id="sex2" value="0"/> 女</span>
                     </div>
 
@@ -118,7 +119,7 @@
                         <img src="{$site.theme_s}img/basic_4.jpg" alt="{$site.site_name}"/>出生日期
                     </div>
                     <div class="basic-content">
-                        <input type="text" name="birthday" id="birthday" value="{$user_info.birthday}"/>
+                        <input type="text" name="birthday" id="birthday" value="{$user_info.birthday}" />
                     </div>
 
                     <div class="basic-tit">
@@ -143,7 +144,7 @@
                     </div>
 
                     <div class="basic-block-tit">账户信息</div>
-                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_8.jpg" alt="{$site.site_name}"/>邮箱</div>
+                    <div class="basic-tit"><img src="{$site.theme_s}img/basic_8.jpg" alt="{$site.site_name}"/><s class="red">*</s>邮箱</div>
                     <div class="basic-content">
                         <input {if $user_info.email}readonly{/if} type="text" id="email" name="email" value="{$user_info.email}"/>
                     </div>
@@ -169,6 +170,11 @@
 </body>
 <script type="text/javascript">
     {literal}
+    /****/
+    laydate.render({
+        elem: '#birthday'
+       
+    });
     // 预览头像
     function preview(f,o)  
     {
@@ -259,6 +265,17 @@
         $('.basic-show').hide();
         $('.edit_area').show();
     }
+
+
+
+    // $('.basic-btn input[type="submit"]').click()
+     var $input=$('.basic-content.sex input').val();
+      
+      console.log($input)
+    $(document).delegate('.basic-btn input[type="submit"]','click',function(){
+        var input=$('.basic-content.sex input');
+
+    })
     //  laydate({
     //     elem: '#birthday'
     // });

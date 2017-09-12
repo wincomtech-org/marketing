@@ -2925,6 +2925,7 @@ text-overflow: ellipsis;
 }
 
 /*===============      个人中心 —— 基本信息 basic-block    ===============*/
+#userForm s.red{color:red;text-decoration:none;font-size:18px;}
 .basic-block .demand-block-content {
     width: 100%;
 }
@@ -3152,7 +3153,7 @@ text-overflow: ellipsis;
     text-align:center;
     padding-top: 6%;
 }
-.basic-block .basic-btn button {
+.basic-block .basic-btn input {
     display: inline-block;
     width: 10%;
     margin: 0 3%;
@@ -3164,7 +3165,7 @@ text-overflow: ellipsis;
     background: #a90916;
     color: #FFFFFF;
 }
-.basic-block .basic-btn button:last-of-type {
+.basic-block .basic-btn input:last-of-type {
     background: transparent;
     color: #343333;
     border-color: #a90916;
@@ -4717,11 +4718,11 @@ text-overflow: ellipsis;
 .total_commodity_tit{font-size: 16px;color: #454545;}
 .total_commodity_con{border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin-top:10px;padding:30px;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-webkit-border-box;box-sizing:-o-border-box;}
 .total_commodity_con p{text-align:right;line-height:30px;}
-.total_commodity_con p span{color:red;}
+.total_commodity_con p span{color:red;font-size:14px;}
 .courses{float:right;padding:20px 23px;border:1px solid #ff1919;font-size:12px;color:#5c5c5c;margin:20px 0 10px;}
 .order_amount{width:350px;float:right;margin-top:30px;}
 .order_amount p{text-align:left;width:150px;display:inline-block;margin-top:24px;}
-.order_amount p span{color:red;}
+.order_amount p span{color:red;font-size:14px;}
 .order_amount a{float:right;background-color:#ff4a3f;color:#fff;border:none;padding:20px;font-size:24px;}
 .order_amount .btn{float:right;background-color:#ff4a3f;color:#fff;border:none;padding:20px;font-size:24px;margin-right:20px;}
 
