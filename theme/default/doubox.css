@@ -42,6 +42,7 @@
 }
 #douBox .boxFrame .boxCon {
     height:100px;
+    padding:15px;
 }
 #douBox .boxFrame .boxCon dt {
     font-family:Microsoft YaHei;
