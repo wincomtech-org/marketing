@@ -19,10 +19,10 @@
 
     <div class="page-content">
         <div class="usercenter_page">
-            <!-- {include file="inc/user_menu.tpl"} -->
+            <!--{include file="inc/user_menu.tpl"}-->
             <div class="usercenter_content usercenter_demand">
                 <div class="goodsListTitle">我的订单</div>
-                <!-- {if $order_list} -->
+                <!--{if $order_list}-->
                 <!-- <div class="goodsListPurchase">已购买</div> -->
                 <table class="goodsList">
                     <thead align="left">
@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody align="left">
-                        <!-- {foreach $order_list $order} -->
+                        <!--{foreach $order_list $order}-->
                         <tr>
                             <td>{$order.order_sn}</td>
                             <td>{if $order.order_type eq 1}营销套餐{else}媒介{/if}</td>
@@ -58,17 +58,17 @@
                                 <!--{/if}-->
                             </td>
                         </tr>
-                        <!-- {/foreach} -->
+                        <!--{/foreach}-->
                     </tbody>
                 </table>
-                <!-- {else} -->
+                <!--{else}-->
                 <!-- 未购买 -->
                 <div class="goodsListStatus">
                     <img src="{$site.theme_s}img/statusBg.png">
                     <div class="text">您暂时没有订单</div>
                     <a href="{$url.product}"><div class="goodsListBtn">去看看</div></a>
                 </div>
-                <!-- {/if} -->
+                <!--{/if}-->
                 <ul class="user_demand">
 
                 </ul>

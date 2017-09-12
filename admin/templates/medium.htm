@@ -175,9 +175,9 @@
 
 
 
-      <!-- {foreach $designate as $dk=>$dv} -->
-      <!-- {if in_array($dk,$fieldsarr)} -->
-      <!-- {if $dk eq 'indusid'} -->
+      <!--{foreach $designate as $dk=>$dv}-->
+      <!--{if in_array($dk,$fieldsarr)}-->
+      <!--{if $dk eq 'indusid'}-->
       <tr>
        <td align="right">所属行业</td>
        <td>
@@ -189,7 +189,7 @@
         </select>
        </td>
       </tr>
-      <!-- {elseif $dk eq 'proid'} -->
+      <!--{elseif $dk eq 'proid'}-->
       <tr>
        <td align="right">所属省份</td>
        <td>
@@ -204,7 +204,7 @@
         </select>
        </td>
       </tr>
-      <!-- {elseif $dk eq 'account_type'} -->
+      <!--{elseif $dk eq 'account_type'}-->
       <tr>
        <td align="right">账号类型</td>
        <td>
@@ -216,16 +216,16 @@
         </select>
        </td>
       </tr>
-      <!-- {else} -->
+      <!--{else}-->
       <tr>
        <td align="right">{$dv}</td>
        <td>
         <input type="text" name="{$dk}" value="{$medium[$dk]}" size="120" class="inpMain" />
        </td>
       </tr>
-      <!-- {/if} -->
-      <!-- {/if} -->
-      <!-- {/foreach} -->
+      <!--{/if}-->
+      <!--{/if}-->
+      <!--{/foreach}-->
 
 
 
