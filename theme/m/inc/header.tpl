@@ -1,11 +1,12 @@
 <div class="head">
     <div class="logo">
-        <a href="{$site.root_url}"><img src="sys/{$site.site_logo}" alt="{$site.site_name}"></a>
+        <a href="{$site.root_url}"><img src="sys/{$site.site_logo}"></a>
     </div>
     <div class="menu">
         <div class="menu_icon">
             <a class="menu_icon_a"><span></span></a>
         </div>
+
         <ul class="nav" style="display:none">
             <li{if $index.cur} class="cur"{/if}><a href="{$site.root_url}">{$lang.home}</a></li>
             <!--{foreach $nav_middle_list $nav}-->
@@ -16,7 +17,6 @@
 
     <div class="getInto">
         <!--{if $open.user}-->
-        <!-- 登录后 -->
         <!--{if $user}-->
         <div class="right-btn1">
             <a href="{$url.user}"><img alt="" src="http://file.315pr.com/upload/20170825/dfe99157e4e74da18964ce987df14572.png"></a>

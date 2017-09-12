@@ -15,7 +15,7 @@ if ($cat_id == -1) {
 $page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : 1;
 $limit = $dou->pager('product', ($_DISPLAY['product'] ? $_DISPLAY['product'] : 10), $page, $dou->rewrite_url('product_category', $cat_id), $where);
 /* 获取产品列表 */
-$sql = "SELECT id,cat_id,name,price,content,image,add_time,description FROM " . $dou->table('product') . $where . " ORDER BY id DESC" . $limit;
+$sql = "SELECT id,cat_id,name,price,content,image,click,add_time,description FROM " . $dou->table('product') . $where . " ORDER BY id DESC" . $limit;
 $query = $dou->query($sql,MYSQL_ASSOC);
 while ($row = $dou->fetch_array($query)) {
     $row['url'] = $dou->rewrite_url('product', $row['id']); // 获取经过伪静态产品链接
@@ -26,6 +26,7 @@ while ($row = $dou->fetch_array($query)) {
     $image = explode(".", $row['image']);
     $row['thumb'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
     // 格式化价格
+    $row['price_normal'] = (int)$row['price'];
     $row['price'] = $row['price'] > 0 ? $dou->price_format($row['price']) : $_LANG['price_discuss'];
     $product_list[] = $row;
 }

@@ -1,0 +1,48 @@
+﻿{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}css/reset.css"/>
+<link rel="stylesheet" href="{$site.theme_s}css/preferentiallist.css"/>
+
+<body  data-val=""> 
+{include file="inc/header.tpl"}
+
+<div class="preferentialList" style="margin:0.0625rem auto">
+    <div class="moduleBox">
+        <img src="{$product.image}" class="preferentialImg" alt="" >
+        <div class="contentText">
+            <div class="title">【{$product.name}】</div>
+            <div class="consult">咨询人数：<label>{$product.click}</label></div>
+            <div class="preferentialText">{$product.description}</div>
+
+            <div class="serveText">服务原价</div>
+            <del class="originalCost">{$product.market_price}</del>
+            <div class="serveText">我的价格</div>
+			<div class="currentPrice prePrice" data-val="{$product.price}">{$product.price}</div>
+            <div class="currentPrice packageId" id="packageId" style="display:none;">{$product.id}</div>
+
+            <div class="purchasebtn" id="buynow">立即购买</div>
+        </div>
+    </div>
+    <div class="describeText">
+        <div class="describeTitle">服务描述：</div>
+        <div class="describeContent">{$product.content}</div>
+    </div>
+
+    <div class="b"></div>
+    <!-- 出现一个弹层 -->
+    <script type="text/javascript">
+        var guid = '{$user.user_id}',
+            token = '{$token}';
+        {literal}
+        $('#buynow').click(function() {
+            if (!guid) {alert('请登录之后再进行购买等操作！');return false;}
+            var packageId = $('#packageId').html();
+            window.location.href = 'order.php?rec=success_virtual&packageId='+packageId+'&token='+token;
+        });
+        {/literal}
+    </script>
+    <div class="sb"></div>
+</div>
+
+{include file="inc/footer.tpl"}
+</body>
+</html>

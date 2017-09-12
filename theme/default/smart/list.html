@@ -25,7 +25,7 @@
                 <!-- {foreach $industrys $v} -->
                 <dd {if $a eq $v.id}class="active"{/if}><a href="{$jumpurl}a={$v.id}">{$v.title}</a></dd>
                 <!-- {/foreach} -->
-                <dd data="15"><a href="{$jumpurl}a=">其它</a></dd>
+                <dd><a href="{$jumpurl}a=">其它</a></dd>
                 <div class="more">更多</div>
             </dl>
         </div>
@@ -124,8 +124,8 @@
             </li>
             <!-- {foreach $medium_list $v} -->
             <li>
-                {if $v.image}<span class="smart_img"><img src="{$v.image}" alt=""></span>{/if}
-                {if $v.title}<span>{$v.title}</span>{/if}
+                <span class="smart_img">{if $v.image}<img src="{$v.image}" alt="">{/if}</span>
+                <span>{if $v.title}{$v.title}{/if}</span>
                 <!-- {foreach $designate as $dk=>$dv} -->
                 <!-- {if in_array($dk,$fieldsarr)} -->
                 <span>{$v[$dk]}</span>

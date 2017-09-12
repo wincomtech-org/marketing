@@ -233,15 +233,20 @@ elseif ($rec == 'change_shipping') {
 elseif ($rec == 'success_virtual') { 
     // 验证是否登录
     if (!is_array($_USER)) 
-        $dou->dou_header($_URL['login']);
+        $dou->dou_msg('请登录后再购买',ROOT_URL);
+
     // 安全处理用户输入信息
     $_GET = $firewall->dou_foreground($_GET);
     $packageId = intval($_GET['packageId']);
+
     // CSRF防御令牌验证
-    // $firewall->check_token($_GET['token'], 'product'.$packageId);
+    $firewall->check_token($_GET['token'], 'product'.$packageId);
 
     // 获取产品信息
     $product = $dou->fetchRow(sprintf('SELECT id,name,price,defined from %s where id=%d',$dou->table('product'),$packageId));
+    if (empty($product['price'])) {
+        $dou->dou_msg('价格为 0，无需购买');
+    }
     // 生成订单号等
     $order_sn = $dou_order->create_order_sn();
     $pay_id = 'alipay';// 必填
@@ -270,10 +275,15 @@ elseif ($rec == 'success_virtual') {
     // 订单成功且选择了付款方式则显示付款按钮
     if ($GLOBALS['dou']->value_exist('order', 'order_sn', $order_sn) && $pay_id) {
         include_once (ROOT_PATH . 'include/plugin/' . $pay_id . '/work.plugin.php');
-        $plugin = new Plugin($order_sn, $order_amount);
+        $plugin = new Plugin($order_sn, $product['price']);
+
+        // URL跳转
+        $payurl = $plugin->workurl();
+        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">window.location.href="'.$payurl.'"</script>';
+
         // 直接跳转表单
-        echo $plugin->work();
-        echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">$(function(){$(".btnPayment").hide();$("#alipaysubmit").submit();location.replace(document.referrer);})</script>';
+        // echo $plugin->work();
+        // echo '<script src="'.THEME_S.'js/jquery-1.12.1.min.js"></script><script type="text/javascript">$(function(){$(".btnPayment").hide();$("#alipaysubmit").submit();location.replace(document.referrer);})</script>';
         // 生成支付按钮
         // $smarty->assign('payment', $plugin->work());
         // CURL模拟
@@ -281,6 +291,7 @@ elseif ($rec == 'success_virtual') {
         // 跳转到支付链接
         // $dou->dou_header($plugin->workurl());
     }
+    exit;
 }
 
 /**

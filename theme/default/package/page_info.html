@@ -16,16 +16,17 @@
                 <div class="title">【{$product.name}】</div>
                 <div class="consult">咨询人数：<label>{$product.click}</label></div>
                 <div class="preferentialText">{$product.description}</div>
+
                 <div class="serveText">服务原价</div>
                 <del class="originalCost">{$product.market_price}</del>
                 <div class="serveText">我的价格</div>
-                <div class="currentPrice prePrice" data-val="25000.00">{$product.price}</div>
+                <div class="currentPrice prePrice" data-val="{$product.price}">{$product.price}</div>
                 <div class="currentPrice" id="packageId" style="display:none;">{$product.id}</div>
                 <div class="purchasebtn" id="buynow">立即购买</div>
             </div>
         </div>
         <div class="describeText">
-            <div class="describeTitle">服务描述:</div>
+            <div class="describeTitle">服务描述：</div>
             <div class="describeContent">
                 {$product.content}
             </div>
@@ -37,7 +38,7 @@
                 token = '{$token}';
             {literal}
             $('#buynow').click(function() {
-                if (!guid) {alert('请登录之后再进行购买等操作！');return false;}
+                // if (!guid) {alert('请登录之后再进行购买等操作！');return false;}
                 var packageId = $('#packageId').html();
                 window.location.href = 'order.php?rec=success_virtual&packageId='+packageId+'&token='+token;
             });

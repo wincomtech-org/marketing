@@ -1,4 +1,3 @@
-
 <div class="usercenter_tag">
     <ul>
         <li {if $rec eq 'default'} class="active"{/if}><a href="{$url.user}"><em></em>基本信息</a></li>

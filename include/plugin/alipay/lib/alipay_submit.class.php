@@ -88,12 +88,33 @@ class AlipaySubmit {
         $para = $this->buildRequestPara($para_temp);
 
         $sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='".$this->alipay_gateway_new."_input_charset=".trim(strtolower($this->p_config['input_charset']))."' method='".$method."' target='_blank'>";
-        while (list ($key, $val) = each ($para)) {
+        while (list($key,$val)=each($para)) {
+         $keyarr .= '###'.$key;
             $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
         }
-
         //submit按钮控件请不要含有name属性
         $sHtml = $sHtml."<input type='submit' class='btnPayment' value='".$button_name."'></form>";
+
+        // return $keyarr;
+        return $sHtml;
+    }
+
+    /**
+    * 建立请求，以表单URL形式构造（默认）
+    * @param $para_temp 请求参数数组
+    * @return URL 字串
+    * &not 会被转译成 ¬ ，所以用 
+    */
+    function buildRequestURL($para_temp) {
+        //待请求参数数组
+        $para = $this->buildRequestPara($para_temp);
+
+        $sHtml = $this->alipay_gateway_new."_input_charset=".trim(strtolower($this->p_config['input_charset']));
+        while (list($key,$val)=each($para)) {
+            $sHtml .= '&amp'.$key.'='.$val;
+        }
+
+        // return urlencode($sHtml);
         return $sHtml;
     }
 

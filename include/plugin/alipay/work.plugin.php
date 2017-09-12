@@ -46,6 +46,21 @@ class Plugin {
 
     /**
      * +----------------------------------------------------------
+     * 支付URL
+     * +----------------------------------------------------------
+     * $session_cart session储存的商品信息
+     * +----------------------------------------------------------
+     */
+    function workurl() {
+        // 建立请求
+        require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
+        $alipaySubmit = new AlipaySubmit($this->p_config());
+        $sResult = $alipaySubmit->buildRequestURL($this->parameter());
+        return $sResult;
+    }
+
+    /**
+     * +----------------------------------------------------------
      * 直达支付页面
      * +----------------------------------------------------------
      * $session_cart session储存的商品信息

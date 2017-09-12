@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset={$site.dou_charset}" />
 
 <div id="page-box">
-    <input name="pageInput" value="2" type="hidden">
+    <input name="pageInput" value="" type="hidden">
     <div class="page">
         <a href="{$pager.first}">{$lang.pager_first}</a> 
         <!--{if $pager.page gt 1}-->

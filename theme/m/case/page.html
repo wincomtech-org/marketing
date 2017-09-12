@@ -1,8 +1,6 @@
 {include file="inc/head.tpl"}
 <link rel="stylesheet" href="{$site.theme_s}css/reset.css"/>
 <link rel="stylesheet" href="{$site.theme_s}css/preferentiallist.css"/>
-<link rel="stylesheet" href="{$site.theme_s}resetCss/header.css"/>
-<script src="{$site.theme_s}js/pagination.js"></script>
 <style>
 {literal}
 .caselist .caselist-content h3{height:47px;}
@@ -10,129 +8,30 @@
 </style>
 
 <body onload="caselist();">
-{include file="inc/header_2.tpl"}
+{include file="inc/header.tpl"}
 
 <div class="page-content">
     <div class="caselist">
         <ul>
+            <!--{foreach $case_list $v}-->
         	<li>
-        		<a href="case_info.html">
-        			<div class="caselist-img" >
-        				<img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
+        		<a href="{$v.url}">
+        			<div class="caselist-img">
+        				<img src="{$v.thumb}" alt="">
         			</div>
         			<div class="caselist-content">
-        				<h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-        				<div>IT互联网,建材家居,线上推广,电商营销</div>
+        				<h3>{$v.title}</h3>
+        				<div>{$v.description}</div>
         			</div>
         		</a>
-        	</li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
-        	<li>
-                <a href="case_info.html">
-                    <div class="caselist-img" >
-                        <img src="../resources/bootstrap/images/case_01.png" alt="好在最温情的营销，给投资人讲了一个关于“家”的故事">
-                    </div>
-                    <div class="caselist-content">
-                        <h3>好在最温情的营销，给投资人讲了一个关于“家”的故事</h3>
-                        <div>IT互联网,建材家居,线上推广,电商营销</div>
-                    </div>
-                </a>
-            </li> 
+        	</li>
+            <!--{/foreach}-->
         </ul>
-        <div id="page-box">
-            <input type="hidden" name="pageInput" value="">
-            <div class="page"></div>
-            <em><span class="now">1</span>/<span class="num"></span>页 共<span class="total"></span>条</em>
-        </div>
-    </div>
-</div>
-<div class="wrap">
 
-    <div class="copyright c">
-        <span>2015-2016 北京三点一刻科技有限公司 版权所有</span>
-        <span>服务热线：<a href="">4008-315-002</a></span>
-        <span>联系地址：北京市朝阳区惠河南街1008号四惠大厦2号楼B1层</span>
-        <span>京ICP备 15064808号</span>
-    
-        
+        {include file="inc/pager.tpl"}
     </div>
- 
 </div>
+
+{include file="inc/footer.tpl"}
 </body>
 </html>
