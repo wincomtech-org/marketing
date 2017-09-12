@@ -93,8 +93,14 @@ class DouUser {
         $user_c = $this->user_check($_SESSION[DOU_ID]['user_id'], $_SESSION[DOU_ID]['shell']);
         if (is_array($user_c)) {
             $user_name = $user_c['nickname'] ? $user_c['nickname'] : ($user_c['telephone']?$user_c['telephone']:$user_c['email']);
+            // 生成缩略图的文件名
+            if ($user_c['avatar']) {
+                $image = explode('.', $user_c['avatar']);
+                $thumb = ROOT_URL . $image[0] . "_thumb." . $image[1];
+            }
             $user = array(
                 'user_id' => $user_c['user_id'],
+                'thumb' => $thumb,
                 'user_name' => $user_name
             );
         }
