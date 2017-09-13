@@ -84,6 +84,37 @@
     <script type="text/javascript">
         var href = '{$url.cart}';
         {literal}
+
+        $(function(){
+        	 /***手机端购物车**/
+			  if(screen.width < 1024){
+			        $('.cart-table .th-num').hide();
+			          $('.cart-table .td-amount ').hide();
+			          $('.cart-table .th-indust').hide();
+			          $('.cart-table .td-indust').hide();
+			       if(screen.width < 768){
+			          $('.cart-table .th-logo').hide();
+			          $('.cart-table .td-logo').hide();
+			          
+			          if(screen.width < 415){
+			            
+			            $('.cart-table .th-area').hide();
+			            $('.cart-table .td-area').hide();
+			            
+			                 if(screen.width < 376){
+			                    
+			                     $('.cart-table .td-zhuanfa ').hide();
+			                     $('.cart-table .th-zhuanfa ').hide();
+			                     if(screen.width < 321){
+			                        $('.cart-table .th-fans').hide();
+			                        $('.cart-table .td-fans').hide();
+			                       
+			                     }
+			                 }
+			          }
+			      }
+			  }
+        })
         $(document).delegate('#more','click',function(){
             var pagend = $('#pagend').html();
             $.ajax({

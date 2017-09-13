@@ -67,4 +67,4 @@
     text-decoration:none;
 }
 #douBox .boxFrame{padding-top:20px;}
-.boxFrame .close_dou{position:absolute;top:0px;right:15px;font-size:20px;cursor:pointer;}
+.boxFrame .close_dou{position:absolute;top:0px;right:15px;font-size:20px;cursor:pointer;color:#fff;}

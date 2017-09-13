@@ -3492,9 +3492,9 @@ text-overflow: ellipsis;
 }
 .basic-block .basic-btn input {
     display: inline-block;
-    width: 10%;
+    width: 5rem;
     margin: 0 3%;
-    font-size: 1.5em;
+    font-size: 1.25em;
     line-height: 250%;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -3504,9 +3504,9 @@ text-overflow: ellipsis;
 }
 .basic-block .basic-btn .cancel {
     display: inline-block;
-    width: 10%;
+    width: 5rem;
     margin: 0 3%;
-    font-size: 1.5em;
+    font-size: 1.25em;
     line-height: 250%;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -4991,8 +4991,8 @@ text-overflow: ellipsis;
 }
 
 
-
-
+/**按钮**/
+.btn,.btnPayment{padding:4px 8px;background-color:#ff2828;color:#fff;}
 
 /*购物车*/
 .shopCart{width:96%;padding:2%;}
@@ -5009,9 +5009,11 @@ text-overflow: ellipsis;
 .cart-foot:after{content:"";display:block;clear:both;}
 .cart-footer-money{float:right;}
 .cart-footer-money .tf{float:left;margin-left:20px;line-height:35px;}
+.cart-footer-money .tf .btn{padding:10px;background-color:#e01616;color:#fff;}
 .cart-footer-money .tf .total-amount{font-size:1.5em;color:red;margin:0 5px;}
 .cart-footer-money .tf .total-price{font-size:1.5em;color:red;font-weight:600;margin:0 5px;}
 .cart-footer-money .tf.cart-pay a{padding:7px 15px;color:#fff;background-color:red;font-size:1.4em;font-weight:bold;-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;border-radius:5px;}
+
 
 
 /*订单结算中心*/
@@ -5064,6 +5066,8 @@ text-overflow: ellipsis;
 .order_address_tit span.rt:hover{cursor:pointer;}
 .order_addr_content{width:100%;background-color:#fcfcfc;margin-top:30px;padding:20px 17px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-o-border-box;box-sizing:-webkit-border-box;}
 .addrForm .order_item{width:100%;line-height:36px;margin:10px 0;}
+.addrForm .order_item .payment dd{margin-top:10px;}
+
 .addrForm .order_item:after{content:"";display:block;clear:both;height:1px;}
 .addrForm .order_item .order_item_tit{float:left;color:#0f0f0f;font-size:12px;width:64px;margin-right:10px;letter-spacing:1px;height:36px;}
 .addrForm .order_item .order_item_con{float:left;color:#0f0f0f;font-size:12px;}
@@ -5302,7 +5306,9 @@ img{transform:translateZ(0);}
 }
 @media screen and (max-width:500px){
     /*购物车*/
-    .cart-head tr th{width:10%;padding:5px;}
+    .cart-head tr th{width:10%;padding:7px 4px;font-size:12px;}
+    .cart-order tr td{font-size:12px;}
+
     .cart-order tr  .td-delete a{background-color:transparent;color:#333;display:block;}
 
       /**订单信息*/
@@ -5317,7 +5323,7 @@ img{transform:translateZ(0);}
 }
 @media screen and (max-width:320px){
     /**购物车*/
-    .cart-head tr th{padding:6px;}
+    .cart-head tr th{padding:6px 4px;}
     .cart-foot{padding:15px 0;}
     .cart-footer-money .tf{margin-left:7px;}
     /***订单详情*/
