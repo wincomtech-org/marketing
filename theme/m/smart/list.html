@@ -203,9 +203,12 @@
             // $('#dialog').html(data);
             $('#dialog').prepend(data);
             // $('#dialog').append(data);
-            setTimeout(function(){$("#douBox").fadeOut();}, 15000);
+            // setTimeout(function(){$("#douBox").fadeOut();}, 15000);
         });
     }
+     $(document).delegate('.close_dou','click',function(){
+        $(this).parent().parent().remove();
+    })
 
     // 点击更多
     $('.more').unbind('click').click(function(){

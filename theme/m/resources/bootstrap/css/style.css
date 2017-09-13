@@ -4995,7 +4995,7 @@ text-overflow: ellipsis;
 
 /**按钮**/
 .btn,.btnPayment{padding:4px 8px;background-color:#ff2828;color:#fff;}
-.btnPayment{padding:6px 10px;display:block;margin:0 auto;}
+.btnPayment{padding:6px 10px;display:block;margin:0 auto;margin-top:10px;}
 
 /*购物车*/
 .shopCart{width:96%;padding:2%;}
