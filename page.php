@@ -1,6 +1,5 @@
 <?php
 define('IN_LOTHAR', true);
-
 require (dirname(__FILE__) . '/include/init.php');
 
 // 验证并获取合法的ID，如果不合法将其设定为-1

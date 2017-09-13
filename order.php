@@ -8,6 +8,16 @@ $subbox = array(
 require (dirname(__FILE__) . '/include/init.php');
 require ROOT_PATH .'public.php';
 
+// 验证是否登录
+if (IS_M) {
+    if (!is_array($_USER)) {
+        $dou->dou_header($_URL['login']);
+    }
+} else {
+    if (!is_array($_USER)) 
+        $dou->dou_msg('请登录后再购买',ROOT_URL);
+}
+
 // 引入和实例化订单功能
 include_once (ROOT_PATH . 'include/order.class.php');
 $dou_order = new Order();
@@ -26,6 +36,8 @@ $smarty->assign('nav_bottom_list', $dou->get_nav('bottom'));
 
 // 赋值给模板-数据
 $smarty->assign('rec', $rec);
+
+
 
 /**
  * +----------------------------------------------------------
@@ -169,12 +181,6 @@ elseif ($rec == 'del') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'checkout') {
-    // 验证是否登录
-    if (!is_array($_USER)) {
-        $dou->dou_header($_URL['user']);
-    }
-// $dou->debug($_POST);
-// $dou->debug($_SESSION[DOU_ID]['cart']);
     // CSRF防御令牌生成
     $smarty->assign('token', $firewall->set_token('order_checkout'));
     
@@ -184,7 +190,7 @@ elseif ($rec == 'checkout') {
             $session_cart[$key] = $val;
         }
     }
-// $dou->debug($session_cart);
+
     $cart = $dou_order->get_cart($session_cart,'','medium','id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort');
     
     // 获取订单信息
@@ -206,12 +212,6 @@ elseif ($rec == 'checkout') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'checkout_virtual') {
-    // 验证是否登录
-    if (!is_array($_USER)) {
-        $dou->dou_header($_URL['user']);
-    }
-// $dou->debug($_GET);
-
     $proid = $_GET['id'] ? intval($_GET['id']) : $dou->dou_msg('ID非法！');
     
     // 获取订单信息
@@ -219,7 +219,7 @@ elseif ($rec == 'checkout_virtual') {
     $order = $dou->fetchRow("SELECT id,name,price,image from ". $dou->table('product') ." where id={$proid}");
     $order = array_merge($order,$gUinfos);
     // $order['order_amount_format'] = $dou->price_format($order['product']['price']);
-// $dou->debug($order,1);
+
     // CSRF防御令牌生成
     $smarty->assign('token', $firewall->set_token('checkout_virtual'));
 
@@ -260,11 +260,7 @@ elseif ($rec == 'change_shipping') {
  * 完成虚拟订单操作，提交到数据库
  * +----------------------------------------------------------
 */
-elseif ($rec == 'success_virtual') { 
-    // 验证是否登录
-    if (!is_array($_USER)) 
-        $dou->dou_msg('请登录后再购买',ROOT_URL);
-
+elseif ($rec == 'success_virtual') {
     $proid = $_POST['id'] ? intval($_POST['id']) : $dou->dou_msg('ID非法！');
 
     // 安全处理用户输入信息
@@ -361,10 +357,6 @@ elseif ($rec == 'second_success') {
  * +----------------------------------------------------------
  */
 elseif ($rec == 'success') {
-    // 验证是否登录
-    if (!is_array($_USER)) {
-        $dou->dou_header($_URL['login']);
-    }
     // 验证手机
     if (!$check->is_telephone($_POST['telephone']))
         $wrong['telephone'] = $_LANG['user_telephone_cue'];
