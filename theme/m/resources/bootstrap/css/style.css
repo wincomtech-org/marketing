@@ -5116,7 +5116,7 @@ text-overflow: ellipsis;
 .order_amount{width:350px;float:right;margin-top:30px;}
 .order_amount p{text-align:left;width:150px;display:inline-block;margin-top:24px;}
 .order_amount p span{color:red;}
-.order_amount a{float:right;background-color:#ff4a3f;color:#fff;border:none;padding:20px;font-size:24px;}
+.order_amount a,.order_amount .btnPayment{float:right;background-color:#ff4a3f;color:#fff;border:none;padding:20px;font-size:24px;}
 
 
 
@@ -5136,14 +5136,14 @@ text-overflow: ellipsis;
 /*支付方式*/
 .pay_mode{width:100%;margin:20px 0 64px;}
 .pay_tab{width:100%;}
-.pay_tab_list{width:100%;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.pay_tab_list{width:100%;border-top:1px solid #ddd;/*border-bottom:1px solid #ddd;*/}
 .pay_tab_list:after{content:"";display:block;clear:both;}
 .pay_tab_list_item{float:left;height:60px;line-height:60px;}
 .pay_tab_list_item:hover{cursor:pointer;}
 .pay_tab_list_item span{display:block;height:100%;padding:0px 49px;}
 .pay_tab_list_item.active span{border-top:3px solid #19a0e5;background-color:#fff;height:59px;}
 
-.pay_tab_con{width:100%;border-bottom:1px solid #ddd;}
+.pay_tab_con{width:100%;/*border-bottom:1px solid #ddd;*/}
 .pay_tab_con .pay_tab_con_list{width:100%;}
 
 /*支付宝*/
@@ -5308,14 +5308,12 @@ img{transform:translateZ(0);}
       /**订单信息*/
     .merchBill_con_right  li .right{font-size:14px;}
     .order_amount{width:100%;}
-    .order_amount a{padding:15px;font-size:1rem;}
+    .order_amount a,.order_amount .btnPayment{padding:15px;font-size:1rem;}
 }
 
 @media screen and (max-width:414px){
     .usercenter_page .usercenter_tag li a{font-size:12px;}
     .cart-foot{padding:15px 5px;}
-
-
 }
 @media screen and (max-width:320px){
     /**购物车*/

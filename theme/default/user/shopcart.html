@@ -54,10 +54,13 @@
                             </tbody>    
                         </table>
 
+                        <!-- {if $procount gt $pagend} -->
                         <div class="shopcart_more" >
                             <button type="button" id="more">点击加载更多</button>
                             <p class="jiazai"></p>
                         </div>
+                        <!-- {/if} -->
+
                         <div class="cart-foot">
                             <div class="cart-footer-money">
                                 <div class="cart-total-amount tf">
@@ -84,7 +87,6 @@
     <!--{include file="inc/footer.tpl"}-->
     <script type="text/javascript" src="{$site.theme_s}js/order.js"></script>
     <script type="text/javascript">
-
         var href = '{$url.cart}';
         {literal}
         $(document).delegate('#more','click',function(){

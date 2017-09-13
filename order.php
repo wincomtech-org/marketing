@@ -83,6 +83,7 @@ PPP;
 
     $smarty->assign('carts', $products);
     $smarty->assign('pagend', $pagend);
+    $smarty->assign('procount', $procount);
     $smarty->assign('page_title', $dou->page_title('order_cart'));
 
     $smarty->display('user/shopcart.html');

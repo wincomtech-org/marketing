@@ -50,12 +50,12 @@
 											</div>
 										</li>
 										<!--{elseif $pay_id eq 'wxpaynative'}-->
-										<li class="pay_tab_con_list_item" style="display:none;">
+										<li class="pay_tab_con_list_item">
 											<div class="weixin">
 												<div class="weixin_con">
 													<img src="{$site.theme_s}images/weixin3.png" alt="">
 													<div class="weixin_bottom">
-														<div class="lf"><img src="{$payment}" alt="支付二维码"></div>
+														<div class="lf"><img src="{$payment}"></div>
 														<div class="lf"><img src="{$site.theme_s}images/weixin2.png" alt=""></div>
 														<div class="clear"></div>
 													</div>
@@ -91,7 +91,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	{include file="inc/footer.tpl"}
 	<script type="text/javascript" src="{$site.theme_s}js/order.js"></script>

@@ -40,7 +40,7 @@ class Plugin {
         // 建立请求
         require_once(ROOT_PATH . 'include/plugin/' . $this->plugin_id . '/lib/alipay_submit.class.php');
         $alipaySubmit = new AlipaySubmit($this->p_config());
-        $html_text = $alipaySubmit->buildRequestForm($this->parameter(),"get", "立即付款");
+        $html_text = $alipaySubmit->buildRequestForm($this->parameter(),"get", "付款");
         return $html_text;
     }
 
