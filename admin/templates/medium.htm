@@ -123,7 +123,7 @@
       <tr>
        <td align="right">{$lang.medium_category}</td>
        <td>
-        <select name="cat_id" onchange="dgLink(this)">
+        <select name="cat_id" onchange="dgLink(this,{$medium.id})">
          <option value="0">{$lang.uncategorized}</option>
          <!--{foreach from=$medium_category item=cate}-->
          <!--{if $cate.cat_id eq $medium.cat_id}-->
@@ -281,8 +281,8 @@ function douAction(){
 var frm = 'medium.php?rec={$rec}';
 
 {literal}
-function dgLink(o) {
-  window.location=frm+'&cat_id='+o.value;
+function dgLink(o,id) {
+  window.location=frm+'&cat_id='+o.value+'&id='+id;
 }
 {/literal}
 </script>

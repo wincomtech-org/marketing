@@ -18,9 +18,14 @@ $_CFG['thumb_width']=80; $_CFG['thumb_height'] = 80;
 $smarty->assign('rec', $rec);
 $smarty->assign('cur', 'medium');
 
-if (in_array($rec,array('add','edit'))) {
+if (in_array($rec,array('default','add','edit'))) {
     // 获取参数
-    $cat_id = $check->is_number($_REQUEST['cat_id']) ? intval($_REQUEST['cat_id']) : 1;
+    $cat_id = $check->is_number($_REQUEST['cat_id']) ? intval($_REQUEST['cat_id']) : ($rec=='default'?0:1);
+    if ($rec=='edit') {
+        // 验证并获取合法的ID
+        $id = $check->is_number($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+        $cat_id = $dou->get_one("SELECT cat_id from ".$dou->table('medium')." WHERE id=".$id);
+    }
     $fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
     $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
     $dkey = explode(',', $dkey);
@@ -87,7 +92,7 @@ if ($rec == 'default') {
         $medium_list[] = $row;
     }
 
-    // 首页显示下载数量限制框
+    // 首页显示数量限制框
     for($i=1; $i<=$_CFG['home_display_medium']; $i++) {
         $sort_bg .= "<li><em></em></li>";
     }
@@ -105,7 +110,7 @@ if ($rec == 'default') {
 
 /**
  * +----------------------------------------------------------
- * 下载添加
+ * 添加
  * +----------------------------------------------------------
  */
 elseif ($rec == 'add') {
@@ -115,7 +120,7 @@ elseif ($rec == 'add') {
             'href' => 'medium.php' 
     ));
     
-    // 格式化自定义参数，并存到数组$medium，下载编辑页面中调用下载详情也是用数组$medium，
+    // 格式化自定义参数，并存到数组$medium，编辑页面中调用详情也是用数组$medium，
     if ($_DEFINED['medium']) {
         $defined = explode(',', $_DEFINED['medium']);
         foreach ($defined as $row) {
@@ -193,7 +198,7 @@ elseif ($rec == 'insert') {
 
 /**
  * +----------------------------------------------------------
- * 下载编辑
+ * 编辑
  * +----------------------------------------------------------
  */
 elseif ($rec == 'edit') {
@@ -202,9 +207,6 @@ elseif ($rec == 'edit') {
             'text' => $_LANG['medium'],
             'href' => 'medium.php' 
     ));
-    
-    // 验证并获取合法的ID
-    $id = $check->is_number($_REQUEST['id']) ? $_REQUEST['id'] : '';
     
     $query = $dou->select($dou->table('medium'), '*', '`id`=\''. $id . '\'');
     $medium = $dou->fetch_array($query);
@@ -215,7 +217,7 @@ elseif ($rec == 'edit') {
         foreach ($defined as $row) {
             $defined_medium .= $row . "：\n";
         }
-        // 如果下载中已经写入自定义参数则调用已有的
+        // 如果中已经写入自定义参数则调用已有的
         $medium['defined'] = $medium['defined'] ? str_replace(",", "\n", $medium['defined']) : trim($defined_medium);
         $medium['defined_count'] = count(explode("\n", $medium['defined'])) * 2;
     }
@@ -332,7 +334,7 @@ elseif ($rec == 'del_sort') {
 
 /**
  * +----------------------------------------------------------
- * 下载删除
+ * 删除
  * +----------------------------------------------------------
  */
 elseif ($rec == 'del') {
@@ -361,7 +363,7 @@ elseif ($rec == 'del') {
 elseif ($rec == 'action') {
     if (is_array($_POST['checkbox'])) {
         if ($_POST['action'] == 'del_all') {
-            // 批量下载删除
+            // 批量删除
             $dou->del_all('medium', $_POST['checkbox'], 'id', 'image');
         } elseif ($_POST['action'] == 'category_move') {
             // 批量移动分类
@@ -376,7 +378,7 @@ elseif ($rec == 'action') {
 
 /**
  * +----------------------------------------------------------
- * 获取首页显示下载
+ * 获取首页显示
  * +----------------------------------------------------------
  */
 function get_sort_medium() {

@@ -18,7 +18,10 @@ if ($_SESSION[DOU_ID]) {
 
 // 地区 district
 
-
+// foreach (($dou->fetchAll("select title from ".$dou->table('diy') ." where cat_id=1")) as $key => $value) {
+//     $disco .= ','.$value['title'];
+// }
+// echo $disco;die;
 
 // $dou->debug($nav_product);
 // $dou->debug($countrys);
@@ -47,25 +50,4 @@ if ($_SESSION[DOU_ID]) {
 // $dou->debug($_SESSION,1);
 // $dou->debug($GLOBALS,1);
 // $dou->debug($_SERVER,1);
-
-
-
-
-
-
-
-
-// $phpself = $_SERVER['PHP_SELF'];
-// $forbid_url = array(
-//         '/pay.php',
-//         '/include/weixin/example/native.php',
-//         '/include/weixin/return.php',
-//         '/include/pay/alipayto.php',
-//         '/include/pay/return_url.php'
-//     );
-// if (in_array($phpself,$forbid_url)) {
-//     $dou->dou_msg('非法进入！');
-// }
-
-// $dou->debug($gUinfos,1);
 ?>
