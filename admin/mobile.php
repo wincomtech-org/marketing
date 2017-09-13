@@ -49,7 +49,8 @@ if ($rec == 'system') {
     elseif ($act == 'update') {
         // 上传图片生成
         if ($_FILES['mobile_logo']['name'] != '') {
-            $logo_dir = ROOT_PATH . M_PATH . '/theme/' . $_CFG['mobile_theme'] . '/images/'; // logo上传路径,结尾加斜杠
+            // $logo_dir = ROOT_PATH . M_PATH . '/theme/' . $_CFG['mobile_theme'] . '/images/'; // logo上传路径,结尾加斜杠
+            $logo_dir = ROOT_PATH . 'theme/' . M_PATH . '/sys/'; // logo上传路径,结尾加斜杠
             $logo = new Upload($logo_dir, ''); // 实例化类文件
             $upfile = $logo->upload_image('mobile_logo', 'logo'); // 上传的文件域
             $_POST['mobile_logo'] = $upfile;
