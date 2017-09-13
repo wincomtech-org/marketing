@@ -26,7 +26,7 @@ default:
     $smarty->assign('totalsize', $totalsize);
     $smarty->assign('file_name', $file_name);
     
-    $smarty->display('backup.htm');
+    $smarty->display('import.htm');
     break;
 }
 
