@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50553
+Source Server Version : 50540
 Source Host           : localhost:3306
 Source Database       : marketing
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2017-09-10 19:53:53
+Date: 2017-09-13 12:06:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `dou_admin` (
 -- ----------------------------
 -- Records of dou_admin
 -- ----------------------------
-INSERT INTO `dou_admin` VALUES ('1', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', 'ALL', '99', '1478503787', '1504869230', '127.0.0.1');
+INSERT INTO `dou_admin` VALUES ('1', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', 'ALL', '99', '1478503787', '1505267096', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for dou_admin_log
@@ -50,13 +50,11 @@ CREATE TABLE `dou_admin_log` (
   PRIMARY KEY (`id`),
   KEY `create_time` (`create_time`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_admin_log
 -- ----------------------------
-INSERT INTO `dou_admin_log` VALUES ('1', '1504948772', '1', '编辑插件: 支付宝', '127.0.0.1');
-INSERT INTO `dou_admin_log` VALUES ('2', '1504950890', '1', '系统设置: 编辑成功', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for dou_article
@@ -197,16 +195,16 @@ INSERT INTO `dou_config` VALUES ('site_title', '三点一刻', 'text', '', 'main
 INSERT INTO `dou_config` VALUES ('site_keywords', '企业形象策划,危机公关公司,新媒体整合营销,新媒体推广公司,品牌规划,整合营销,活动营销,新媒体营销,事件营销,网络营销推广,文案撰写,危机公关', 'text', '', 'main', '3', '1');
 INSERT INTO `dou_config` VALUES ('site_description', '三点一刻是新媒体整合营销众包服务平台，为企业形象策划,品牌规划,活动营销,新媒体营销,事件营销,网络营销推广，危机公关公司,新媒体推广公司提供综合服务。', 'text', '', 'main', '4', '1');
 INSERT INTO `dou_config` VALUES ('site_logo', 'logo.png', 'file', '', 'main', '5', '1');
-INSERT INTO `dou_config` VALUES ('site_address', '福建省漳州市芗城区', 'text', '', 'main', '6', '1');
+INSERT INTO `dou_config` VALUES ('site_address', '北京市朝阳区建国路77号华贸中心写字楼3号楼1201A', 'text', '', 'main', '6', '1');
 INSERT INTO `dou_config` VALUES ('site_closed', '0', 'radio', '', 'main', '7', '1');
-INSERT INTO `dou_config` VALUES ('icp', '', 'text', '', 'main', '8', '1');
+INSERT INTO `dou_config` VALUES ('icp', '京ICP备：15064808号-1', 'text', '', 'main', '8', '1');
 INSERT INTO `dou_config` VALUES ('tel', '4008-315-002', 'text', '', 'main', '9', '1');
-INSERT INTO `dou_config` VALUES ('fax', '0596-6666666', 'text', '', 'main', '10', '1');
+INSERT INTO `dou_config` VALUES ('fax', '15830637937', 'text', '', 'main', '10', '1');
 INSERT INTO `dou_config` VALUES ('qq', '6254891', 'text', '', 'main', '11', '1');
 INSERT INTO `dou_config` VALUES ('email', 'your@domain.com', 'text', '', 'main', '12', '1');
 INSERT INTO `dou_config` VALUES ('language', 'zh_cn', 'select', '', 'main', '13', '1');
 INSERT INTO `dou_config` VALUES ('rewrite', '0', 'radio', '', 'main', '14', '1');
-INSERT INTO `dou_config` VALUES ('sitemap', '1', 'radio', '', 'main', '15', '1');
+INSERT INTO `dou_config` VALUES ('sitemap', '0', 'radio', '', 'main', '15', '1');
 INSERT INTO `dou_config` VALUES ('captcha', '1', 'radio', '', 'main', '16', '1');
 INSERT INTO `dou_config` VALUES ('guestbook_check_chinese', '1', 'radio', '', 'main', '17', '1');
 INSERT INTO `dou_config` VALUES ('code', '', 'textarea', '', 'main', '18', '1');
@@ -214,7 +212,7 @@ INSERT INTO `dou_config` VALUES ('thumb_width', '250', 'text', '', 'display', '1
 INSERT INTO `dou_config` VALUES ('thumb_height', '250', 'text', '', 'display', '2', '1');
 INSERT INTO `dou_config` VALUES ('price_decimal', '2', 'text', '', 'display', '3', '1');
 INSERT INTO `dou_config` VALUES ('display', 'a:8:{s:7:\"article\";s:2:\"10\";s:12:\"home_article\";s:1:\"8\";s:7:\"product\";s:2:\"10\";s:12:\"home_product\";s:1:\"3\";s:4:\"case\";s:2:\"10\";s:9:\"home_case\";s:1:\"4\";s:6:\"medium\";s:2:\"10\";s:11:\"home_medium\";s:1:\"4\";}', 'array', '', 'display', '4', '1');
-INSERT INTO `dou_config` VALUES ('defined', 'a:3:{s:7:\"article\";s:0:\"\";s:7:\"product\";s:0:\"\";s:6:\"medium\";s:149:\"转发量,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,投放位置,广告形式,发布类型\";}', 'array', '', 'defined', '1', '1');
+INSERT INTO `dou_config` VALUES ('defined', 'a:3:{s:7:\"article\";s:0:\"\";s:7:\"product\";s:0:\"\";s:6:\"medium\";s:0:\"\";}', 'array', '', 'defined', '1', '1');
 INSERT INTO `dou_config` VALUES ('mail_service', '0', 'radio', '', 'mail', '1', '1');
 INSERT INTO `dou_config` VALUES ('mail_host', 'smtp.domain.com', 'text', '', 'mail', '2', '1');
 INSERT INTO `dou_config` VALUES ('mail_port', '25', 'text', '', 'mail', '3', '1');
@@ -226,7 +224,7 @@ INSERT INTO `dou_config` VALUES ('mobile_title', '三点一刻触屏版', 'text'
 INSERT INTO `dou_config` VALUES ('mobile_keywords', '三点一刻', 'text', '', 'mobile', '3', '1');
 INSERT INTO `dou_config` VALUES ('mobile_description', '三点一刻,三点一刻触屏版', 'text', '', 'mobile', '4', '1');
 INSERT INTO `dou_config` VALUES ('mobile_logo', '', 'file', '', 'mobile', '5', '1');
-INSERT INTO `dou_config` VALUES ('mobile_closed', '0', 'radio', '', 'mobile', '6', '1');
+INSERT INTO `dou_config` VALUES ('mobile_closed', '1', 'radio', '', 'mobile', '6', '1');
 INSERT INTO `dou_config` VALUES ('mobile_display', 'a:14:{s:7:\"article\";s:2:\"10\";s:12:\"home_article\";s:1:\"5\";s:7:\"product\";s:2:\"10\";s:12:\"home_product\";s:1:\"4\";s:5:\"video\";s:2:\"10\";s:10:\"home_video\";s:1:\"5\";s:7:\"gallery\";s:2:\"10\";s:12:\"home_gallery\";s:1:\"5\";s:8:\"download\";s:2:\"10\";s:13:\"home_download\";s:1:\"5\";s:4:\"case\";s:2:\"10\";s:9:\"home_case\";s:1:\"5\";s:4:\"user\";s:2:\"10\";s:9:\"home_user\";s:1:\"5\";}', 'array', '', 'mobile', '7', '1');
 INSERT INTO `dou_config` VALUES ('site_theme', 'default', 'hidden', '', '', '100', '1');
 INSERT INTO `dou_config` VALUES ('mobile_theme', 'default', 'hidden', '', '', '101', '1');
@@ -528,7 +526,7 @@ CREATE TABLE `dou_medium` (
   `image` varchar(255) NOT NULL DEFAULT '',
   `indusid` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '行业ID',
   `proid` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '省份ID',
-  `account_type` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT '账号类型：1官方 2个人',
+  `account_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '账号类型：1官方 2个人',
   `fans` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '粉丝数量',
   `moneys` decimal(10,2) unsigned NOT NULL COMMENT '报价金额',
   `link` varchar(255) NOT NULL DEFAULT '',
@@ -537,24 +535,39 @@ CREATE TABLE `dou_medium` (
   `keywords` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `sort` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `trans` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '转发量',
+  `id_number` varchar(80) NOT NULL DEFAULT '' COMMENT 'ID号',
+  `reads` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '阅读量',
+  `issue_plat` varchar(100) NOT NULL DEFAULT '' COMMENT '发布平台',
+  `groups` varchar(255) NOT NULL DEFAULT '' COMMENT '受众群体',
+  `channel` varchar(255) NOT NULL DEFAULT '' COMMENT '发布频道',
+  `genre` varchar(255) NOT NULL DEFAULT '' COMMENT '媒体类型',
+  `belong_plat` varchar(255) NOT NULL DEFAULT '' COMMENT '所属平台',
+  `average_plays` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '平均播放量',
+  `nnt` mediumint(9) unsigned NOT NULL DEFAULT '0' COMMENT '人数量',
+  `put_site` varchar(255) NOT NULL DEFAULT '' COMMENT '投放位置',
+  `ad_type` varchar(255) NOT NULL DEFAULT '' COMMENT '广告形式',
+  `pub_type` varchar(255) NOT NULL DEFAULT '' COMMENT '发布类型',
+  `brief` varchar(255) NOT NULL DEFAULT '' COMMENT '简介',
+  `type` varchar(255) NOT NULL DEFAULT '' COMMENT '类型',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_medium
 -- ----------------------------
-INSERT INTO `dou_medium` VALUES ('1', '1', 'IT工程师', '', '', 'images/medium/1_1504608250709287.jpg', '1', '0', '47', '1190000', '1000.00', '', '0', '1504598320', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('2', '1', '娱乐八卦厅长', '', '', 'images/medium/2_1504608385016621.jpg', '3', '0', '46', '1040000', '100.00', '', '0', '1504608385', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('3', '3', '互联网的一些事', '', '', 'images/medium/3_1504747744279133.jpg', '1', '0', '47', '1024', '1.00', '', '0', '1504747724', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('4', '1', '凯恩斯', '', '', 'images/medium/4_1504748049941947.jpg', '2', '0', '47', '1690000', '0.00', '', '0', '1504748027', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('5', '2', '果壳网', '', '', 'images/medium/5_1504748214380596.jpg', '42', '0', '46', '6410000', '2000.00', '', '0', '1504748214', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('6', '5', '国际4A广告网', '', '', 'images/medium/6_1504748444272124.jpg', '4', '0', '46', '56446', '0.00', '', '0', '1504748444', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('7', '3', '实用生活智慧小百科', '', '', 'images/medium/7_1504748646740947.jpg', '30', '0', '47', '9999', '0.00', '', '0', '1504748646', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('8', '2', '美食工场', '', '', 'images/medium/8_1504748721288985.jpg', '21', '0', '46', '4520000', '98.00', '', '0', '1504748721', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('9', '8', '一块去旅行', '', '', 'images/medium/9_1504748828615024.jpg', '12', '0', '46', '3170000', '324.00', '', '0', '1504748828', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('10', '4', '每日长沙', '', '', 'images/medium/10_1504748952670255.jpg', '43', '18', '47', '128138', '210.00', '', '0', '1504748952', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('11', '1', '校园热点话题', '', '', 'images/medium/11_1504749005992822.jpg', '8', '0', '47', '231450', '0.00', '', '0', '1504749005', '', '', '0');
-INSERT INTO `dou_medium` VALUES ('12', '1', '上海生活时尚圈', '', '', 'images/medium/12_1504749093797798.jpg', '43', '9', '47', '26234', '0.00', '', '0', '1504749093', '', '', '0');
+INSERT INTO `dou_medium` VALUES ('1', '1', 'IT工程师', '', '', 'images/medium/1_1504608250709287.jpg', '1', '0', '47', '1190000', '1000.00', '', '0', '1504598320', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('2', '1', '娱乐八卦厅长', '', '', 'images/medium/2_1504608385016621.jpg', '3', '0', '46', '1040000', '100.00', '', '0', '1504608385', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('3', '3', '互联网的一些事', '', '', 'images/medium/3_1504747744279133.jpg', '1', '0', '47', '1024', '1.00', '', '0', '1504747724', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('4', '1', '凯恩斯', '', '', 'images/medium/4_1504748049941947.jpg', '2', '0', '47', '1690000', '0.00', '', '0', '1504748027', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('5', '2', '果壳网', '', '', 'images/medium/5_1504748214380596.jpg', '42', '0', '46', '6410000', '2000.00', '', '0', '1504748214', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('6', '5', '国际4A广告网', '', '', 'images/medium/6_1504748444272124.jpg', '4', '0', '46', '56446', '0.00', '', '0', '1504748444', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('7', '3', '实用生活智慧小百科', '', '', 'images/medium/7_1504748646740947.jpg', '30', '0', '47', '9999', '0.00', '', '0', '1504748646', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('8', '2', '美食工场', '', '', 'images/medium/8_1504748721288985.jpg', '21', '0', '46', '4520000', '98.00', '', '0', '1504748721', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('9', '8', '一块去旅行', '', '', 'images/medium/9_1504748828615024.jpg', '12', '0', '46', '3170000', '324.00', '', '0', '1504748828', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('10', '4', '每日长沙', '', '', 'images/medium/10_1504748952670255.jpg', '43', '18', '47', '128138', '210.00', '', '0', '1504748952', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('11', '1', '校园热点话题', '', '', 'images/medium/11_1504749005992822.jpg', '8', '0', '47', '231450', '0.00', '', '0', '1504749005', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
+INSERT INTO `dou_medium` VALUES ('12', '1', '上海生活时尚圈', '', '', 'images/medium/12_1504749093797798.jpg', '43', '9', '47', '26234', '0.00', '', '0', '1504749093', '', '', '0', '0', '', '0', '', '', '', '', '', '0', '0', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for dou_medium_category
@@ -568,22 +581,23 @@ CREATE TABLE `dou_medium_category` (
   `description` varchar(255) NOT NULL DEFAULT '',
   `parent_id` smallint(5) NOT NULL DEFAULT '0',
   `sort` tinyint(1) unsigned NOT NULL DEFAULT '50',
+  `fields` varchar(255) NOT NULL DEFAULT '' COMMENT '指定列表显示的字段',
   PRIMARY KEY (`cat_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_medium_category
 -- ----------------------------
-INSERT INTO `dou_medium_category` VALUES ('1', 'weibo', '微博', '', '', '0', '1');
-INSERT INTO `dou_medium_category` VALUES ('2', 'weixin', '微信', '', '', '0', '5');
-INSERT INTO `dou_medium_category` VALUES ('3', 'desktop', '新闻客户端媒体', '', '', '0', '10');
-INSERT INTO `dou_medium_category` VALUES ('4', 'paper', '纸质媒体', '', '', '0', '15');
-INSERT INTO `dou_medium_category` VALUES ('5', 'web', '网络媒体', '', '', '0', '20');
-INSERT INTO `dou_medium_category` VALUES ('6', 'video', '视频媒体', '', '', '0', '25');
-INSERT INTO `dou_medium_category` VALUES ('7', 'kol', 'KOL朋友圈', '', '', '0', '30');
-INSERT INTO `dou_medium_category` VALUES ('8', 'association', '社群', '', '', '0', '35');
-INSERT INTO `dou_medium_category` VALUES ('9', 'forum', '论坛', '', '', '0', '40');
-INSERT INTO `dou_medium_category` VALUES ('10', 'cp', 'CP广告', '', '', '0', '45');
+INSERT INTO `dou_medium_category` VALUES ('1', 'weibo', '微博', '', '', '0', '1', 'indusid,proid,fans,moneys,trans');
+INSERT INTO `dou_medium_category` VALUES ('2', 'weixin', '微信', '', '', '0', '5', 'id_number,indusid,proid,fans,trans,reads');
+INSERT INTO `dou_medium_category` VALUES ('3', 'desktop', '新闻客户端媒体', '', '', '0', '10', 'indusid,proid,issue_plat,fans,account_type');
+INSERT INTO `dou_medium_category` VALUES ('4', 'paper', '纸质媒体', '', '', '0', '15', 'indusid,proid,groups,account_type');
+INSERT INTO `dou_medium_category` VALUES ('5', 'web', '网络媒体', '', '', '0', '20', 'indusid,proid,channel,genre');
+INSERT INTO `dou_medium_category` VALUES ('6', 'video', '视频媒体', '', '', '0', '25', 'indusid,proid,belong_plat,fans,average_plays');
+INSERT INTO `dou_medium_category` VALUES ('7', 'kol', 'KOL朋友圈', '', '', '0', '30', 'indusid,proid,issue_plat,fans,account_type');
+INSERT INTO `dou_medium_category` VALUES ('8', 'association', '社群', '', '', '0', '35', 'proid,brief,nnt,type');
+INSERT INTO `dou_medium_category` VALUES ('9', 'forum', '论坛', '', '', '0', '40', 'indusid,proid,fans,issue_plat');
+INSERT INTO `dou_medium_category` VALUES ('10', 'cp', 'CP广告', '', '', '0', '45', 'put_site,ad_type,pub_type');
 
 -- ----------------------------
 -- Table structure for dou_nav
@@ -630,13 +644,11 @@ CREATE TABLE `dou_order` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `add_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_order
 -- ----------------------------
-INSERT INTO `dou_order` VALUES ('1', '1', '2017090439652', '1', '15555423186', '李小宇', '封神区', '230601', 'alipay', '', '', '3000.00', '0.00', '3000.00', '-1', '1504491516');
-INSERT INTO `dou_order` VALUES ('2', '1', '2017090490571', '1', '15555423186', '李小宇', '封神区', '230601', 'alipay', '', '', '25000.00', '0.00', '25000.00', '0', '1504508258');
 
 -- ----------------------------
 -- Table structure for dou_order_product
@@ -651,13 +663,11 @@ CREATE TABLE `dou_order_product` (
   `product_number` smallint(5) unsigned NOT NULL DEFAULT '1',
   `defined` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dou_order_product
 -- ----------------------------
-INSERT INTO `dou_order_product` VALUES ('1', '1', '3', '知乎营销套餐', '3000.00', '1', '');
-INSERT INTO `dou_order_product` VALUES ('2', '2', '1', '企业基础营销包', '25000.00', '1', '');
 
 -- ----------------------------
 -- Table structure for dou_page
@@ -679,12 +689,12 @@ CREATE TABLE `dou_page` (
 -- ----------------------------
 -- Records of dou_page
 -- ----------------------------
-INSERT INTO `dou_page` VALUES ('1', 'about', '0', '公司简介', 'WincomtechPHP 是一款轻量级企业网站管理系统，基于PHP+Mysql架构的，可运行在Linux、Windows、MacOSX、Solaris等各种平台上，系统搭载Smarty模板引擎，支持自定义伪静态，前台模板采用DIV+CSS设计，后台界面设计简洁明了，功能简单易具有良好的用户体验，稳定性好、扩展性及安全性强，可面向中小型站点提供网站建设解决方案。', '', '公司简介', 'WincomtechPHP是一款轻量级企业网站管理系统，基于PHP+Mysql架构的，可运行在Linux、Windows、MacOSX、Solaris等各种平台上，系统搭载Smarty模板引擎，支持自定义伪静态，前台模板采用DIV+CSS设计，后台界面设计简洁明了，功能简单易具有良好的用户体验，稳定性好、扩展性及安全性强，可面向中小型站点提供网站建设解决方案。', '');
-INSERT INTO `dou_page` VALUES ('2', 'honor', '1', '企业荣誉', '企业荣誉', '', '企业荣誉', '企业荣誉', '');
-INSERT INTO `dou_page` VALUES ('3', 'history', '1', '发展历程', '发展历程', '', '发展历程', '发展历程', '');
-INSERT INTO `dou_page` VALUES ('4', 'contact', '1', '联系我们', '通讯地址：<br />\r\n<span style=\"color:#D7D7D7;\">--------------------------------------------------------------------------------------------------------------------------------</span><br />\r\n福建省漳州市芗城区，邮编363000<br />\r\n<br />\r\n客服邮箱：<br />\r\n<span style=\"color:#D7D7D7;\">--------------------------------------------------------------------------------------------------------------------------------</span><br />\r\nWincomtechPHP售后服务邮箱：email@email.com<br />\r\nWincomtechPHP业务受理邮箱：<span>email@email.com</span><br />\r\n如您需要订制开发请在邮件中注明您的大概要求，我们将在一个工作日内给予回复。<br />\r\n<br />\r\n客服电话：<br />\r\n<span style=\"color:#D7D7D7;\">--------------------------------------------------------------------------------------------------------------------------------</span><br />\r\n<span>WincomtechPHP</span>的建站咨询电话为 0596-1234567。<br />\r\n客服电话工作时间为周一至周日 8:00-20:00，节假日不休息，免长途话费。<br />\r\n我们将随时为您献上真诚的服务。<br />\r\n<br />\r\n网站网址：<br />\r\n<span style=\"color:#D7D7D7;\">--------------------------------------------------------------------------------------------------------------------------------</span><br />\r\nwww.wowlothar.cn<br />', '', '联系我们', '联系我们', '');
-INSERT INTO `dou_page` VALUES ('5', 'job', '0', '人才招聘', '人才招聘', '', '人才招聘', '人才招聘', '');
-INSERT INTO `dou_page` VALUES ('6', 'market', '0', '营销网络', '营销网络', '', '营销网络', '营销网络', '');
+INSERT INTO `dou_page` VALUES ('1', 'about', '0', '团队介绍', '        <dl>\r\n            <dt>三点一刻•智能协同营销平台</dt>\r\n            <dd>三点一刻隶属于北京三点一刻科技有限公司，成立于2015年8月，是一家专注于为新创企业提供数字化整合营销的科技营销公司。三点一刻核心团队成员分别来自搜狐、分众传媒、暴风影音、易传媒、传漾、IBM、奥美、迪思、中国证券报等国内外知名企业。截止2016年12月，三点一刻已成功完成数千万人民币的A轮融资，目前公司估值7亿。</dd>\r\n            \r\n            <dt>三点一刻•商业模式</dt>\r\n            <dd>与传统模式的公关公司不同的是，三点一刻通过信息技术建立智能营销协同和营销众包开放等平台，通过共享经济真正实现营销行业资源和需求之间的高效配置，建立Freeman营销众包团队，以数据分析为基础，通过各种维度的数据分析和串联全球营销人才的方式，把客户在营销方面的需求进行标准化，并通过大数据进行资源匹配，把创业公司在营销方面的需求进行标准化，并通过DSP等技术进行资源智能匹配，为企业提供一站式、整合式、智库式、数据化的服务，助力智能营销时代到来。</dd>\r\n            <dd>三点一刻致力于为全球营销人提供最高效的工作平台及最赚钱的分配生态。是目前全球第一家智能协同营销的平台，将共享经济、人工智能与新的分配方式融合在了一起。用共享经济的思维模式改变营销行业，通过智能技术实现营销云平台化，让每一个中小企业都享受到如同4A广告公司的品质服务是三点一刻的企业愿景。</dd>\r\n            <dd>三点一刻现在旗下Freeman平台上汇集了数千名资深营销从业人士，可为客户进行精准的执行匹配；智能协同营销平台可以对营销数据和渠道进行效果分析，使得营销方案精准度大幅提高，执行效率明显提升，同时降低了传播成本，这使得三点一刻平台在提高整个营销服务的性价比和效率方面存在优势。</dd>\r\n            <dt>三点一刻•服务领域</dt>\r\n            <dd>成立至今，三点一刻服务企业涉及领域涉及旅游、游戏、电商、快消、影视、移动社交等，为数百家知名品牌提供个性化数字整合营销，加速其品牌传播，使之在参与国内外市场竞争中处于更有利的位置。目前三点一刻已经与全国两百余家知名孵化器达成战略合作，其中有洪泰创客空间、优客工场、纳什空间等国内知名的众创空间，为入驻这些空间的企业提供营销服务。</dd>\r\n            \r\n            <dt>三点一刻•公司产品</dt>\r\n            <dd>三点一刻通过技术力量，建立一个客户需求智能匹配平台和智能营销协同平台，立足于数字新媒体建议与数字营销，研发多个营销智能平台，包括营销智能管家平台、DSP/营销大数据精准传播平台、营销众包开放平台、执行媒体人社群平台、人工智能对冲平台等。</dd>\r\n            <dd>目前，围绕平台三点一刻已推出一系列新品，包括移动APP三点一刻、干活公众号、PC端线上工作台和线下移动办公，形成一个产品矩阵。自此，三点一刻构建智能营销生态1.0。 </dd>\r\n        </dl>', '', '团队介绍', '团队介绍', 'page.dwt');
+INSERT INTO `dou_page` VALUES ('2', 'bb', '1', '员工天地', '员工天地', '', '员工天地', '员工天地', 'page.dwt');
+INSERT INTO `dou_page` VALUES ('3', 'cc', '1', '招贤纳士', '招贤纳士', '', '招贤纳士', '招贤纳士', 'page.dwt');
+INSERT INTO `dou_page` VALUES ('4', 'contact', '1', '联系我们', '联系我们', '', '联系我们', '联系我们', 'page.dwt');
+INSERT INTO `dou_page` VALUES ('5', 'help', '0', '帮助中心', '帮助中心', '', '帮助中心', '帮助中心', 'page.dwt');
+INSERT INTO `dou_page` VALUES ('6', 'parter', '0', '合作伙伴', '合作伙伴', '', '合作伙伴', '合作伙伴', 'page.dwt');
 
 -- ----------------------------
 -- Table structure for dou_plugin
@@ -809,8 +819,8 @@ CREATE TABLE `dou_user` (
 -- ----------------------------
 -- Records of dou_user
 -- ----------------------------
-INSERT INTO `dou_user` VALUES ('1', '小宇', 'e10adc3949ba59abbe56e057f20f883e', '', 'keven518@163.com', '15555423186', '1', '', '李小宇', '封神区', '230601', '', '1993-05-06', '2', 'xiaoyu_x', '啥都会', '1478745265', '20', '1504683559,1504752161', '127.0.0.1,127.0.0.1');
-INSERT INTO `dou_user` VALUES ('2', '', 'e10adc3949ba59abbe56e057f20f883e', '', '', '13333333333', '1', '', '', '', '', '', '', '0', '', '', '1504142257', '3', '1504142588,1504760707', '127.0.0.1,127.0.0.1');
+INSERT INTO `dou_user` VALUES ('1', '小宇', 'e10adc3949ba59abbe56e057f20f883e', '', 'keven518@163.com', '15555423186', '1', '', '李小宇', '封神区', '230601', '', '1993-05-06', '2', 'xiaoyu_x', '啥都会', '1478745265', '21', '1504752161,1505189174', '127.0.0.1,127.0.0.1');
+INSERT INTO `dou_user` VALUES ('2', '13333333333', 'e10adc3949ba59abbe56e057f20f883e', 'images/avatar/2_1505205504049496.gif', '22@qq.com', '13333333333', '2', '', '', '黄山', '', '', '1996', '1', 'liuxin', '此选项必填', '1504142257', '8', '1505194509,1505270165', '127.0.0.1,127.0.0.1');
 
 -- ----------------------------
 -- Table structure for dou_video
