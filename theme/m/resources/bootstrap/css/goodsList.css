@@ -65,20 +65,19 @@
 .goods_lists th,.goods_lists td{padding:10px;border-bottom:1px solid #ddd;border-left:1px solid #ddd;}
 .goods_lists th:last-child,.goods_lists td:last-child{border-right:1px solid #ddd;}
 .goods_lists th{border-top:1px solid #ddd;}
-.goods_lists .order_pay,.goods_lists .order_view,.goods_lists .order_del{padding:3px 2px;color:#fff;background-color:red;margin-right:6px;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;-o-border-radius:6px;}
+.goods_lists .order_pay,.goods_lists .btnPayment,.goods_lists .order_view,.goods_lists .order_del{padding:1px 2px;color:#fff;background-color:red;margin-right:6px;border-radius:6px;-webkit-border-radius:6px;-moz-border-radius:6px;-o-border-radius:6px;}
 .goods_lists .order_view{background-color:orange;}
 .goods_lists .order_del{background-color:green;}
 
 
 @media screen and (min-width:768px) and (max-width:1024px) {
-	.goods_lists .order_pay, .goods_lists .order_view, .goods_lists .order_del{display:block;width:80%;margin:10px auto;}
+	.goods_lists .order_pay, .goods_lists .btnPayment, .goods_lists .order_view, .goods_lists .order_del{display:block;width:80%;margin:10px auto;}
 }
 @media screen and (max-width:767px){
 	/**w我的订单*/
     .goodsListTitle{height:70px;line-height:70px;}
 	.goods_lists th, .goods_lists td{padding:5px;}
-	.goods_lists .order_pay, .goods_lists .order_view, .goods_lists .order_del{display:block;margin:5px auto;width:80%;}
-	.order_pay{margin:5px auto;}
+	.goods_lists .order_pay, .goods_lists .btnPayment, .goods_lists .order_view, .goods_lists .order_del{display:block;margin:3px auto;width:80%;}
 	.goods_lists_item .td:nth-child(1){width:16%;}
 	.goodsListTitle{height:65px;line-height:65px;}
 }

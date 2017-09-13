@@ -19,8 +19,8 @@ if ($cat_id == -1) {
         $where = ' WHERE a.cat_id='.$cat_id;
     }
 }
-if ($_REQUEST['id']) {
-    $jumpext .= '&id='.$_REQUEST['id'];
+if ($cat_id) {
+    $jumpext .= '&id='.$cat_id;
 }
 
 // 选定字段
@@ -33,7 +33,6 @@ foreach ($dkey as $key => $value) {
     $designate[$value] = $dexplain[$key];
 }
 $fieldsarr = explode(',', $fields);
-$smarty->assign('cat_id', $cat_id);
 $smarty->assign('designate', $designate);
 $smarty->assign('fieldsarr', $fieldsarr);
 
@@ -127,7 +126,7 @@ if ($jumpext) {
 // $dou->debug($where);
 // $dou->debug($jumpext);
 
-$smarty->assign('id',$_REQUEST['id']);
+$smarty->assign('id',$cat_id);
 $smarty->assign('a',$a);
 $smarty->assign('b',$b);
 $smarty->assign('c',$c);

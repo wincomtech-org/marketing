@@ -49,7 +49,9 @@
 
         <!-- <li {*if $cur eq 'rbac'*}class="cur"{*/if*}><a href="rbac.php"><i class="manager"></i><em>权限管理</em></a></li> -->
 
+        <li {if $cur eq 'import'} class="cur"{/if}><a href="import.php"><i class="backup"></i><em>媒介导入</em></a></li>
         <li {if $cur eq 'backup'}class="cur"{/if}><a href="backup.php"><i class="backup"></i><em>{$lang.backup}</em></a></li>
+
         <li {if $cur eq 'manager_log'}class="cur"{/if}><a href="manager.php?rec=manager_log"><i class="managerLog"></i><em>{$lang.manager_log}</em></a></li>
     </ul>
 </div>

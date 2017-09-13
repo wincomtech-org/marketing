@@ -4761,7 +4761,7 @@ text-overflow: ellipsis;
 /*支付方式*/
 .pay_mode{width:100%;margin:20px 0 64px;}
 .pay_tab{width:100%;}
-.pay_tab_list{width:100%;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.pay_tab_list{width:100%;border-top:1px solid #ddd;/*border-bottom:1px solid #ddd;*/}
 .pay_tab_list:after{content:"";display:block;clear:both;}
 .pay_tab_list_item{float:left;height:60px;line-height:60px;}
 .pay_tab_list_item:hover{cursor:pointer;}
