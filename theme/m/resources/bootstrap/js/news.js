@@ -8,6 +8,7 @@ function code_keyup(){
             $('#msg_tag').css('color','#F00').addClass('msg_tag').html('手机号码不正确！');
             return false; 
         }
+        
         $.ajax({
             // url:url,
             url: 'captcha.php',

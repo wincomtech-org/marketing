@@ -11,7 +11,7 @@ function code_keyup(){
 
         $.ajax({
             // url:url,
-            url: 'user.php?rec=password_reset',
+            url: 'captcha.php',
             type: 'post',
             dataType: 'json',
             data:{
@@ -19,15 +19,15 @@ function code_keyup(){
                 imgCode:pic_yz,
                 mobile:mobile
             },
-            success:function(e){
-                console.log(e);
-                if(e.code==1){
+            success:function(e) {
+                // console.log(e);
+                if(e.code==1) {
                     $("#code").val('')
                     $('.getCode').attr('onclick','');
                     $("#code").attr("onkeyup",'').attr('placeholder',"请填写短信验证码");
                     settime(60);
                     $('#msg_tag').css('color', '#61CE3C').addClass('msg_tag').html(e.msg);
-                }else{
+                } else {
                     $('.getCode').html('<img src="captcha.php" id="vcode">');
                     refreshimage();
                     $("#code").attr({
