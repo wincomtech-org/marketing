@@ -22,6 +22,8 @@ input,button,select,textarea{
     outline:none
 }
 
+img{max-width:100%;}
+
 /*===============       登录login      ===============*/
 .login.m10{margin-bottom:2rem;margin-top:2rem;}
 .login-bg {
@@ -4993,6 +4995,7 @@ text-overflow: ellipsis;
 
 /**按钮**/
 .btn,.btnPayment{padding:4px 8px;background-color:#ff2828;color:#fff;}
+.btnPayment{padding:6px 10px;display:block;margin:0 auto;}
 
 /*购物车*/
 .shopCart{width:96%;padding:2%;}
