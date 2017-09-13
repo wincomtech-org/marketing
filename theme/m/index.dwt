@@ -8,8 +8,9 @@
         <!-- 登录后 -->
         <!--{if $user}-->
         <div class="logined" >
-            <a href="{$url.user}"><img src="{$site.theme_s}images/ico21.png" alt=""></a>
-            <a href="{$url.user}"><span>{$user.user_name}</span></a>
+        	<a href="{$url.user}" class="txt"><span>{$user.user_name}</span></a>
+            <a href="{$url.user}" class="img"><img src="{$site.theme_s}images/ico21.png" alt=""></a>
+            
         </div>
         <!--{else}-->
         <div class="loginBox">

@@ -57,17 +57,21 @@ body{
 .c{
 	clear: both;
 }
+.wrap{
+	width:100%;
+}
 
 .wrap .header{
-	padding:.24rem .16rem;
+	padding:2%;
+	box-sizing:border-box;
 }
 .wrap .header img{
 	float:left;
 }
 
 .wrap .header img{
-	width:1.4rem;
-	height:.54rem;
+	width:22%;
+	max-width:;
 }
 .wrap .loginBox{
 	float:right;
@@ -93,22 +97,30 @@ body{
 	 
  
 }
-.wrap .logined{
-	float:right;
+.wrap .header{
+	width:100%;
+	position:relative;
 }
-.wrap .logined a{float:left;}
+.wrap .logined{
+	width:100%;
+	position:absolute;
+	right:2%;
+}
+.wrap .logined a{float:right;}
+.wrap .logined a.img{width:8%;}
+.wrap .logined a.txt{margin-top:3%;}
 .wrap .logined a img{
-	height:.54rem;
-	width:.54rem;
+	/*height:.54rem;
+	width:.54rem;*/
+	width:100%;
 	border-radius:50%;
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
 	-o-border-radius:50%;
 }
 .wrap .logined span{
-	font-size:0.24rem;
-	float:left;
-	line-height:.54rem;
+	font-size:1rem;
+	margin-left:0.6rem;
 }
 
 .wrap .loginBox .enroll{
@@ -119,31 +131,34 @@ body{
 	margin-top:.24rem;
 	padding-bottom:.32rem;
 	text-align:center;
+	width:100%;
 	
 }
 .wrap .banner img{
-	height:3.6rem;
-	background-size:100% 100%;
+	/*height:3.6rem;
+	background-size:100% 100%;*/
+	width:100%;
 	
 }
 .wrap .showImg{
-	margin:0 .32rem;
-	background:red;
+	margin:0 2% 2%;
 }
+.wrap .showImg:after{content:"";display:block;clear:both;}
 .wrap .showImg div{
 	float:left;
-	width:3.32rem;
+	width:48.5%;
 }
 .wrap .showImg div:nth-child(1){
-	margin-right:.22rem;
+	margin-right:3%;
 }
 .wrap .showImg a{
 	float:left;
+	width:100%;
 }
 .wrap .showImg img{
 	float:left;
 	margin-bottom:.22rem;
-	width:3.32rem;
+	width:100%;
 }
 .wrap .aboutUs{
 	float:left;
@@ -169,6 +184,7 @@ body{
 }
 .wrap .copyright span{
 	display:block;
+	line-height:20px;
 }
 .wrap .copyright span a{
 	color:#b0b3b7;
@@ -181,4 +197,12 @@ body{
 	margin-top:.12rem;
 	color:#3798fb;
 }
- 
+@media screen and  (max-width:1025px) and (min-width:415px){
+	.wrap .copyright{padding:0.75rem 0.1rem;}
+	.wrap .copyright span{font-size:1rem;line-height:30px;}
+}
+@media screen and  (max-width:414px) and (min-width:320px){
+	.wrap .logined span{font-size:0.875rem;}
+	.wrap .logined a.txt{margin-top:2%;}
+	.wrap .copyright span{font-size:0.75rem;line-height:20px;}
+}
