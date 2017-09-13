@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--{if $url}-->
-<meta http-equiv="refresh" content="{$time}; URL={$url}" />
+<meta http-equiv="refresh" content="{$time};URL={$url}" />
 <!--{/if}-->
 <title>{$lang.home}{if $ur_here} - {$lang.msg} {/if}</title>
 <meta name="Copyright" content="Lothar Design." />
@@ -12,12 +12,11 @@
 <!--{if !$url}-->
 <script type="text/javascript">
 {literal}
-function go()
-{
-window.history.go(-1);
+function go(){
+  window.history.go(-1);
 }
-setTimeout("go()",{$time}*1000);
 {/literal}
+setTimeout("go()",{$time}*1000);
 </script>
 <!--{/if}-->
 </head>
