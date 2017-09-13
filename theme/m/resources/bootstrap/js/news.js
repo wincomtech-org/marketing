@@ -2,7 +2,7 @@
 function code_keyup(){
     var status = $("#status").val();
     var pic_yz = $("#code").val();
-    var mobile = $("#mobile").val();
+    var mobile = $("#mobile1").val();
     if($("#code").val().length==4){
         if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){
             $('#msg_tag').css('color','#F00').addClass('msg_tag').html('手机号码不正确！');
