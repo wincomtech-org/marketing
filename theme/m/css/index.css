@@ -96,7 +96,6 @@ body{
 	height: 48px;
     background-color: #FF5454;
     border-radius: 42px;
-    box-shadow:0px 4px 15px #FF8A94;
 }
 .wrap .header{
 	width:100%;
@@ -114,6 +113,7 @@ body{
 	/*height:.54rem;
 	width:.54rem;*/
 	width:100%;
+	border:1px solid #fff;
 	border-radius:50%;
 	-webkit-border-radius:50%;
 	-moz-border-radius:50%;
@@ -129,7 +129,6 @@ body{
 }
 .wrap .banner{
 	float:left;
-	margin-top:.24rem;
 	padding-bottom:.32rem;
 	text-align:center;
 	width:100%;

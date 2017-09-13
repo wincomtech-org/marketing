@@ -24,6 +24,12 @@ input,button,select,textarea{
 
 img{max-width:100%;}
 
+/***首页头部*/
+.wrap .header{background-color:#1e2831 !important;}
+.wrap .logined span{color:#fff;}
+.wrap .loginBox a{color:#fff;}
+.wrap .loginBox a .enroll{color:#fff;}
+
 /*===============       登录login      ===============*/
 .login.m10{margin-bottom:2rem;margin-top:2rem;}
 .login-bg {

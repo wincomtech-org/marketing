@@ -1,6 +1,7 @@
 body {
 	font-size: 12px;
 }
+.header_content{background-color:#1e2831;}
 .clear{display:block;clear:both;content:"";}
 .head {
 	width: 1180px;
@@ -32,7 +33,7 @@ body {
 	height: 38px;
 	font-size: 14px; line-height : 36px;
 	text-align: center;
-	color: #3a4455;
+	color: #fff;
 	line-height: 36px;
 }
 
@@ -78,7 +79,7 @@ body {
 	margin-top:8px;
 	margin-left: 5px;
 	line-height: 30px;
-	color: #353535;
+	color: #fff;
 	display: inline-block;
 	font-size: 14px;
 }
@@ -153,6 +154,7 @@ body {
 	background-size: 100%;
 	margin-right: 5px;
 	vertical-align: middle;
+	color:#fff;
 }
 
 .right-btn1 .user_list li:hover em {

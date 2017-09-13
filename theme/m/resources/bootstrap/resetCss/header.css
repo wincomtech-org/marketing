@@ -6,6 +6,7 @@ body {
 	width: 100%;
 	height: 4rem;
 	margin: 0 auto;
+	background-color:#1e2831;
 }
 .logo {margin-left:0.75rem;}
 .logo img {
@@ -17,8 +18,8 @@ body {
 .menu{float:right;position:relative;width:5rem;margin-top:1.2rem;}
 .menu_icon{width:2rem;float:right;margin-right:0.75rem;}
 .menu_icon_a{display:block;position:relative;}
-.menu_icon_a span{width:2rem;display:block;height:0.25rem;background-color:#000;margin:0.3175rem 0;}
-.menu_icon_a:before,.menu_icon_a:after{content:"";display:block;width:2rem;height:0.25rem;background-color:#000;position:relative;left:0;}
+.menu_icon_a span{width:2rem;display:block;height:0.25rem;background-color:#fff;margin:0.3175rem 0;}
+.menu_icon_a:before,.menu_icon_a:after{content:"";display:block;width:2rem;height:0.25rem;background-color:#fff;position:relative;left:0;}
 .menu_icon_a:before{top:0;}
 .menu_icon_a:after{bottom:0;}
 .nav {
@@ -89,13 +90,13 @@ body {
 	margin-top:8px;
 	margin-left: 5px;
 	line-height: 30px;
-	color: #353535;
+	color: #fff;
 	display: inline-block;
 	font-size: 14px;
 }
 
 .right-btn a {
-	color: #353535;
+	color: #fff;
 	margin: 0 5px;
 	font-size:16px;
 	margin:0 5px;
@@ -284,6 +285,8 @@ body {
 	margin-bottom:.22rem;
 	width:3.32rem;
 }*/
+
+
 .wrap{width:100%;}
 .wrap .aboutUs{
 	width:100%;
