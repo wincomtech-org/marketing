@@ -47,14 +47,23 @@
         // })(document, window);
         /**登陆后图片**/
         window.onload=function(){
+            /*首页登录后图片*/
             var $img_width=$('.logined .img img').width();
             $('.logined .img img').css('height',$img_width+"px");
 
+            /*登录前**/
+            var $div_width=$('.loginBox a div').width();
+            $('.loginBox a div').css('height',$div_width/2+"px").css('line-height',$div_width/2+"px");  
         }
-        $(window).resize(function () { 
+
+        $(window).resize(function (){ 
             var $img_width=$('.logined .img img').width();
             $('.logined .img img').css('height',$img_width+"px");
-        }
+            /*登录前**/
+            var $div_width=$('.loginBox a div').width();
+            $('.loginBox a div').css('height',$div_width/2+"px").css('line-height',$div_width/2+"px");  
+        })
+
     {/literal}
     </script>
 </head>

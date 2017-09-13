@@ -57,6 +57,7 @@ dd{
 textarea{
 	resize: none;
 }
+
 .borderBox{ 
 	-moz-border-radius: 11px;
 	-khtml-border-radius: 11px;
