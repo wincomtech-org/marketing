@@ -97,7 +97,7 @@ if (!defined('EXIT_INIT')) {
         echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=". DOU_CHARSET ."\"><div style=\"margin: 200px; text-align: center; font-size: 14px\"><p>" . $_LANG['site_closed'] . "</p><p></p></div>";
         exit();
     }
-    $_LANG['copyright'] = preg_replace('/d%/Ums', $_CFG['site_name'], $_LANG['copyright']);
+    $_LANG['copyright'] = preg_replace('/d%/Ums', $_CFG['site_name'].' 2009-2017', $_LANG['copyright']);
 
     // 载入模块文件
     foreach ((array)$_MODULE['init'] as $init_file) {

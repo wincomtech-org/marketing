@@ -150,6 +150,7 @@ elseif ($rec == 'insert') {
             'keywords'    => $_POST['keywords'],
             'description'    => $_POST['description'],
             'add_time'    => $add_time,
+            'click' => $_POST['click'],
             'sort' => $_POST['sort'],
             'template'    => $template,
         );
@@ -237,6 +238,7 @@ elseif ($rec == 'update') {
             'image'  => ($image?$image:$_POST['image_old']),
             'keywords'  => $_POST['keywords'],
             'description'  => $_POST['description'],
+            'click' => $_POST['click'],
             'sort' => $_POST['sort'],
             'template'  => $_POST['template'],
         );

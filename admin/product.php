@@ -138,6 +138,7 @@ elseif ($rec == 'insert') {
             'image'  => $image,
             'keywords'  => $_POST['keywords'],
             'description'  => $_POST['description'],
+            'click' => $_POST['click'],
             'add_time'  => time()
         );
     $dou->insert('product',$data);
@@ -214,7 +215,8 @@ elseif ($rec == 'update') {
             'defined'  => $_POST['defined'],
             'content'  => $_POST['content'],
             'keywords'  => $_POST['keywords'],
-            'description'  => $_POST['description']
+            'description'  => $_POST['description'],
+            'click' => $_POST['click'],
         );
     if ($image)
         $data['image'] = $image;

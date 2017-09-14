@@ -137,6 +137,7 @@ elseif ($rec == 'insert') {
             'image'    => $image,
             'keywords'    => $_POST['keywords'],
             'description'    => $_POST['description'],
+            'click' => $_POST['click'],
             'add_time'    => $add_time,
         );
     $res = $dou->insert('case',$data);
@@ -215,6 +216,7 @@ elseif ($rec == 'update') {
             'content'  => $_POST['content'],
             'keywords'  => $_POST['keywords'],
             'description'  => $_POST['description'],
+            'click' => $_POST['click'],
         );
     if ($image) 
         $data['image'] = $image;
