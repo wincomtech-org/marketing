@@ -1,5 +1,9 @@
 <?php
-if (!defined('IN_LOTHAR')) die('Hacking attempt');
+/*// 用于测试
+define('IN_LOTHAR', true);
+include_once dirname(dirname(dirname(__FILE__))) .'/init.php';*/
+
+if (!defined('IN_LOTHAR')) die('Hacking attempt');// 测试时请注释
 
 class Plugin {
     var $plugin_id = 'wxpaynative'; // 插件唯一ID
@@ -200,4 +204,8 @@ class Plugin {
         return $parameter;
     }
 }
+/*// 用于测试
+$aa = new Plugin('wqwq','2');
+echo $bb = $aa->work();
+echo '<br><img src="'.$bb.'" alt="">';*/
 ?>
