@@ -37,7 +37,8 @@ require (ROOT_PATH . 'include/memory.class.php');
 // 定义DouPHP其它常量
 // DS 在 Smarty 里定义了
 // M_PATH \data\config.php
-define('M_URL', ROOT_URL . M_PATH . '/');
+// define('M_URL', ROOT_URL . M_PATH . '/');
+define('M_URL', ROOT_HOST .'/'. M_PATH . '/');
 
 // 实例化DouPHP核心类
 $dou = new Action($dbhost, $dbuser, $dbpass, $dbname, $prefix, DOU_CHARSET);

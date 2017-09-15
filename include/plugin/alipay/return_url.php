@@ -48,10 +48,10 @@ if ($verify_result) {//验证成功
         $dou_order->change_status($out_trade_no, 10);
     } else {
         // echo "trade_status=".$_GET['trade_status'];
-        $dou->dou_header($_URL['order_list']);
     }
   
     $dou->dou_header($_URL['order_list']);
+    // $dou->dou_header(ROOT_HOST .'/user.php?rec=order_list');
 
     //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 }

@@ -108,9 +108,10 @@ class Common extends DbMysql {
         }
 
         if ($module == 'mobile') {
-            return ROOT_URL . M_PATH; // 手机版链接
+            // return ROOT_URL . M_PATH; // 手机版链接
+            return ROOT_HOST .'/'. M_PATH; // 手机版链接
         } else {
-            return ((defined('IS_MOBILE') || $type=='mobile') ? M_URL : ROOT_URL) . $url; // 移动版和PC版的根网址不同
+            return ((defined('IS_MOBILE') || $type=='mobile') ? M_URL : ROOT_HOST .'/') . $url; // 移动版和PC版的根网址不同
         }
     }
     
