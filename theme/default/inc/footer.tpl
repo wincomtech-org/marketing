@@ -6,7 +6,7 @@
             <span>商务热线：{$site.fax}</span>
             <span>服务热线：{$site.tel}</span>
             <span>联系地址：{$site.site_address}</span>
-            <span>{$lang.copyright} {$lang.powered_by} {$site.icp}</span>
+            <span>{$site.copyright} {$site.icp}</span>
         </div>
 
         <div class="listText">
