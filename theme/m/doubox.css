@@ -16,7 +16,7 @@
     overflow: hidden;
     padding: 0;
     border: 2px solid #C4C4C4;
-    background-color:#222222;
+    background-color:#fff;
     width:360px;
     left:50%;
     top:40%;
@@ -25,7 +25,7 @@
 #douBox .boxFrame h2 {
     height: 28px;
     padding: 0 10px;
-    background: #f5f5f5;
+    background: #eee;
     line-height: 28px;
     color: #666;
     font-size:14px;
@@ -51,12 +51,12 @@
     font-weight:bold;
 }
 #douBox .boxFrame .boxCon dd {
-    color:#EEE;
+    color:#333;
     zoom:1;
     overflow:hidden;
 }
 #douBox .boxFrame .boxCon dd a {
-    background-color:#F5F5F5;
+    background-color:#eee;
     border: 1px solid #CBD1D3;
     display:block;
     float:left;

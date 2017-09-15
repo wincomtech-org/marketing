@@ -463,7 +463,7 @@ elseif ($rec == 'success') {
  */
 elseif ($rec == 'wxpay_check') {
     // 验单
-    $status = $dou_order->order_check($_POST['pay_id'],$_SESSION['order_sn'],$_POST['order_id'])
+    $status = $dou_order->order_check($_POST['pay_id'],$_SESSION['order_sn'],$_POST['order_id']);
     if ($status) {
         echo true;exit;
     } else {

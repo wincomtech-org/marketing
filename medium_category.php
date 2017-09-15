@@ -155,6 +155,8 @@ while ($row = $dou->fetch_assoc($query)) {
     if ($row['image']) {
         $image = explode('.', $row['image']);
         $row['image'] = ROOT_URL . $image[0] . "_thumb." . $image[1];
+    } else {
+        $row['image'] = ROOT_URL .'images/medium_thumb_default.jpg';
     }
     $row['moneys'] = $row['moneys'] ? $dou->price_format($row['moneys']) : '';
     

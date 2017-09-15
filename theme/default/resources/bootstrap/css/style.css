@@ -1830,6 +1830,10 @@ input,button,select,textarea{
     padding-top: 50px;
     vertical-align: middle;
 }
+
+.smart-block ul li:not(:first-child) span:nth-child(2){
+    font-weight:bold;
+}
 .smart-block ul li span.smart_img {
     padding: 0;
 }
