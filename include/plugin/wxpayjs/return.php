@@ -1,4 +1,5 @@
 <?php 
+// JSAPI支付
 define('IN_DOUCO', true);
 require_once ('../init.php');
 require_once ROOT_PATH.'public.php';

@@ -602,8 +602,14 @@ elseif ($rec == 'order_list') {
 elseif ($rec == 'order') {
     // 验证并获取合法的ID
     $order_sn = $check->is_number($_REQUEST['order_sn']) ? $_REQUEST['order_sn'] : '';
+
+    // 订单二次验证 仅限微信扫码
+    $pay_id = $dou->get_one('SELECT pay_id from '.$dou->table('order').' where order_sn=\'$order_sn\' and user_id='.intval($_USER['user_id']));
+    if ($pay_id=='wxpaynative') {
+        $dou_order->order_check($pay_id,$order_sn);
+    }
     
-    $query = $dou->select($dou->table('order'), 'order_id,order_sn,telephone,pay_id,product_amount,order_amount,status,add_time', "order_sn = '$order_sn' AND user_id = '$_USER[user_id]'");
+    $query = $dou->select($dou->table('order'), 'order_id,order_sn,telephone,pay_id,product_amount,order_amount,status,add_time', "order_sn='$order_sn' AND user_id='$_USER[user_id]'");
     $order = $dou->fetch_assoc($query);
     
     // 判断订单是否存在
@@ -628,7 +634,7 @@ elseif ($rec == 'order') {
         // 生成支付按钮
         $order['payment'] = $plugin->work();
     }
-// $dou->debug($order,1);
+
     // 赋值给模板
     $smarty->assign('page_title', $dou->page_title('user', 'order_view'));
     // $smarty->assign('ur_here', $dou->ur_here('user', 'order_view'));

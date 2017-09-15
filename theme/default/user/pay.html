@@ -41,6 +41,7 @@
 									<ul class="pay_tab_con_list">
 									<!--{if $pay_id eq 'alipay'}-->
 										<li class="pay_tab_con_list_item">
+											<h1 class="zhifubao" style="color:red">付款后请耐心等待跳转，避免支付失败</h1>
 											<div class="zhifubao">
 												<!-- <div class="left">
 													<div class="txt"><img src="{$site.theme_s}images/erweima_tit.png" alt=""></div> 
@@ -64,6 +65,7 @@
 										</li>
 									<!--{elseif $pay_id eq 'wxpaynative'}-->
 										<li class="pay_tab_con_list_item">
+											<h1 class="weixin" style="color:red">扫码后请耐心等待5秒钟，避免支付失败</h1>
 											<div class="weixin">
 												<div class="weixin_con">
 													<img src="{$site.theme_s}images/weixin3.png" alt="">

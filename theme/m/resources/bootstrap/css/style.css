@@ -5160,7 +5160,7 @@ text-overflow: ellipsis;
 .pay_tab_con .pay_tab_con_list{width:100%;}
 
 /*支付宝*/
-.zhifubao{width:100%;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-webkit-border-box;box-sizing:-o-border-box;padding:50px 150px;}
+.zhifubao{width:100%;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-webkit-border-box;box-sizing:-o-border-box;padding:10px 0px;}
 .zhifubao>div.left{float:left;}
 .zhifubao>div.right{float:right;}
 .zhifubao>div.left .erweima{margin-top:15px;}
@@ -5168,7 +5168,7 @@ text-overflow: ellipsis;
 .zhifubao>div.right a{display:block;padding:12px 69px;background-color:#d8271c;color:#fff;margin-top:30px;}
 
 /*微信*/
-.weixin{width:100%;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-webkit-border-box;box-sizing:-o-border-box;padding:50px 150px;text-align:center;}
+.weixin{width:100%;box-sizing:border-box;box-sizing:-moz-border-box;box-sizing:-webkit-border-box;box-sizing:-o-border-box;padding:10px 0px;text-align:center;}
 .weixin_con{display:inline-block;}
 .weixin .weixin_bottom {margin-top:25px;}
 .weixin .weixin_bottom .lf{margin-right:48px;}

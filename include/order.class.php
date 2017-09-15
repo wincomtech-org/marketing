@@ -163,18 +163,38 @@ class Order {
         }
         return $product_list;
     }
+
+    /**
+    * 二次验单并改变状态
+    */
+    public function order_check($pay_id, $out_trade_no='', $order_id)
+    {
+        if (empty($out_trade_no)) {
+            $order_id = intval($order_id);
+            $out_trade_no = $GLOBALS['dou']->get_one("SELECT order_sn from ".$GLOBALS['dou']->table('order')." where order_id='{$order_id}'");// 订单号
+        }
+        if ($out_trade_no) {
+            require_once ROOT_PATH .'include/plugin/'. $pay_id .'/work.plugin.php';
+            $plugin = new Plugin($out_trade_no);
+            if ($plugin->OrderStatus()) {
+                return $this->change_status($out_trade_no, 10);
+            }
+        }
+        return false;
+    }
     
     /**
      * +----------------------------------------------------------
      * 改变订单状态
      * +----------------------------------------------------------
      * $order_sn 订单编号
-     * $status 由数字表示的订单状态
+     * $status 由数字表示的订单状态 -1已取消 0未付款 1待发货 10已完成
      * +----------------------------------------------------------
      */
     function change_status($order_sn, $status) {
         // 取消所选订单
-        $GLOBALS['dou']->query("UPDATE " . $GLOBALS['dou']->table('order') . " SET status = '$status' WHERE order_sn = '$order_sn'");
+        // $GLOBALS['dou']->query("UPDATE " . $GLOBALS['dou']->table('order') . " SET status = '$status' WHERE order_sn = '$order_sn'");
+        return $GLOBALS['dou']->update('order',array('status'=>$status),"order_sn='{$order_sn}'");
     }
     
     /**

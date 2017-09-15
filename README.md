@@ -45,3 +45,9 @@ PC端路径：theme/default/
 
 手机端 logo.png 如何与 PC 保持一致？
 mobile.php 52
+
+
+
+数据库更新记录：
+
+

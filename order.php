@@ -463,20 +463,11 @@ elseif ($rec == 'success') {
  */
 elseif ($rec == 'wxpay_check') {
     // 验单
-    $order_id = intval($_REQUEST['order_id']);
-    $out_trade_no = $_SESSION['order_sn']?$_SESSION['order_sn']:$dou->get_one("SELECT order_sn from ".$dou->table('order')." where order_id='{$order_id}'");// 订单号
-    if ($out_trade_no) {
-        require_once ROOT_PATH .'include/plugin/' . $_POST['pay_id'] . '/work.plugin.php';
-        $plugin = new Plugin($order_sn);
-        if ($plugin->OrderStatus()) {
-            $affected_rows = $dou->update('order',array('status'=>10),"order_id={$order_id} AND order_sn='{$out_trade_no}'");
-            echo $affected_rows;exit;
-        } else {
-            echo false;exit;
-        }
+    $status = $dou_order->order_check($_POST['pay_id'],$_SESSION['order_sn'],$_POST['order_id'])
+    if ($status) {
+        echo true;exit;
     } else {
         echo false;exit;
     }
-    echo false;exit;
 }
 ?>
