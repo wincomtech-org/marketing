@@ -58,6 +58,7 @@
               </div>
               <div class="clear"></div>
           </div>
+          <!-- {if $order.status eq '0'} -->
           <div class="order_amount">
               <a href="{$url.order_cancel}&order_sn={$order.order_sn}">取消订单</a>
               <!-- <input class="btn" type="submit" value="付款"> -->
@@ -74,6 +75,7 @@
               <!-- {else} -->
               <!-- {/if} -->
           </div>
+          <!-- {/if} -->
           <div class="clear"></div>
       </div>
 

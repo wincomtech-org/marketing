@@ -74,7 +74,8 @@
 													$.post(baseurl+'order.php?rec=wxpay_check', {order_id:order_id,pay_id:pay_id}, function(data) {
 														if (data) {
 															clearInterval(pid);
-															$('.weixin_bottom').html('<p style="font-size:16px;">已支付，请查看<a style="color:blue;" href="user.php?rec=order">“我的订单”</a></p>');
+															$('.weixin_bottom').html('<p style="font-size:14px;">已支付，请查看<a style="color:blue;" href="user.php?rec=order">“我的订单”</a>（该页面3秒后自动跳转）</p>');
+															setTimeout(function(){ window.location.href = 'user.php?rec=order_list'}, 3000);
 														}
 													});
 												}

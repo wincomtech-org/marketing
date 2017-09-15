@@ -28,7 +28,9 @@
                         <td class="goods_order_time td">{$order.add_time}</td>
                         <td class="goods_order_static td"><span class="not_pay">{$order.status_format}</span></td>
                         <td class="goods_order_edit td">
-                            <!--{if $order.order_type eq 2}--><a class="order_view" href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a><!--{/if}-->
+                            <!--{if $order.order_type eq 2}-->
+                                <a class="order_view" href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a>
+                            <!--{/if}-->
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <!--{if $order.status eq '0'}-->
                                 <a class="order_del" href="javascript:void(0)" onclick="douBox('{$url.order_cancel}&order_sn={$order.order_sn}')">{$lang.order_cancel}</a>

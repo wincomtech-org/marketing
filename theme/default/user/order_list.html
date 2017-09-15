@@ -44,7 +44,9 @@
                             <td>{$order.add_time}</td>
                             <td>{$order.status_format}</td>
                             <td>
-                                <!--{if $order.order_type eq 2}--><a href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a><!--{/if}-->
+                                <!--{if $order.order_type eq 2}-->
+                                <a href="{$url.order}&order_sn={$order.order_sn}">{$lang.order_view_btn}</a>
+                                <!--{/if}-->
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <!--{if $order.status eq '0'}-->
                                     <a href="javascript:void(0)" onclick="douBox('{$url.order_cancel}&order_sn={$order.order_sn}')">{$lang.order_cancel}</a>
