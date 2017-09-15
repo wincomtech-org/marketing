@@ -1,0 +1,24 @@
+{include file="inc/head.tpl"}
+<link rel="stylesheet" href="{$site.theme_s}resetCss/header.css"/>
+<script src="{$site.theme_s}js/pagination.js"></script>
+<style>
+    {literal}
+    ul,li{margin:0;}
+    #text{padding:0 20%;}
+    #text h2{font-size:24px;color:#5F5F5F;}
+    #text h3{font-size:20px;color:#187AC7;line-height:30px;}
+    #text h4{font-size:16px;color:#355977;line-height:18px;}
+    #text h5{font-size:16px;color:#187AC7;line-height:18px;}
+    #text p{text-indent:32px;line-height:28px;margin:0;}
+    #text p span{text-indent:32px;color:#574471;}
+    #text  ul{margin-left:46px;}
+    {/literal}
+</style>
+
+<body>
+<div class="disclaimer">
+    <h2>【{$law.title}】</h2>
+    <div>{$law.content}</div>
+</div>
+</body>
+</html>

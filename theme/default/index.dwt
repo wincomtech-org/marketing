@@ -72,10 +72,9 @@
                         <p class="reg_p">
                             <label><input type="checkbox"><em>√</em></label>
                             我同意
-                            <a href="lawyer.php?law=provisions">《服务条款》</a>
-                            <a href="lawyer.php?law=protocol">《保密协议》</a>
-                            <a href="lawyer.php?law=disclaimer">《法律公告及免责声明》</a>
-                            <a href="lawyer.php?law=privacy_clause">《隐私条款》</a>
+                            <!-- {foreach $law $r} -->
+                            <a href="lawyer.php?id={$r.id}">《{$r.title}》</a>
+                            <!-- {/foreach} -->
                             <div class="clear"></div>
                         </p>
                         <input type="hidden" name="token" value="{$token}" />
@@ -101,10 +100,9 @@
                         <p class="reg_p">
                             <label><input type="checkbox"><em>√</em></label>
                             我同意
-                            <a href="lawyer.php?law=provisions">《服务条款》</a>
-                            <a href="lawyer.php?law=protocol">《保密协议》</a>
-                            <a href="lawyer.php?law=disclaimer">《法律公告及免责声明》</a>
-                            <a href="lawyer.php?law=privacy_clause">《隐私条款》</a>
+                            <!-- {foreach $law $r} -->
+                            <a href="lawyer.php?id={$r.id}">《{$r.title}》</a>
+                            <!-- {/foreach} -->
                             <div class="clear"></div>
                         </p>
                         <input type="hidden" name="token2" value="{$token2}" />

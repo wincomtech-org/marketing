@@ -27,6 +27,8 @@ if (!$gUid) {
 // 获取关于我们信息
 $sql = "SELECT page_name,content,image,description FROM ". $dou->table('page') ." WHERE id=1";
 $about = $dou->fetchRow($sql);
+// 获取法律条文
+$law = $dou->fetchAll("SELECT id,title,content FROM ".$dou->table('diy')." WHERE cat_id=3 ORDER BY id");
 
 // 写入到index数组
 $index['about_name'] = $about['page_name'];
@@ -52,6 +54,8 @@ $smarty->assign('index', $index);
 $smarty->assign('recommend_case', $dou->get_list('case', 'ALL', $_DISPLAY['home_case'], 'sort DESC'));
 $smarty->assign('recommend_product', $dou->get_list('product', 'ALL', $_DISPLAY['home_product'], 'sort DESC'));
 $smarty->assign('recommend_article', $dou->get_list('article', 'ALL', $_DISPLAY['home_article'], 'sort DESC'));
+$smarty->assign('law',$law);
+
 
 $smarty->display('index.dwt');
 ?>

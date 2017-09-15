@@ -6,7 +6,18 @@
 define('IN_LOTHAR', true);
 require dirname(__FILE__) . '/include/init.php';
 
-$s = $_GET['law'] ? trim($_GET['law']) : 'disclaimer';
+$id = $_GET['id'] ? intval($_GET['id']) : $dou->dou_msg('打开失败');
 
-$smarty->display('lawyer/'.$s.'.html');
+$law = $dou->fetchRow("SELECT title,content,keywords,description FROM ".$dou->table('diy')." WHERE id={$id}");
+
+
+// 赋值给模板-meta和title信息
+$smarty->assign('page_title', $dou->page_title());
+$smarty->assign('keywords', $law['keywords']?$law['keywords']:$_CFG['site_keywords']);
+$smarty->assign('description', $law['description']?$law['description']:$_CFG['site_description']);
+
+// 赋值给模板-数据
+$smarty->assign('law',$law);
+
+$smarty->display('lawyer/lawyer.html');
 ?>
