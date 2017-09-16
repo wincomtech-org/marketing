@@ -31,8 +31,8 @@
             <input type="text" name="telephone" id="mobile1" placeholder="输入手机号" style="margin-top:10px;"/>
 
             <!--{if $site.captcha}-->
-            <div id="popup-submit">发送验证码</div>
-            <input id="code" type="text" name="msgcode" placeholder="输入手机验证码"/>
+            <div id="popup_submit">发送验证码</div>
+            <input id="code" type="text" name="msgcode" placeholder="输入短信验证码"/>
             <input id="status" type="hidden" value="2">
             <p id="msg_tag"></p>
             <!--{/if}-->
@@ -54,31 +54,32 @@
         </form>
         </div>
     </div>
-     <div id="popup-captcha"></div>
+     <div id="popup_captcha"></div>
 </div>
 </body>
 <script type="text/javascript">
     // var root_url = '{$site.root_url}';
     {literal}
-    $('#popup-submit').click(function() {
+    $('#popup_submit').click(function() {
         var mob = $('#mobile1').val();
         $.post('captcha.php', {status:status,mobile:mob}, function(e) {
             // console.log(e);
             if(e.code==1) {
-                $("#code").val('')
-                $("#popup-submit").css('color', '#61CE3C').html(e.msg);
-            } else {
+                $('#msg_tag').css('color', '#61CE3C').addClass('msg_tag').html(e.msg);
                 settime(60);
+            } else {
+                $('#msg_tag').css('color', '#F00').addClass('msg_tag').html(e.msg);
             }
         },'json');
     });
 
     function settime(countdown){
         if (countdown == 0) {
-            $('#popup-submit')..css('color','#242424');html('发送验证码');
+            $("#code").val('');
+            $('#popup_submit').css('color','#242424').html('重新发送验证码');
             return false;
         }else{
-            $('#popup-submit').html(countdown+'s 后重发');
+            $('#popup_submit').html(countdown+'s 后重发');
             countdown--;
         }
         setTimeout(function() {

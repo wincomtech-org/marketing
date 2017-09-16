@@ -25,8 +25,8 @@ function code_keyup(){
                     $("#code").val('')
                     $('.getCode').attr('onclick','');
                     $("#code").attr("onkeyup",'').attr('placeholder',"请填写短信验证码");
-                    settime(60);
                     $('#msg_tag').css('color', '#61CE3C').addClass('msg_tag').html(e.msg);
+                    settime(60);
                 } else {
                     $('.getCode').html('<img src="captcha.php" id="vcode">');
                     refreshimage();
