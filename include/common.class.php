@@ -587,7 +587,7 @@ class Common extends DbMysql {
         }
         $record_count = $this->get_one($sql);
         
-        // 调整分页链接样式
+        // 调整分页链接样式 伪静态下没做修改
         if (!defined('IS_ADMIN') && $GLOBALS['_CFG']['rewrite'] && !$close_rewrite) {
             $get_page = '/o';
             $get = preg_replace('/&/', '?', $get, 1); // 将起始参数标记改为'?'
