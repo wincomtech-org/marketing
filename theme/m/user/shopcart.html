@@ -17,7 +17,7 @@
 											<input class="" id="selectAll" type="checkbox">
 											<label for="selectAll">全选</label>
 										</th>
-										<th class="th th-logo tabl">LOGO</th> 
+										<!-- <th class="th th-logo tabl">LOGO</th> -->
 										<th class="th th-name tabl">名称</th> 
 										<th class="th th-indust tabl">行业</th> 
 										<th class="th th-area tabl">地区</th> 
@@ -34,9 +34,9 @@
 										<td class="td td-chk tabl">	
 											<input class="slectBox" type="checkbox"   name="idbox[]" value="{$v.id}">
 										</td>
-										<td class="td td-logo tabl">
-											<span class="img"><img src="{$v.image}"></span>	
-										</td>
+										<!-- <td class="td td-logo tabl">
+											<span class="img"><img src="{*$v.image*}"></span>	
+										</td> -->
 										<td class="td td-name tabl">{$v.title}</td>
 										<td class="td td-indust tabl">{$v.industry}</td>
 										<td class="td td-area tabl">{if $v.district}{$v.district}{else}全国{/if}</td> 

@@ -58,7 +58,7 @@
 										<ul class="merchBill_con_right">
 											<!--{foreach $cart.list $v}-->
 											<li>
-												<span class="left"><input checked="true" type="checkbox" name="idbox[]" value="{$v.id}"> <img src="{$v.image}" alt=""></span>
+												<span class="left"><input checked="true" type="checkbox" name="idbox[]" value="{$v.id}"> <!-- <img src="{*$v.image*}" alt=""> --></span>
 												<span class="middle">{$v.title}</span>
 												<span class="right">{$v.subtotal_normal}</span>
 											</li>
