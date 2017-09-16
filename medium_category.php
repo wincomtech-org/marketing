@@ -142,8 +142,7 @@ $smarty->assign('jumpurl',$jumpurl);
 
 /*数据查询*/
 // 获取分页信息
-$pagesize = 2;
-// $pagesize = $_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10;
+$pagesize = $_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10;
 // 解决分页问题如何解决？ 禁止开启伪静态
 // $page_url = $dou->rewrite_url('medium_category', $cat_id);
 // $jumpext .= (strpos($page_url, '?id=')) ? '' : '&id='.$cat_id;
