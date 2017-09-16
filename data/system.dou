@@ -1,3 +1,3 @@
 // DOUPHP INSTALLED guestbook,link
-column_module:product,article,medium,case
+column_module:medium,product,article,case
 single_module:plugin,order,user

@@ -3,7 +3,7 @@ define('IN_LOTHAR', true);
 require (dirname(__FILE__) . '/include/init.php');
 require ROOT_PATH .'public.php';
 
-// 验证并获取合法的ID，如果不合法将其设定为-1
+/*验证并获取合法的ID，如果不合法将其设定为-1*/
 $cat_id = $firewall->get_legal_id('medium_category', $_REQUEST['id'], $_REQUEST['unique_id']);
 
 $jumpext = $jumpurl = $order = '';
@@ -22,8 +22,10 @@ if ($cat_id == -1) {
 if ($cat_id) {
     $jumpext .= '&id='.$cat_id;
 }
+$page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : 1;
+$jumpext .= '&page='. $page;
 
-// 选定字段
+/*选定字段*/
 $fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
 $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
 $dkey = explode(',', $dkey);
@@ -35,7 +37,6 @@ foreach ($dkey as $key => $value) {
 $fieldsarr = explode(',', $fields);
 $smarty->assign('designate', $designate);
 $smarty->assign('fieldsarr', $fieldsarr);
-
 
 
 /*筛选条件*/
@@ -121,11 +122,11 @@ if ($jumpext) {
 } else {
     $jumpurl = $_URL['medium'] . '?';
 }
-// 分页问题如何解决？
-
 // $dou->debug($where);
 // $dou->debug($jumpext);
+// $dou->debug($jumpurl);
 
+/*赋值*/
 $smarty->assign('id',$cat_id);
 $smarty->assign('a',$a);
 $smarty->assign('b',$b);
@@ -139,14 +140,18 @@ $smarty->assign('g',$g);
 $smarty->assign('srcval',$srcval);
 $smarty->assign('jumpurl',$jumpurl);
 
-
 /*数据查询*/
 // 获取分页信息
-$page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : 1;
+$pagesize = 2;
+// $pagesize = $_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10;
+// 解决分页问题如何解决？ 禁止开启伪静态
+// $page_url = $dou->rewrite_url('medium_category', $cat_id);
+// $jumpext .= (strpos($page_url, '?id=')) ? '' : '&id='.$cat_id;
+$page_url = 'medium_category.php';
 $where2 = str_replace('a.','',$where);
-$limit = $dou->pager('medium', ($_DISPLAY['medium'] ? $_DISPLAY['medium'] : 10), $page, $dou->rewrite_url('medium_category', $cat_id), $where2, $jumpext);
+$limit = $dou->pager('medium', $pagesize, $page, $page_url, $where2, $jumpext, '', true);
 
-/* 获取下载列表 */
+// 获取下载列表 
 $fields = $dou->create_fields_quote('id,defined,add_time,title,image,click,description'.($fields?','.$fields:''),'a');
 $sql = sprintf("SELECT %s,b.cat_name,c.title as indusid,d.cat_name as proid from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,$order.'a.add_time DESC',$limit);
 // $dou->debug($sql,1);

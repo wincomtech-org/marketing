@@ -51,7 +51,7 @@ if ($rec == 'default') {
     $limit = $dou->pager('product', 15, $page, $page_url, $where2, $get);
     // 查询数据
     $fields = $dou->create_fields_quote('id,name,cat_id,add_time','a');
-    $sql = sprintf("SELECT %s,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s %s %s", $fields,$dou->table('product'),$dou->table('product_category'),$where,' ORDER BY a.cat_id,a.sort,a.add_time DESC',$limit);
+    $sql = sprintf("SELECT %s,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s %s %s", $fields,$dou->table('product'),$dou->table('product_category'),$where,' ORDER BY a.sort,a.add_time DESC',$limit);
     $query = $dou->query($sql);
     while ($row = $dou->fetch_array($query,MYSQL_ASSOC)) {
         $row['add_time'] = date("Y-m-d", $row['add_time']);

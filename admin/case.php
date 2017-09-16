@@ -52,7 +52,7 @@ if ($rec == 'default') {
     $limit = $dou->pager('article', 15, $page, $page_url, $where2, $get);
     // 查询数据
     $fields = $dou->create_fields_quote('id,title,cat_id,image,add_time','a');
-    $sql = sprintf("SELECT %s,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s", $fields,$dou->table('case'),$dou->table('case_category'),$where,'a.cat_id,a.add_time DESC',$limit);
+    $sql = sprintf("SELECT %s,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s", $fields,$dou->table('case'),$dou->table('case_category'),$where,'a.add_time DESC',$limit);
     $query = $dou->query($sql);
     while ($row = $dou->fetch_assoc($query)) {
         $row['add_time'] = date("Y-m-d", $row['add_time']);

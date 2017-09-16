@@ -84,7 +84,7 @@ if ($rec == 'default') {
     // 查询数据
     // $fields = $dou->create_fields_quote('id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort','a');
     // $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
-    $sql = sprintf("SELECT a.id,a.title,a.cat_id,a.image,a.click,a.add_time,a.sort,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s",$dou->table('medium'),$dou->table('medium_category'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
+    $sql = sprintf("SELECT a.id,a.title,a.cat_id,a.image,a.click,a.add_time,a.sort,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s",$dou->table('medium'),$dou->table('medium_category'),$where,'a.sort,a.add_time desc DESC',$limit);
     // $dou->debug($sql,1);
     $query = $dou->query($sql);
     while ($row = $dou->fetch_assoc($query)) {

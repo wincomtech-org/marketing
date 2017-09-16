@@ -593,30 +593,34 @@ class Common extends DbMysql {
             $get = preg_replace('/&/', '?', $get, 1); // 将起始参数标记改为'?'
             $get = '/' . $get; // 起始参数前加'/'
         } else {
-            $get_page = strpos($page_url, '?')!==false ? '&'.$sep.'=' : '?'.$sep.'=';
+            if ($close_rewrite) {
+                $get_page = '&'.$sep.'=';
+            } else {
+                $get_page = strpos($page_url, '?')!==false ? '&'.$sep.'=' : '?'.$sep.'=';
+            }
         }
 
         $page_count = ceil($record_count/$page_size);
-        $first = $page_url . $get_page . '1' . $get;
-        $previous = $page_url . $get_page . ($page>1?$page-1:0) . $get;
-        $next = $page_url . $get_page . ($page_count>$page?$page+1:0) . $get;
-        $last = $page_url . $get_page . $page_count . $get;
+        $first = $page_url . $get . $get_page.'1';
+        $previous = $page_url . $get . $get_page . ($page>1?$page-1:0);
+        $next = $page_url . $get . $get_page . ($page_count>$page?$page+1:0);
+        $last = $page_url . $get . $get_page . $page_count;
         
-        $spt = $page_url . $get_page;
+        $spt = $page_url . $get . $get_page;
         $pagep = '';$pagen = '';
         // 上三页
         for ($i=$page-4; $i < $page; $i++) { 
             if ($i > 0) {
-                $pagep .= '<a href="'.$spt.$i.$get.'">'.$i.'</a>';
+                $pagep .= '<a href="'.$spt.$i.'">'.$i.'</a>';
             }
         }
         // 当前页
-        // $current = "<a href=\"".$spt.$page.$get."\">".$page."</a>";
+        // $current = "<a href=\"".$spt.$page."\">".$page."</a>";
         $current = '<span class="active">'.$page.'</span>';
         // 下三页
         for ($i=$page+1; $i < $page+5; $i++) { 
             if ($i <= $page_count) {
-                $pagen .= '<a href="'.$spt.$i.$get.'">'.$i.'</a>';
+                $pagen .= '<a href="'.$spt.$i.'">'.$i.'</a>';
             }
         }
         
