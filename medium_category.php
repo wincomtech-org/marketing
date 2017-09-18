@@ -125,7 +125,7 @@ if ($jumpext) {
 }
 // $dou->debug($where);
 // $dou->debug($jumpext);
-$dou->debug($jumpurl);
+// $dou->debug($jumpurl);
 
 /*赋值*/
 $smarty->assign('id',$cat_id);
