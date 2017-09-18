@@ -26,29 +26,12 @@ if (in_array($rec,array('default','add','edit'))) {
         $id = $check->is_number($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
         $cat_id = $dou->get_one("SELECT cat_id from ".$dou->table('medium')." WHERE id=".$id);
     }
-    $fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
-    $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
-    $dkey = explode(',', $dkey);
-    $dexplain = '行业,地区,账号类型,粉丝量,价格,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
-    $dexplain = explode(',', $dexplain);
-    foreach ($dkey as $key => $value) {
-        $designate[$value] = $dexplain[$key];
-    }
-    $fieldsarr = explode(',', $fields);
 
-    // 所有行业
-    $industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$dou->table('diy')));
-    // 所有省份
-    $provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s order by sort',$dou->table('district')));
-    // 所有账号类型
-    $account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));
+    // 选定字段 和 筛子
+    $dou->get_medium_fields($cat_id);
+    $dou->get_medium_series();
 
     $smarty->assign('cat_id', $cat_id);
-    $smarty->assign('designate', $designate);
-    $smarty->assign('fieldsarr', $fieldsarr);
-    $smarty->assign('industrys', $industrys);
-    $smarty->assign('provinces', $provinces);
-    $smarty->assign('account_types', $account_types);
 }
 
 /**
@@ -84,7 +67,7 @@ if ($rec == 'default') {
     // 查询数据
     // $fields = $dou->create_fields_quote('id,title,cat_id,image,indusid,proid,fans,moneys,click,add_time,sort','a');
     // $sql = sprintf("SELECT %s,b.cat_name,c.title as industry,d.cat_name as district from %s a left join %s b on a.cat_id=b.cat_id left join %s c on a.indusid=c.id left join %s d on a.proid=d.cat_id %s ORDER BY %s %s", $fields,$dou->table('medium'),$dou->table('medium_category'),$dou->table('diy'),$dou->table('district'),$where,'a.add_time desc,a.sort,a.cat_id DESC',$limit);
-    $sql = sprintf("SELECT a.id,a.title,a.cat_id,a.image,a.click,a.add_time,a.sort,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s",$dou->table('medium'),$dou->table('medium_category'),$where,'a.sort,a.add_time desc DESC',$limit);
+    $sql = sprintf("SELECT a.id,a.title,a.cat_id,a.image,a.click,a.add_time,a.sort,b.cat_name from %s a left join %s b on a.cat_id=b.cat_id %s ORDER BY %s %s",$dou->table('medium'),$dou->table('medium_category'),$where,'a.sort,a.add_time desc',$limit);
     // $dou->debug($sql,1);
     $query = $dou->query($sql);
     while ($row = $dou->fetch_assoc($query)) {

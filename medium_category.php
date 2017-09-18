@@ -3,11 +3,17 @@ define('IN_LOTHAR', true);
 require (dirname(__FILE__) . '/include/init.php');
 require ROOT_PATH .'public.php';
 
+// 记住上次状态
+$jumpform = isset($_GET['jumpform'])?$_GET['jumpform']:'';
+if ($jumpform) {
+    // $jumpform = strstr($jumpform,'?');
+    // $jumpform = preg_replace('/?/', '', $jumpform, 1);
+    $jumpform = explode('?', $jumpform)[1];
+    parse_str($jumpform);
+}
+
 /*验证并获取合法的ID，如果不合法将其设定为-1*/
-$cat_id = $firewall->get_legal_id('medium_category', $_REQUEST['id'], $_REQUEST['unique_id']);
-
-$jumpext = $jumpurl = $order = '';
-
+$cat_id = $id ? intval($id) : $firewall->get_legal_id('medium_category', $_REQUEST['id'], $_REQUEST['unique_id']);
 if ($cat_id == -1) {
     $dou->dou_msg($GLOBALS['_LANG']['page_wrong'], ROOT_URL);
 } else {
@@ -19,38 +25,32 @@ if ($cat_id == -1) {
         $where = ' WHERE a.cat_id='.$cat_id;
     }
 }
-if ($cat_id) {
-    $jumpext .= '&id='.$cat_id;
-}
-$page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : 1;
-$jumpext .= '&page='. $page;
 
-/*选定字段*/
-$fields = $dou->get_one('SELECT fields from '.$dou->table('medium_category').' where cat_id='.$cat_id);
-$dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
-$dkey = explode(',', $dkey);
-$dexplain = '行业,地区,账号类型,粉丝量,价格,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
-$dexplain = explode(',', $dexplain);
-foreach ($dkey as $key => $value) {
-    $designate[$value] = $dexplain[$key];
-}
-$fieldsarr = explode(',', $fields);
-$smarty->assign('designate', $designate);
-$smarty->assign('fieldsarr', $fieldsarr);
+// 选定字段 和 筛子
+$dou->get_medium_fields($cat_id);
+$dou->get_medium_series();
 
 
-/*筛选条件*/
-$a = isset($_GET['a'])?$_GET['a']:'';
-$b = isset($_GET['b'])?$_GET['b']:'';
-$c = isset($_GET['c'])?$_GET['c']:'';
-$d = isset($_GET['d'])?$_GET['d']:'';
-$d2 = isset($_GET['d2'])?$_GET['d2']:'';
-$e = isset($_GET['e'])?$_GET['e']:'';
-$e2 = isset($_GET['e2'])?$_GET['e2']:'';
-$f = isset($_GET['f'])?$_GET['f']:'';
-$g = isset($_GET['g'])?$_GET['g']:'';
-$srcval = isset($_GET['srcval'])?$_GET['srcval']:'';
+/*
+* 筛选条件
+* $_GET['jumpform']
+* $jumpext?strrev(substr(strrev($jumpext),0,strlen($jumpext)-1)
+*/
+$jumpext = $jumpurl = $order = '';
 
+$page = $check->is_number($_REQUEST['page']) ? trim($_REQUEST['page']) : ($page?$page:1);
+$a = isset($_GET['a'])?$_GET['a']:($a?$a:'');
+$b = isset($_GET['b'])?$_GET['b']:($b?$b:'');
+$c = isset($_GET['c'])?$_GET['c']:($c?$c:'');
+$d = isset($_GET['d'])?$_GET['d']:($d?$d:'');
+$d2 = isset($_GET['d2'])?$_GET['d2']:($d2?$d2:'');
+$e = isset($_GET['e'])?$_GET['e']:($e?$e:'');
+$e2 = isset($_GET['e2'])?$_GET['e2']:($e2?$e2:'');
+$f = isset($_GET['f'])?$_GET['f']:($f?$f:'');
+$g = isset($_GET['g'])?$_GET['g']:($g?$g:'');
+$srcval = isset($_GET['srcval'])?$_GET['srcval']:($srcval?$srcval:'');
+
+$jumpext .= '&id='.$cat_id.'&page='. $page;
 // 行业
 if ($a) {
     $where .= ' AND a.indusid='.intval($a);
@@ -114,17 +114,18 @@ if ($srcval) {
 
 // 最终处理
 if (strpos($where,'AND')==1) {
-    $where = ' WHERE'. preg_replace('/AND/', '', $where, 1);
+    $where = ' WHERE'. preg_replace('/AND/', '', $where, 1); //只替换一次;
 }
+if ($jumpext) 
+    $jumpext = preg_replace('/&/', '?', $jumpext, 1);
 if ($jumpext) {
-    $jumpext = preg_replace('/&/', '?', $jumpext, 1); //只替换一次;
     $jumpurl = $_URL['medium'] . $jumpext . '&';
 } else {
     $jumpurl = $_URL['medium'] . '?';
 }
 // $dou->debug($where);
 // $dou->debug($jumpext);
-// $dou->debug($jumpurl);
+$dou->debug($jumpurl);
 
 /*赋值*/
 $smarty->assign('id',$cat_id);
@@ -188,16 +189,6 @@ while ($row = $dou->fetch_assoc($query)) {
 $sql = "SELECT cat_id,parent_id,cat_name,keywords,description FROM " . $dou->table('medium_category') . " WHERE cat_id='$cat_id'";
 $query = $dou->query($sql);
 $cate_info = $dou->fetch_assoc($query);
-
-// 所有行业
-$industrys = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$dou->table('diy')));
-$smarty->assign('industrys', $industrys);
-// 所有省份
-$provinces = $dou->fetchAll(sprintf('SELECT cat_id,cat_name from %s order by sort',$dou->table('district')));
-$smarty->assign('provinces', $provinces);
-// 所有账号类型
-$account_types = $dou->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$dou->table('diy')));
-$smarty->assign('account_types', $account_types);
 
 
 

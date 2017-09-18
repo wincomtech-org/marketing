@@ -3,6 +3,39 @@ if (!defined('IN_LOTHAR')) {
     die('Hacking attempt');
 }
 class Common extends DbMysql {
+    /*
+    * 选定字段
+    */
+    public function get_medium_fields($cat_id='0')
+    {
+        $fields = $GLOBALS['dou']->get_one('SELECT fields from '.$GLOBALS['dou']->table('medium_category').' where cat_id='.$cat_id);
+        $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
+        $dkey = explode(',', $dkey);
+        $dexplain = '行业,地区,账号类型,粉丝量,价格,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
+        $dexplain = explode(',', $dexplain);
+        foreach ($dkey as $key => $value) {
+            $designate[$value] = $dexplain[$key];
+        }
+        $fieldsarr = explode(',', $fields);
+        $GLOBALS['smarty']->assign('designate', $designate);
+        $GLOBALS['smarty']->assign('fieldsarr', $fieldsarr);
+
+        // return $fields;
+    }
+
+    public function get_medium_series($select='')
+    {
+        // 所有行业
+        $industrys = $GLOBALS['dou']->fetchAll(sprintf('SELECT id,title from %s where cat_id=1 order by sort',$GLOBALS['dou']->table('diy')));
+        // 所有省份
+        $provinces = $GLOBALS['dou']->fetchAll(sprintf('SELECT cat_id,cat_name from %s order by sort',$GLOBALS['dou']->table('district')));
+        // 所有账号类型
+        $account_types = $GLOBALS['dou']->fetchAll(sprintf('SELECT id,title from %s where cat_id=2',$GLOBALS['dou']->table('diy')));
+        $GLOBALS['smarty']->assign('industrys', $industrys);
+        $GLOBALS['smarty']->assign('provinces', $provinces);
+        $GLOBALS['smarty']->assign('account_types', $account_types);
+    }
+
     /**
      * +----------------------------------------------------------
      * 获取导航菜单
@@ -509,9 +542,9 @@ class Common extends DbMysql {
         $def_nav = explode('/', $GLOBALS['_CFG']['def_nav']);
         $def_nav_num = explode('/', $GLOBALS['_CFG']['def_nav_num']);
         foreach ($def_nav as $key => $value) {
-            $GLOBALS['smarty']->assign('recommend_'.$key, $dou->get_list('article', $value, $def_nav_num[$key], 'sort DESC,modtime DESC'));
-            $GLOBALS['smarty']->assign('url_'.$key, $dou->rewrite_url('article_category', $value));//对应栏目链接
-            $GLOBALS['smarty']->assign('column_name_'.$key, $dou->rewrite_url('article_category', $value));//对应栏目名
+            $GLOBALS['smarty']->assign('recommend_'.$key, $GLOBALS['dou']->get_list('article', $value, $def_nav_num[$key], 'sort DESC,modtime DESC'));
+            $GLOBALS['smarty']->assign('url_'.$key, $GLOBALS['dou']->rewrite_url('article_category', $value));//对应栏目链接
+            $GLOBALS['smarty']->assign('column_name_'.$key, $GLOBALS['dou']->rewrite_url('article_category', $value));//对应栏目名
 
         }
         // return $article_column;

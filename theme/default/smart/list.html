@@ -58,7 +58,7 @@
         <!--{/if}-->
 
         <div class="search_block">
-            <form action="{$jumpurl}" method="get">
+            <form action="{$url.medium}" method="get">
                 <!--{if in_array('fans',$fieldsarr)}-->
                 <dl id="fans" class="fans">
                     <dt>粉丝量</dt>
@@ -77,6 +77,7 @@
                     <dd><input id="price_submit" type="submit" value="查询"></dd>
                 </dl>
                 <!--{/if}-->
+                <input type="hidden" name="jumpform" value="{$jumpurl}">
             </form>
         </div>
 
@@ -101,8 +102,9 @@
             <!--{/if}-->
             <!-- <div class="style_change"><em></em></div> -->
             <div class="search-form1">
-            <form action="{$jumpurl}" method="get">
+            <form action="{$url.medium}" method="get">
                 <div class="search-input-box"><input placeholder="输入关键字" name="srcval" value="{$srcval}" /></div>
+                <input type="hidden" name="jumpform" value="{$jumpurl}">
                 <div class="search-btn"><button type="submit">搜索</button></div>
             </form>
             </div>
