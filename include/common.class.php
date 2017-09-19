@@ -8,7 +8,6 @@ class Common extends DbMysql {
     */
     public function get_medium_fields($cat_id='0')
     {
-        $fields = $GLOBALS['dou']->get_one('SELECT fields from '.$GLOBALS['dou']->table('medium_category').' where cat_id='.$cat_id);
         $dkey = 'indusid,proid,account_type,fans,moneys,trans,id_number,reads,issue_plat,groups,channel,genre,belong_plat,average_plays,nnt,type,put_site,ad_type,pub_type,brief';
         $dkey = explode(',', $dkey);
         $dexplain = '行业,地区,账号类型,粉丝量,价格,转发量,ID号,阅读量,发布平台,受众群体,发布频道,媒体类型,所属平台,平均播放量,人数量,类型,投放位置,广告形式,发布类型,简介';
@@ -16,7 +15,10 @@ class Common extends DbMysql {
         foreach ($dkey as $key => $value) {
             $designate[$value] = $dexplain[$key];
         }
+        // 当前分类选定字段
+        $fields = $GLOBALS['dou']->get_one('SELECT fields from '.$GLOBALS['dou']->table('medium_category').' where cat_id='.$cat_id);
         $fieldsarr = explode(',', $fields);
+        
         $GLOBALS['smarty']->assign('designate', $designate);
         $GLOBALS['smarty']->assign('fieldsarr', $fieldsarr);
 

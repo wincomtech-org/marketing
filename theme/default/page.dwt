@@ -7,7 +7,7 @@
     <div class="aboutUs-block">
         <h2>{$page.page_name} >></h2>
         <div class="report_img">
-            <img src="{$site.theme_s}img/report_img.png" alt=""/>
+            <img src="{$page.thumb}" alt=""/>
         </div>
         
         <div>{$page.content}</div>
