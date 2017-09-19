@@ -27,7 +27,7 @@ if ($cat_id == -1) {
 }
 
 // 选定字段 和 筛子
-$dou->get_medium_fields($cat_id);
+$fields = $dou->get_medium_fields($cat_id);
 $dou->get_medium_series();
 
 

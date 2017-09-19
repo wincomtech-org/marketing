@@ -20,7 +20,7 @@ class Common extends DbMysql {
         $GLOBALS['smarty']->assign('designate', $designate);
         $GLOBALS['smarty']->assign('fieldsarr', $fieldsarr);
 
-        // return $fields;
+        return $fields;
     }
 
     public function get_medium_series($select='')
