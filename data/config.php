@@ -5,6 +5,12 @@ $dbuser   = "root";
 $dbpass   = "root";
 $prefix   = "dou_";
 
+// $dbhost   = "localhost";
+// $dbname   = "douphp";
+// $dbuser   = "root";
+// $dbpass   = "root";
+// $prefix   = "dou_";
+
 // charset 不区分大小写
 define('DOU_CHARSET','utf-8');
 // administrator path
